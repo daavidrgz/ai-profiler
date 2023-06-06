@@ -1,0 +1,11 @@
+--- Martinc https://ceur-ws.org/Vol-2380/paper_203.pdf ---
+Gender -> 0.580
+Age -> 0.361
+Fame -> 0.517
+Occup -> 0.449
+--- PoliticES2022 https://ceur-ws.org/Vol-3202/politices-paper1.pdf ---
+Gender -> 0.902
+Occup -> 0.944
+Ideology Binary -> 0.96
+Ideology Multiclass -> 0.800
+
