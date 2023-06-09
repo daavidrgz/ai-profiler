@@ -1,0 +1,91 @@
+.card {
+  grid-area: 3 / 1 / 6 / 3;
+  padding: 2rem;
+  height: 80vh;
+  min-width: min-content;
+
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+
+  background-color: rgb(30, 32, 44);
+  overflow: auto;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-left: -0.8rem;
+  margin-bottom: 2.5rem;
+
+  color: var(--fg);
+
+  > span {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  > svg {
+    font-size: 2.4rem;
+  }
+}
+
+.listHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 1rem 0;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--fg);
+
+  > span {
+    width: 30%;
+    text-align: center;
+    color: var(--fg);
+    font-size: 1rem;
+    font-weight: 600;
+  }
+}
+
+.listItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
+  border-bottom: 1px solid #4e4e4e;
+  margin-bottom: 1rem;
+}
+
+.itemName {
+  width: 30%;
+  text-align: center;
+  color: var(--fg);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.itemGender {
+  width: 30%;
+  text-align: center;
+  color: var(--fg);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.itemDecade {
+  width: 30%;
+  text-align: center;
+  color: var(--fg);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.male {
+  color: #98eecc;
+}
+
+.female {
+  color: #79e0ee;
+}

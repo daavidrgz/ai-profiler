@@ -1,0 +1,130 @@
+.card {
+  position: relative;
+  z-index: 4;
+  grid-area: 1 / 3 / 4 / 6;
+  min-width: min-content;
+  height: max-content;
+  padding: 2rem;
+
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+
+  background-color: rgb(30, 32, 44);
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 2.5rem;
+  margin-left: -0.8rem;
+
+  color: var(--fg);
+
+  > span {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  > svg {
+    font-size: 2.4rem;
+  }
+}
+
+.chartContainer {
+  display: flex;
+  justify-content: center;
+  height: min(45vw, 45vh);
+  margin-bottom: 2rem;
+}
+
+.dataContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+}
+
+.medianCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
+  background-color: rgb(37, 39, 51);
+  padding: 0.8rem 2rem;
+
+  > h3 {
+    margin-bottom: 0.8rem;
+    color: var(--fg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    font-weight: 500;
+    font-size: 0.9rem;
+
+    > svg {
+      font-size: 1rem;
+    }
+  }
+
+  .medianDecade {
+    color: var(--fg);
+    font-size: 1rem;
+    font-weight: 500;
+
+    > .number {
+      color: var(--fg);
+      font-size: 2rem;
+      font-weight: 600;
+    }
+  }
+
+  .medianYear {
+    margin-top: 0.5rem;
+    color: var(--fg);
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+}
+
+.meanCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
+  background-color: rgb(37, 39, 51);
+  padding: 0.8rem 2rem;
+
+  > h3 {
+    margin-bottom: 0.8rem;
+    color: var(--fg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+
+    font-weight: 500;
+    font-size: 0.9rem;
+
+    > svg {
+      font-size: 1rem;
+    }
+  }
+
+  .meanAge {
+    color: var(--fg);
+    font-size: 1rem;
+    font-weight: 500;
+    > .number {
+      color: var(--fg);
+      font-size: 2rem;
+      font-weight: 600;
+    }
+  }
+}

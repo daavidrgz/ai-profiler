@@ -7,7 +7,7 @@
 }
 
 .title {
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: 700;
   text-align: center;
   margin-bottom: 5rem;
@@ -16,13 +16,16 @@
 }
 
 .chartsContainer {
-  padding: 0 4rem;
-  width: 100%;
   margin-bottom: 2rem;
+  width: 80%;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: max-content;
-  gap: 5rem;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  column-gap: 4rem;
+  row-gap: 4rem;
+
+  & > div {
+    transition: all 0.3s;
+  }
 }

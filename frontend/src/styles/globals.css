@@ -3,6 +3,7 @@
 :root {
   --border-radius: 20px;
   --box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.461);
+  --box-shadow-subtle: 5px 5px 20px rgba(0, 0, 0, 0.1);
 
   --bg: #393d43;
   --fg: #E3E6EF;
@@ -25,7 +26,6 @@ body {
   background: rgb(20, 23, 34);
   height: 100vh;
 }
-
 
 a {
   color: inherit;
