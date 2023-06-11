@@ -6,6 +6,8 @@ import DateRangeIcon from "@mui/icons-material/DateRange";
 import CakeIcon from "@mui/icons-material/Cake";
 import ArrowRightRoundedIcon from "@mui/icons-material/ArrowRightRounded";
 import { DivProps } from "@/utils/defaultInterfaces";
+import { getDecadeColors } from "@/utils/colors";
+import { getCurrentYear, getMinDecade } from "@/utils/dates";
 
 const chartOptions = {
   plugins: {
@@ -38,9 +40,8 @@ interface Props extends DivProps {
 }
 
 export default function AgeChart({ people, ...rest }: Props) {
-  const currentYear = new Date().getFullYear();
-  const currentDecade = Math.floor(currentYear / 10) * 10;
-  const minDecade = currentDecade - 90;
+  const currentYear = getCurrentYear();
+  const minDecade = getMinDecade();
 
   const medianDecade = useMemo(() => {
     const orderedDecades = people
@@ -84,18 +85,7 @@ export default function AgeChart({ people, ...rest }: Props) {
         {
           label: "Number of people",
           data: decadeGroups.map((group) => group.count),
-          backgroundColor: [
-            "#98EECC",
-            "#79E0EE",
-            "#6FC3FF",
-            "#7B9FFF",
-            "#A17BFF",
-            "#D67BFF",
-            "#FF7BDC",
-            "#FF7F7F",
-            "#FFB97F",
-            "#FFE77F",
-          ],
+          backgroundColor: getDecadeColors(),
         },
       ],
     };

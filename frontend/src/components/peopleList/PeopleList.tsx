@@ -3,6 +3,8 @@ import { useState } from "react";
 import styles from "./peopleList.module.scss";
 import ArrowRightRoundedIcon from "@mui/icons-material/ArrowRightRounded";
 import { DivProps } from "@/utils/defaultInterfaces";
+import { getDecadeColor, getGenderColor } from "@/utils/colors";
+import { getMinDecade } from "@/utils/dates";
 
 interface Props extends DivProps {
   people: Person[];
@@ -10,21 +12,26 @@ interface Props extends DivProps {
 
 interface ListItemProps {
   person: Person;
+  minDecade: number;
   onClick: () => void;
 }
 
-function ListItem({ person }: ListItemProps) {
+function ListItem({ person, minDecade }: ListItemProps) {
   return (
     <div className={styles.listItem}>
       <span className={styles.itemName}>{person.name}</span>
       <span
-        className={`${styles.itemGender} ${
-          person.gender === Gender.Male ? styles.male : styles.female
-        }`}
+        style={{ color: getGenderColor(person.gender) }}
+        className={styles.itemGender}
       >
         {person.gender}
       </span>
-      <span className={styles.itemDecade}>{person.birthDecade}s</span>
+      <span
+        style={{ color: getDecadeColor(person.birthDecade, minDecade) }}
+        className={styles.itemDecade}
+      >
+        {person.birthDecade}s
+      </span>
     </div>
   );
 }
@@ -39,6 +46,8 @@ export default function PeopleList({ people, ...rest }: Props) {
   };
 
   const handleCloseModal = () => setIsModalOpen(false);
+
+  const minDecade = getMinDecade();
 
   return (
     <div className={styles.card} {...rest}>
@@ -57,6 +66,7 @@ export default function PeopleList({ people, ...rest }: Props) {
           <ListItem
             key={idx}
             person={person}
+            minDecade={minDecade}
             onClick={() => handlePersonClick(person)}
           />
         ))}

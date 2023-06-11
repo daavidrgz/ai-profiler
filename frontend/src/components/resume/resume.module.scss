@@ -1,5 +1,5 @@
 .card {
-  grid-area: 2 / 1 / 4 / 3;
+  grid-area: 1 / 1 / 2 / 6;
   min-width: min-content;
   height: max-content;
   padding: 2rem;
@@ -14,8 +14,8 @@
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  margin-left: -0.8rem;
   margin-bottom: 2.5rem;
+  margin-left: -0.8rem;
 
   color: var(--fg);
 
@@ -29,23 +29,15 @@
   }
 }
 
-.chartContainer {
-  display: flex;
-  justify-content: center;
-  height: min(30vh, 45vw);
-  margin-bottom: 2rem;
-}
-
 .dataContainer {
   width: 100%;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  gap: 2rem;
+	gap: 2rem;
 }
 
-.genderCount {
+.dataCard {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,10 +45,10 @@
   box-shadow: var(--box-shadow);
   border-radius: var(--border-radius);
   background-color: rgb(37, 39, 51);
-  padding: 0.8rem;
-  width: max(40%, 12rem);
+  padding: 0.8rem 2rem;
 
   > h3 {
+    margin-bottom: 0.8rem;
     color: var(--fg);
     display: flex;
     align-items: center;
@@ -66,22 +58,28 @@
     font-weight: 500;
     font-size: 0.9rem;
 
-    margin-bottom: 0.5rem;
-
     > svg {
       font-size: 1rem;
     }
   }
 
-  .count {
+  .number {
     color: var(--fg);
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: 600;
   }
+}
 
-  .percentage {
-    color: var(--fg);
-    font-size: 1rem;
-    font-weight: 500;
-  }
+.totalCard {
+	@extend .dataCard;
+  width: max(10%, 12rem);
+}
+
+.timeCard {
+	@extend .dataCard;
+	width: max(18%, 14rem);
+
+	.number {
+		font-size: 2rem;
+	}
 }

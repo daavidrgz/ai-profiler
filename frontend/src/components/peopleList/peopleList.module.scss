@@ -1,5 +1,5 @@
 .card {
-  grid-area: 3 / 1 / 6 / 3;
+  grid-area: 4 / 1 / 7 / 3;
   padding: 2rem;
   height: 80vh;
   min-width: min-content;
@@ -80,12 +80,4 @@
   color: var(--fg);
   font-size: 0.9rem;
   font-weight: 500;
-}
-
-.male {
-  color: #98eecc;
-}
-
-.female {
-  color: #79e0ee;
 }

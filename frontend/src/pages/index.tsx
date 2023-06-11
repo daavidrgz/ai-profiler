@@ -6,7 +6,14 @@ import { CategoryScale } from "chart.js";
 import Person, { Gender } from "@/model/person";
 import AgeChart from "@/components/ageChart/AgeChart";
 import PeopleList from "@/components/peopleList/PeopleList";
-import { MouseEvent, MouseEventHandler, useEffect, useRef } from "react";
+import {
+  MouseEvent,
+  MouseEventHandler,
+  useCallback,
+  useEffect,
+  useRef,
+} from "react";
+import Resume from "@/components/resume/Resume";
 
 Chart.register(CategoryScale);
 
@@ -115,6 +122,7 @@ export default function Home() {
         <h1 className={styles.title}>RESULTS OVERVIEW</h1>
 
         <div className={styles.chartsContainer} ref={chartsContainerRef}>
+          <Resume people={people} />
           <GenderChart people={people} />
           <AgeChart people={people} />
           <PeopleList people={people} />
