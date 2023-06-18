@@ -1,5 +1,5 @@
 import Person from "@/model/person";
-import styles from "./resume.module.scss";
+import styles from "./profilingResume.module.scss";
 import { DivProps } from "@/utils/defaultInterfaces";
 import ArrowRightRoundedIcon from "@mui/icons-material/ArrowRightRounded";
 import PeopleAltRoundedIcon from "@mui/icons-material/PeopleAltRounded";
@@ -9,7 +9,7 @@ interface Props extends DivProps {
   people: Person[];
 }
 
-export default function Resume({ people, ...rest }: Props) {
+export default function ProfilingResume({ people, ...rest }: Props) {
   return (
     <div className={styles.card} {...rest}>
       <div className={styles.title}>
