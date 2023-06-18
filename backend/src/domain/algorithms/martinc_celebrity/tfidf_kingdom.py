@@ -4,15 +4,16 @@ import pandas as pd
 from nltk.corpus import stopwords
 import re
 import string
-
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.pipeline import FeatureUnion
 from sklearn import pipeline
 from sklearn.preprocessing import Normalizer
 from sklearn import preprocessing
 import numpy
+import logging
 
 numpy.random.seed()
+logger = logging.getLogger("server_logger")
 
 
 def remove_punctuation(text):
@@ -129,7 +130,6 @@ def get_tfidf_features(
     tfidf_unigram = TfidfVectorizer(
         ngram_range=(1, 1), sublinear_tf=True, min_df=5, max_df=0.8
     )
-    # tfidf_bigram = TfidfVectorizer(ngram_range=(2, 2), sublinear_tf=False, min_df=20, max_df=0.5)
     character_vectorizer = CountVectorizer(
         analyzer="char_wb", ngram_range=(4, 4), lowercase=False, min_df=20, max_df=0.7
     )
@@ -138,15 +138,13 @@ def get_tfidf_features(
     )
     tfidf_transformer = TfidfTransformer(sublinear_tf=True)
 
-    features = [  # ('cst', digit_col()),
+    features = [
         (
             "unigram",
             pipeline.Pipeline(
                 [("s1", text_col(key="no_stopwords")), ("tfidf_unigram", tfidf_unigram)]
             ),
         ),
-        # ('bigram', pipeline.Pipeline([('s2', text_col(key='no_punctuation')), ('tfidf_bigram', tfidf_bigram)])),
-        #                   ('tag', pipeline.Pipeline([('s4', text_col(key='pos_tag')), ('tfidf_pos', tfidf_pos)])),
         (
             "character",
             pipeline.Pipeline(
@@ -164,9 +162,8 @@ def get_tfidf_features(
             ),
         ),
     ]
-    weights = {  #'cst': cst,
+    weights = {
         "unigram": unigram,
-        #'bigram': bigram,
         "character": character,
         "affixes": affixes,
     }
@@ -182,5 +179,6 @@ def get_tfidf_features(
         ]
     )
 
+    logger.info("Fitting TFIDF")
     tokenizer = matrix.fit(df_data)
     return tokenizer

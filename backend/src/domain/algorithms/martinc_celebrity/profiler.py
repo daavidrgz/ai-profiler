@@ -18,6 +18,8 @@ logger = logging.getLogger("server_logger")
 
 
 class MartincCelebrity(ProfilingAlgorithm):
+    NAME = "martinc_celebrity"
+    
     def autoprofile(self, dataset: Dataset):
         dataset.convert_to_ndjson()
         model_folder = "./domain/algorithms/martinc_celebrity/model"
@@ -57,8 +59,6 @@ class MartincCelebrity(ProfilingAlgorithm):
             predictions = model.predict(predict_features)
             predictions = encoder.inverse_transform(predictions)
             for id, pred in zip(test_ids, predictions):
-                if task == "birthyear":
-                    pred = int(pred)
                 docs_dict[id][task] = pred
 
         output = []
@@ -80,7 +80,7 @@ class MartincCelebrity(ProfilingAlgorithm):
         )
 
         num_samples = 100
-        validation_samples = 10000
+        train_samples = 40000
         document_count = 0
         documents = {}
         train_labels_d = {}
@@ -91,7 +91,7 @@ class MartincCelebrity(ProfilingAlgorithm):
             for line in labels_file:
                 document_count += 1
                 lab_di = json.loads(line)
-                if document_count < validation_samples:
+                if document_count < train_samples:
                     train_labels_d[lab_di["id"]] = lab_di
                 else:
                     validation_labels_d[lab_di["id"]] = lab_di
@@ -123,7 +123,9 @@ class MartincCelebrity(ProfilingAlgorithm):
         logger.info("Dataframe built")
 
         vectorizer = get_tfidf_features(train_df)
+        logger.info("Vectorizing train dataframe")
         feature_matrix = vectorizer.transform(train_df)
+        logger.info("Vectorizing validation dataframe")
         test_feature_matrix = vectorizer.transform(validation_df)
         logger.info("Dataframe vectorized")
 
