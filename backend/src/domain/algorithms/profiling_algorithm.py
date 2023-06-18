@@ -1,5 +1,9 @@
-class ProfilingAlgorithm:
-    output_path = ""
+from application.dataset import Dataset
 
-    def run(self, data_file):
+
+class ProfilingAlgorithm:
+    def autoprofile(self, dataset: Dataset):
+        raise NotImplementedError
+
+    def train(self):
         raise NotImplementedError

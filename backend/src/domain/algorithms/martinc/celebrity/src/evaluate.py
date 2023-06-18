@@ -7,11 +7,11 @@ import numpy as np
 from sklearn.metrics import f1_score
 import logging
 import joblib
+import numpy
+import argparse
 
 logging.basicConfig(format="%(asctime)s - %(message)s", datefmt="%d-%b-%y %H:%M:%S")
 logging.getLogger().setLevel(logging.INFO)
-import numpy
-import argparse
 
 numpy.random.seed()
 
@@ -31,7 +31,7 @@ def load_labels(label_pickle, test_labels):
 
     with open(test_labels, "rb") as input_file:
         et = pickle.load(input_file)
-        
+
     for el in e:
         ocupations_train.append(el["occupation"])
         gender_train.append(el["gender"])

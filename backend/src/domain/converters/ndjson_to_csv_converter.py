@@ -5,13 +5,14 @@ import csv
 import json
 
 
-class CsvToNdjsonConverter(Converter):
+class NdjsonToCsvConverter(Converter):
     def convert(self, input_file: TextIOBase):
         output_file = StringIO()
-        reader = csv.DictReader(input_file)
-        for row in reader:
-            line = json.dumps(row)
-            output_file.write(line + "\n")
+        writer = csv.DictWriter(output_file, fieldnames=["id", "name", "age"])
+        writer.writeheader()
+        for line in input_file:
+            row = json.loads(line)
+            writer.writerow(row)
 
         output_file.seek(0)
         return output_file

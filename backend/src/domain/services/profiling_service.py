@@ -1,10 +1,16 @@
-from application.dataset_dto import DatasetDto
+from application.dataset import Dataset
 from domain.algorithms.martinc_celebrity.profiler import MartincCelebrity
-from domain.converters.csv_to_ndjson_converter import CsvToNdjsonConverter
-
 
 class ProfilingService:
-    def autoprofile(self, data_file):
+    def autoprofile(self, dataset: Dataset):
         martinc_celebrity = MartincCelebrity()
-        output = CsvToNdjsonConverter().convert(data_file)
+        output = martinc_celebrity.autoprofile(dataset)
         return {"output": output}
+
+    def train(self):
+        from threading import Thread
+
+        martinc_celebrity = MartincCelebrity()
+        thread = Thread(target=martinc_celebrity.train)
+        thread.start()
+        return {}
