@@ -1,9 +1,9 @@
-import { Gender } from "@/model/person";
+import Gender, { GenderSchema } from "@/model/gender";
 
 export function getGenderColor(gender: Gender) {
-	if (gender === Gender.Male) {
+	if (gender === GenderSchema.Enum.male) {
 		return "#98EECC";
-	} else if (gender === Gender.Female) {
+	} else if (gender === GenderSchema.Enum.female) {
 		return "#79e0ee";
 	} else {
 		return "#F9F9F9";

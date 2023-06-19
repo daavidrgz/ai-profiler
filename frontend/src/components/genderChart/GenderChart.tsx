@@ -3,9 +3,10 @@ import { Pie } from "react-chartjs-2";
 import styles from "./genderChart.module.scss";
 import FemaleIcon from "@mui/icons-material/Female";
 import MaleIcon from "@mui/icons-material/Male";
-import Person, { Gender } from "@/model/person";
+import Person from "@/model/person";
 import ArrowRightRoundedIcon from "@mui/icons-material/ArrowRightRounded";
 import { DivProps } from "@/utils/defaultInterfaces";
+import { GenderSchema } from "@/model/gender";
 
 const chartOptions = {
   plugins: {
@@ -27,12 +28,16 @@ interface Props extends DivProps {
 
 export default function GenderChart({ people, ...rest }: Props) {
   const maleCount = useMemo(
-    () => people.filter((person) => person.gender === Gender.Male).length,
+    () =>
+      people.filter((person) => person.gender === GenderSchema.Enum.male)
+        .length,
     [people]
   );
 
   const femaleCount = useMemo(
-    () => people.filter((person) => person.gender === Gender.Female).length,
+    () =>
+      people.filter((person) => person.gender === GenderSchema.Enum.female)
+        .length,
     [people]
   );
 
