@@ -1,0 +1,109 @@
+@import "~/src/styles/builders.scss";
+
+.Notification_aggregator {
+  height: 100vh;
+  position: fixed;
+  bottom: 3rem;
+  left: 3rem;
+  z-index: 100;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+  pointer-events: none;
+}
+
+.Notification_container {
+  cursor: pointer;
+  pointer-events: auto;
+  position: relative;
+  padding: 1.4rem;
+
+  background-color: var(--bg);
+  border-radius: var(--border-radius);
+  border: 2px solid var(--fg-subtle);
+
+  transition: background-color 0.3s ease-in-out;
+
+  @include for-screens-above("l") {
+    width: 20vw;
+  }
+  @include for-screen("m") {
+    width: 35vw;
+  }
+  @include for-screen("s") {
+    width: 50vw;
+  }
+  @include for-screen("xs") {
+    width: 80vw;
+  }
+}
+
+.Notification_topBar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Notification_title {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  padding-right: 0.5rem;
+  gap: 0.8rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+
+  color: var(--fg);
+}
+
+.Notification_message {
+  margin-top: 1rem;
+  color: var(--fg);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.Notification_success {
+  &:hover {
+    background-color: var(--bg-subtle);
+  }
+
+  .Notification_title {
+    > svg {
+      color: var(--green);
+    }
+  }
+}
+
+.Notification_error {
+  &:hover {
+    background-color: var(--bg-subtle);
+  }
+
+  .Notification_title {
+    > svg {
+      color: var(--red);
+    }
+  }
+}
+
+.Notification_info {
+  background-color: #ffffff;
+  border-color: black;
+
+  transition: background-color 0.3s ease-in-out;
+  &:hover {
+    background-color: #1818a0;
+  }
+
+  .Notification_title {
+    > svg {
+      color: var(--blue2);
+    }
+    border-color: var(--blue2);
+  }
+}

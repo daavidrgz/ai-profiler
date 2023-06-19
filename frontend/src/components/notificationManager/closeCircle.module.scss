@@ -1,0 +1,41 @@
+.CloseCircle_wrapper {
+  position: relative;
+  --size: 1.4rem;
+  width: var(--size);
+  height: var(--size);
+}
+
+.CloseCircle_innerCircle {
+  width: var(--size);
+  height: var(--size);
+
+  > circle {
+    stroke-width: 5px;
+    stroke-opacity: 0;
+  }
+}
+
+.CloseCirlce_outerCircle {
+  width: var(--size);
+  height: var(--size);
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotate(-90deg);
+  overflow: visible;
+
+  > circle {
+    stroke-width: 5px;
+    stroke: var(--fg);
+    shape-rendering: geometricPrecision;
+  }
+}
+
+.CloseCircle_closeIcon {
+  color: var(--fg);
+  width: calc(var(--size) - 0.5rem) !important;
+  height: calc(var(--size) - 0.5rem) !important;
+  position: absolute;
+  top: 0.25rem;
+  left: 0.25rem;
+}

@@ -1,16 +1,12 @@
-export enum Gender {
-	Male = "Male",
-	Female = "Female",
-}
+import z from 'zod';
+import { GenderSchema } from './gender';
 
-export default class Person {
-	name: string;
-	birthDecade: number;
-	gender: Gender;
+export const PersonSchema = z
+	.object({
+		name: z.string(),
+		birthDecade: z.number(),
+		gender: GenderSchema
+	})
 
-	constructor(name: string, birthDecade: number, gender: Gender) {
-		this.name = name
-		this.birthDecade = birthDecade
-		this.gender = gender
-	}
-}
+type Person = z.infer<typeof PersonSchema>;
+export default Person;

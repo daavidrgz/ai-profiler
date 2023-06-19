@@ -1,5 +1,21 @@
-import ProfilingDataDto from "@/model/profilingDataDto";
+import ProfilingData from "@/model/profilingData";
+import { ProfilingDataDtoSchema, toProfilingData } from "@/model/profilingDataDto";
 
 export default abstract class ProfilingService {
-	public abstract autoprofile(): Promise<ProfilingDataDto>;
+	private static endpoint = "/api";
+
+	public static autoprofile(dataset: File): Promise<ProfilingData> {
+		const formData = new FormData();
+		formData.append("file", dataset);
+
+		return fetch(`${this.endpoint}/autoprofile`, {
+			method: "POST",
+			body: formData,
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				const profilingDataDto = ProfilingDataDtoSchema.parse(data);
+				return toProfilingData(profilingDataDto);
+			})
+	};
 }
