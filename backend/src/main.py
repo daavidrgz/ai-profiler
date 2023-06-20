@@ -1,6 +1,7 @@
 from io import StringIO
-import time
-from fastapi import FastAPI, UploadFile
+from threading import Thread
+from uuid import uuid4
+from fastapi import FastAPI, HTTPException, UploadFile
 from domain.services.profiling_service import ProfilingService
 from application.file_type import FileType
 from application.dataset import Dataset
@@ -13,17 +14,19 @@ app = FastAPI()
 profiling_service = ProfilingService()
 
 
-@app.post("/profiling")
-def profiling(file: UploadFile):
-    extension = file.filename.split(".")[-1]
+@app.post("/autoprofile")
+def autoprofile(file: UploadFile):
+    uuid = uuid4()
 
+    extension = file.filename.split(".")[-1]
     try:
         file_type = FileType(extension)
     except Exception as e:
-        return {
-            "error": "File type not supported. Supported file types are: "
-            + ", ".join([file_type.value for file_type in FileType])
-        }
+        raise HTTPException(
+            status_code=400,
+            detail="File type not supported. Supported file types are: "
+            + ", ".join([file_type.value for file_type in FileType]),
+        )
 
     filename = file.filename
     content = file.file.read().decode("utf-8")
@@ -32,19 +35,21 @@ def profiling(file: UploadFile):
     try:
         dataset = Dataset(filename=filename, file_type=file_type, file=text_file)
     except Exception as e:
-        return {"error": str(e)}
+        raise HTTPException(status_code=400, detail=str(e))
 
     algorithm = MartincCelebrity()
 
-    start = time.time()
-    output = profiling_service.autoprofile(dataset, algorithm)
-    end = time.time()
+    thread = Thread(
+        target=profiling_service.autoprofile, args=(dataset, algorithm, uuid)
+    )
+    thread.start()
 
-    return {
-        "algorithm": algorithm.NAME,
-        "time": int((end - start) * 1000),
-        "output": output,
-    }
+    return {"profiling_id": uuid}
+
+
+@app.get("/autoprofile/{profiling_id}")
+def get_profiling(profiling_id: str):
+    return profiling_service.get_profiling(profiling_id)
 
 
 @app.get("/train")

@@ -19,7 +19,7 @@ logger = logging.getLogger("server_logger")
 
 class MartincCelebrity(ProfilingAlgorithm):
     NAME = "martinc_celebrity"
-    
+
     def autoprofile(self, dataset: Dataset):
         dataset.convert_to_ndjson()
         model_folder = "./domain/algorithms/martinc_celebrity/model"
@@ -52,6 +52,7 @@ class MartincCelebrity(ProfilingAlgorithm):
         docs_dict = defaultdict(dict)
 
         for task in tasks:
+            logger.info("Predicting " + task)
             encoder_file = open(model_folder + "/encoder_" + task + ".pickle", "rb")
             encoder = pickle.load(encoder_file)
             model = joblib.load(model_folder + "/trained_LR_" + task + ".pkl")
