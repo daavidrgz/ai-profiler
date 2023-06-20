@@ -1,52 +1,15 @@
 import Head from "next/head";
 import styles from "@/pages/styles/home.module.scss";
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import { ChangeEvent, FormEvent, useState, DragEvent } from "react";
-import ProfilingService from "@/services/ProfilingService";
-import { useNotifications } from "@/components/notificationManager/NotificationManager";
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import UploadDataset from "@/components/uploadDataset/UploadDataset";
+import FilePreview from "@/components/filePreview/FilePreview";
 
 export default function HomePage() {
-  const [dragActive, setDragActive] = useState(false);
-
-  const { createErrorNotification, createSuccessNotification } =
-    useNotifications();
+  const [file, setFile] = useState<File | null>(null);
 
   function handleImportFile(file: File) {
-    ProfilingService.autoprofile(file)
-      .then((res) => {
-        createSuccessNotification("Dataset uploaded successfully!");
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }
-
-  function handleUploadChange(e: ChangeEvent<HTMLInputElement>) {
-    e.preventDefault();
-    const file = e.target.files?.[0];
-    if (file) handleImportFile(file);
-  }
-
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-  }
-
-  function handleDrag(e: DragEvent<HTMLDivElement | HTMLFormElement>) {
-    e.preventDefault();
-    e.stopPropagation();
-    if (e.type === "dragenter" || e.type === "dragover") {
-      setDragActive(true);
-    } else if (e.type === "dragleave") {
-      setDragActive(false);
-    }
-  }
-
-  function handleDrop(e: DragEvent<HTMLDivElement>) {
-    e.preventDefault();
-    e.stopPropagation();
-    setDragActive(false);
-    const file = e.dataTransfer.files[0];
-    if (file) handleImportFile(e.dataTransfer.files[0]);
+    setFile(file);
   }
 
   return (
@@ -54,42 +17,36 @@ export default function HomePage() {
       <Head>
         <title>AI Profiler</title>
       </Head>
+
       <div className={styles.externalContainer}>
         <h1 className={styles.title}>AI PROFILER</h1>
-
-        <form
-          data-drag_active={dragActive}
-          className={styles.inputContainer}
-          onSubmit={handleSubmit}
-          onDragEnter={handleDrag}
-        >
-          <span className={styles.inputText}>
-            Drag and drop your dataset here or click the button below!
-          </span>
-
-          <label htmlFor="file-upload" className={styles.uploadLabel}>
-            <button className={styles.uploadButton} type="button">
-              <span>Upload dataset</span>
-              <CloudUploadIcon />
-            </button>
-          </label>
-          <input
-            className={styles.uploadInput}
-            onChange={handleUploadChange}
-            type="file"
-            id="file-upload"
-          />
-
-          {dragActive && (
-            <div
-              className={styles.dragOverlay}
-              onDragEnter={handleDrag}
-              onDragLeave={handleDrag}
-              onDragOver={handleDrag}
-              onDrop={handleDrop}
-            />
+        <h2 className={styles.subtitle}>
+          A powerful tool that lets you infer personal characteristics of people
+          from the text they write.
+        </h2>
+        <AnimatePresence>
+          {!file ? (
+            <motion.div
+              className={styles.uploadContainer}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4 }}
+            >
+              <UploadDataset handleImportFile={handleImportFile} />
+            </motion.div>
+          ) : (
+            <motion.div
+              className={styles.uploadContainer}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4 }}
+            >
+              <FilePreview file={file} />
+            </motion.div>
           )}
-        </form>
+        </AnimatePresence>
       </div>
     </div>
   );

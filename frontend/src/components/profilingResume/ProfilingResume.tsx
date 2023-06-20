@@ -1,15 +1,15 @@
-import Person from "@/model/person";
 import styles from "./profilingResume.module.scss";
 import { DivProps } from "@/utils/defaultInterfaces";
 import ArrowRightRoundedIcon from "@mui/icons-material/ArrowRightRounded";
 import PeopleAltRoundedIcon from "@mui/icons-material/PeopleAltRounded";
-import HourglassEmptyRoundedIcon from '@mui/icons-material/HourglassEmptyRounded';
+import HourglassEmptyRoundedIcon from "@mui/icons-material/HourglassEmptyRounded";
+import ProfilingData from "@/model/profilingData";
 
 interface Props extends DivProps {
-  people: Person[];
+  profilingData: ProfilingData;
 }
 
-export default function ProfilingResume({ people, ...rest }: Props) {
+export default function ProfilingResume({ profilingData, ...rest }: Props) {
   return (
     <div className={styles.card} {...rest}>
       <div className={styles.title}>
@@ -22,14 +22,14 @@ export default function ProfilingResume({ people, ...rest }: Props) {
             <span>TOTAL</span>
             <PeopleAltRoundedIcon />
           </h3>
-          <span className={styles.number}>{people.length}</span>
+          <span className={styles.number}>{profilingData.people.length}</span>
         </div>
         <div className={styles.timeCard}>
           <h3>
             <span>PROFILING TIME</span>
             <HourglassEmptyRoundedIcon />
           </h3>
-          <span className={styles.number}>4m 19s</span>
+          <span className={styles.number}>{profilingData.time} s</span>
         </div>
       </div>
     </div>

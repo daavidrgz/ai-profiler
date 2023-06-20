@@ -1,0 +1,76 @@
+.inputContainer {
+  width: 100%;
+  height: 100%;
+
+  border-radius: var(--border-radius);
+  background-color: rgb(30, 32, 44);
+  border: 2px dashed var(--fg-subtle);
+  box-shadow: var(--box-shadow);
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  &[data-drag_active="true"] {
+    border-color: #30d0ab;
+  }
+  &[data-drag_active="false"] {
+    border-color: var(--fg-subtle);
+  }
+}
+
+.dragOverlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.inputText {
+  margin-bottom: 6rem;
+  width: 40%;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--fg-subtle);
+}
+
+.uploadLabel {
+  cursor: pointer;
+  > button {
+    pointer-events: none;
+  }
+  &:hover {
+    > button {
+      background-position: 100% 50%;
+    }
+  }
+}
+
+.uploadButton {
+  padding: 0.8rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  background: linear-gradient(to right, #a8c0ff 30%, #644dc9 100%);
+  border-radius: 5px;
+  box-shadow: var(--box-shadow);
+
+  transition: all 0.4s ease-in-out;
+  background-size: 150% auto;
+  background-position: 0% 50%;
+
+  > span {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  > svg {
+    font-size: 1.2rem;
+  }
+}
+
+.uploadInput {
+  display: none;
+}

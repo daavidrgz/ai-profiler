@@ -4,20 +4,23 @@ import { GenderSchema } from './gender';
 
 export const ProfilingDataDtoSchema = z
 	.object({
-		algorithm: z.string(),
-		time: z.number(),
-		output: z.array(z.object(
-			{
-				id: z.number(),
-				result: z.object(
-					{
-						gender: GenderSchema,
-						birthyear: z.string(),
-						fame: z.string(),
-						occupation: z.string(),
-					})
-			}
-		))
+		status: z.string(),
+		profiling: z.object({
+			algorithm: z.string(),
+			time: z.number(),
+			output: z.array(z.object(
+				{
+					id: z.number(),
+					result: z.object(
+						{
+							gender: GenderSchema,
+							birthyear: z.string(),
+							fame: z.string(),
+							occupation: z.string(),
+						})
+				}
+			))
+		}).optional()
 	})
 
 type ProfilingDataDto = z.infer<typeof ProfilingDataDtoSchema>;
@@ -25,9 +28,9 @@ export default ProfilingDataDto;
 
 export const toProfilingData = (dto: ProfilingDataDto): ProfilingData => {
 	return {
-		algorithm: dto.algorithm,
-		time: dto.time,
-		people: dto.output.map((person) => {
+		algorithm: dto.profiling!.algorithm,
+		time: dto.profiling!.time,
+		people: dto.profiling!.output.map((person) => {
 			return {
 				name: person.id.toString(),
 				birthDecade: decadeToNumber(person.result.birthyear),

@@ -3,60 +3,15 @@ import styles from "@/pages/styles/resume.module.scss";
 import GenderChart from "@/components/genderChart/GenderChart";
 import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
-import Person from "@/model/person";
 import AgeChart from "@/components/ageChart/AgeChart";
 import PeopleList from "@/components/peopleList/PeopleList";
 import { useEffect, useRef } from "react";
 import ProfilingResume from "@/components/profilingResume/ProfilingResume";
+import { useData } from "@/components/dataProvider/DataProvider";
 
 Chart.register(CategoryScale);
 
 export default function ResumePage() {
-  const people: Person[] = [
-    { name: "John", birthDecade: 1970, gender: "male" },
-    { name: "John", birthDecade: 1970, gender: "male" },
-    { name: "John", birthDecade: 1970, gender: "male" },
-    { name: "John", birthDecade: 1970, gender: "male" },
-    { name: "John", birthDecade: 1970, gender: "male" },
-    { name: "John", birthDecade: 1970, gender: "male" },
-    { name: "John", birthDecade: 1970, gender: "male" },
-    { name: "John", birthDecade: 1970, gender: "male" },
-    { name: "John", birthDecade: 1970, gender: "male" },
-    { name: "John", birthDecade: 1970, gender: "male" },
-    { name: "John", birthDecade: 1970, gender: "male" },
-    { name: "John", birthDecade: 1970, gender: "male" },
-    { name: "John", birthDecade: 1970, gender: "male" },
-    { name: "John", birthDecade: 1970, gender: "male" },
-    { name: "Marta", birthDecade: 1980, gender: "female" },
-    { name: "Marta", birthDecade: 1980, gender: "female" },
-    { name: "Marta", birthDecade: 1980, gender: "female" },
-    { name: "Marta", birthDecade: 1980, gender: "female" },
-    { name: "Marta", birthDecade: 1980, gender: "female" },
-    { name: "Marta", birthDecade: 1980, gender: "female" },
-    { name: "Marta", birthDecade: 1980, gender: "female" },
-    { name: "Marta", birthDecade: 1980, gender: "female" },
-    { name: "Marta", birthDecade: 1980, gender: "female" },
-    { name: "Marta", birthDecade: 1980, gender: "female" },
-    { name: "Marta", birthDecade: 1980, gender: "female" },
-    { name: "Marta", birthDecade: 1980, gender: "female" },
-    { name: "Marta", birthDecade: 1980, gender: "female" },
-    { name: "Marta", birthDecade: 2000, gender: "female" },
-    { name: "Marta", birthDecade: 2000, gender: "female" },
-    { name: "Marta", birthDecade: 2000, gender: "female" },
-    { name: "Marta", birthDecade: 2000, gender: "female" },
-    { name: "Marta", birthDecade: 2000, gender: "female" },
-    { name: "Marta", birthDecade: 2000, gender: "female" },
-    { name: "Marta", birthDecade: 2000, gender: "female" },
-    { name: "Marta", birthDecade: 2000, gender: "female" },
-    { name: "Marta", birthDecade: 2000, gender: "female" },
-    { name: "Marta", birthDecade: 2000, gender: "female" },
-    { name: "Marta", birthDecade: 2000, gender: "female" },
-    { name: "Marta", birthDecade: 2000, gender: "female" },
-    { name: "Marta", birthDecade: 2000, gender: "female" },
-    { name: "Marta", birthDecade: 2000, gender: "female" },
-    { name: "Peter", birthDecade: 2020, gender: "male" },
-  ];
-
   const chartsContainerRef = useRef<HTMLDivElement>(null);
 
   let timeout: NodeJS.Timeout | null = null;
@@ -104,6 +59,9 @@ export default function ResumePage() {
     };
   }, [chartsContainerRef]);
 
+  const { data } = useData();
+  if (!data) return <div>Loading...</div>;
+
   return (
     <>
       <Head>
@@ -116,10 +74,10 @@ export default function ResumePage() {
         <h1 className={styles.title}>RESULTS OVERVIEW</h1>
 
         <div className={styles.chartsContainer} ref={chartsContainerRef}>
-          <ProfilingResume people={people} />
-          <GenderChart people={people} />
-          <AgeChart people={people} />
-          <PeopleList people={people} />
+          <ProfilingResume profilingData={data} />
+          <GenderChart people={data.people} />
+          <AgeChart people={data.people} />
+          <PeopleList people={data.people} />
         </div>
       </main>
     </>
