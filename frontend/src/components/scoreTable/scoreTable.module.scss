@@ -1,6 +1,47 @@
-.scoreTable {
+.table {
   width: 100%;
+  border-collapse: collapse;
 }
 
-.scoreTableHeader {
+.tableHeader {
+  > tr {
+    > th {
+      padding: 0.8rem 0;
+      border-bottom: 1px solid var(--fg);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--fg);
+      width: 50%;
+    }
+    > th:nth-child(1) {
+      border-right: 1px solid var(--fg);
+    }
+  }
+}
+
+.tableBody {
+  > tr {
+    > td {
+      padding: 0.7rem 0;
+      border-bottom: 1px solid var(--fg);
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--fg);
+      width: 50%;
+    }
+
+    > td.tableRight {
+      border-right: none;
+    }
+
+    > td.tableLeft {
+      border-right: 1px solid var(--fg);
+    }
+  }
+
+  > tr:last-child {
+    > td {
+      border-bottom: none;
+    }
+  }
 }

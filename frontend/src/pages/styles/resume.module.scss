@@ -2,28 +2,30 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 3rem;
+  padding-top: 4rem;
   min-height: 100vh;
 }
 
 .title {
-  font-size: 3rem;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 5rem;
-
-  color: var(--fg);
+  font-size: 5rem;
+  font-weight: 800;
+  width: max-content;
+  background: linear-gradient(to right, #30d0ab 0%, #1660b0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 8rem;
 }
 
 .chartsContainer {
   margin-bottom: 2rem;
   width: 80%;
+  heigth: 100vh;
 
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(6, 1fr);
-  column-gap: 4rem;
-  row-gap: 4rem;
+  // grid-template-rows: repeat(12, 1fr);
+  grid-column-gap: 4rem;
+  grid-row-gap: 4rem;
 
   & > div {
     transition: all 0.3s;

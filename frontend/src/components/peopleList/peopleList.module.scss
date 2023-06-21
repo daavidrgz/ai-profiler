@@ -1,5 +1,6 @@
 .card {
-  grid-area: 4 / 1 / 7 / 3;
+  grid-area: 3 / 1 / 6 / 3;
+
   padding: 2rem;
   height: 80vh;
   min-width: min-content;
@@ -39,12 +40,31 @@
   margin-bottom: 2rem;
   border-bottom: 1px solid var(--fg);
 
-  > span {
+  > div {
+    height: 2rem;
+    cursor: pointer;
+    user-select: none;
     width: 30%;
     text-align: center;
     color: var(--fg);
     font-size: 1rem;
     font-weight: 600;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+
+    svg {
+      transition: transform 0.1s ease-in-out;
+    }
+
+    svg[data-order="asc"] {
+      transform: rotate(180deg);
+    }
+    svg[data-order="desc"] {
+      transform: rotate(0deg);
+    }
   }
 }
 

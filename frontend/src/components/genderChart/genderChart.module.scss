@@ -1,7 +1,6 @@
 .card {
-  grid-area: 2 / 1 / 4 / 3;
+  grid-area: 2 / 1 / 3 / 3;
   min-width: min-content;
-  height: max-content;
   padding: 2rem;
 
   border-radius: var(--border-radius);
@@ -33,7 +32,7 @@
   display: flex;
   justify-content: center;
   height: min(30vh, 45vw);
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
 }
 
 .dataContainer {

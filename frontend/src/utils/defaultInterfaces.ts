@@ -11,3 +11,9 @@ export interface DivProps
 		HTMLAttributes<HTMLDivElement>,
 		HTMLDivElement
 	> { }
+
+export interface TableProps
+	extends DetailedHTMLProps<
+		HTMLAttributes<HTMLTableElement>,
+		HTMLTableElement
+	> { }

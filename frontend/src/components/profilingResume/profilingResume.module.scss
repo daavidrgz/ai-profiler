@@ -1,7 +1,6 @@
 .card {
   grid-area: 1 / 1 / 2 / 6;
   min-width: min-content;
-  height: max-content;
   padding: 2rem;
 
   border-radius: var(--border-radius);
@@ -33,11 +32,12 @@
   width: 100%;
   display: flex;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
   gap: 2rem;
 }
 
 .dataCard {
+  user-select: none;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -96,12 +96,40 @@
 }
 
 .tooltip {
-  padding: 1rem !important;
+  --rt-opacity: 0.98;
+  user-select: text;
+  padding: 1.8rem !important;
   width: 170% !important;
   border-radius: var(--border-radius) !important;
-  box-shadow: var(--box-shadow-subtle) !important;
-  background-color: var(--bg-subtle) !important;
+  box-shadow: var(--box-shadow) !important;
+  background-color: var(--bg) !important;
   z-index: 1000;
+}
+
+.totalTooltip {
+  @extend .tooltip;
+
+  > h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+
+  > p {
+    font-size: 0.9rem;
+  }
+}
+
+.timeTooltip {
+  @extend .tooltip;
+
+  > h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+
+  > p {
+    font-size: 0.9rem;
+  }
 }
 
 .algorithmTooltip {
@@ -114,9 +142,17 @@
 
   > p {
     font-size: 0.9rem;
-
-    span {
-      font-weight: 600;
-    }
   }
+}
+
+.scoreTable {
+  margin-top: 1rem;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.italic {
+  font-style: italic;
 }
