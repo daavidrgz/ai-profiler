@@ -27,21 +27,27 @@ export default function HomePage() {
         <AnimatePresence>
           {!file ? (
             <motion.div
+              key="uploadContainer"
               className={styles.uploadContainer}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.4 }}
+              transition={{ duration: 0.2 }}
             >
               <UploadDataset handleImportFile={handleImportFile} />
             </motion.div>
           ) : (
             <motion.div
+              key="filePreviewContainer"
               className={styles.uploadContainer}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              initial={{ opacity: 0, visibility: "hidden" }}
+              animate={{
+                opacity: 1,
+                visibility: "visible",
+                transition: { delay: 0.2 },
+              }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.4 }}
+              transition={{ duration: 0.2 }}
             >
               <FilePreview file={file} />
             </motion.div>

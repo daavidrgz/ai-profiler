@@ -8,6 +8,8 @@ import { useData } from "../dataProvider/DataProvider";
 import { useRouter } from "next/router";
 import { toProfilingData } from "@/model/profilingDataDto";
 import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import LinearProgressBar from "../linearProgressBar/LinearProgressBar";
 
 interface Props {
   file: File;
@@ -40,30 +42,53 @@ export default function FilePreview({ file }: Props) {
   };
 
   const handleClick = () => {
-    setTimeout(() => {
-      ProfilingService.autoprofile(file)
-        .then((profilingId) => {
-          setIsProcessing(true);
-          waitForResult(profilingId);
-        })
-        .catch((message) => createErrorNotification(message, 5000));
-    }, 200);
+    setIsProcessing(true);
+    ProfilingService.autoprofile(file)
+      .then((profilingId) => waitForResult(profilingId))
+      .catch((message) => createErrorNotification(message, 5000));
   };
 
   return (
     <div className={styles.container}>
-      <div className={styles.fileInfoContainer}>
-        <DescriptionRoundedIcon className={styles.fileIcon} />
-        <div className={styles.fileInfo}>
-          <div className={styles.fileName}>{file.name}</div>
-          <div className={styles.fileSize}>{formatBytes(file.size)}</div>
-        </div>
-      </div>
+      <AnimatePresence>
+        <motion.div
+          key="fileInfoContainer"
+          layout
+          transition={{ duration: 0.2 }}
+          className={styles.fileInfoContainer}
+        >
+          <DescriptionRoundedIcon className={styles.fileIcon} />
+          <div className={styles.fileInfo}>
+            <div className={styles.fileName}>{file.name}</div>
+            <div className={styles.fileSize}>{formatBytes(file.size)}</div>
+          </div>
+        </motion.div>
 
-      <button className={styles.startButton} onClick={handleClick}>
-        <span>START</span>
-        <PlayArrowRoundedIcon />
-      </button>
+        {isProcessing && (
+          <motion.div
+            key="processing"
+            className={styles.barContainer}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <LinearProgressBar label="Processing dataset..." />
+          </motion.div>
+        )}
+
+        <motion.button
+          layout
+          transition={{ duration: 0.2 }}
+          key="startButton"
+          data-disabled={isProcessing}
+          className={styles.startButton}
+          onClick={handleClick}
+        >
+          <span>START</span>
+          <PlayArrowRoundedIcon />
+        </motion.button>
+      </AnimatePresence>
     </div>
   );
 }

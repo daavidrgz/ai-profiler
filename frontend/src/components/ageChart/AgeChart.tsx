@@ -1,4 +1,3 @@
-import Person from "@/model/person";
 import { useMemo } from "react";
 import styles from "./ageChart.module.scss";
 import { Bar } from "react-chartjs-2";
@@ -8,6 +7,7 @@ import ArrowRightRoundedIcon from "@mui/icons-material/ArrowRightRounded";
 import { DivProps } from "@/utils/defaultInterfaces";
 import { getDecadeColors } from "@/utils/colors";
 import { getCurrentYear, getMinDecade } from "@/utils/dates";
+import { Person } from "@/model/person";
 
 const chartOptions = {
   plugins: {

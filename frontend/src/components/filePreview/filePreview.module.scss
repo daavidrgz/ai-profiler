@@ -3,9 +3,9 @@
   height: 100%;
 
   border-radius: var(--border-radius);
-  background-color: rgb(30, 32, 44);
-  border: 2px solid var(--fg-subtle);
-  box-shadow: var(--box-shadow);
+  // background-color: rgb(30, 32, 44);
+  // border: 2px solid var(--fg-subtle);
+  // box-shadow: var(--box-shadow);
 
   display: flex;
   align-items: center;
@@ -67,15 +67,29 @@
   font-weight: 600;
   cursor: pointer;
 
-  transition: all 0.4s ease-in-out;
+  transition: background-position 0.4s ease-in-out;
   background-size: 150% auto;
   background-position: 0% 50%;
-  &:hover {
-    background-position: 100% 50%;
+
+  &[data-disabled="true"] {
+    cursor: not-allowed;
+    filter: grayscale(0.5);
+  }
+
+  &[data-disabled="false"] {
+    &:hover {
+      background-position: 100% 50%;
+    }
+    cursor: pointer;
+    filter: grayscale(0);
   }
 
   > svg {
     font-size: 1.3rem;
     margin-bottom: 2px;
   }
+}
+
+.barContainer {
+  width: 50%;
 }

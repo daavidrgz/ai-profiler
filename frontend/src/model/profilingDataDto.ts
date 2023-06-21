@@ -1,6 +1,6 @@
 import { z } from 'zod';
-import ProfilingData from './profilingData';
 import { GenderSchema } from './gender';
+import { ProfilingData } from './profilingData';
 
 export const ProfilingDataDtoSchema = z
 	.object({
@@ -23,8 +23,7 @@ export const ProfilingDataDtoSchema = z
 		}).optional()
 	})
 
-type ProfilingDataDto = z.infer<typeof ProfilingDataDtoSchema>;
-export default ProfilingDataDto;
+export type ProfilingDataDto = z.infer<typeof ProfilingDataDtoSchema>;
 
 export const toProfilingData = (dto: ProfilingDataDto): ProfilingData => {
 	return {

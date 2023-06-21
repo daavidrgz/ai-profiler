@@ -1,0 +1,21 @@
+.barContainer {
+  width: 100%;
+
+  > span {
+    background-color: #1a363080;
+  }
+  > span > span:nth-child(1) {
+    background: linear-gradient(to right, #30d0ab 0%, #1660b0 100%);
+  }
+  > span > span:nth-child(2) {
+    background: linear-gradient(to right, #30d0ab 0%, #1660b0 100%);
+  }
+}
+
+.label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+  text-align: left;
+  color: var(--fg);
+}

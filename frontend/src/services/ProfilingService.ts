@@ -1,4 +1,4 @@
-import ProfilingDataDto, { ProfilingDataDtoSchema } from "@/model/profilingDataDto";
+import { ProfilingDataDto, ProfilingDataDtoSchema } from "@/model/profilingDataDto";
 
 export default abstract class ProfilingService {
 	private static endpoint = "/api";

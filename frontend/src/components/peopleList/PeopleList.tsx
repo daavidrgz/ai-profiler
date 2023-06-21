@@ -1,10 +1,10 @@
-import Person, { Gender } from "@/model/person";
 import { useState } from "react";
 import styles from "./peopleList.module.scss";
 import ArrowRightRoundedIcon from "@mui/icons-material/ArrowRightRounded";
 import { DivProps } from "@/utils/defaultInterfaces";
 import { getDecadeColor, getGenderColor } from "@/utils/colors";
 import { getMinDecade } from "@/utils/dates";
+import { Person } from "@/model/person";
 
 interface Props extends DivProps {
   people: Person[];

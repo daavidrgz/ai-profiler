@@ -8,5 +8,4 @@ export const PersonSchema = z
 		gender: GenderSchema
 	})
 
-type Person = z.infer<typeof PersonSchema>;
-export default Person;
+export type Person = z.infer<typeof PersonSchema>;

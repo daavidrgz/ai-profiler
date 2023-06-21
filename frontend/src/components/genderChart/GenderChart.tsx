@@ -3,10 +3,10 @@ import { Pie } from "react-chartjs-2";
 import styles from "./genderChart.module.scss";
 import FemaleIcon from "@mui/icons-material/Female";
 import MaleIcon from "@mui/icons-material/Male";
-import Person from "@/model/person";
 import ArrowRightRoundedIcon from "@mui/icons-material/ArrowRightRounded";
 import { DivProps } from "@/utils/defaultInterfaces";
 import { GenderSchema } from "@/model/gender";
+import { Person } from "@/model/person";
 
 const chartOptions = {
   plugins: {

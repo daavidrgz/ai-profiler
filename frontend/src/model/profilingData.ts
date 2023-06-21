@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import ProfilingDataDto from './profilingDataDto';
 import { PersonSchema } from './person';
 
 export const ProfilingDataSchema = z
@@ -9,5 +8,4 @@ export const ProfilingDataSchema = z
 		people: z.array(PersonSchema)
 	})
 
-type ProfilingData = z.infer<typeof ProfilingDataSchema>;
-export default ProfilingData;
+export type ProfilingData = z.infer<typeof ProfilingDataSchema>;

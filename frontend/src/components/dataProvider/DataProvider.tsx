@@ -1,4 +1,4 @@
-import ProfilingData from "@/model/profilingData";
+import { ProfilingData } from "@/model/profilingData";
 import { ReactNode, createContext, useContext, useState } from "react";
 
 export const DataContext = createContext<
