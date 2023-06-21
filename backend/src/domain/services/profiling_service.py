@@ -27,11 +27,10 @@ class ProfilingService:
 
     def get_profiling(self, profiling_id: str):
         if os.path.exists(f"{self.SAVE_PATH}/{profiling_id}.ndjson"):
-            status = "SUCCESS"
             with open(f"{self.SAVE_PATH}/{profiling_id}.ndjson", "r") as f:
                 content = json.load(f)
                 os.remove(f"{self.SAVE_PATH}/{profiling_id}.ndjson")
-            return {"status": status, "profiling": content}
+            return {"status": "SUCCESS", "profiling": content}
         else:
             return {"status": "PENDING"}
 
