@@ -134,25 +134,4 @@
 
 .algorithmTooltip {
   @extend .tooltip;
-
-  > h2 {
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
-  }
-
-  > p {
-    font-size: 0.9rem;
-  }
-}
-
-.scoreTable {
-  margin-top: 1rem;
-}
-
-.bold {
-  font-weight: 600;
-}
-
-.italic {
-  font-style: italic;
 }

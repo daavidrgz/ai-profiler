@@ -8,6 +8,7 @@ import FunctionsIcon from "@mui/icons-material/Functions";
 import { Tooltip } from "react-tooltip";
 import { ProfilingData } from "@/model/profilingData";
 import ScoreTable from "../scoreTable/ScoreTable";
+import AlgorithmInfo from "../algorithmInfo/AlgorithmInfo";
 
 interface Props extends DivProps {
   profilingData: ProfilingData;
@@ -61,10 +62,9 @@ export default function ProfilingResume({ profilingData, ...rest }: Props) {
               <br />
               <br />
               The time is calculated{" "}
-              <span className={styles.bold}>
-                from the moment the{" "}
-                <span className={styles.italic}>predict()</span> function is
-                called
+              <span className="bold">
+                from the moment the <span className="italic">predict()</span>{" "}
+                function is called
               </span>{" "}
               in the backend until it ends and returns the output.
             </p>
@@ -87,27 +87,7 @@ export default function ProfilingResume({ profilingData, ...rest }: Props) {
             className={styles.algorithmTooltip}
             clickable
           >
-            <h2>Martinc Algorithm</h2>
-            <p>
-              The Martinc algorithm is a profiling algorithm that uses the
-              <span className={styles.bold}> TF-IDF</span>, a statistical
-              measure that evaluates the relevance of each word in a collection
-              of documents.
-              <br />
-              <br />
-              Thus, the underlying AI model is able to determine the classes of
-              each person, using the most relevant words of their texts.
-              <br />
-              <br />
-              The algorithm obtains the following F1 score for each class:
-            </p>
-            <ScoreTable
-              className={styles.scoreTable}
-              score={{
-                birthDecade: 0.8,
-                gender: 0.9,
-              }}
-            />
+            <AlgorithmInfo algorithm={profilingData.algorithm} />
           </Tooltip>
         </div>
       </div>

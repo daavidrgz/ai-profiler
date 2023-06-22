@@ -10,6 +10,7 @@ import { toProfilingData } from "@/model/profilingDataDto";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import LinearProgressBar from "../linearProgressBar/LinearProgressBar";
+import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 
 interface Props {
   file: File;
@@ -61,6 +62,12 @@ export default function FilePreview({ file }: Props) {
           <div className={styles.fileInfo}>
             <div className={styles.fileName}>{file.name}</div>
             <div className={styles.fileSize}>{formatBytes(file.size)}</div>
+          </div>
+          <div className={styles.deleteOverlay}>
+            <div className={styles.deleteContainer}>
+              <DeleteRoundedIcon />
+              <span>DELETE</span>
+            </div>
           </div>
         </motion.div>
 
