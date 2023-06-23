@@ -4,6 +4,7 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import UploadDataset from "@/components/uploadDataset/UploadDataset";
 import FilePreview from "@/components/filePreview/FilePreview";
+import DatasetExample from "@/components/datasetExample/DatasetExample";
 
 export default function HomePage() {
   const [file, setFile] = useState<File | null>(null);
@@ -24,10 +25,10 @@ export default function HomePage() {
 
       <div className={styles.externalContainer}>
         <h1 className={styles.title}>AI PROFILER</h1>
-        <h2 className={styles.subtitle}>
+        <h3 className={styles.subtitle}>
           A powerful tool that lets you infer personal characteristics of people
           from the text they write.
-        </h2>
+        </h3>
         <AnimatePresence>
           {!file ? (
             <motion.div
@@ -61,6 +62,16 @@ export default function HomePage() {
             </motion.div>
           )}
         </AnimatePresence>
+
+        <h2 className={styles.examplesTitle}>EXAMPLES</h2>
+        <DatasetExample className={styles.datasetExample} />
+        {/* <h3 className={styles.examplesSubtitle}>
+          The uploaded dataset must be have following fields:
+          <div className={styles.fieldNameContainer}>
+            <span className={styles.fieldName}>id</span>
+            <span className={styles.fieldName}>text</span>
+          </div>
+        </h3> */}
       </div>
     </div>
   );

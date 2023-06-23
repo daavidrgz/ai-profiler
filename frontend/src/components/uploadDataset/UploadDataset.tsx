@@ -40,7 +40,7 @@ export default function UploadDataset({ handleImportFile }: Props) {
       onDragEnter={handleDrag}
     >
       <span className={styles.inputText}>
-        Drag and drop your dataset here or click the button below!
+        To get started, drag and drop your dataset here or click the button below!
       </span>
 
       <label htmlFor="file-upload" className={styles.uploadLabel}>

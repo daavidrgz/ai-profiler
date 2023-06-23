@@ -12,6 +12,7 @@
   flex-direction: column;
   justify-content: center;
 
+  transition: all 0.2s;
   &[data-drag_active="true"] {
     border-color: #30d0ab;
   }
