@@ -12,6 +12,10 @@ export default function HomePage() {
     setFile(file);
   }
 
+  function handleRemoveFile() {
+    setFile(null);
+  }
+
   return (
     <div>
       <Head>
@@ -29,10 +33,14 @@ export default function HomePage() {
             <motion.div
               key="uploadContainer"
               className={styles.uploadContainer}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+              initial={{ opacity: 0, display: "none" }}
+              animate={{
+                opacity: 1,
+                display: "flex",
+                transition: { delay: 0.35 },
+              }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
+              transition={{ duration: 0.3 }}
             >
               <UploadDataset handleImportFile={handleImportFile} />
             </motion.div>
@@ -40,16 +48,16 @@ export default function HomePage() {
             <motion.div
               key="filePreviewContainer"
               className={styles.uploadContainer}
-              initial={{ opacity: 0, visibility: "hidden" }}
+              initial={{ opacity: 0, display: "none" }}
               animate={{
                 opacity: 1,
-                visibility: "visible",
-                transition: { delay: 0.2 },
+                display: "flex",
+                transition: { delay: 0.35 },
               }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
+              transition={{ duration: 0.3 }}
             >
-              <FilePreview file={file} />
+              <FilePreview file={file} removeFile={handleRemoveFile} />
             </motion.div>
           )}
         </AnimatePresence>

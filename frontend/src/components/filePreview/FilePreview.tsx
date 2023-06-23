@@ -14,9 +14,10 @@ import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 
 interface Props {
   file: File;
+  removeFile: () => void;
 }
 
-export default function FilePreview({ file }: Props) {
+export default function FilePreview({ file, removeFile }: Props) {
   const { createSuccessNotification, createErrorNotification } =
     useNotifications();
   const { setData } = useData();
@@ -64,7 +65,7 @@ export default function FilePreview({ file }: Props) {
             <div className={styles.fileSize}>{formatBytes(file.size)}</div>
           </div>
           <div className={styles.deleteOverlay}>
-            <div className={styles.deleteContainer}>
+            <div className={styles.deleteContainer} onClick={removeFile}>
               <DeleteRoundedIcon />
               <span>DELETE</span>
             </div>
