@@ -37,10 +37,10 @@ export default function HomePage() {
               animate={{
                 opacity: 1,
                 display: "flex",
-                transition: { delay: 0.35 },
+                transition: { delay: 0.25 },
               }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.2 }}
             >
               <UploadDataset handleImportFile={handleImportFile} />
             </motion.div>
@@ -52,10 +52,10 @@ export default function HomePage() {
               animate={{
                 opacity: 1,
                 display: "flex",
-                transition: { delay: 0.35 },
+                transition: { delay: 0.25 },
               }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.2 }}
             >
               <FilePreview file={file} removeFile={handleRemoveFile} />
             </motion.div>

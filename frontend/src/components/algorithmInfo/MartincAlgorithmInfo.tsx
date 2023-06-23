@@ -8,11 +8,9 @@ export default function MartincAlgorithmInfo() {
       <p>
         The Martinc algorithm is a profiling algorithm that uses the
         <span className="bold"> TF-IDF</span>, a statistical measure that
-        evaluates the relevance of each word in a collection of documents.
-        <br />
-        <br />
-        Thus, the underlying AI model is able to determine the classes of each
-        person, using the most relevant words of their texts.
+        evaluates the relevance of each word in a collection of documents. Thus,
+        the underlying AI model is able to determine the classes of each person,
+        using the most relevant words of their texts.
         <br />
         <br />
         It was trained using a{" "}
@@ -38,6 +36,17 @@ export default function MartincAlgorithmInfo() {
           gender: 0.9,
         }}
       />
+      <p className={styles.cite}>
+        Martinc, M., Skrlj, B., & Pollak, S. (2019, September). Who is Hot and
+        Who is Not? Profiling Celebs on Twitter.{" "}
+        <a
+          className="link"
+          href="https://ceur-ws.org/Vol-2380/paper_203.pdf"
+          target="_blank"
+        >
+          (https://ceur-ws.org/Vol-2380/paper_203.pdf)
+        </a>
+      </p>
     </div>
   );
 }

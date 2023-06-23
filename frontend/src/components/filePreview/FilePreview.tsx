@@ -35,7 +35,8 @@ export default function FilePreview({ file, removeFile }: Props) {
         createSuccessNotification("Profiling successfull", 5000);
         setData(toProfilingData(profilingDataDto));
         setIsProcessing(false);
-        router.push("/resume");
+
+        setTimeout(() => router.push("/resume"), 1000);
       })
       .catch((message) => {
         setIsProcessing(false);
