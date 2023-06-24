@@ -52,7 +52,14 @@ export default function FilePreview({ file, removeFile }: Props) {
   };
 
   return (
-    <div className={styles.container}>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
+      key="filePreviewContainer"
+      className={styles.container}
+    >
       <AnimatePresence>
         <motion.div
           key="fileInfoContainer"
@@ -98,6 +105,6 @@ export default function FilePreview({ file, removeFile }: Props) {
           <PlayArrowRoundedIcon />
         </motion.button>
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 }

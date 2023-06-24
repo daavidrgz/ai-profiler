@@ -1,6 +1,7 @@
 import { ChangeEvent, DragEvent, useState } from "react";
 import styles from "./uploadDataset.module.scss";
-import UploadFileRoundedIcon from '@mui/icons-material/UploadFile';
+import UploadFileRoundedIcon from "@mui/icons-material/UploadFile";
+import { motion } from "framer-motion";
 
 interface Props {
   handleImportFile: (file: File) => void;
@@ -34,13 +35,19 @@ export default function UploadDataset({ handleImportFile }: Props) {
   }
 
   return (
-    <form
+    <motion.form
+      key="uploadDatasetForm"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
       data-drag_active={dragActive}
       className={styles.inputContainer}
       onDragEnter={handleDrag}
     >
       <span className={styles.inputText}>
-        To get started, drag and drop your dataset here or click the button below!
+        To get started, drag and drop your dataset here or click the button
+        below!
       </span>
 
       <label htmlFor="file-upload" className={styles.uploadLabel}>
@@ -65,6 +72,6 @@ export default function UploadDataset({ handleImportFile }: Props) {
           onDrop={handleDrop}
         />
       )}
-    </form>
+    </motion.form>
   );
 }

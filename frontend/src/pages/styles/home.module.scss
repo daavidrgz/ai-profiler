@@ -43,17 +43,8 @@
 .examplesSubtitle {
   color: var(--fg);
   font-size: 1rem;
-  margin-top: 2rem;
+  margin-top: 3rem;
   font-weight: 500;
-}
-
-.fieldNameContainer {
-  margin: 1.5rem auto 0;
-  width: 40%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;
 }
 
 .fieldName {
@@ -62,8 +53,9 @@
   color: var(--fg);
   background-color: var(--bg-subtle);
   border-radius: var(--border-radius);
-  border: 2px solid var(--fg-subtle);
-  padding: 0.2rem 1rem;
+  border: 1px solid var(--fg-subtle);
+  padding: 0.1rem 1rem;
+  margin-left: 0.5rem;
 }
 
 .datasetExample {

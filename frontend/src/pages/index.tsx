@@ -29,49 +29,23 @@ export default function HomePage() {
           A powerful tool that lets you infer personal characteristics of people
           from the text they write.
         </h3>
-        <AnimatePresence>
-          {!file ? (
-            <motion.div
-              key="uploadContainer"
-              className={styles.uploadContainer}
-              initial={{ opacity: 0, display: "none" }}
-              animate={{
-                opacity: 1,
-                display: "flex",
-                transition: { delay: 0.25 },
-              }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-            >
+        <div className={styles.uploadContainer}>
+          <AnimatePresence>
+            {!file ? (
               <UploadDataset handleImportFile={handleImportFile} />
-            </motion.div>
-          ) : (
-            <motion.div
-              key="filePreviewContainer"
-              className={styles.uploadContainer}
-              initial={{ opacity: 0, display: "none" }}
-              animate={{
-                opacity: 1,
-                display: "flex",
-                transition: { delay: 0.25 },
-              }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-            >
+            ) : (
               <FilePreview file={file} removeFile={handleRemoveFile} />
-            </motion.div>
-          )}
-        </AnimatePresence>
+            )}
+          </AnimatePresence>
+        </div>
 
         <h2 className={styles.examplesTitle}>EXAMPLES</h2>
-        <DatasetExample className={styles.datasetExample} />
-        {/* <h3 className={styles.examplesSubtitle}>
+        <h3 className={styles.examplesSubtitle}>
           The uploaded dataset must be have following fields:
-          <div className={styles.fieldNameContainer}>
-            <span className={styles.fieldName}>id</span>
-            <span className={styles.fieldName}>text</span>
-          </div>
-        </h3> */}
+          <span className={styles.fieldName}>id</span>
+          <span className={styles.fieldName}>text</span>
+        </h3>
+        <DatasetExample className={styles.datasetExample} />
       </div>
     </div>
   );

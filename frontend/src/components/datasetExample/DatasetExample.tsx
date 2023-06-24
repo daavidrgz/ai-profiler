@@ -6,6 +6,7 @@ import Prism from "prismjs";
 require("prismjs/components/prism-javascript");
 require("prismjs/components/prism-json");
 require("prismjs/components/prism-csv");
+import DescriptionRoundedIcon from "@mui/icons-material/DescriptionRounded";
 
 interface Props extends DivProps {}
 
@@ -16,6 +17,11 @@ export default function DatasetExample({ className }: Props) {
     '{"id": "34578", "text": ["Can\'t stop listening to this new song on repeat. It\'s pure magic.", "Be a voice, not an echo. #Inspiration"]}',
     '{"id": "16243", "text": ["Spontaneous road trips are the best kind of adventures.", "I just adopted the most adorable puppy. Meet my new best friend!"]}',
     '{"id": "16243", "text": ["Success is a journey, not a destination. Keep striving. #Motivation", "Nothing beats a warm hug on a cold day. Sending virtual hugs to everyone!"]}',
+    '{"id": "16243", "text": ["Chasing dreams and catching memories.", "Pizza is life. No arguments, please."]}',
+    '{"id": "16243", "text": ["Just booked my dream vacation. Counting down the days! ", "Rainy days are perfect for cozying up with a good book."]}',
+    '{"id": "16243", "text": ["Inhale confidence, exhale doubt. #SelfLove", "Sometimes all you need is a good laugh to brighten your day."]}',
+    '{"id": "16243", "text": ["Embrace the chaos and find beauty in the unexpected. #LifeLessons", "I\'m a firm believer in the power of positive vibes."]}',
+    '...'
   ];
 
   const CSVCode = [
@@ -30,6 +36,7 @@ export default function DatasetExample({ className }: Props) {
     "16243,I just adopted the most adorable puppy. Meet my new best friend!",
     "16243,Success is a journey, not a destination. Keep striving. #Motivation",
     "16243,Nothing beats a warm hug on a cold day. Sending virtual hugs to everyone!",
+    "..."
   ];
 
   const handleClick = (code: string[]) => {
@@ -47,6 +54,10 @@ export default function DatasetExample({ className }: Props) {
   return (
     <div className={className}>
       <div className={styles.codeContainer}>
+        <div className={styles.fileNameContainer}>
+          <DescriptionRoundedIcon />
+          <span>{`dataset.${language === "json" ? "ndjson" : language}`}</span>
+        </div>
         {code.map((line, index) => (
           <div key={index} className={styles.codeLineContainer}>
             <div className={styles.lineNumber}>
