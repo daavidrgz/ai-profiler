@@ -1,6 +1,7 @@
 import NotificationManager from "@/components/notificationManager/NotificationManager";
 import "../styles/globals.scss";
 import "../styles/builders.scss";
+import "../styles/prism.css";
 import type { AppProps } from "next/app";
 import DataProvider from "@/components/dataProvider/DataProvider";
 
