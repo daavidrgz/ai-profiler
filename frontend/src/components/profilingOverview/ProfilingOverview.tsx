@@ -1,4 +1,4 @@
-import styles from "./filePreview.module.scss";
+import styles from "./profilingOverview.module.scss";
 import DescriptionRoundedIcon from "@mui/icons-material/DescriptionRounded";
 import { formatBytes } from "@/utils/formatter";
 import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
@@ -11,13 +11,20 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import LinearProgressBar from "../linearProgressBar/LinearProgressBar";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
+import { ProfilingAlgorithm } from "@/model/algorithm";
+import MartincAlgorithmCard from "../algorithmCard/MartincAlgorithmCard";
 
 interface Props {
   file: File;
+  algorithm: ProfilingAlgorithm;
   removeFile: () => void;
 }
 
-export default function FilePreview({ file, removeFile }: Props) {
+export default function ProfilingOverview({
+  file,
+  algorithm,
+  removeFile,
+}: Props) {
   const { createSuccessNotification, createErrorNotification } =
     useNotifications();
   const { setData } = useData();
@@ -60,24 +67,29 @@ export default function FilePreview({ file, removeFile }: Props) {
       key="filePreviewContainer"
       className={styles.container}
     >
+      <h2 className={styles.title}>OVERVIEW</h2>
       <AnimatePresence>
         <motion.div
-          key="fileInfoContainer"
+          key="overviewContainer"
           layout
           transition={{ duration: 0.2 }}
-          className={styles.fileInfoContainer}
+          className={styles.overviewContainer}
         >
-          <DescriptionRoundedIcon className={styles.fileIcon} />
-          <div className={styles.fileInfo}>
-            <div className={styles.fileName}>{file.name}</div>
-            <div className={styles.fileSize}>{formatBytes(file.size)}</div>
-          </div>
-          <div className={styles.deleteOverlay}>
-            <div className={styles.deleteContainer} onClick={removeFile}>
-              <DeleteRoundedIcon />
-              <span>DELETE</span>
+          <div className={styles.fileInfoContainer}>
+            <DescriptionRoundedIcon className={styles.fileIcon} />
+            <div className={styles.fileInfo}>
+              <div className={styles.fileName}>{file.name}</div>
+              <div className={styles.fileSize}>{formatBytes(file.size)}</div>
+            </div>
+            <div className={styles.deleteOverlay}>
+              <div className={styles.deleteContainer} onClick={removeFile}>
+                <DeleteRoundedIcon />
+                <span>DELETE</span>
+              </div>
             </div>
           </div>
+
+          <MartincAlgorithmCard setAlgorithm={() => {}} readonly/>
         </motion.div>
 
         {isProcessing && (

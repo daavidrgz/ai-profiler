@@ -6,7 +6,15 @@
   align-items: center;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 2rem;
+  gap: 3rem;
+}
+
+.title {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 700;
+
+  color: var(--fg);
 }
 
 .deleteOverlay {
@@ -20,7 +28,7 @@
   align-items: center;
   background-color: #17181def;
   border-radius: var(--border-radius);
-  transition: all 0.3s;
+  transition: all 0.2s;
   opacity: 0;
 
   > .deleteContainer {
@@ -43,12 +51,20 @@
   }
 }
 
-.fileInfoContainer {
-  margin-top: 2rem;
-  padding: 2rem;
-  position: relative;
+.overviewContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
 
-  background-color: rgb(36, 39, 50);
+.fileInfoContainer {
+  padding: 1rem 2rem;
+  position: relative;
+  height: 10rem;
+
+  background-color: var(--bg-subtle);
   border: 2px solid var(--fg-subtle);
   box-shadow: var(--box-shadow);
   border-radius: var(--border-radius);
@@ -59,7 +75,7 @@
 }
 
 .fileIcon {
-  font-size: 4rem !important;
+  font-size: 3rem !important;
   color: var(--fg);
 }
 

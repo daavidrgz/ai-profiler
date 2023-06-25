@@ -3,7 +3,7 @@
   height: 100%;
 
   border-radius: var(--border-radius);
-  background-color: rgb(30, 32, 44);
+  background-color: var(--bg-subtle);
   border: 2px dashed var(--fg-subtle);
   box-shadow: var(--box-shadow);
 
@@ -14,7 +14,7 @@
 
   transition: border-color 0.2s;
   &[data-drag_active="true"] {
-    border-color: #30d0ab;
+    border-color: var(--accent);
   }
   &[data-drag_active="false"] {
     border-color: var(--fg-subtle);

@@ -1,0 +1,70 @@
+.algorithmCard {
+  text-align: left;
+  position: relative;
+  height: 10rem;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  background-color: var(--bg-subtle);
+  box-shadow: var(--box-shadow);
+  border: 2px solid var(--fg-subtle);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  justify-self: center;
+  align-self: center;
+
+  &[data-readonly="false"] {
+    user-select: none;
+    cursor: pointer;
+    transition: border 0.2s;
+    &:hover {
+      border: 2px solid var(--accent-alt);
+    }
+  }
+
+  > h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--fg);
+    margin-bottom: 1rem;
+  }
+}
+
+.algorithmClasses {
+  width: 100%;
+  color: var(--fg);
+
+  > span {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 400;
+    margin-bottom: 0.8rem;
+  }
+
+  > ul > li {
+    font-size: 0.8rem;
+    font-weight: 500;
+
+    margin: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  svg {
+    font-size: 1rem;
+  }
+}
+
+.algorithmTooltip {
+  --rt-opacity: 0.98;
+  user-select: text;
+  padding: 1.8rem !important;
+  width: 40rem !important;
+  border-radius: var(--border-radius) !important;
+  box-shadow: var(--box-shadow) !important;
+  background-color: var(--bg) !important;
+  z-index: 1000;
+}

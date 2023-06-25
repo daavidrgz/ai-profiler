@@ -3,10 +3,10 @@ import styles from "@/pages/styles/home.module.scss";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
 import UploadDataset from "@/components/uploadDataset/UploadDataset";
-import FilePreview from "@/components/filePreview/FilePreview";
 import DatasetExample from "@/components/datasetExample/DatasetExample";
 import AlgorithmSelector from "@/components/algorithmSelector/AlgorithmSelector";
 import { ProfilingAlgorithm } from "@/model/algorithm";
+import ProfilingOverview from "@/components/profilingOverview/ProfilingOverview";
 
 export default function HomePage() {
   const [file, setFile] = useState<File | null>(null);
@@ -42,12 +42,16 @@ export default function HomePage() {
               <AlgorithmSelector setAlgorithm={setAlgorithm} />
             )}
             {file && algorithm && (
-              <FilePreview file={file} removeFile={handleRemoveFile} />
+              <ProfilingOverview
+                file={file}
+                algorithm={algorithm}
+                removeFile={handleRemoveFile}
+              />
             )}
           </AnimatePresence>
         </div>
 
-        <h2 className={styles.examplesTitle}>EXAMPLES</h2>
+        <h2 className={styles.examplesTitle}>DATASET EXAMPLES</h2>
         <h3 className={styles.examplesSubtitle}>
           The uploaded dataset must have the following fields:
           <span className={styles.fieldName}>id</span>
