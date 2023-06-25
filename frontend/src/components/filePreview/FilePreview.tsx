@@ -101,7 +101,7 @@ export default function FilePreview({ file, removeFile }: Props) {
           className={styles.startButton}
           onClick={handleClick}
         >
-          <span>START</span>
+          <span>START PROFILING</span>
           <PlayArrowRoundedIcon />
         </motion.button>
       </AnimatePresence>

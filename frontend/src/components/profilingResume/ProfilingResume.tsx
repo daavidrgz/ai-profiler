@@ -7,7 +7,6 @@ import { formatTime } from "@/utils/formatter";
 import FunctionsIcon from "@mui/icons-material/Functions";
 import { Tooltip } from "react-tooltip";
 import { ProfilingData } from "@/model/profilingData";
-import ScoreTable from "../scoreTable/ScoreTable";
 import AlgorithmInfo from "../algorithmInfo/AlgorithmInfo";
 
 interface Props extends DivProps {

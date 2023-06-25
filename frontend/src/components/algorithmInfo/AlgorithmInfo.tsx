@@ -1,7 +1,8 @@
+import { ProfilingAlgorithm } from "@/model/algorithm";
 import MartincAlgorithmInfo from "./MartincAlgorithmInfo";
 
 interface Props {
-  algorithm: string;
+  algorithm: ProfilingAlgorithm;
 }
 
 export default function AlgorithmInfo({ algorithm }: Props) {

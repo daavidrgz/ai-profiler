@@ -1,13 +1,16 @@
 import Head from "next/head";
 import styles from "@/pages/styles/home.module.scss";
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import UploadDataset from "@/components/uploadDataset/UploadDataset";
 import FilePreview from "@/components/filePreview/FilePreview";
 import DatasetExample from "@/components/datasetExample/DatasetExample";
+import AlgorithmSelector from "@/components/algorithmSelector/AlgorithmSelector";
+import { ProfilingAlgorithm } from "@/model/algorithm";
 
 export default function HomePage() {
   const [file, setFile] = useState<File | null>(null);
+  const [algorithm, setAlgorithm] = useState<ProfilingAlgorithm | null>(null);
 
   function handleImportFile(file: File) {
     setFile(file);
@@ -15,6 +18,7 @@ export default function HomePage() {
 
   function handleRemoveFile() {
     setFile(null);
+    setAlgorithm(null);
   }
 
   return (
@@ -31,9 +35,13 @@ export default function HomePage() {
         </h3>
         <div className={styles.uploadContainer}>
           <AnimatePresence>
-            {!file ? (
+            {!file && !algorithm && (
               <UploadDataset handleImportFile={handleImportFile} />
-            ) : (
+            )}
+            {file && !algorithm && (
+              <AlgorithmSelector setAlgorithm={setAlgorithm} />
+            )}
+            {file && algorithm && (
               <FilePreview file={file} removeFile={handleRemoveFile} />
             )}
           </AnimatePresence>
@@ -41,7 +49,7 @@ export default function HomePage() {
 
         <h2 className={styles.examplesTitle}>EXAMPLES</h2>
         <h3 className={styles.examplesSubtitle}>
-          The uploaded dataset must be have following fields:
+          The uploaded dataset must have the following fields:
           <span className={styles.fieldName}>id</span>
           <span className={styles.fieldName}>text</span>
         </h3>

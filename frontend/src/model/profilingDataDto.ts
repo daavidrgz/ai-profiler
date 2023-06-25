@@ -1,12 +1,13 @@
 import { z } from 'zod';
 import { GenderSchema } from './gender';
 import { ProfilingData } from './profilingData';
+import { ProfilingAlgorithmSchema } from './algorithm';
 
 export const ProfilingDataDtoSchema = z
 	.object({
 		status: z.string(),
 		profiling: z.object({
-			algorithm: z.string(),
+			algorithm: ProfilingAlgorithmSchema,
 			time: z.number(),
 			output: z.array(z.object(
 				{
