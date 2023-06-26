@@ -4,11 +4,23 @@
 }
 
 .title {
-  text-align: center;
   font-size: 1.2rem;
   font-weight: 700;
   margin-bottom: 3rem;
   color: var(--fg);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  > svg {
+    cursor: pointer;
+    transition: color 0.2s;
+    &:hover {
+      color: var(--accent);
+    }
+  }
 }
 
 .algorithmsContainer {

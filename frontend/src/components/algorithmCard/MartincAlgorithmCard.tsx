@@ -6,7 +6,7 @@ import styles from "./algorithmCard.module.scss";
 import { ProfilingAlgorithm } from "@/model/algorithm";
 
 interface Props {
-  readonly: boolean;
+  readonly?: boolean;
   setAlgorithm?: (algorithm: ProfilingAlgorithm) => void;
 }
 

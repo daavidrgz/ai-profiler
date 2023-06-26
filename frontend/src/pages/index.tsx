@@ -39,13 +39,17 @@ export default function HomePage() {
               <UploadDataset handleImportFile={handleImportFile} />
             )}
             {file && !algorithm && (
-              <AlgorithmSelector setAlgorithm={setAlgorithm} />
+              <AlgorithmSelector
+                setAlgorithm={setAlgorithm}
+                goBack={() => setFile(null)}
+              />
             )}
             {file && algorithm && (
               <ProfilingOverview
                 file={file}
                 algorithm={algorithm}
                 removeFile={handleRemoveFile}
+                goBack={() => setAlgorithm(null)}
               />
             )}
           </AnimatePresence>

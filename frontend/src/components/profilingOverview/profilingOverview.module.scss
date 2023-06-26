@@ -10,11 +10,22 @@
 }
 
 .title {
-  text-align: center;
   font-size: 1.2rem;
   font-weight: 700;
-
   color: var(--fg);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  > svg {
+    cursor: pointer;
+    transition: color 0.2s;
+    &:hover {
+      color: var(--accent);
+    }
+  }
 }
 
 .deleteOverlay {
@@ -69,8 +80,10 @@
   box-shadow: var(--box-shadow);
   border-radius: var(--border-radius);
 
-  &:hover > .deleteOverlay {
-    opacity: 1;
+  &[data-disabled="false"] {
+    &:hover > .deleteOverlay {
+      opacity: 1;
+    }
   }
 }
 

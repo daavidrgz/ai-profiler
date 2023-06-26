@@ -1,9 +1,13 @@
-import { Score } from "@/model/score";
 import styles from "./scoreTable.module.scss";
 import { TableProps } from "@mui/material";
 
 interface Props extends TableProps {
-  score: Score;
+  score: {
+    [key: string]: {
+      name: string;
+      f1: number;
+    };
+  };
 }
 
 export default function ScoreTable({ score, className }: Props) {
@@ -16,10 +20,10 @@ export default function ScoreTable({ score, className }: Props) {
         </tr>
       </thead>
       <tbody className={styles.tableBody}>
-        {Object.entries(score).map(([key, value]) => (
-          <tr key={key}>
-            <td className={styles.tableLeft}>{key}</td>
-            <td className={styles.tableRight}>{value}</td>
+        {Object.values(score).map((classScore) => (
+          <tr key={classScore.name}>
+            <td className={styles.tableLeft}>{classScore.name}</td>
+            <td className={styles.tableRight}>{classScore.f1}</td>
           </tr>
         ))}
       </tbody>

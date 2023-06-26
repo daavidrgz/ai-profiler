@@ -13,17 +13,20 @@ import LinearProgressBar from "../linearProgressBar/LinearProgressBar";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 import { ProfilingAlgorithm } from "@/model/algorithm";
 import MartincAlgorithmCard from "../algorithmCard/MartincAlgorithmCard";
+import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 
 interface Props {
   file: File;
   algorithm: ProfilingAlgorithm;
   removeFile: () => void;
+  goBack: () => void;
 }
 
 export default function ProfilingOverview({
   file,
   algorithm,
   removeFile,
+  goBack,
 }: Props) {
   const { createSuccessNotification, createErrorNotification } =
     useNotifications();
@@ -45,9 +48,9 @@ export default function ProfilingOverview({
 
         setTimeout(() => router.push("/resume"), 1000);
       })
-      .catch((message) => {
+      .catch((error) => {
         setIsProcessing(false);
-        createErrorNotification(message, 5000);
+        createErrorNotification(error.message, 5000);
       });
   };
 
@@ -55,7 +58,10 @@ export default function ProfilingOverview({
     setIsProcessing(true);
     ProfilingService.autoprofile(file)
       .then((profilingId) => waitForResult(profilingId))
-      .catch((message) => createErrorNotification(message, 5000));
+      .catch((error) => {
+        createErrorNotification(error.message, 5000);
+        setIsProcessing(false);
+      });
   };
 
   return (
@@ -67,7 +73,10 @@ export default function ProfilingOverview({
       key="filePreviewContainer"
       className={styles.container}
     >
-      <h2 className={styles.title}>OVERVIEW</h2>
+      <h2 className={styles.title}>
+        <ArrowBackRoundedIcon onClick={goBack} />
+        <span>OVERVIEW</span>
+      </h2>
       <AnimatePresence>
         <motion.div
           key="overviewContainer"
@@ -75,21 +84,26 @@ export default function ProfilingOverview({
           transition={{ duration: 0.2 }}
           className={styles.overviewContainer}
         >
-          <div className={styles.fileInfoContainer}>
+          <div
+            className={styles.fileInfoContainer}
+            data-disabled={isProcessing}
+          >
             <DescriptionRoundedIcon className={styles.fileIcon} />
             <div className={styles.fileInfo}>
               <div className={styles.fileName}>{file.name}</div>
               <div className={styles.fileSize}>{formatBytes(file.size)}</div>
             </div>
-            <div className={styles.deleteOverlay}>
-              <div className={styles.deleteContainer} onClick={removeFile}>
-                <DeleteRoundedIcon />
-                <span>DELETE</span>
+            {!isProcessing && (
+              <div className={styles.deleteOverlay}>
+                <div className={styles.deleteContainer} onClick={removeFile}>
+                  <DeleteRoundedIcon />
+                  <span>DELETE</span>
+                </div>
               </div>
-            </div>
+            )}
           </div>
 
-          <MartincAlgorithmCard setAlgorithm={() => {}} readonly/>
+          <MartincAlgorithmCard setAlgorithm={() => {}} readonly />
         </motion.div>
 
         {isProcessing && (

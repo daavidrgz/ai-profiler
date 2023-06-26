@@ -4,40 +4,35 @@ import styles from "./algorithmInfo.module.scss";
 export default function MartincAlgorithmInfo() {
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Martinc Algorithm</h2>
-      <p className={styles.body}>
-        The Martinc algorithm is a profiling algorithm that uses the
-        <span className="bold"> TF-IDF</span>, a statistical measure that
-        evaluates the relevance of each word in a collection of documents.
+      <h2 className={styles.title}>Grivas Algorithm</h2>
+      <p>
+        The Grivas algorithm 
         <br />
         <br />
         It was trained using a{" "}
         <span className="bold">
-          collection of tweets from 48335 celebrities
+          collection of tweets in English
         </span>{" "}
         from the dataset offered by the{" "}
         <a
           className="link"
-          href="https://pan.webis.de/clef19/pan19-web/celebrity-profiling.html"
+          href="https://pan.webis.de/clef15/pan15-web/author-profiling.html"
           target="_blank"
         >
-          Celebrity Profiling PAN competition (2019).
+          Author Profiling PAN Competition (2015).
         </a>
         <br />
         <br />
-        The algorithm obtains the following score for each class:
+        The algorithm obtains the following F1 score for each class:
       </p>
       <ScoreTable
         className={styles.scoreTable}
         score={{
-          // 0.4654277351491647
-          birthDecade: { name: "Birth Decade", f1: 0.46543 },
+          birthDecade: 0.8,
           // 0.9032125213870843
-          gender: { name: "Gender", f1: 0.90321 },
+          gender: 0.90321,
           // 0.7483208875349275
-          occupation: { name: "Occupation", f1: 0.74832 },
-          // 0.7780803314633018
-          fame: { name: "Fame", f1: 0.77808 },
+          occupation: 0.74832,
         }}
       />
       <p className={styles.cite}>
