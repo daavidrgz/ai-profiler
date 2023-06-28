@@ -1,7 +1,9 @@
 import os
 import pickle
+
+from sklearn.metrics import accuracy_score
 from domain.algorithms.profiling_algorithm import ProfilingAlgorithm
-from domain.algorithms.martinc_celebrity.tfidf_kingdom import *
+from domain.algorithms.martinc.tfidf_kingdom import *
 from collections import defaultdict
 import joblib
 import tqdm
@@ -17,25 +19,23 @@ import numpy as np
 logger = logging.getLogger("server_logger")
 
 
-class MartincCelebrity(ProfilingAlgorithm):
-    NAME = "martinc_celebrity"
+class MartincAlgorithm(ProfilingAlgorithm):
+    NAME = "martinc"
+    MODEL_FOLDER = "./domain/algorithms/martinc/models"
 
-    def autoprofile(self, dataset: Dataset):
+    def predict(self, dataset: Dataset):
         dataset.convert_to_ndjson()
-        model_folder = "./domain/algorithms/martinc_celebrity/model"
-
-        tasks = ["gender", "fame", "occupation", "birthyear"]
+        tasks = ["gender", "fame", "occupation", "age"]
 
         documents = {}
-        document_count = 0
         for line in dataset.file:
-            document_count += 1
             lx = json.loads(line)
             if isinstance(lx["text"], list):
                 tokens_word = " ".join(lx["text"])
             else:
                 tokens_word = lx["text"]
-            documents[lx["id"]] = tokens_word
+
+            documents[lx["id"]] = documents.get(lx["id"], "") + tokens_word
 
         test_documents = []
         test_ids = []
@@ -45,17 +45,19 @@ class MartincCelebrity(ProfilingAlgorithm):
             test_ids.append(k)
 
         test_df = build_dataframe(test_documents)
-        vectorizer_file = open(model_folder + "/vectorizer.pickle", "rb")
+        vectorizer_file = open(self.MODEL_FOLDER + "/vectorizer.pickle", "rb")
         vectorizer = pickle.load(vectorizer_file)
         predict_features = vectorizer.transform(test_df)
 
         docs_dict = defaultdict(dict)
 
         for task in tasks:
-            logger.info("Predicting " + task)
-            encoder_file = open(model_folder + "/encoder_" + task + ".pickle", "rb")
+            logger.info("Predicting " + task + "...")
+            encoder_file = open(
+                self.MODEL_FOLDER + "/encoder_" + task + ".pickle", "rb"
+            )
             encoder = pickle.load(encoder_file)
-            model = joblib.load(model_folder + "/trained_LR_" + task + ".pkl")
+            model = joblib.load(self.MODEL_FOLDER + "/trained_LR_" + task + ".pkl")
 
             predictions = model.predict(predict_features)
             predictions = encoder.inverse_transform(predictions)
@@ -64,14 +66,15 @@ class MartincCelebrity(ProfilingAlgorithm):
 
         output = []
         for k, v in docs_dict.items():
-            output.append({"id": int(k), "result": v})
+            output.append({"id": str(k), "result": v})
+
+        logger.info("Martinc algorithm predicted successfully")
 
         return output
 
     def train(self):
-        model_folder = "./domain/algorithms/martinc_celebrity/model"
-        if not os.path.exists(model_folder):
-            os.makedirs(model_folder)
+        if not os.path.exists(self.MODEL_FOLDER):
+            os.makedirs(self.MODEL_FOLDER)
 
         labels_file_path = (
             "../datasets/PAN19 - Celebrity Profiling/training/labels.ndjson"
@@ -133,31 +136,31 @@ class MartincCelebrity(ProfilingAlgorithm):
         ocupations_train = []
         gender_train = []
         fame_train = []
-        birth_train = []
+        age_train = []
 
         ocupations_test = []
         gender_test = []
         fame_test = []
-        birth_test = []
+        age_test = []
 
         for sample in train_labels:
             ocupations_train.append(sample["occupation"])
             gender_train.append(sample["gender"])
             fame_train.append(sample["fame"])
-            birth_train.append(sample["birthyear"])
+            age_train.append(sample["age"])
 
         for sample in validation_labels:
             ocupations_test.append(sample["occupation"])
             gender_test.append(sample["gender"])
             fame_test.append(sample["fame"])
-            birth_test.append(sample["birthyear"])
+            age_test.append(sample["age"])
 
         encoder_ocupations = preprocessing.LabelEncoder().fit(
             ocupations_train + ocupations_test
         )
         encoder_gender = preprocessing.LabelEncoder().fit(gender_train + gender_test)
         encoder_fame = preprocessing.LabelEncoder().fit(fame_train + fame_test)
-        encoder_birth = preprocessing.LabelEncoder().fit(birth_train + birth_test)
+        encoder_age = preprocessing.LabelEncoder().fit(age_train + age_test)
 
         label_vectors = {}
         label_vectors["gender"] = (
@@ -172,39 +175,108 @@ class MartincCelebrity(ProfilingAlgorithm):
             encoder_fame.transform(fame_train),
             encoder_fame.transform(fame_test),
         )
-        label_vectors["birthyear"] = (
-            encoder_birth.transform(birth_train),
-            encoder_birth.transform(birth_test),
+        label_vectors["age"] = (
+            encoder_age.transform(age_train),
+            encoder_age.transform(age_test),
         )
 
-        preds = {}
         for target, vals in label_vectors.items():
             train_labels = vals[0]
             test_labels = vals[1]
             clf = LogisticRegression(C=1e2, fit_intercept=False)
             clf.fit(feature_matrix, train_labels)
-            joblib.dump(clf, model_folder + "/trained_LR_{}.pkl".format(target))
+            joblib.dump(clf, self.MODEL_FOLDER + f"/trained_LR_{target}.pkl")
             predictions = clf.predict(test_feature_matrix)
 
-            f1 = f1_score(predictions, test_labels, average="weighted")
-            logging.info("{} Performed with {}".format(target, f1))
-            preds[target] = f1
-        total_score = 1 / np.sum([1 / sc for sc in preds.values()])
-        logging.info("Total score {}".format(total_score))
+            accuracy = accuracy_score(test_labels, predictions)
+            f1 = f1_score(test_labels, predictions, average="weighted")
+            logger.info(f"{target} Performed with accuracy {accuracy} and f1 {f1}")
 
-        with open(model_folder + "/encoder_occupation.pickle", "wb") as outfile:
+        with open(self.MODEL_FOLDER + "/encoder_occupation.pickle", "wb") as outfile:
             pickle.dump(encoder_ocupations, outfile)
 
-        with open(model_folder + "/encoder_gender.pickle", "wb") as outfile:
+        with open(self.MODEL_FOLDER + "/encoder_gender.pickle", "wb") as outfile:
             pickle.dump(encoder_gender, outfile)
 
-        with open(model_folder + "/encoder_fame.pickle", "wb") as outfile:
+        with open(self.MODEL_FOLDER + "/encoder_fame.pickle", "wb") as outfile:
             pickle.dump(encoder_fame, outfile)
 
-        with open(model_folder + "/encoder_birthyear.pickle", "wb") as outfile:
-            pickle.dump(encoder_birth, outfile)
+        with open(self.MODEL_FOLDER + "/encoder_age.pickle", "wb") as outfile:
+            pickle.dump(encoder_age, outfile)
 
-        with open(model_folder + "/vectorizer.pickle", "wb") as outfile:
+        with open(self.MODEL_FOLDER + "/vectorizer.pickle", "wb") as outfile:
             pickle.dump(vectorizer, outfile)
 
-        logger.info("Train finished!")
+        logger.info("Martinc algorithm trained successfully")
+
+    def get_performance(self):
+        tasks = ["gender", "fame", "occupation", "birthdecade"]
+
+        labels_file_path = "../datasets/PAN19 - Celebrity Profiling/test/labels.ndjson"
+        feeds_file_path = "../datasets/PAN19 - Celebrity Profiling/test/feeds.ndjson"
+
+        documents = {}
+        test_labels_d = {}
+        num_samples = 100
+
+        logger.info("Parsing labels..")
+        with open(labels_file_path) as labels_file:
+            for line in tqdm.tqdm(labels_file):
+                lab_di = json.loads(line)
+                test_labels_d[lab_di["id"]] = lab_di
+
+        logger.info("Parsing feeds..")
+        with open(feeds_file_path) as feeds_file:
+            for line in tqdm.tqdm(feeds_file):
+                lx = json.loads(line)
+                tokens_word = " ".join(lx["text"][0:num_samples])
+                documents[lx["id"]] = tokens_word
+
+        test_documents = []
+        test_labels = []
+
+        for k, v in documents.items():
+            test_documents.append(v)
+            test_labels.append(test_labels_d[k])
+
+        test_df = build_dataframe(test_documents)
+        vectorizer_file = open(self.self.MODEL_FOLDER + "/vectorizer.pickle", "rb")
+        vectorizer = pickle.load(vectorizer_file)
+        test_features = vectorizer.transform(test_df)
+
+        gender_labels = []
+        fame_labels = []
+        occupation_labels = []
+        birthyear_labels = []
+
+        for sample in test_labels:
+            occupation_labels.append(sample["occupation"])
+            gender_labels.append(sample["gender"])
+            fame_labels.append(sample["fame"])
+            birthyear_labels.append(sample["birthyear"])
+
+        labels_dict = {
+            "occupation": occupation_labels,
+            "fame": fame_labels,
+            "gender": gender_labels,
+            "birthyear": birthyear_labels,
+        }
+
+        preds = {}
+        for task, labels in labels_dict.items():
+            encoder_file = open(
+                self.self.MODEL_FOLDER + "/encoder_" + task + ".pickle", "rb"
+            )
+            encoder = pickle.load(encoder_file)
+            model = joblib.load(self.self.MODEL_FOLDER + "/trained_LR_" + task + ".pkl")
+            predictions = model.predict(test_features)
+            predictions = encoder.inverse_transform(predictions)
+
+            print(predictions)
+            print(labels)
+
+            f1 = f1_score(predictions, labels, average="weighted")
+            logger.info(f"{task} performed with {f1}")
+            preds[task] = f1
+        total_score = 1 / np.sum([1 / sc for sc in preds.values()])
+        logger.info(f"Total score {total_score}")

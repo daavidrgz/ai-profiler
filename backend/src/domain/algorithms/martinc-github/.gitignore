@@ -1,0 +1,7 @@
+*.~*
+*.py~*
+*__pycache__
+*.idea
+data/*
+BERT/results/*
+gender/src/.ipynb_checkpoints/

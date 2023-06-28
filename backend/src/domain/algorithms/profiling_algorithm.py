@@ -2,7 +2,7 @@ from application.dataset import Dataset
 
 
 class ProfilingAlgorithm:
-    def autoprofile(self, dataset: Dataset):
+    def predict(self, dataset: Dataset):
         raise NotImplementedError
 
     def train(self):

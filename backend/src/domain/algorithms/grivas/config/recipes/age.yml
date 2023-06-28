@@ -25,12 +25,12 @@ tfidf:
 html cleaner:
   label: clean html
   estimator: clean_html
-  estimator_pkg: pan.preprocess
+  estimator_pkg: entities.preprocess
 
 detwittifier:
   label: detwittify
   estimator: detwittify
-  estimator_pkg: pan.preprocess
+  estimator_pkg: entities.preprocess
 
 printer:
   label: printer
