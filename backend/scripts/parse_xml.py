@@ -7,7 +7,7 @@ csv_writer = csv.writer(csv_file)
 csv_writer.writerow(["id", "text"])
 
 xml_parser = etree.XMLParser(recover=True)
-for file in os.listdir("assets"):
+for file in os.listdir("../datasets/blm-threads"):
     try:
         xml = etree.parse(os.path.join("assets", file), parser=xml_parser)
         root = xml.getroot()

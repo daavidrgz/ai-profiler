@@ -15,5 +15,5 @@ if __name__ == "__main__":
         for line in lines:
             lx = json.loads(line)
             decade = math.floor(lx["birthyear"] / 10) * 10
-            lx["birthyear"] = f"{decade}s"
+            lx["birthdecade"] = f"{decade}s"
             f.write(json.dumps(lx) + "\n")
