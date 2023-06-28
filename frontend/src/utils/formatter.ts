@@ -26,3 +26,7 @@ export function formatTime(millis: number) {
 
 	return `${hours}h ${minutesLeft}m ${secondsLeft}.${millisecondsLeft} s`
 }
+
+export function capitalize(str: string): string {
+	return str.charAt(0).toUpperCase() + str.slice(1);
+}

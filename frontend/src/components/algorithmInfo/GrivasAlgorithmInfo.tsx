@@ -6,14 +6,12 @@ export default function MartincAlgorithmInfo() {
     <div className={styles.container}>
       <h2 className={styles.title}>Grivas Algorithm</h2>
       <p>
-        The Grivas algorithm 
+        The Grivas algorithm is an algorithm...
         <br />
         <br />
         It was trained using a{" "}
-        <span className="bold">
-          collection of tweets in English
-        </span>{" "}
-        from the dataset offered by the{" "}
+        <span className="bold">collection of tweets in English</span> from the
+        dataset offered by the{" "}
         <a
           className="link"
           href="https://pan.webis.de/clef15/pan15-web/author-profiling.html"
@@ -28,11 +26,17 @@ export default function MartincAlgorithmInfo() {
       <ScoreTable
         className={styles.scoreTable}
         score={{
-          birthDecade: 0.8,
-          // 0.9032125213870843
-          gender: 0.90321,
-          // 0.7483208875349275
-          occupation: 0.74832,
+          regression: {
+            extroverted: { name: "Extroverted", mse: 0.2 },
+            stable: { name: "Stable", mse: 0.2 },
+            agreeable: { name: "Agreeable", mse: 0.2 },
+            concientious: { name: "Concientious", mse: 0.2 },
+            open: { name: "Open", mse: 0.2 },
+          },
+          classification: {
+            gender: { name: "Gender", accuracy: 0.8, f1: 0.8 },
+            age: { name: "Age", accuracy: 0.8, f1: 0.8 },
+          },
         }}
       />
       <p className={styles.cite}>

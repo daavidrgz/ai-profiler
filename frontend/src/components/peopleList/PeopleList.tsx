@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./peopleList.module.scss";
 import ArrowRightRoundedIcon from "@mui/icons-material/ArrowRightRounded";
 import { DivProps } from "@/utils/defaultInterfaces";
-import { getDecadeColor, getGenderColor } from "@/utils/colors";
+import { getAgeColor, getGenderColor } from "@/utils/colors";
 import { getMinDecade } from "@/utils/dates";
 import { Person } from "@/model/person";
 import { AnimatePresence, motion } from "framer-motion";
@@ -22,11 +22,11 @@ interface ListHeaderItemProps {
   label: string;
   orderBy: string;
   onClick: () => void;
-  currentOrderBy: "name" | "gender" | "birthDecade";
+  currentOrderBy: "name" | "gender" | "age";
   currentOrder: "asc" | "desc";
 }
 
-function ListItem({ person, minDecade }: ListItemProps) {
+function ListItem({ person }: ListItemProps) {
   return (
     <motion.div
       layout
@@ -41,10 +41,10 @@ function ListItem({ person, minDecade }: ListItemProps) {
         {person.gender}
       </span>
       <span
-        style={{ color: getDecadeColor(person.birthDecade, minDecade) }}
+        style={{ color: getAgeColor(person.age) }}
         className={styles.itemDecade}
       >
-        {person.birthDecade}s
+        {person.age}
       </span>
     </motion.div>
   );
@@ -88,7 +88,7 @@ export default function PeopleList({ people, ...rest }: Props) {
   const [orderedPeople, setOrderedPeople] = useState<Person[]>([]);
   const [currentOrder, setCurrentOrder] = useState<"asc" | "desc">("desc");
   const [currentOrderBy, setCurrentOrderBy] = useState<
-    "name" | "birthDecade" | "gender"
+    "name" | "age" | "gender"
   >("name");
 
   const handlePersonClick = (person: Person) => {
@@ -100,7 +100,7 @@ export default function PeopleList({ people, ...rest }: Props) {
 
   const minDecade = getMinDecade();
 
-  function handleSort(prop: "name" | "gender" | "birthDecade") {
+  function handleSort(prop: "name" | "gender" | "age") {
     if (currentOrderBy === prop) {
       setCurrentOrder(currentOrder === "asc" ? "desc" : "asc");
     } else {
@@ -148,9 +148,9 @@ export default function PeopleList({ people, ...rest }: Props) {
           />
 
           <ListHeaderItem
-            label="BIRTH DECADE"
-            orderBy="birthDecade"
-            onClick={() => handleSort("birthDecade")}
+            label="AGE"
+            orderBy="age"
+            onClick={() => handleSort("age")}
             currentOrderBy={currentOrderBy}
             currentOrder={currentOrder}
           />

@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { PersonSchema } from './person';
-import { ProfilingAlgorithmSchema } from './algorithm';
+import { ProfilingAlgorithmSchema } from './profilingAlgorithm';
 
 export const ProfilingDataSchema = z
 	.object({

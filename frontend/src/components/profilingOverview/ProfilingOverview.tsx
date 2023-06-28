@@ -11,9 +11,10 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import LinearProgressBar from "../linearProgressBar/LinearProgressBar";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
-import { ProfilingAlgorithm } from "@/model/algorithm";
+import { ProfilingAlgorithm } from "@/model/profilingAlgorithm";
 import MartincAlgorithmCard from "../algorithmCard/MartincAlgorithmCard";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
+import AlgorithmCard from "../algorithmCard/AlgorithmCard";
 
 interface Props {
   file: File;
@@ -56,7 +57,7 @@ export default function ProfilingOverview({
 
   const handleClick = () => {
     setIsProcessing(true);
-    ProfilingService.autoprofile(file)
+    ProfilingService.predict(file, algorithm)
       .then((profilingId) => waitForResult(profilingId))
       .catch((error) => {
         createErrorNotification(error.message, 5000);
@@ -103,7 +104,7 @@ export default function ProfilingOverview({
             )}
           </div>
 
-          <MartincAlgorithmCard setAlgorithm={() => {}} readonly />
+          <AlgorithmCard algorithm={algorithm} />
         </motion.div>
 
         {isProcessing && (

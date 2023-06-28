@@ -5,9 +5,9 @@ import DateRangeIcon from "@mui/icons-material/DateRange";
 import CakeIcon from "@mui/icons-material/Cake";
 import ArrowRightRoundedIcon from "@mui/icons-material/ArrowRightRounded";
 import { DivProps } from "@/utils/defaultInterfaces";
-import { getDecadeColors } from "@/utils/colors";
-import { getCurrentYear, getMinDecade } from "@/utils/dates";
 import { Person } from "@/model/person";
+import { getAgeColors } from "@/utils/colors";
+import { AgeSchema } from "@/model/age";
 
 const chartOptions = {
   plugins: {
@@ -40,68 +40,32 @@ interface Props extends DivProps {
 }
 
 export default function AgeChart({ people, ...rest }: Props) {
-  const currentYear = getCurrentYear();
-  const minDecade = getMinDecade();
-
-  const medianDecade = useMemo(() => {
-    const orderedDecades = people
-      .map((person) => person.birthDecade)
-      .sort((a, b) => a - b);
-    const middleIndex = Math.floor(orderedDecades.length / 2);
-    return orderedDecades[middleIndex];
-  }, [people]);
-
-  const maxMedianAge = currentYear - medianDecade;
-  const minMedianAge = Math.max(maxMedianAge - 9, 0);
-
-  const meanAge = useMemo(() => {
-    const sum = people.reduce((acc, person) => acc + person.birthDecade, 0);
-    const meanBirthYear = Math.floor(sum / people.length) + 5;
-    return currentYear - meanBirthYear;
-  }, [people, currentYear]);
-
   const ageData = useMemo(() => {
-    const decadeGroups = [
-      { label: `${minDecade}s`, count: 0 },
-      { label: `${minDecade + 10}s`, count: 0 },
-      { label: `${minDecade + 20}s`, count: 0 },
-      { label: `${minDecade + 30}s`, count: 0 },
-      { label: `${minDecade + 40}s`, count: 0 },
-      { label: `${minDecade + 50}s`, count: 0 },
-      { label: `${minDecade + 60}s`, count: 0 },
-      { label: `${minDecade + 70}s`, count: 0 },
-      { label: `${minDecade + 80}s`, count: 0 },
-      { label: `${minDecade + 90}s`, count: 0 },
-    ];
-
-    people.forEach((person) => {
-      const decadesDiff = (person.birthDecade - minDecade) / 10;
-      decadeGroups[decadesDiff].count++;
-    });
-
     return {
-      labels: decadeGroups.map((group) => group.label),
+      labels: Object.keys(AgeSchema.Enum),
       datasets: [
         {
           label: "Number of people",
-          data: decadeGroups.map((group) => group.count),
-          backgroundColor: getDecadeColors(),
+          data: Object.values(AgeSchema.Enum).map(
+            (group) => people.filter((person) => person.age === group).length
+          ),
+          backgroundColor: getAgeColors(),
         },
       ],
     };
-  }, [people, minDecade]);
+  }, [people]);
 
   return (
     <div className={styles.card} {...rest}>
       <h2 className={styles.title}>
         <ArrowRightRoundedIcon />
-        <span>BIRTH DECADE DISTRIBUTION</span>
+        <span>AGE DISTRIBUTION</span>
       </h2>
       <div className={styles.chartContainer}>
         <Bar data={ageData} options={chartOptions} />
       </div>
       <div className={styles.dataContainer}>
-        <div className={styles.medianCard}>
+        {/* <div className={styles.medianCard}>
           <h3>
             <span>MEDIAN DECADE</span>
             <DateRangeIcon />
@@ -123,7 +87,7 @@ export default function AgeChart({ people, ...rest }: Props) {
             <span className={styles.number}>{meanAge}</span>
             <span> y/o</span>
           </span>
-        </div>
+        </div> */}
       </div>
     </div>
   );

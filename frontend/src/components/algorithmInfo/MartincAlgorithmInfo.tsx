@@ -30,14 +30,16 @@ export default function MartincAlgorithmInfo() {
       <ScoreTable
         className={styles.scoreTable}
         score={{
-          // 0.4654277351491647
-          birthDecade: { name: "Birth Decade", f1: 0.46543 },
-          // 0.9032125213870843
-          gender: { name: "Gender", f1: 0.90321 },
-          // 0.7483208875349275
-          occupation: { name: "Occupation", f1: 0.74832 },
-          // 0.7780803314633018
-          fame: { name: "Fame", f1: 0.77808 },
+          classification: {
+            // f1: 0.6352445174796177, accuracy: 0.6398752399232246
+            age: { name: "Age", f1: 0.63524, accuracy: 0.63988 },
+            // f1: 0.9010101273653148, accuracy: 0.9021113243761996
+            gender: { name: "Gender", f1: 0.90101, accuracy: 0.90211 },
+            // f1: 0.7188096306992375, accuracy: 0.7335652591170825
+            occupation: { name: "Occupation", f1: 0.71881, accuracy: 0.73357 },
+            // f1: 0.7329561368668326, accuracy: 0.7555182341650671
+            fame: { name: "Fame", f1: 0.73296, accuracy: 0.75552 },
+          },
         }}
       />
       <p className={styles.cite}>

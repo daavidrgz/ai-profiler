@@ -1,5 +1,5 @@
 .card {
-  grid-area: 2 / 3 / 4 / 6;
+  grid-area: 4 / 3 / 6 / 4;
   min-width: min-content;
   padding: 2rem;
 
@@ -30,8 +30,7 @@
 
 .chartContainer {
   display: flex;
-  justify-content: center;
-  height: min(45vw, 45vh);
+  height: min(35vw, 35vh);
   margin-bottom: 2rem;
 }
 

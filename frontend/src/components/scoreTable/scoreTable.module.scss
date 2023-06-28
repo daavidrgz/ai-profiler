@@ -1,48 +1,72 @@
+.container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.classificationWrapper {
+  width: 100%;
+}
+
+.regressionWrapper {
+  width: 100%;
+}
+
+.title {
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--accent-alt);
+  margin-bottom: 1rem;
+}
+
 .table {
   width: 100%;
+  height: min-content;
   border-collapse: collapse;
-}
-
-.tableHeader {
-  > tr {
+  tr {
     text-align: center;
-    > th {
-      padding: 0.6rem 0;
-      border-bottom: 1px solid var(--fg);
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--fg);
-      width: 50%;
-    }
-    > th:nth-child(1) {
-      border-right: 1px solid var(--fg);
-    }
-  }
-}
-
-.tableBody {
-  > tr {
-    > td {
-      padding: 0.6rem 0;
-      border-bottom: 1px solid var(--fg);
-      text-align: center;
-      font-size: 0.85rem;
-      color: var(--fg);
-      width: 50%;
-    }
-
-    > td.tableRight {
-      border-right: none;
-    }
-
-    > td.tableLeft {
-      border-right: 1px solid var(--fg);
-    }
   }
 
-  > tr:last-child {
+  th {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--fg);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--fg);
+  }
+
+  td {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--fg);
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--fg);
+  }
+
+  tr:last-child {
     > td {
       border-bottom: none;
     }
+  }
+
+  .borderLeft {
+    border-right: 1px solid var(--fg);
+  }
+}
+
+.regressionTable {
+  @extend .table;
+  th,
+  td {
+    width: 50%;
+  }
+}
+
+.classificationTable {
+  @extend .table;
+  th,
+  td {
+    width: calc(100% / 3);
   }
 }

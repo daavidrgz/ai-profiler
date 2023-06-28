@@ -1,32 +1,42 @@
-import Gender, { GenderSchema } from "@/model/gender";
+import { Age, AgeSchema } from "@/model/age";
+import { Fame, FameSchema } from "@/model/fame";
+import { Gender } from "@/model/gender";
 
 export function getGenderColor(gender: Gender) {
-	if (gender === GenderSchema.Enum.male) {
+	if (gender === "male")
 		return "#98EECC";
-	} else if (gender === GenderSchema.Enum.female) {
+	if (gender === "female")
 		return "#79e0ee";
-	} else {
-		return "#F9F9F9";
-	}
 }
 
-export function getDecadeColors() {
+export function getAgeColors() {
 	return [
 		"#98EECC",
 		"#79E0EE",
-		"#6FC3FF",
+		"#FF7F7F",
 		"#7B9FFF",
 		"#A17BFF",
-		"#D67BFF",
-		"#FF7BDC",
-		"#FF7F7F",
-		"#FFB97F",
-		"#FFE77F",
+		// "#FFB97F",
+		// "#FFE77F",
 	]
 }
 
-export function getDecadeColor(decade: number, minDecade: number) {
-	decade = decade - minDecade;
-	const colors = getDecadeColors();
-	return colors[decade / 10];
+export function getAgeColor(age: Age) {
+	const colors = getAgeColors();
+	const index = Object.keys(AgeSchema.Enum).indexOf(age)
+	return colors[index];
+}
+
+export function getFameColors() {
+	return [
+		"#6FC3FF",
+		"#D67BFF",
+		"#FF7BDC",
+	]
+}
+
+export function getFameColor(fame: Fame) {
+	const colors = getFameColors();
+	const index = Object.keys(FameSchema.Enum).indexOf(fame)
+	return colors[index];
 }

@@ -5,7 +5,7 @@ import { AnimatePresence } from "framer-motion";
 import UploadDataset from "@/components/uploadDataset/UploadDataset";
 import DatasetExample from "@/components/datasetExample/DatasetExample";
 import AlgorithmSelector from "@/components/algorithmSelector/AlgorithmSelector";
-import { ProfilingAlgorithm } from "@/model/algorithm";
+import { ProfilingAlgorithm } from "@/model/profilingAlgorithm";
 import ProfilingOverview from "@/components/profilingOverview/ProfilingOverview";
 
 export default function HomePage() {

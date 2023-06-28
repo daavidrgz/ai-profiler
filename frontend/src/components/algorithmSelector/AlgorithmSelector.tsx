@@ -1,8 +1,9 @@
-import { ProfilingAlgorithm } from "@/model/algorithm";
+import { ProfilingAlgorithm } from "@/model/profilingAlgorithm";
 import { motion } from "framer-motion";
 import styles from "./algorithmSelector.module.scss";
 import MartincAlgorithmCard from "../algorithmCard/MartincAlgorithmCard";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
+import GrivasAlgorithmCard from "../algorithmCard/GrivasAlgorithmCard";
 
 interface Props {
   setAlgorithm: (algorithm: ProfilingAlgorithm) => void;
@@ -25,6 +26,7 @@ export default function AlgorithmSelector({ goBack, setAlgorithm }: Props) {
       </h2>
       <div className={styles.algorithmsContainer}>
         <MartincAlgorithmCard setAlgorithm={setAlgorithm} />
+        <GrivasAlgorithmCard setAlgorithm={setAlgorithm} />
       </div>
     </motion.div>
   );

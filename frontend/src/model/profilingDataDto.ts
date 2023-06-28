@@ -1,7 +1,10 @@
 import { z } from 'zod';
 import { GenderSchema } from './gender';
 import { ProfilingData } from './profilingData';
-import { ProfilingAlgorithmSchema } from './algorithm';
+import { ProfilingAlgorithmSchema } from './profilingAlgorithm';
+import { AgeSchema } from './age';
+import { FameSchema } from './fame';
+import { OccupationSchema } from './occupation';
 
 export const ProfilingDataDtoSchema = z
 	.object({
@@ -11,13 +14,18 @@ export const ProfilingDataDtoSchema = z
 			time: z.number(),
 			output: z.array(z.object(
 				{
-					id: z.number(),
+					id: z.string(),
 					result: z.object(
 						{
 							gender: GenderSchema,
-							birthyear: z.string(),
-							fame: z.string(),
-							occupation: z.string(),
+							age: AgeSchema,
+							fame: FameSchema.optional(),
+							occupation: OccupationSchema.optional(),
+							extroverted: z.number().optional(),
+							stable: z.number().optional(),
+							agreeable: z.number().optional(),
+							concientious: z.number().optional(),
+							open: z.number().optional(),
 						})
 				}
 			))
@@ -33,14 +41,11 @@ export const toProfilingData = (dto: ProfilingDataDto): ProfilingData => {
 		people: dto.profiling!.output.map((person) => {
 			return {
 				name: person.id.toString(),
-				birthDecade: decadeToNumber(person.result.birthyear),
+				age: person.result.age,
 				gender: person.result.gender,
+				fame: person.result.fame,
+				occupation: person.result.occupation,
 			}
 		})
 	}
-}
-
-const decadeToNumber = (birthyear: string): number => {
-	const birthyearString = birthyear.substring(0, birthyear.length - 1);
-	return parseInt(birthyearString);
 }

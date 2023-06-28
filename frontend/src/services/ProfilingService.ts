@@ -1,13 +1,14 @@
+import { ProfilingAlgorithm } from "@/model/profilingAlgorithm";
 import { ProfilingDataDto, ProfilingDataDtoSchema } from "@/model/profilingDataDto";
 
 export default abstract class ProfilingService {
 	private static endpoint = "/api";
 
-	public static autoprofile(dataset: File): Promise<string> {
+	public static predict(dataset: File, algorithm: ProfilingAlgorithm): Promise<string> {
 		const formData = new FormData();
 		formData.append("file", dataset);
 
-		return fetch(`${this.endpoint}/autoprofile`, {
+		return fetch(`${this.endpoint}/predict?algorithm=${algorithm}`, {
 			method: "POST",
 			body: formData,
 		})
@@ -21,9 +22,10 @@ export default abstract class ProfilingService {
 	};
 
 	public static getProfilingData(profilingId: string): Promise<ProfilingDataDto> {
-		return fetch(`${this.endpoint}/autoprofile/${profilingId}`)
+		return fetch(`${this.endpoint}/profilings/${profilingId}`)
 			.then((res) => res.json())
 			.then((data) => {
+				console.log(data)
 				if (data.detail) {
 					throw new Error(data.detail);
 				}

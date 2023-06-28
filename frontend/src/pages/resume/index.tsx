@@ -9,6 +9,7 @@ import { useCallback, useEffect, useRef } from "react";
 import ProfilingResume from "@/components/profilingResume/ProfilingResume";
 import { useData } from "@/components/dataProvider/DataProvider";
 import NavBar from "@/components/navBar/NavBar";
+import FameChart from "@/components/fameChart/FameChart";
 
 Chart.register(CategoryScale);
 
@@ -95,6 +96,11 @@ export default function ResumePage() {
           <GenderChart people={data.people} />
           <AgeChart people={data.people} />
           <PeopleList people={data.people} />
+          {data.algorithm == "martinc" && (
+            <>
+              <FameChart people={data.people} />
+            </>
+          )}
         </div>
       </main>
     </>

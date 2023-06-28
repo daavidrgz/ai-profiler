@@ -99,7 +99,6 @@
   --rt-opacity: 0.98;
   user-select: text;
   padding: 1.8rem !important;
-  width: 170% !important;
   border-radius: var(--border-radius) !important;
   box-shadow: var(--box-shadow) !important;
   background-color: var(--bg) !important;
@@ -108,6 +107,7 @@
 
 .totalTooltip {
   @extend .tooltip;
+  width: 150% !important;
 
   > h2 {
     font-size: 1.3rem;
@@ -121,6 +121,7 @@
 
 .timeTooltip {
   @extend .tooltip;
+  width: 150% !important;
 
   > h2 {
     font-size: 1.3rem;
@@ -134,4 +135,5 @@
 
 .algorithmTooltip {
   @extend .tooltip;
+  width: 45rem !important;
 }

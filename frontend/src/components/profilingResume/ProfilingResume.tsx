@@ -3,7 +3,7 @@ import { DivProps } from "@/utils/defaultInterfaces";
 import ArrowRightRoundedIcon from "@mui/icons-material/ArrowRightRounded";
 import PeopleAltRoundedIcon from "@mui/icons-material/PeopleAltRounded";
 import HourglassEmptyRoundedIcon from "@mui/icons-material/HourglassEmptyRounded";
-import { formatTime } from "@/utils/formatter";
+import { capitalize, formatTime } from "@/utils/formatter";
 import FunctionsIcon from "@mui/icons-material/Functions";
 import { Tooltip } from "react-tooltip";
 import { ProfilingData } from "@/model/profilingData";
@@ -78,7 +78,7 @@ export default function ProfilingResume({ profilingData, ...rest }: Props) {
             <FunctionsIcon />
           </h3>
           <span className={styles.algorithmName}>
-            {profilingData.algorithm}
+            {capitalize(profilingData.algorithm)}
           </span>
           <Tooltip
             id="algorithm-tooltip"
