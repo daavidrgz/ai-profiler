@@ -1,3 +1,1 @@
-*.pyc
-models/*.bin
-results/*.xml
+models
