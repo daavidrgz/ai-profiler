@@ -3,19 +3,21 @@ import styles from "./peopleList.module.scss";
 import ArrowRightRoundedIcon from "@mui/icons-material/ArrowRightRounded";
 import { DivProps } from "@/utils/defaultInterfaces";
 import { getAgeColor, getGenderColor } from "@/utils/colors";
-import { getMinDecade } from "@/utils/dates";
 import { Person } from "@/model/person";
 import { AnimatePresence, motion } from "framer-motion";
 import ArrowDownIcon from "@mui/icons-material/KeyboardArrowDownRounded";
+import { capitalize } from "@/utils/formatter";
 
 interface Props extends DivProps {
   people: Person[];
+  selectedPerson: Person | null;
+  setSelectedPerson: (person: Person | null) => void;
 }
 
 interface ListItemProps {
   person: Person;
-  minDecade: number;
   onClick: () => void;
+  selected: boolean;
 }
 
 interface ListHeaderItemProps {
@@ -26,19 +28,21 @@ interface ListHeaderItemProps {
   currentOrder: "asc" | "desc";
 }
 
-function ListItem({ person }: ListItemProps) {
+function ListItem({ person, onClick, selected }: ListItemProps) {
   return (
     <motion.div
       layout
       transition={{ duration: 0.4 }}
       className={styles.listItem}
+      onClick={onClick}
+      data-selected={selected}
     >
       <span className={styles.itemName}>{person.name}</span>
       <span
         style={{ color: getGenderColor(person.gender) }}
         className={styles.itemGender}
       >
-        {person.gender}
+        {capitalize(person.gender)}
       </span>
       <span
         style={{ color: getAgeColor(person.age) }}
@@ -82,23 +86,25 @@ function ListHeaderItem({
   );
 }
 
-export default function PeopleList({ people, ...rest }: Props) {
-  const [selectedPerson, setSelectedPerson] = useState<Person | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+export default function PeopleList({
+  people,
+  selectedPerson,
+  setSelectedPerson,
+  ...rest
+}: Props) {
   const [orderedPeople, setOrderedPeople] = useState<Person[]>([]);
   const [currentOrder, setCurrentOrder] = useState<"asc" | "desc">("desc");
   const [currentOrderBy, setCurrentOrderBy] = useState<
     "name" | "age" | "gender"
   >("name");
 
-  const handlePersonClick = (person: Person) => {
-    setSelectedPerson(person);
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => setIsModalOpen(false);
-
-  const minDecade = getMinDecade();
+  function handlePersonClick(person: Person) {
+    if (selectedPerson?.name === person.name) {
+      setSelectedPerson(null);
+    } else {
+      setSelectedPerson(person);
+    }
+  }
 
   function handleSort(prop: "name" | "gender" | "age") {
     if (currentOrderBy === prop) {
@@ -160,8 +166,8 @@ export default function PeopleList({ people, ...rest }: Props) {
           {orderedPeople.map((person, idx) => (
             <ListItem
               key={idx}
+              selected={selectedPerson?.name === person.name}
               person={person}
-              minDecade={minDecade}
               onClick={() => handlePersonClick(person)}
             />
           ))}

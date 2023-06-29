@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useRef } from "react";
 import styles from "./ageChart.module.scss";
 import { Bar } from "react-chartjs-2";
 import DateRangeIcon from "@mui/icons-material/DateRange";
@@ -8,6 +8,8 @@ import { DivProps } from "@/utils/defaultInterfaces";
 import { Person } from "@/model/person";
 import { getAgeColors } from "@/utils/colors";
 import { AgeSchema } from "@/model/age";
+import { count } from "@/utils/formatter";
+import { useEffect } from "react";
 
 const chartOptions = {
   plugins: {
@@ -37,23 +39,43 @@ const chartOptions = {
 
 interface Props extends DivProps {
   people: Person[];
+  selectedPerson: Person | null;
 }
 
-export default function AgeChart({ people, ...rest }: Props) {
+export default function AgeChart({ people, selectedPerson, ...rest }: Props) {
+  const chartRef = useRef<any>(null);
+
   const ageData = useMemo(() => {
     return {
       labels: Object.keys(AgeSchema.Enum),
       datasets: [
         {
           label: "Number of people",
-          data: Object.values(AgeSchema.Enum).map(
-            (group) => people.filter((person) => person.age === group).length
+          data: Object.values(AgeSchema.Enum).map((ageGroup) =>
+            count(people, (person) => person.age === ageGroup)
           ),
           backgroundColor: getAgeColors(),
+          borderRadius: 10,
         },
       ],
     };
   }, [people]);
+
+  useEffect(() => {
+    if (!chartRef.current) return;
+    const chart = chartRef.current;
+
+    chart.data.datasets[0].backgroundColor = getAgeColors();
+    if (selectedPerson) {
+      const index = Object.values(AgeSchema.Enum).indexOf(
+        selectedPerson.age
+      );
+      chart.data.datasets[0].backgroundColor = getAgeColors().map(
+        (color, i) => (i === index ? color : color + "66")
+      );
+    }
+    chart.update();
+  }, [selectedPerson]);
 
   return (
     <div className={styles.card} {...rest}>
@@ -62,7 +84,7 @@ export default function AgeChart({ people, ...rest }: Props) {
         <span>AGE DISTRIBUTION</span>
       </h2>
       <div className={styles.chartContainer}>
-        <Bar data={ageData} options={chartOptions} />
+        <Bar ref={chartRef} data={ageData} options={chartOptions} />
       </div>
       <div className={styles.dataContainer}>
         {/* <div className={styles.medianCard}>

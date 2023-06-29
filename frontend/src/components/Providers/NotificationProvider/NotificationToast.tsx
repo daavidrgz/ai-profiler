@@ -1,6 +1,6 @@
 import styles from "./notification.module.scss";
 import { useCallback, useContext, useEffect } from "react";
-import { NotificationContext } from "./NotificationManager";
+import { NotificationContext } from "./NotificationProvider";
 import { AppNotification } from "./notifications/Notification";
 import { motion } from "framer-motion";
 import CloseCircle from "./CloseCirlce";

@@ -8,12 +8,9 @@ export default function NavBar() {
   const [lastScrollY, setLastScrollY] = useState(0);
 
   const controlNavbar = useCallback(() => {
-    console.log("scrolling");
-    if (window.scrollY > lastScrollY) {
-      setShow(false);
-    } else {
-      setShow(true);
-    }
+    if (window.scrollY > lastScrollY) setShow(false);
+    else setShow(true);
+
     setLastScrollY(window.scrollY);
   }, [lastScrollY]);
 

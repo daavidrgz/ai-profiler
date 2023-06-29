@@ -2,11 +2,11 @@ import Head from "next/head";
 import styles from "@/pages/styles/home.module.scss";
 import { useState } from "react";
 import { AnimatePresence } from "framer-motion";
-import UploadDataset from "@/components/uploadDataset/UploadDataset";
-import DatasetExample from "@/components/datasetExample/DatasetExample";
-import AlgorithmSelector from "@/components/algorithmSelector/AlgorithmSelector";
+import UploadDataset from "@/components/UploadDataset/UploadDataset";
+import DatasetExample from "@/components/DatasetExample/DatasetExample";
+import AlgorithmSelector from "@/components/Algorithms/AlgorithmSelector/AlgorithmSelector";
 import { ProfilingAlgorithm } from "@/model/profilingAlgorithm";
-import ProfilingOverview from "@/components/profilingOverview/ProfilingOverview";
+import ProfilingOverview from "@/components/ProfilingOverview/ProfilingOverview";
 
 export default function HomePage() {
   const [file, setFile] = useState<File | null>(null);

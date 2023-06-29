@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
 import { Pie } from "react-chartjs-2";
 import styles from "./genderChart.module.scss";
 import FemaleIcon from "@mui/icons-material/Female";
@@ -7,6 +7,8 @@ import ArrowRightRoundedIcon from "@mui/icons-material/ArrowRightRounded";
 import { DivProps } from "@/utils/defaultInterfaces";
 import { GenderSchema } from "@/model/gender";
 import { Person } from "@/model/person";
+import { getGenderColors } from "@/utils/colors";
+import { capitalize, count } from "@/utils/formatter";
 
 const chartOptions = {
   plugins: {
@@ -24,20 +26,23 @@ const chartOptions = {
 
 interface Props extends DivProps {
   people: Person[];
+  selectedPerson: Person | null;
 }
 
-export default function GenderChart({ people, ...rest }: Props) {
+export default function GenderChart({
+  people,
+  selectedPerson,
+  ...rest
+}: Props) {
+  const chartRef = useRef<any>(null);
+
   const maleCount = useMemo(
-    () =>
-      people.filter((person) => person.gender === GenderSchema.Enum.male)
-        .length,
+    () => count(people, (person) => person.gender === "male"),
     [people]
   );
 
   const femaleCount = useMemo(
-    () =>
-      people.filter((person) => person.gender === GenderSchema.Enum.female)
-        .length,
+    () => count(people, (person) => person.gender === "female"),
     [people]
   );
 
@@ -53,18 +58,36 @@ export default function GenderChart({ people, ...rest }: Props) {
 
   const genderData = useMemo(() => {
     return {
-      labels: ["Male", "Female"],
+      labels: Object.keys(GenderSchema.Enum).map((label) => capitalize(label)),
       datasets: [
         {
           label: "Number of people",
-          data: [maleCount, femaleCount],
-          backgroundColor: ["#98EECC", "#79E0EE"],
+          data: Object.values(GenderSchema.Enum).map((gender) =>
+            count(people, (person) => person.gender === gender)
+          ),
+          backgroundColor: getGenderColors(),
           borderWidth: 2,
           borderColor: "rgb(30, 32, 44)",
         },
       ],
     };
-  }, [maleCount, femaleCount]);
+  }, [people]);
+
+  useEffect(() => {
+    if (!chartRef.current) return;
+    const chart = chartRef.current;
+
+    chart.data.datasets[0].backgroundColor = getGenderColors();
+    if (selectedPerson) {
+      const index = Object.values(GenderSchema.Enum).indexOf(
+        selectedPerson.gender
+      );
+      chart.data.datasets[0].backgroundColor = getGenderColors().map(
+        (color, i) => (i === index ? color : color + "66")
+      );
+    }
+    chart.update();
+  }, [selectedPerson]);
 
   return (
     <div className={styles.card} {...rest}>
@@ -74,7 +97,7 @@ export default function GenderChart({ people, ...rest }: Props) {
       </h2>
       <div className={styles.contentWrapper}>
         <div className={styles.chartContainer}>
-          <Pie data={genderData} options={chartOptions} />
+          <Pie ref={chartRef} data={genderData} options={chartOptions} />
         </div>
         <div className={styles.dataContainer}>
           <div className={styles.genderCount}>

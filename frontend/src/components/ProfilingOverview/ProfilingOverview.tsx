@@ -3,18 +3,17 @@ import DescriptionRoundedIcon from "@mui/icons-material/DescriptionRounded";
 import { formatBytes } from "@/utils/formatter";
 import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
 import ProfilingService from "@/services/ProfilingService";
-import { useNotifications } from "@/components/notificationManager/NotificationManager";
-import { useData } from "../dataProvider/DataProvider";
+import { useNotifications } from "@/components/Providers/NotificationProvider/NotificationProvider";
+import { useData } from "../Providers/DataProvider/DataProvider";
 import { useRouter } from "next/router";
 import { toProfilingData } from "@/model/profilingDataDto";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import LinearProgressBar from "../linearProgressBar/LinearProgressBar";
+import LinearProgressBar from "../UI/LinearProgressBar/LinearProgressBar";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 import { ProfilingAlgorithm } from "@/model/profilingAlgorithm";
-import MartincAlgorithmCard from "../algorithmCard/MartincAlgorithmCard";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
-import AlgorithmCard from "../algorithmCard/AlgorithmCard";
+import AlgorithmCard from "@/components/Algorithms/AlgorithmCard/AlgorithmCard";
 
 interface Props {
   file: File;

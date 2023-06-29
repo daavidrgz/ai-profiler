@@ -1,19 +1,22 @@
 import Head from "next/head";
 import styles from "@/pages/styles/resume.module.scss";
-import GenderChart from "@/components/genderChart/GenderChart";
+import GenderChart from "@/components/Charts/GenderChart/GenderChart";
 import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
-import AgeChart from "@/components/ageChart/AgeChart";
-import PeopleList from "@/components/peopleList/PeopleList";
-import { useCallback, useEffect, useRef } from "react";
-import ProfilingResume from "@/components/profilingResume/ProfilingResume";
-import { useData } from "@/components/dataProvider/DataProvider";
-import NavBar from "@/components/navBar/NavBar";
-import FameChart from "@/components/fameChart/FameChart";
+import AgeChart from "@/components/Charts/AgeChart/AgeChart";
+import PeopleList from "@/components/Charts/PeopleList/PeopleList";
+import { useCallback, useEffect, useRef, useState } from "react";
+import ProfilingResume from "@/components/Charts/ProfilingResume/ProfilingResume";
+import { useData } from "@/components/Providers/DataProvider/DataProvider";
+import NavBar from "@/components/UI/NavBar/NavBar";
+import FameChart from "@/components/Charts/FameChart/FameChart";
+import { data } from "@/utils/mocks";
+import { Person } from "@/model/person";
 
 Chart.register(CategoryScale);
 
 export default function ResumePage() {
+  const [selectedPerson, setSelectedPerson] = useState<Person | null>(null);
   const chartsContainerRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const hoverTime = 1000;
@@ -65,7 +68,7 @@ export default function ResumePage() {
     };
   }, [chartsContainerRef, onMouseEnter, onMouseLeave]);
 
-  const { data } = useData();
+  // const { data } = useData();
   if (!data)
     return (
       <>
@@ -93,12 +96,16 @@ export default function ResumePage() {
 
         <div className={styles.chartsContainer} ref={chartsContainerRef}>
           <ProfilingResume profilingData={data} />
-          <GenderChart people={data.people} />
-          <AgeChart people={data.people} />
-          <PeopleList people={data.people} />
+          <GenderChart people={data.people} selectedPerson={selectedPerson} />
+          <AgeChart people={data.people} selectedPerson={selectedPerson} />
+          <PeopleList
+            people={data.people}
+            selectedPerson={selectedPerson}
+            setSelectedPerson={setSelectedPerson}
+          />
           {data.algorithm == "martinc" && (
             <>
-              <FameChart people={data.people} />
+              <FameChart people={data.people} selectedPerson={selectedPerson} />
             </>
           )}
         </div>

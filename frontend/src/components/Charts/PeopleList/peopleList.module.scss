@@ -36,7 +36,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 1rem 0;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   border-bottom: 1px solid var(--fg);
 
   > div {
@@ -68,16 +68,29 @@
 }
 
 .listItem {
+  cursor: pointer;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1rem 0;
-  border-bottom: 1px solid #4e4e4e;
   margin-bottom: 1rem;
+  border: 1px solid transparent;
 
   > span {
     width: calc(100% / 3);
+  }
+
+  transition: border 0.2s, box-shadow 0.2s, border-radius 0.4s,
+    background-color 0.2s;
+  &[data-selected="true"] {
+    background-color: var(--bg-subtle-alt);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow-subtle);
+  }
+  &[data-selected="false"] {
+    border-radius: 0;
+    border-bottom: 1px solid #4e4e4e;
   }
 }
 

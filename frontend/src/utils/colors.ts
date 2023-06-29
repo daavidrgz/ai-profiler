@@ -2,6 +2,13 @@ import { Age, AgeSchema } from "@/model/age";
 import { Fame, FameSchema } from "@/model/fame";
 import { Gender } from "@/model/gender";
 
+export function getGenderColors() {
+	return [
+		"#98EECC",
+		"#79E0EE",
+	]
+}
+
 export function getGenderColor(gender: Gender) {
 	if (gender === "male")
 		return "#98EECC";

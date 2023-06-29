@@ -7,7 +7,7 @@ import { capitalize, formatTime } from "@/utils/formatter";
 import FunctionsIcon from "@mui/icons-material/Functions";
 import { Tooltip } from "react-tooltip";
 import { ProfilingData } from "@/model/profilingData";
-import AlgorithmInfo from "../algorithmInfo/AlgorithmInfo";
+import AlgorithmInfo from "../../Algorithms/AlgorithmInfo/AlgorithmInfo";
 
 interface Props extends DivProps {
   profilingData: ProfilingData;

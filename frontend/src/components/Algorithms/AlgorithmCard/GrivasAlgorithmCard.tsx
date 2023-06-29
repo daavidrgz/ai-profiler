@@ -1,9 +1,8 @@
 import { Tooltip } from "react-tooltip";
-import AlgorithmInfo from "../algorithmInfo/AlgorithmInfo";
+import AlgorithmInfo from "../AlgorithmInfo/AlgorithmInfo";
 import WcRoundedIcon from "@mui/icons-material/WcRounded";
 import TodayRoundedIcon from "@mui/icons-material/TodayRounded";
-import StarRoundedIcon from "@mui/icons-material/StarRounded";
-import WorkRoundedIcon from "@mui/icons-material/WorkRounded";
+import PsychologyAltRoundedIcon from "@mui/icons-material/PsychologyAltRounded";
 import styles from "./algorithmCard.module.scss";
 import { ProfilingAlgorithm } from "@/model/profilingAlgorithm";
 
@@ -12,7 +11,7 @@ interface Props {
   setAlgorithm?: (algorithm: ProfilingAlgorithm) => void;
 }
 
-export default function MartincAlgorithmCard({
+export default function GrivasAlgorithmCard({
   setAlgorithm,
   readonly = false,
 }: Props) {
@@ -20,10 +19,10 @@ export default function MartincAlgorithmCard({
     <div
       data-readonly={readonly}
       className={styles.algorithmCard}
-      data-tooltip-id="martinc-tooltip"
-      onClick={() => !readonly && setAlgorithm!("martinc")}
+      data-tooltip-id="grivas-tooltip"
+      onClick={() => !readonly && setAlgorithm!("grivas")}
     >
-      <h3>Martinc Algorithm</h3>
+      <h3>Grivas Algorithm</h3>
       <div className={styles.algorithmClasses}>
         <span>Includes profiling of:</span>
         <ul>
@@ -36,23 +35,19 @@ export default function MartincAlgorithmCard({
             <TodayRoundedIcon />
           </li>
           <li>
-            <span> • Fame</span>
-            <StarRoundedIcon />
-          </li>
-          <li>
-            <span> • Occupation</span>
-            <WorkRoundedIcon />
+            <span> • Personality Traits</span>
+            <PsychologyAltRoundedIcon />
           </li>
         </ul>
       </div>
       <Tooltip
-        id="martinc-tooltip"
+        id="grivas-tooltip"
         place="right"
         className={styles.algorithmTooltip}
         clickable
         delayShow={readonly ? 400 : 1000}
       >
-        <AlgorithmInfo algorithm={"martinc"} />
+        <AlgorithmInfo algorithm={"grivas"} />
       </Tooltip>
     </div>
   );

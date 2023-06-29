@@ -30,3 +30,7 @@ export function formatTime(millis: number) {
 export function capitalize(str: string): string {
 	return str.charAt(0).toUpperCase() + str.slice(1);
 }
+
+export function count(arr: any[], condition: (item: any) => boolean): number {
+	return arr.reduce((acc, item) => condition(item) ? acc + 1 : acc, 0)
+}

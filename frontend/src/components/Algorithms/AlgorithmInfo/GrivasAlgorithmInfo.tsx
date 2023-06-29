@@ -1,4 +1,4 @@
-import ScoreTable from "../scoreTable/ScoreTable";
+import ScoreTable from "../ScoreTable/ScoreTable";
 import styles from "./algorithmInfo.module.scss";
 
 export default function MartincAlgorithmInfo() {

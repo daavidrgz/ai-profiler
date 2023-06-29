@@ -32,7 +32,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-export default function NotificationManager({ children }: Props): JSX.Element {
+export default function NotificationProvider({ children }: Props): JSX.Element {
   const [notifications, setNotifications] = useState<AppNotification[]>([]);
 
   const createNotification = useCallback((notification: AppNotification) => {
