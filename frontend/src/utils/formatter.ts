@@ -34,3 +34,24 @@ export function capitalize(str: string): string {
 export function count(arr: any[], condition: (item: any) => boolean): number {
 	return arr.reduce((acc, item) => condition(item) ? acc + 1 : acc, 0)
 }
+
+export function isObject(item: any) {
+	return (item && typeof item === 'object' && !Array.isArray(item));
+}
+
+export function mergeDeep(target: any, source: any) {
+	let output = Object.assign({}, target);
+	if (isObject(target) && isObject(source)) {
+		Object.keys(source).forEach(key => {
+			if (isObject(source[key])) {
+				if (!(key in target))
+					Object.assign(output, { [key]: source[key] });
+				else
+					output[key] = mergeDeep(target[key], source[key]);
+			} else {
+				Object.assign(output, { [key]: source[key] });
+			}
+		});
+	}
+	return output;
+}

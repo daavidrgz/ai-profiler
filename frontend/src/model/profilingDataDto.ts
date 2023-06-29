@@ -45,6 +45,13 @@ export const toProfilingData = (dto: ProfilingDataDto): ProfilingData => {
 				gender: person.result.gender,
 				fame: person.result.fame,
 				occupation: person.result.occupation,
+				personalityTraits: person.result.extroverted ? [
+					{ trait: "extroverted", weight: person.result.extroverted! },
+					{ trait: "stable", weight: person.result.stable! },
+					{ trait: "agreeable", weight: person.result.agreeable! },
+					{ trait: "concientious", weight: person.result.concientious! },
+					{ trait: "open", weight: person.result.open! },
+				] : undefined
 			}
 		})
 	}

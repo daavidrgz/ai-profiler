@@ -1,7 +1,7 @@
 .card {
   grid-area: 1 / 1 / 2 / 6;
   min-width: min-content;
-  padding: 2rem;
+  padding: 1rem;
 
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
@@ -12,14 +12,14 @@
 .title {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
-  margin-bottom: 2.5rem;
-  margin-left: -0.8rem;
+  gap: 0.2rem;
+  margin-bottom: 2rem;
+  margin-left: -0.4rem;
 
   color: var(--fg);
 
   > span {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 600;
   }
 
@@ -46,7 +46,7 @@
   box-shadow: var(--box-shadow);
   border-radius: var(--border-radius);
   background-color: rgb(37, 39, 51);
-  padding: 1rem 4rem;
+  padding: 1rem 2rem;
 
   width: max-content;
 

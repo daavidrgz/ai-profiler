@@ -10,10 +10,24 @@ import ProfilingResume from "@/components/Charts/ProfilingResume/ProfilingResume
 import { useData } from "@/components/Providers/DataProvider/DataProvider";
 import NavBar from "@/components/UI/NavBar/NavBar";
 import FameChart from "@/components/Charts/FameChart/FameChart";
-import { data } from "@/utils/mocks";
+import { grivasData, martincData } from "@/utils/mocks";
 import { Person } from "@/model/person";
+import OccupationChart from "@/components/Charts/OccupationChart/OccupationChart";
+import PersonalityTraitsChart from "@/components/Charts/PersonalityTraitsChart/PersonalityTraitsChart";
+
+const marginBottomLegend = {
+  id: "marginBottomLegend",
+  beforeInit(chart: any) {
+    const originalFit = chart.legend.fit;
+    chart.legend.fit = function fit() {
+      originalFit.bind(chart.legend)();
+      this.height += 15;
+    };
+  },
+};
 
 Chart.register(CategoryScale);
+Chart.register(marginBottomLegend);
 
 export default function ResumePage() {
   const [selectedPerson, setSelectedPerson] = useState<Person | null>(null);
@@ -68,6 +82,7 @@ export default function ResumePage() {
     };
   }, [chartsContainerRef, onMouseEnter, onMouseLeave]);
 
+  const data = grivasData;
   // const { data } = useData();
   if (!data)
     return (
@@ -103,10 +118,20 @@ export default function ResumePage() {
             selectedPerson={selectedPerson}
             setSelectedPerson={setSelectedPerson}
           />
-          {data.algorithm == "martinc" && (
+          {data.algorithm === "martinc" && (
             <>
               <FameChart people={data.people} selectedPerson={selectedPerson} />
+              <OccupationChart
+                people={data.people}
+                selectedPerson={selectedPerson}
+              />
             </>
+          )}
+          {data.algorithm === "grivas" && (
+            <PersonalityTraitsChart
+              people={data.people}
+              selectedPerson={selectedPerson}
+            />
           )}
         </div>
       </main>
