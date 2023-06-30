@@ -8,11 +8,34 @@ from application.dataset import Dataset
 from logging.config import dictConfig
 from domain.algorithms.martinc.profiler import MartincAlgorithm
 from domain.algorithms.grivas.profiler import GrivasAlgorithm
+from domain.services.twitter_service import TwitterService
 from utils.logger_config import log_config
 
 dictConfig(log_config)
 app = FastAPI()
 profiling_service = ProfilingService()
+twitter_service = TwitterService()
+
+
+@app.post("/predict/twitter")
+def predict_twitter(user: str, algorithm: str):
+    uuid = uuid4()
+
+    file = twitter_service.get_tweets(user)
+
+    try:
+        dataset = Dataset(
+            filename=f"{user}_tweets", file_type=FileType.NDJSON, file=file
+        )
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+    algorithm = __get_algorithm(algorithm)
+
+    thread = Thread(target=profiling_service.predict, args=(dataset, algorithm, uuid))
+    thread.start()
+
+    return {"profiling_id": uuid}
 
 
 @app.post("/predict")
