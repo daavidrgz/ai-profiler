@@ -1,11 +1,11 @@
 import { useMemo } from "react";
-import styles from "./ageChart.module.scss";
 import DateRangeIcon from "@mui/icons-material/DateRange";
 import { DivProps } from "@/utils/defaultInterfaces";
 import { Person } from "@/model/person";
 import { getAgeColors } from "@/utils/colors";
 import { AgeSchema } from "@/model/age";
 import Chart from "@/components/Charts/Chart";
+import InfoCard from "./InfoCard/InfoCard";
 
 interface Props extends DivProps {
   people: Person[];
@@ -26,11 +26,10 @@ export default function AgeChart({ people, selectedPerson, ...rest }: Props) {
 
   return (
     <Chart
-      gridArea="2 / 3 / 4 / 6"
-      height={"min(45vw, 45vh)"}
       people={people}
       selectedPerson={selectedPerson}
       title={"AGE DISTRIBUTION"}
+      label="Number of people"
       entityEnum={AgeSchema.Enum}
       colors={getAgeColors()}
       chartType="bar"
@@ -38,16 +37,12 @@ export default function AgeChart({ people, selectedPerson, ...rest }: Props) {
       dimmable
       {...rest}
     >
-      <div className={styles.medianCard}>
-        <h3>
-          <span>MEDIAN AGE</span>
-          <DateRangeIcon />
-        </h3>
-        <span className={styles.medianAge}>
-          <span className={styles.number}>{medianAge}</span>
-          <span>y/o</span>
-        </span>
-      </div>
+      <InfoCard
+        title="MEDIAN AGE"
+        icon={<DateRangeIcon />}
+        mainValue={medianAge}
+        secondaryValue="y/o"
+      />
     </Chart>
   );
 }

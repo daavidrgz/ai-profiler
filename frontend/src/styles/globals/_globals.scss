@@ -63,3 +63,13 @@ input[type="number"] {
     text-decoration: underline;
   }
 }
+
+.tooltip {
+  --rt-opacity: 0.98;
+  user-select: text;
+  padding: 1.2rem !important;
+  border-radius: var(--border-radius) !important;
+  box-shadow: var(--box-shadow) !important;
+  background-color: var(--bg) !important;
+  z-index: 1000;
+}

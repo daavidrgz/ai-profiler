@@ -7,8 +7,9 @@ import { PersonalityTraitSchema } from "@/model/personalityTrait";
 const chartOptions = {
   scales: {
     y: {
-      min: -0.5,
-      max: 0.5,
+      ticks: {
+        stepSize: 0.1,
+      },
     },
   },
 };
@@ -25,11 +26,10 @@ export default function PersonalityTraitsChart({
 }: Props) {
   return (
     <Chart
-      gridArea="4 / 3 / 6 / 6"
-      height="min(45vh, 40vw)"
       people={people}
       selectedPerson={selectedPerson}
       title="PERSONALITY TRAITS"
+      label="Weight"
       noContentMessage="Click a person in order to see its personality traits."
       entityEnum={PersonalityTraitSchema.Enum}
       colors={getPersonalityTraitColors()}
@@ -45,6 +45,7 @@ export default function PersonalityTraitsChart({
       }
       chartType="bar"
       chartOptions={chartOptions}
+      direction="horizontal"
       {...rest}
     ></Chart>
   );

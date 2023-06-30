@@ -2,13 +2,35 @@ import { useEffect, useState } from "react";
 import styles from "./peopleList.module.scss";
 import ArrowRightRoundedIcon from "@mui/icons-material/ArrowRightRounded";
 import { DivProps } from "@/utils/defaultInterfaces";
-import { getAgeColor, getGenderColor } from "@/utils/colors";
+import {
+  getAgeColor,
+  getFameColor,
+  getGenderColor,
+  getOccupationColor,
+  getPersonalityTraitColor,
+  getPersonalityTraitColors,
+} from "@/utils/colors";
 import { Person } from "@/model/person";
 import { AnimatePresence, motion } from "framer-motion";
 import ArrowDownIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 import { capitalize } from "@/utils/formatter";
+import {
+  PersonalityTrait,
+  PersonalityTraitSchema,
+} from "@/model/personalityTrait";
+import { ProfilingAlgorithm } from "@/model/profilingAlgorithm";
+
+type OrderBy =
+  | "name"
+  | "age"
+  | "gender"
+  | "fame"
+  | "occupation"
+  | PersonalityTrait;
+type Direction = "asc" | "desc";
 
 interface Props extends DivProps {
+  algorithm: ProfilingAlgorithm;
   people: Person[];
   selectedPerson: Person | null;
   setSelectedPerson: (person: Person | null) => void;
@@ -18,17 +40,27 @@ interface ListItemProps {
   person: Person;
   onClick: () => void;
   selected: boolean;
+  columns: number;
+  algorithm: ProfilingAlgorithm;
 }
 
 interface ListHeaderItemProps {
   label: string;
   orderBy: string;
   onClick: () => void;
-  currentOrderBy: "name" | "gender" | "age";
-  currentOrder: "asc" | "desc";
+  currentOrderBy: OrderBy;
+  currentDirection: Direction;
+  columns: number;
 }
 
-function ListItem({ person, onClick, selected }: ListItemProps) {
+function ListItem({
+  person,
+  onClick,
+  selected,
+  columns,
+  algorithm,
+}: ListItemProps) {
+  const width = `calc(100% / ${columns})`;
   return (
     <motion.div
       layout
@@ -37,19 +69,61 @@ function ListItem({ person, onClick, selected }: ListItemProps) {
       onClick={onClick}
       data-selected={selected}
     >
-      <span className={styles.itemName}>{person.name}</span>
+      <span style={{ width: width }}>{person.name}</span>
       <span
-        style={{ color: getGenderColor(person.gender) }}
-        className={styles.itemGender}
+        style={{
+          color: getGenderColor(person.gender),
+          width: width,
+        }}
       >
         {capitalize(person.gender)}
       </span>
       <span
-        style={{ color: getAgeColor(person.age) }}
-        className={styles.itemDecade}
+        style={{
+          color: getAgeColor(person.age),
+          width: width,
+        }}
       >
         {person.age}
       </span>
+      {algorithm === "martinc" && (
+        <>
+          <span
+            style={{
+              color: getFameColor(person.fame!),
+              width: width,
+            }}
+          >
+            {capitalize(person.fame!)}
+          </span>
+          <span
+            style={{
+              color: getOccupationColor(person.occupation!),
+              width: width,
+            }}
+          >
+            {capitalize(person.occupation!)}
+          </span>
+        </>
+      )}
+
+      {algorithm === "grivas" && (
+        <>
+          {Object.values(PersonalityTraitSchema.Enum).map((trait) => (
+            <span
+              key={trait}
+              style={{
+                color: getPersonalityTraitColor(trait),
+                width: width,
+              }}
+            >
+              {person
+                .personalityTraits!.find((t) => t.trait === trait)!
+                .weight.toFixed(2)}
+            </span>
+          ))}
+        </>
+      )}
     </motion.div>
   );
 }
@@ -59,10 +133,11 @@ function ListHeaderItem({
   label,
   orderBy,
   currentOrderBy,
-  currentOrder,
+  currentDirection,
+  columns,
 }: ListHeaderItemProps) {
   return (
-    <div onClick={onClick}>
+    <div onClick={onClick} style={{ width: `calc(100% / ${columns})` }}>
       <AnimatePresence>
         <motion.span key="span" layout transition={{ duration: 0.2 }}>
           {label}
@@ -77,7 +152,7 @@ function ListHeaderItem({
           >
             <ArrowDownIcon
               className={styles.arrowIcon}
-              data-order={currentOrder}
+              data-order={currentDirection}
             />
           </motion.div>
         )}
@@ -87,16 +162,15 @@ function ListHeaderItem({
 }
 
 export default function PeopleList({
+  algorithm,
   people,
   selectedPerson,
   setSelectedPerson,
   ...rest
 }: Props) {
   const [orderedPeople, setOrderedPeople] = useState<Person[]>([]);
-  const [currentOrder, setCurrentOrder] = useState<"asc" | "desc">("desc");
-  const [currentOrderBy, setCurrentOrderBy] = useState<
-    "name" | "age" | "gender"
-  >("name");
+  const [currentDirection, setCurrentDirection] = useState<Direction>("desc");
+  const [currentOrderBy, setCurrentOrderBy] = useState<OrderBy>("name");
 
   function handlePersonClick(person: Person) {
     if (selectedPerson?.name === person.name) {
@@ -106,60 +180,110 @@ export default function PeopleList({
     }
   }
 
-  function handleSort(prop: "name" | "gender" | "age") {
+  function handleSort(prop: OrderBy) {
     if (currentOrderBy === prop) {
-      setCurrentOrder(currentOrder === "asc" ? "desc" : "asc");
+      setCurrentDirection(currentDirection === "asc" ? "desc" : "asc");
     } else {
       setCurrentOrderBy(prop);
-      setCurrentOrder("desc");
+      setCurrentDirection("desc");
     }
   }
 
   useEffect(() => {
     setOrderedPeople([
       ...people.sort((a, b) => {
-        if (currentOrder === "asc") {
-          if (a[currentOrderBy] < b[currentOrderBy]) return 1;
+        let propA: string | number;
+        let propB: string | number;
+
+        if (
+          // Workaround to avoid typescript errors
+          currentOrderBy === "extroverted" ||
+          currentOrderBy === "agreeable" ||
+          currentOrderBy === "concientious" ||
+          currentOrderBy === "stable" ||
+          currentOrderBy === "open"
+        ) {
+          propA = a.personalityTraits!.find(
+            (trait) => trait.trait === currentOrderBy
+          )!.weight;
+          propB = b.personalityTraits!.find(
+            (trait) => trait.trait === currentOrderBy
+          )!.weight;
+        } else {
+          propA = a[currentOrderBy]!;
+          propB = b[currentOrderBy]!;
+        }
+
+        if (currentDirection === "asc") {
+          if (propA < propB) return 1;
           else return -1;
         } else {
-          if (a[currentOrderBy] > b[currentOrderBy]) return 1;
+          if (propA > propB) return 1;
           else return -1;
         }
       }),
     ]);
-  }, [people, currentOrder, currentOrderBy]);
+  }, [people, currentDirection, currentOrderBy]);
+
+  let columns = 3;
+  if (algorithm === "martinc") columns = 5;
+  if (algorithm === "grivas") columns = 8;
+
+  const normalProps = ["name", "gender", "age"] as const;
+  const martincProps = ["fame", "occupation"] as const;
+  const grivasProps = Object.values(PersonalityTraitSchema.Enum);
 
   return (
     <div className={styles.card} {...rest}>
       <div className={styles.title}>
         <ArrowRightRoundedIcon />
-        <span>DETAILED LIST</span>
+        <span>PEOPLE LIST</span>
       </div>
       <div className={styles.peopleList}>
         <div className={styles.listHeader}>
-          <ListHeaderItem
-            label="NAME"
-            orderBy="name"
-            onClick={() => handleSort("name")}
-            currentOrderBy={currentOrderBy}
-            currentOrder={currentOrder}
-          />
+          {normalProps.map((prop) => (
+            <ListHeaderItem
+              key={prop}
+              label={capitalize(prop)}
+              orderBy={prop}
+              onClick={() => handleSort(prop)}
+              currentOrderBy={currentOrderBy}
+              currentDirection={currentDirection}
+              columns={columns}
+            />
+          ))}
 
-          <ListHeaderItem
-            label="GENDER"
-            orderBy="gender"
-            onClick={() => handleSort("gender")}
-            currentOrderBy={currentOrderBy}
-            currentOrder={currentOrder}
-          />
+          {algorithm === "martinc" && (
+            <>
+              {martincProps.map((prop) => (
+                <ListHeaderItem
+                  key={prop}
+                  label={capitalize(prop)}
+                  orderBy={prop}
+                  onClick={() => handleSort(prop)}
+                  currentOrderBy={currentOrderBy}
+                  currentDirection={currentDirection}
+                  columns={columns}
+                />
+              ))}
+            </>
+          )}
 
-          <ListHeaderItem
-            label="AGE"
-            orderBy="age"
-            onClick={() => handleSort("age")}
-            currentOrderBy={currentOrderBy}
-            currentOrder={currentOrder}
-          />
+          {algorithm === "grivas" && (
+            <>
+              {grivasProps.map((prop) => (
+                <ListHeaderItem
+                  key={prop}
+                  label={capitalize(prop)}
+                  orderBy={prop}
+                  onClick={() => handleSort(prop)}
+                  currentOrderBy={currentOrderBy}
+                  currentDirection={currentDirection}
+                  columns={columns}
+                />
+              ))}
+            </>
+          )}
         </div>
 
         <AnimatePresence>
@@ -169,6 +293,8 @@ export default function PeopleList({
               selected={selectedPerson?.name === person.name}
               person={person}
               onClick={() => handlePersonClick(person)}
+              columns={columns}
+              algorithm={algorithm}
             />
           ))}
         </AnimatePresence>

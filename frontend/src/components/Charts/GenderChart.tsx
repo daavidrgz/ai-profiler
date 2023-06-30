@@ -1,5 +1,4 @@
 import React, { useMemo } from "react";
-import styles from "./genderChart.module.scss";
 import FemaleIcon from "@mui/icons-material/Female";
 import MaleIcon from "@mui/icons-material/Male";
 import { DivProps } from "@/utils/defaultInterfaces";
@@ -8,6 +7,7 @@ import { count } from "@/utils/formatter";
 import Chart from "@/components/Charts/Chart";
 import { GenderSchema } from "@/model/gender";
 import { getGenderColors } from "@/utils/colors";
+import InfoCard from "./InfoCard/InfoCard";
 
 interface Props extends DivProps {
   people: Person[];
@@ -41,11 +41,10 @@ export default function GenderChart({
 
   return (
     <Chart
-      gridArea="2 / 1 / 3 / 3"
-      height="min(34vh, 45vw)"
       people={people}
       selectedPerson={selectedPerson}
       title={"GENDER DISTRIBUTION"}
+      label="Number of people"
       entityEnum={GenderSchema.Enum}
       colors={getGenderColors()}
       chartType="pie"
@@ -53,26 +52,18 @@ export default function GenderChart({
       dimmable
       {...rest}
     >
-      <div className={styles.genderCount}>
-        <h3>
-          <span>MALE</span>
-          <MaleIcon />
-        </h3>
-        <div>
-          <span className={styles.count}>{maleCount} </span>
-          <span className={styles.percentage}>{maleRatio}%</span>
-        </div>
-      </div>
-      <div className={styles.genderCount}>
-        <h3>
-          <span>FEMALE</span>
-          <FemaleIcon />
-        </h3>
-        <div>
-          <span className={styles.count}>{femaleCount} </span>
-          <span className={styles.percentage}>{femaleRatio}%</span>
-        </div>
-      </div>
+      <InfoCard
+        title="MALE"
+        icon={<MaleIcon />}
+        mainValue={maleCount}
+        secondaryValue={maleRatio + "%"}
+      />
+      <InfoCard
+        title="FEMALE"
+        icon={<FemaleIcon />}
+        mainValue={femaleCount}
+        secondaryValue={femaleRatio + "%"}
+      />
     </Chart>
   );
 }

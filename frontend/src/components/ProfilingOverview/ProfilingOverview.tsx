@@ -46,7 +46,7 @@ export default function ProfilingOverview({
         setData(toProfilingData(profilingDataDto));
         setIsProcessing(false);
 
-        setTimeout(() => router.push("/resume"), 1000);
+        setTimeout(() => router.push("/results"), 1000);
       })
       .catch((error) => {
         setIsProcessing(false);

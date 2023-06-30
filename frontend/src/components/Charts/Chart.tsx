@@ -1,5 +1,5 @@
 import ArrowRightRoundedIcon from "@mui/icons-material/ArrowRightRounded";
-import styles from "./chart.module.scss";
+import styles from "./charts.module.scss";
 import { useMemo, useRef, useEffect } from "react";
 import { capitalize, count, mergeDeep } from "@/utils/formatter";
 import { Person } from "@/model/person";
@@ -12,11 +12,25 @@ const barChartOptions = {
     legend: {
       display: false,
     },
+    tooltip: {
+      backgroundColor: "#252734",
+      titleColor: "#E3E6EF",
+      bodyColor: "#E3E6EF",
+      padding: 12,
+      displayColors: false,
+      titleFont: {
+        size: 12,
+        weight: "bold",
+      },
+      bodyFont: {
+        size: 12,
+      },
+    },
   },
   scales: {
     y: {
       grid: {
-        color: "rgb(41, 44, 58)",
+        color: "#252734",
       },
       ticks: {
         color: "#E3E6EF",
@@ -33,7 +47,12 @@ const barChartOptions = {
   },
   elements: {
     bar: {
-      borderRadius: 10,
+      borderRadius: 8,
+    },
+  },
+  datasets: {
+    bar: {
+      barThickness: 35,
     },
   },
 };
@@ -42,11 +61,26 @@ const pieChartOptions = {
   plugins: {
     legend: {
       labels: {
+        boxWidth: 10,
         color: "#E3E6EF",
         font: {
-          size: 12,
+          size: 9.5,
           weight: "bold",
         },
+      },
+    },
+    tooltip: {
+      backgroundColor: "#252734",
+      displayColors: false,
+      titleColor: "#E3E6EF",
+      bodyColor: "#E3E6EF",
+      padding: 12,
+      titleFont: {
+        size: 12,
+        weight: "bold",
+      },
+      bodyFont: {
+        size: 12,
       },
     },
   },
@@ -56,23 +90,24 @@ interface Props extends DivProps {
   people: Person[];
   selectedPerson: Person | null;
   title: string;
+  label: string;
   entityEnum: any;
   colors: string[];
   chartType: "pie" | "bar" | "doughnut";
   attribute?: "gender" | "age" | "fame" | "occupation";
   filtered?: boolean;
-  height?: string | number;
-  gridArea?: string;
   dimmable?: boolean;
   data?: any[];
   noContentMessage?: string;
   chartOptions?: any;
+  direction?: "vertical" | "horizontal";
 }
 
 export default function Chart({
   people,
   selectedPerson,
   title,
+  label,
   entityEnum,
   data,
   colors,
@@ -80,11 +115,10 @@ export default function Chart({
   children,
   attribute,
   filtered = false,
-  height,
-  gridArea,
   dimmable = false,
   noContentMessage,
   chartOptions,
+  direction = "vertical",
   ...rest
 }: Props) {
   const chartRef = useRef<any>(null);
@@ -112,15 +146,23 @@ export default function Chart({
       labels: filtered ? filteredLabels : labels,
       datasets: [
         {
-          label: "Number of people",
+          label: label,
           data: filtered ? filteredDataset : dataset,
           backgroundColor: [...colors],
-          borderWidth: 3,
+          borderWidth: 1.5,
           borderColor: "#1e202c",
         },
       ],
     };
-  }, [dataset, labels, colors, filtered, filteredDataset, filteredLabels]);
+  }, [
+    dataset,
+    labels,
+    colors,
+    filtered,
+    filteredDataset,
+    filteredLabels,
+    label,
+  ]);
 
   useEffect(() => {
     if (!dimmable) return;
@@ -144,13 +186,13 @@ export default function Chart({
   const fullPieChartOptions = mergeDeep(pieChartOptions, chartOptions);
 
   return (
-    <div className={styles.card} {...rest} style={{ gridArea: gridArea }}>
+    <div className={styles.card} {...rest}>
       <h2 className={styles.title}>
         <ArrowRightRoundedIcon />
         <span>{title}</span>
       </h2>
-      <div className={styles.contentWrapper}>
-        <div className={styles.chartContainer} style={{ height: height }}>
+      <div className={styles.contentWrapper} data-direction={direction}>
+        <div className={styles.chartContainer}>
           {chartType === "pie" && (
             <Pie
               ref={chartRef}
@@ -184,8 +226,7 @@ export default function Chart({
             transition={{ duration: 0.2 }}
             className={styles.noData}
           >
-            <h3>NO DATA AVAILABLE</h3>
-            <span>{noContentMessage}</span>
+            <h3>{noContentMessage}</h3>
           </motion.div>
         )}
       </AnimatePresence>
