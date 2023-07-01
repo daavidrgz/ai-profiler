@@ -21,6 +21,19 @@ export default abstract class ProfilingService {
 			});
 	};
 
+	public static predictUsername(username: string, algorithm: ProfilingAlgorithm): Promise<string> {
+		return fetch(`${this.endpoint}/predict/twitter?algorithm=${algorithm}&user=${username}`, {
+			method: "POST"
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				if (data.detail) {
+					throw new Error(data.detail);
+				}
+				return data.profiling_id;
+			});
+	};
+
 	public static getProfilingData(profilingId: string): Promise<ProfilingDataDto> {
 		return fetch(`${this.endpoint}/profilings/${profilingId}`)
 			.then((res) => res.json())

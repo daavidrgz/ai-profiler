@@ -25,7 +25,6 @@
 
 .uploadContainer {
   position: relative;
-  margin-top: 5rem;
   width: 50%;
   height: 40vh;
 }
@@ -60,4 +59,24 @@
 .datasetExample {
   margin-top: 4rem;
   width: 50%;
+}
+
+.divider {
+  margin: 4rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  > span {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--fg);
+    margin: 0 1rem;
+  }
+
+  > .line {
+    width: 20rem;
+    height: 1px;
+    background-color: var(--fg-subtle);
+  }
 }

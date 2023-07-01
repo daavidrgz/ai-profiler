@@ -36,6 +36,10 @@ button {
   -moz-osx-font-smoothing: inherit;
 }
 
+input {
+  all: unset;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;

@@ -35,43 +35,45 @@ export default function UploadDataset({ handleImportFile }: Props) {
   }
 
   return (
-    <motion.form
-      key="uploadDatasetForm"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.2 }}
-      data-drag_active={dragActive}
-      className={styles.inputContainer}
-      onDragEnter={handleDrag}
-    >
-      <span className={styles.inputText}>
-        To get started, drag and drop your dataset here or click the button
-        below!
-      </span>
+    <div className={styles.externalContainer}>
+      <h2 className={styles.title}>UPLOAD YOUR DATASET</h2>
+      <motion.form
+        key="uploadDatasetForm"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.2 }}
+        data-drag_active={dragActive}
+        className={styles.inputContainer}
+        onDragEnter={handleDrag}
+      >
+        <span className={styles.inputText}>
+          Drag and drop your dataset here or click the button below!
+        </span>
 
-      <label htmlFor="file-upload" className={styles.uploadLabel}>
-        <button className={styles.uploadButton} type="button">
-          <span>Upload dataset</span>
-          <UploadFileRoundedIcon />
-        </button>
-      </label>
-      <input
-        className={styles.uploadInput}
-        onChange={handleUploadChange}
-        type="file"
-        id="file-upload"
-      />
-
-      {dragActive && (
-        <div
-          className={styles.dragOverlay}
-          onDragEnter={handleDrag}
-          onDragLeave={handleDrag}
-          onDragOver={handleDrag}
-          onDrop={handleDrop}
+        <label htmlFor="file-upload" className={styles.uploadLabel}>
+          <button className={styles.uploadButton} type="button">
+            <span>Upload dataset</span>
+            <UploadFileRoundedIcon />
+          </button>
+        </label>
+        <input
+          className={styles.uploadInput}
+          onChange={handleUploadChange}
+          type="file"
+          id="file-upload"
         />
-      )}
-    </motion.form>
+
+        {dragActive && (
+          <div
+            className={styles.dragOverlay}
+            onDragEnter={handleDrag}
+            onDragLeave={handleDrag}
+            onDragOver={handleDrag}
+            onDrop={handleDrop}
+          />
+        )}
+      </motion.form>
+    </div>
   );
 }

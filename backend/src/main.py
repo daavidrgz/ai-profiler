@@ -21,7 +21,10 @@ twitter_service = TwitterService()
 def predict_twitter(user: str, algorithm: str):
     uuid = uuid4()
 
-    file = twitter_service.get_tweets(user)
+    try:
+        file = twitter_service.get_tweets(user)
+    except Exception as e:
+        raise HTTPException(status_code=400, detail="Error while fetching tweets")
 
     try:
         dataset = Dataset(

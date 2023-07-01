@@ -24,9 +24,7 @@ class TwitterScraper:
     FEATURES_TWEETS = '{"blue_business_profile_image_shape_enabled":true,"responsive_web_graphql_exclude_directive_enabled":true,"verified_phone_label_enabled":false,"responsive_web_graphql_timeline_navigation_enabled":true,"responsive_web_graphql_skip_user_profile_image_extensions_enabled":false,"tweetypie_unmention_optimization_enabled":true,"vibe_api_enabled":true,"responsive_web_edit_tweet_api_enabled":true,"graphql_is_translatable_rweb_tweet_is_translatable_enabled":true,"view_counts_everywhere_api_enabled":true,"longform_notetweets_consumption_enabled":true,"tweet_awards_web_tipping_enabled":false,"freedom_of_speech_not_reach_fetch_enabled":true,"standardized_nudges_misinfo":true,"tweet_with_visibility_results_prefer_gql_limited_actions_policy_enabled":false,"interactive_text_enabled":true,"responsive_web_text_conversations_enabled":false,"longform_notetweets_rich_text_read_enabled":true,"responsive_web_enhance_cards_enabled":false}'
 
     AUTHORIZATION_TOKEN = "AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs%3D1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA"
-    HEADERS = {
-        "authorization": "Bearer %s" % AUTHORIZATION_TOKEN,
-    }
+    HEADERS = {"authorization": f"Bearer {AUTHORIZATION_TOKEN}"}
 
     GET_USER_URL = (
         "https://twitter.com/i/api/graphql/sLVLhk0bGj3MVFEKTdax1w/UserByScreenName"
@@ -34,30 +32,14 @@ class TwitterScraper:
     GET_TWEETS_URL = (
         "https://twitter.com/i/api/graphql/CdG2Vuc1v6F5JyEngGpxVw/UserTweets"
     )
-    FIELDNAMES = [
-        "id",
-        "tweet_url",
-        "name",
-        "user_id",
-        "username",
-        "published_at",
-        "content",
-        "views_count",
-        "retweet_count",
-        "likes",
-        "quote_count",
-        "reply_count",
-        "bookmarks_count",
-        "medias",
-    ]
 
     def __init__(self, username):
         resp = requests.get("https://twitter.com/")
-        self.gt = resp.cookies.get_dict().get("gt") or "".join(
+        guest_token = resp.cookies.get_dict().get("gt") or "".join(
             re.findall(r"(?<=\"gt\=)[^;]+", resp.text)
         )
 
-        self.HEADERS["x-guest-token"] = getattr(self, "gt")
+        self.HEADERS["x-guest-token"] = guest_token
         self.username = username
 
     def get_user(self):
@@ -70,12 +52,7 @@ class TwitterScraper:
 
         response = requests.get(self.GET_USER_URL, params=params, headers=self.HEADERS)
 
-        try:
-            json_response = response.json()
-        except requests.exceptions.JSONDecodeError:
-            logger.info(response.status_code)
-            logger.info(response.text)
-            raise
+        json_response = response.json()
 
         result = json_response.get("data", {}).get("user", {}).get("result", {})
         legacy = result.get("legacy", {})

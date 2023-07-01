@@ -16,7 +16,8 @@ import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import AlgorithmCard from "@/components/Algorithms/AlgorithmCard/AlgorithmCard";
 
 interface Props {
-  file: File;
+  file: File | null;
+  username: string | null;
   algorithm: ProfilingAlgorithm;
   removeFile: () => void;
   goBack: () => void;
@@ -24,6 +25,7 @@ interface Props {
 
 export default function ProfilingOverview({
   file,
+  username,
   algorithm,
   removeFile,
   goBack,
@@ -56,12 +58,21 @@ export default function ProfilingOverview({
 
   const handleClick = () => {
     setIsProcessing(true);
-    ProfilingService.predict(file, algorithm)
-      .then((profilingId) => waitForResult(profilingId))
-      .catch((error) => {
-        createErrorNotification(error.message, 5000);
-        setIsProcessing(false);
-      });
+    if (username) {
+      ProfilingService.predictUsername(username, algorithm)
+        .then((profilingId) => waitForResult(profilingId))
+        .catch((error) => {
+          createErrorNotification(error.message, 5000);
+          setIsProcessing(false);
+        });
+    } else if (file) {
+      ProfilingService.predict(file, algorithm)
+        .then((profilingId) => waitForResult(profilingId))
+        .catch((error) => {
+          createErrorNotification(error.message, 5000);
+          setIsProcessing(false);
+        });
+    }
   };
 
   return (
@@ -84,24 +95,26 @@ export default function ProfilingOverview({
           transition={{ duration: 0.2 }}
           className={styles.overviewContainer}
         >
-          <div
-            className={styles.fileInfoContainer}
-            data-disabled={isProcessing}
-          >
-            <DescriptionRoundedIcon className={styles.fileIcon} />
-            <div className={styles.fileInfo}>
-              <div className={styles.fileName}>{file.name}</div>
-              <div className={styles.fileSize}>{formatBytes(file.size)}</div>
-            </div>
-            {!isProcessing && (
-              <div className={styles.deleteOverlay}>
-                <div className={styles.deleteContainer} onClick={removeFile}>
-                  <DeleteRoundedIcon />
-                  <span>DELETE</span>
-                </div>
+          {file && (
+            <div
+              className={styles.fileInfoContainer}
+              data-disabled={isProcessing}
+            >
+              <DescriptionRoundedIcon className={styles.fileIcon} />
+              <div className={styles.fileInfo}>
+                <div className={styles.fileName}>{file.name}</div>
+                <div className={styles.fileSize}>{formatBytes(file.size)}</div>
               </div>
-            )}
-          </div>
+              {!isProcessing && (
+                <div className={styles.deleteOverlay}>
+                  <div className={styles.deleteContainer} onClick={removeFile}>
+                    <DeleteRoundedIcon />
+                    <span>DELETE</span>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
 
           <AlgorithmCard algorithm={algorithm} />
         </motion.div>
