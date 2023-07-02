@@ -2,7 +2,7 @@ import { Person } from "@/model/person";
 import { getOccupationColors } from "@/utils/colors";
 import { DivProps } from "@/utils/defaultInterfaces";
 import Chart from "@/components/Charts/Chart";
-import { OccupationSchema } from "@/model/occupation";
+import { Occupation, OccupationSchema } from "@/model/occupation";
 import InfoCard from "./InfoCard/InfoCard";
 import TrendingUpRoundedIcon from "@mui/icons-material/TrendingUpRounded";
 import TrendingDownRoundedIcon from "@mui/icons-material/TrendingDownRounded";
@@ -18,10 +18,8 @@ export default function OccupationChart({
   selectedPerson,
   ...rest
 }: Props) {
-  // get a list of the number of people of each occupation and its name
-  // e.g. [{name: "sports", count: 10}, {name:"music", count: 5}, ...]
   const occupationCount = people.reduce(
-    (acc: { name: string; count: number }[], person) => {
+    (acc: { name: Occupation; count: number }[], person) => {
       const occupation = person.occupation!;
       const index = acc.findIndex((item) => item.name === occupation);
       if (index >= 0) {
@@ -46,7 +44,6 @@ export default function OccupationChart({
       colors={getOccupationColors()}
       chartType="pie"
       attribute="occupation"
-      filtered
       dimmable
       direction="horizontal"
       {...rest}

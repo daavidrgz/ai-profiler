@@ -1,7 +1,7 @@
 import Head from "next/head";
 import styles from "@/pages/styles/home.module.scss";
 import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import UploadDataset from "@/components/UploadDataset/UploadDataset";
 import DatasetExample from "@/components/DatasetExample/DatasetExample";
 import AlgorithmSelector from "@/components/Algorithms/AlgorithmSelector/AlgorithmSelector";
@@ -36,16 +36,24 @@ export default function HomePage() {
           A powerful tool that lets you infer personal characteristics of people
           from the text they write.
         </h3>
-        {!username && <TwitterInput setUsername={setUsername} />}
-        <div className={styles.divider}>
-          <div className={styles.line} />
-          <span>OR</span>
-          <div className={styles.line} />
-        </div>
-        <div className={styles.uploadContainer}>
+        <div className={styles.carouselContainer}>
           <AnimatePresence>
             {!file && !algorithm && !username && (
-              <UploadDataset handleImportFile={handleImportFile} />
+              <motion.div
+                key="dataInput"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1, transition: { delay: 0.25 } }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+              >
+                <TwitterInput setUsername={setUsername} />
+                <div className={styles.divider}>
+                  <div className={styles.line} />
+                  <span>OR</span>
+                  <div className={styles.line} />
+                </div>
+                <UploadDataset handleImportFile={handleImportFile} />
+              </motion.div>
             )}
             {(file || username) && !algorithm && (
               <AlgorithmSelector

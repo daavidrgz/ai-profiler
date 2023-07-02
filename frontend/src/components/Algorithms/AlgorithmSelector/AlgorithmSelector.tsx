@@ -15,7 +15,7 @@ export default function AlgorithmSelector({ goBack, setAlgorithm }: Props) {
     <motion.div
       key="algithmSelector"
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      animate={{ opacity: 1, transition: { delay: 0.25 } }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.2 }}
       className={styles.container}

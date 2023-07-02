@@ -10,7 +10,7 @@ import ProfilingResume from "@/components/Charts/ProfilingResume/ProfilingResume
 import { useData } from "@/components/Providers/DataProvider/DataProvider";
 import NavBar from "@/components/UI/NavBar/NavBar";
 import FameChart from "@/components/Charts/FameChart";
-import { grivasData, martincData } from "@/utils/mocks";
+import { grivasData, martincData, bigMartincData } from "@/utils/mocks";
 import { Person } from "@/model/person";
 import OccupationChart from "@/components/Charts/OccupationChart";
 import PersonalityTraitsChart from "@/components/Charts/PersonalityTraitsChart";
@@ -24,6 +24,7 @@ export default function ResumePage() {
   const [selectedPerson, setSelectedPerson] = useState<Person | null>(null);
   const router = useRouter();
   const { data } = useData();
+  // const data = bigMartincData;
 
   if (!data)
     return (
@@ -102,12 +103,12 @@ export default function ResumePage() {
                 <FameChart
                   people={data.people}
                   selectedPerson={selectedPerson}
-                  style={{ width: "23rem", height: "100%" }}
+                  style={{ width: "25rem", height: "100%" }}
                 />
                 <OccupationChart
                   people={data.people}
                   selectedPerson={selectedPerson}
-                  style={{ width: "25rem", height: "100%" }}
+                  style={{ width: "26rem", height: "100%" }}
                 />
               </>
             )}

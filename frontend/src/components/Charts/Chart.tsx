@@ -138,31 +138,23 @@ export default function Chart({
     [entityEnum]
   );
 
-  const filteredLabels = labels.filter((_, i) => dataset[i] > 0);
-  const filteredDataset = dataset.filter((d) => d > 0);
+  // const filteredLabels = labels.filter((_, i) => dataset[i] > 0);
+  // const filteredDataset = dataset.filter((d) => d > 0);
 
   const chartData = useMemo(() => {
     return {
-      labels: filtered ? filteredLabels : labels,
+      labels: labels,
       datasets: [
         {
           label: label,
-          data: filtered ? filteredDataset : dataset,
+          data: dataset,
           backgroundColor: [...colors],
           borderWidth: 1.5,
           borderColor: "#1e202c",
         },
       ],
     };
-  }, [
-    dataset,
-    labels,
-    colors,
-    filtered,
-    filteredDataset,
-    filteredLabels,
-    label,
-  ]);
+  }, [dataset, labels, colors, label]);
 
   useEffect(() => {
     if (!dimmable) return;

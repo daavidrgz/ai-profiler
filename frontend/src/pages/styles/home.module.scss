@@ -8,7 +8,7 @@
 }
 
 .title {
-  font-size: 6rem;
+  font-size: 5rem;
   font-weight: 800;
   width: min-content;
   background: linear-gradient(to right, #30d0ab 0%, #1660b0 100%);
@@ -23,10 +23,10 @@
   font-weight: 500;
 }
 
-.uploadContainer {
+.carouselContainer {
   position: relative;
   width: 50%;
-  height: 40vh;
+  height: 65vh;
 }
 
 .examplesTitle {
@@ -62,7 +62,7 @@
 }
 
 .divider {
-  margin: 4rem 0;
+  margin: 3rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -70,7 +70,7 @@
   > span {
     font-size: 1.1rem;
     font-weight: 600;
-    color: var(--fg);
+    color: var(--fg-subtle-alt);
     margin: 0 1rem;
   }
 

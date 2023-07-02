@@ -8,17 +8,17 @@ import {
   getGenderColor,
   getOccupationColor,
   getPersonalityTraitColor,
-  getPersonalityTraitColors,
 } from "@/utils/colors";
 import { Person } from "@/model/person";
 import { AnimatePresence, motion } from "framer-motion";
 import ArrowDownIcon from "@mui/icons-material/KeyboardArrowDownRounded";
-import { capitalize } from "@/utils/formatter";
+import { capitalize, getPageArray } from "@/utils/formatter";
 import {
   PersonalityTrait,
   PersonalityTraitSchema,
 } from "@/model/personalityTrait";
 import { ProfilingAlgorithm } from "@/model/profilingAlgorithm";
+import DoubleArrowBackIcon from "@mui/icons-material/KeyboardDoubleArrowLeftRounded";
 
 type OrderBy =
   | "name"
@@ -51,6 +51,12 @@ interface ListHeaderItemProps {
   currentOrderBy: OrderBy;
   currentDirection: Direction;
   columns: number;
+}
+
+interface PageSelectorProps {
+  page: number;
+  maxPage: number;
+  setPage: (page: number) => void;
 }
 
 function ListItem({
@@ -161,6 +167,34 @@ function ListHeaderItem({
   );
 }
 
+function PageSelector({ page, maxPage, setPage }: PageSelectorProps) {
+  return (
+    <div className={styles.pagesContainer}>
+      <DoubleArrowBackIcon
+        className={styles.arrowIcon}
+        onClick={() => setPage(0)}
+        data-disabled={page === 0}
+      />
+      {getPageArray(page + 1, maxPage + 1).map((p) => (
+        <span
+          key={p}
+          onClick={() => setPage(p - 1)}
+          data-selected={page === p - 1}
+          className={styles.page}
+        >
+          {p}
+        </span>
+      ))}
+      <DoubleArrowBackIcon
+        style={{ transform: "rotate(180deg)" }}
+        className={styles.arrowIcon}
+        onClick={() => setPage(maxPage)}
+        data-disabled={page === maxPage}
+      />
+    </div>
+  );
+}
+
 export default function PeopleList({
   algorithm,
   people,
@@ -171,13 +205,14 @@ export default function PeopleList({
   const [orderedPeople, setOrderedPeople] = useState<Person[]>([]);
   const [currentDirection, setCurrentDirection] = useState<Direction>("desc");
   const [currentOrderBy, setCurrentOrderBy] = useState<OrderBy>("name");
+  const [page, setPage] = useState(0);
+
+  const rowsPerPage = 40;
+  const maxPage = Math.ceil(orderedPeople.length / rowsPerPage) - 1;
 
   function handlePersonClick(person: Person) {
-    if (selectedPerson?.name === person.name) {
-      setSelectedPerson(null);
-    } else {
-      setSelectedPerson(person);
-    }
+    if (selectedPerson?.name === person.name) setSelectedPerson(null);
+    else setSelectedPerson(person);
   }
 
   function handleSort(prop: OrderBy) {
@@ -199,7 +234,7 @@ export default function PeopleList({
           // Workaround to avoid typescript errors
           currentOrderBy === "extroverted" ||
           currentOrderBy === "agreeable" ||
-          currentOrderBy === "concientious" ||
+          currentOrderBy === "conscientious" ||
           currentOrderBy === "stable" ||
           currentOrderBy === "open"
         ) {
@@ -286,18 +321,22 @@ export default function PeopleList({
           )}
         </div>
 
+        <PageSelector page={page} maxPage={maxPage} setPage={setPage} />
         <AnimatePresence>
-          {orderedPeople.map((person, idx) => (
-            <ListItem
-              key={idx}
-              selected={selectedPerson?.name === person.name}
-              person={person}
-              onClick={() => handlePersonClick(person)}
-              columns={columns}
-              algorithm={algorithm}
-            />
-          ))}
+          {orderedPeople
+            .slice(page * rowsPerPage, (page + 1) * rowsPerPage)
+            .map((person, idx) => (
+              <ListItem
+                key={idx}
+                selected={selectedPerson?.name === person.name}
+                person={person}
+                onClick={() => handlePersonClick(person)}
+                columns={columns}
+                algorithm={algorithm}
+              />
+            ))}
         </AnimatePresence>
+        <PageSelector page={page} maxPage={maxPage} setPage={setPage} />
       </div>
     </div>
   );

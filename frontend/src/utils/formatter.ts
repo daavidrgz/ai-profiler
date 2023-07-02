@@ -55,3 +55,16 @@ export function mergeDeep(target: any, source: any) {
 	}
 	return output;
 }
+
+export function getPageArray(page: number, maxPages: number): number[] {
+	const pagesToRight = Math.max(1 - (page - 2), 0)
+	const pagesToLeft = Math.max(page + 2 - maxPages, 0)
+	const minPage = Math.max(page - 2 - pagesToLeft, 1)
+	const maxPage = Math.min(page + 2 + pagesToRight, maxPages)
+
+	const pages = []
+	for (let i = minPage; i <= maxPage; i++) {
+		pages.push(i)
+	}
+	return pages
+}

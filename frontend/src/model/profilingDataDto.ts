@@ -24,7 +24,7 @@ export const ProfilingDataDtoSchema = z
 							extroverted: z.number().optional(),
 							stable: z.number().optional(),
 							agreeable: z.number().optional(),
-							concientious: z.number().optional(),
+							conscientious: z.number().optional(),
 							open: z.number().optional(),
 						})
 				}
@@ -49,7 +49,7 @@ export const toProfilingData = (dto: ProfilingDataDto): ProfilingData => {
 					{ trait: "extroverted", weight: person.result.extroverted! },
 					{ trait: "stable", weight: person.result.stable! },
 					{ trait: "agreeable", weight: person.result.agreeable! },
-					{ trait: "concientious", weight: person.result.concientious! },
+					{ trait: "conscientious", weight: person.result.conscientious! },
 					{ trait: "open", weight: person.result.open! },
 				] : undefined
 			}

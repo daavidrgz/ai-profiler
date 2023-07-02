@@ -1,11 +1,14 @@
 .externalContainer {
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .inputContainer {
-  width: 100%;
-  height: 100%;
+  width: 80%;
+  height: 16vw;
 
   border-radius: var(--border-radius);
   background-color: var(--bg-subtle);
@@ -31,9 +34,10 @@
   font-weight: 700;
   margin-bottom: 2rem;
 
-  background: linear-gradient(to right, var(--fg) 40%, #644dc9 70%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  // background: linear-gradient(to right, var(--fg) 40%, #644dc9 70%);
+  // -webkit-background-clip: text;
+  // -webkit-text-fill-color: transparent;
+  color: var(--fg);
 }
 
 .dragOverlay {
@@ -43,7 +47,7 @@
 }
 
 .inputText {
-  margin-bottom: 6rem;
+  margin-bottom: 3.5rem;
   width: 40%;
   font-size: 1rem;
   font-weight: 500;

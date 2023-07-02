@@ -37,12 +37,7 @@ export default function UploadDataset({ handleImportFile }: Props) {
   return (
     <div className={styles.externalContainer}>
       <h2 className={styles.title}>UPLOAD YOUR DATASET</h2>
-      <motion.form
-        key="uploadDatasetForm"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.2 }}
+      <form
         data-drag_active={dragActive}
         className={styles.inputContainer}
         onDragEnter={handleDrag}
@@ -73,7 +68,7 @@ export default function UploadDataset({ handleImportFile }: Props) {
             onDrop={handleDrop}
           />
         )}
-      </motion.form>
+      </form>
     </div>
   );
 }

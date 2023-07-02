@@ -15,15 +15,17 @@
   // background: linear-gradient(to right, #8cc5e8 0%, #1da1f2 90%);
   // -webkit-background-clip: text;
   // -webkit-text-fill-color: transparent;
-  color: #1da1f2;
+  // color: #1da1f2;
+  color: var(--fg);
 }
 
 .input {
   width: 20vw;
-  padding: 1rem 1.5rem;
+  padding: 0.8rem 1.5rem;
   border-radius: var(--border-radius);
   color: var(--fg);
   font-weight: 500;
+  font-size: 0.9rem;
   text-align: left;
   background-color: var(--bg-subtle);
   border: 2px solid #1da1f2;
