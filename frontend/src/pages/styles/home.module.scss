@@ -1,3 +1,5 @@
+@import "~/src/styles/builders.scss";
+
 .externalContainer {
   width: 100%;
   display: flex;
@@ -14,24 +16,30 @@
   background: linear-gradient(to right, #30d0ab 0%, #1660b0 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  letter-spacing: -1px;
 }
 
 .subtitle {
   color: var(--fg);
-  font-size: 1.2rem;
-  margin-top: 3rem;
+  font-size: var(--font-size-l);
+  margin-top: 2rem;
   font-weight: 500;
 }
 
 .carouselContainer {
   position: relative;
   width: 50%;
-  height: 65vh;
+  height: max-content;
+  margin-top: 8rem;
+
+  @include for-screens-below("m") {
+    width: 90%;
+  }
 }
 
 .examplesTitle {
   margin-top: 8rem;
-  font-size: 3rem;
+  font-size: var(--font-size-xl);
   font-weight: 800;
   background: linear-gradient(to right, #30d0ab 0%, #1660b0 100%);
   -webkit-background-clip: text;
@@ -40,19 +48,19 @@
 
 .examplesSubtitle {
   color: var(--fg);
-  font-size: 1rem;
-  margin-top: 3rem;
+  font-size: var(--font-size-m);
+  margin-top: 2rem;
   font-weight: 500;
 }
 
 .fieldName {
-  font-size: 0.9rem;
+  font-size: var(--font-size-s);
   font-weight: 500;
   color: var(--fg);
   background-color: var(--bg-subtle);
   border-radius: var(--border-radius);
   border: 1px solid var(--fg-subtle);
-  padding: 0.1rem 1rem;
+  padding: 0.2rem 1rem;
   margin-left: 0.5rem;
 }
 
@@ -62,21 +70,21 @@
 }
 
 .divider {
-  margin: 3rem 0;
+  margin: 2rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
 
   > span {
-    font-size: 1.1rem;
+    font-size: var(--font-size-m);
     font-weight: 600;
     color: var(--fg-subtle-alt);
-    margin: 0 1rem;
+    margin: 0 2rem;
   }
 
   > .line {
-    width: 20rem;
+    width: 32rem;
     height: 1px;
-    background-color: var(--fg-subtle);
+    background-color: var(--bg-subtle);
   }
 }

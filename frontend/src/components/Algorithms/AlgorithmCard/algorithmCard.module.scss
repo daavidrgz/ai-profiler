@@ -1,8 +1,8 @@
 .algorithmCard {
   text-align: left;
-  position: relative;
-  padding: 1rem 1.5rem;
-  border-radius: 0.5rem;
+  padding: 1rem;
+  height: max-content;
+  border-radius: var(--border-radius);
   background-color: var(--bg-subtle);
   box-shadow: var(--box-shadow);
   border: 2px solid var(--fg-subtle);
@@ -11,8 +11,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  justify-self: center;
-  align-self: center;
 
   &[data-readonly="false"] {
     user-select: none;
@@ -24,7 +22,7 @@
   }
 
   > h3 {
-    font-size: 1rem;
+    font-size: var(--font-size-m);
     font-weight: 600;
     color: var(--fg);
     margin-bottom: 1rem;
@@ -37,33 +35,26 @@
 
   > span {
     display: block;
-    font-size: 0.8rem;
+    font-size: var(--font-size-s);
     font-weight: 400;
-    margin-bottom: 0.8rem;
+    margin-bottom: var(--font-size-s);
   }
 
   > ul > li {
-    font-size: 0.8rem;
+    font-size: var(--font-size-s);
     font-weight: 500;
 
-    margin: 0.5rem 0;
+    margin: var(--font-size-xs) 0;
     display: flex;
     align-items: center;
     gap: 0.4rem;
   }
 
   svg {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 }
 
 .algorithmTooltip {
-  --rt-opacity: 0.98;
-  user-select: text;
-  padding: 1.8rem !important;
   width: 50rem !important;
-  border-radius: var(--border-radius) !important;
-  box-shadow: var(--box-shadow) !important;
-  background-color: var(--bg) !important;
-  z-index: 1000;
 }

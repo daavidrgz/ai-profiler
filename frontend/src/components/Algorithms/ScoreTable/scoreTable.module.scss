@@ -13,11 +13,13 @@
 }
 
 .title {
+  position: relative;
   text-align: center;
-  font-size: 0.95rem;
+  font-size: var(--font-size-s);
+  color: var(--fg);
   font-weight: 700;
-  color: var(--accent-alt);
-  margin-bottom: 1rem;
+  padding-bottom: var(--font-size-xs);
+  border-bottom: 1px solid var(--fg);
 }
 
 .table {
@@ -29,18 +31,18 @@
   }
 
   th {
-    padding: 0.6rem 0;
+    padding: var(--font-size-xs) 0;
     border-bottom: 1px solid var(--fg);
-    font-size: 0.8rem;
+    font-size: var(--font-size-s);
     font-weight: 600;
     color: var(--fg);
   }
 
   td {
-    padding: 0.6rem 0;
+    padding: var(--font-size-xs) 0;
     border-bottom: 1px solid var(--fg);
     text-align: center;
-    font-size: 0.85rem;
+    font-size: var(--font-size-s);
     color: var(--fg);
   }
 

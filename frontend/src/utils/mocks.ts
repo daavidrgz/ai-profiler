@@ -1,4 +1,9 @@
+import { GenderSchema } from "@/model/gender";
+import { OccupationSchema } from "@/model/occupation";
 import { toProfilingData } from "@/model/profilingDataDto";
+import { getRandomItem } from "./utils";
+import { FameSchema } from "@/model/fame";
+import { AgeSchema } from "@/model/age";
 
 export const martincData = toProfilingData({
 	status: "success",
@@ -449,19 +454,23 @@ export const grivasData = toProfilingData({
 	}
 });
 
+const occupations = Object.values(OccupationSchema.Enum)
+const genders = Object.values(GenderSchema.Enum)
+const fames = Object.values(FameSchema.Enum)
+const ages = Object.values(AgeSchema.Enum)
 
 export const bigMartincData = toProfilingData({
 	status: "success",
 	profiling: {
 		algorithm: "martinc",
 		time: 4810,
-		output: Array.from(Array(250000).keys()).map((_, i) => ({
+		output: Array.from(Array(2500).keys()).map((_, i) => ({
 			id: i.toString(),
 			result: {
-				gender: "male",
-				fame: "star",
-				occupation: "creator",
-				age: "50-XX",
+				gender: getRandomItem(genders),
+				fame: getRandomItem(fames),
+				occupation: getRandomItem(occupations),
+				age: getRandomItem(ages),
 			}
 		}))
 	}

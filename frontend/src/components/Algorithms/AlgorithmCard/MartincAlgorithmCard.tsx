@@ -48,7 +48,7 @@ export default function MartincAlgorithmCard({
       <Tooltip
         id="martinc-tooltip"
         place="right"
-        className={styles.algorithmTooltip}
+        className={`${styles.algorithmTooltip} tooltip`}
         clickable
         delayShow={readonly ? 400 : 1000}
       >

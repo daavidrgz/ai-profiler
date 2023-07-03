@@ -6,7 +6,7 @@ import { Occupation, OccupationSchema } from "@/model/occupation";
 import InfoCard from "./InfoCard/InfoCard";
 import TrendingUpRoundedIcon from "@mui/icons-material/TrendingUpRounded";
 import TrendingDownRoundedIcon from "@mui/icons-material/TrendingDownRounded";
-import { capitalize } from "@/utils/formatter";
+import { capitalize } from "@/utils/utils";
 
 interface Props extends DivProps {
   people: Person[];
@@ -52,14 +52,12 @@ export default function OccupationChart({
         title="MOST POPULAR"
         icon={<TrendingUpRoundedIcon />}
         mainValue={capitalize(occupationCount[0].name)}
-        valueSize="s"
       />
 
       <InfoCard
         title="LEAST POPULAR"
         icon={<TrendingDownRoundedIcon />}
         mainValue={capitalize(occupationCount[occupationCount.length - 1].name)}
-        valueSize="s"
       />
     </Chart>
   );

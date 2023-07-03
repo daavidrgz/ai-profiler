@@ -1,4 +1,3 @@
-import { DivProps } from "@/utils/defaultInterfaces";
 import styles from "./infoCard.module.scss";
 
 interface Props {
@@ -8,7 +7,6 @@ interface Props {
   secondaryValue?: string | number;
   tooltip?: JSX.Element;
   unselectable?: boolean;
-  valueSize?: "s" | "m" | "l";
 }
 
 export default function InfoCard({
@@ -18,7 +16,6 @@ export default function InfoCard({
   secondaryValue,
   tooltip,
   unselectable = false,
-  valueSize = "m",
 }: Props) {
   return (
     <div
@@ -31,19 +28,7 @@ export default function InfoCard({
         {icon}
       </h3>
       <div>
-        <span
-          style={{
-            fontSize:
-              valueSize === "s"
-                ? "0.9rem"
-                : valueSize === "m"
-                ? "1.1rem"
-                : "1.4rem",
-          }}
-          className={styles.mainValue}
-        >
-          {mainValue}
-        </span>
+        <span className={styles.mainValue}>{mainValue}</span>
         {secondaryValue && (
           <span className={styles.secondaryValue}>{secondaryValue}</span>
         )}

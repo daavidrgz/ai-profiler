@@ -3,7 +3,7 @@ import FemaleIcon from "@mui/icons-material/Female";
 import MaleIcon from "@mui/icons-material/Male";
 import { DivProps } from "@/utils/defaultInterfaces";
 import { Person } from "@/model/person";
-import { count } from "@/utils/formatter";
+import { count } from "@/utils/utils";
 import Chart from "@/components/Charts/Chart";
 import { GenderSchema } from "@/model/gender";
 import { getGenderColors } from "@/utils/colors";

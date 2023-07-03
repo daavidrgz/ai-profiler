@@ -68,3 +68,7 @@ export function getPageArray(page: number, maxPages: number): number[] {
 	}
 	return pages
 }
+
+export function getRandomItem(arr: any[]) {
+	return arr[Math.floor(Math.random() * arr.length)]
+}

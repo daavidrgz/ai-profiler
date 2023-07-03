@@ -7,7 +7,7 @@ import InfoCard from "./InfoCard/InfoCard";
 import StarOutlineRoundedIcon from "@mui/icons-material/StarOutlineRounded";
 import AutoGraphRoundedIcon from "@mui/icons-material/AutoGraphRounded";
 import FlareRoundedIcon from "@mui/icons-material/FlareRounded";
-import { count } from "@/utils/formatter";
+import { count } from "@/utils/utils";
 
 interface Props extends DivProps {
   people: Person[];
@@ -35,7 +35,7 @@ export default function FameChart({ people, selectedPerson, ...rest }: Props) {
       label="Number of people"
       entityEnum={FameSchema.Enum}
       colors={getFameColors()}
-      chartType="doughnut"
+      chartType="pie"
       attribute="fame"
       dimmable
       direction="horizontal"

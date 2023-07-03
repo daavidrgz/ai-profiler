@@ -15,7 +15,6 @@ import { Person } from "@/model/person";
 import OccupationChart from "@/components/Charts/OccupationChart";
 import PersonalityTraitsChart from "@/components/Charts/PersonalityTraitsChart";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
-import { Tooltip } from "react-tooltip";
 import { useRouter } from "next/router";
 
 Chart.register(CategoryScale);
@@ -23,8 +22,8 @@ Chart.register(CategoryScale);
 export default function ResumePage() {
   const [selectedPerson, setSelectedPerson] = useState<Person | null>(null);
   const router = useRouter();
-  const { data } = useData();
-  // const data = bigMartincData;
+  // const { data } = useData();
+  const data = martincData;
 
   if (!data)
     return (
@@ -56,15 +55,6 @@ export default function ResumePage() {
             onClick={() => router.push("/")}
           >
             <ArrowBackRoundedIcon />
-            <Tooltip
-              id="go-back"
-              clickable
-              place="bottom"
-              delayShow={500}
-              className={`${styles.goBackTooltip} tooltip`}
-            >
-              <span>Go back to landing page</span>
-            </Tooltip>
           </div>
           RESULTS OVERVIEW
         </h1>
@@ -83,12 +73,12 @@ export default function ResumePage() {
               people={data.people}
               selectedPerson={selectedPerson}
               setSelectedPerson={setSelectedPerson}
-              style={{ width: "60rem", height: "100%" }}
+              style={{ width: "56rem", height: "100%" }}
             />
             <AgeChart
               people={data.people}
               selectedPerson={selectedPerson}
-              style={{ width: "40rem", height: "100%" }}
+              style={{ width: "36rem", height: "100%" }}
             />
             <GenderChart
               people={data.people}
@@ -116,7 +106,7 @@ export default function ResumePage() {
               <PersonalityTraitsChart
                 people={data.people}
                 selectedPerson={selectedPerson}
-                style={{ width: "30rem", height: "100%" }}
+                style={{ width: "34rem", height: "100%" }}
               />
             )}
           </div>

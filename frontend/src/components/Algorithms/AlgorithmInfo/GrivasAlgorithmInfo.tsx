@@ -5,7 +5,7 @@ export default function MartincAlgorithmInfo() {
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Grivas Algorithm</h2>
-      <p>
+      <p className={styles.body}>
         The Grivas algorithm is an algorithm that, in order to classify the
         author of the posts and characterize him/her, it uses two group of
         features extracted from the text they write:
@@ -14,8 +14,7 @@ export default function MartincAlgorithmInfo() {
         and
         <span className="bold"> Structural </span>
         <span className="italic">(number of hashtags, number of links...)</span>
-        <br />
-        <br />
+        <span className="vSpace" />
         It was trained using a{" "}
         <span className="bold">collection of tweets in English</span> from the
         dataset offered by the{" "}
@@ -29,8 +28,7 @@ export default function MartincAlgorithmInfo() {
         This collection includes <span className="bold">152 users</span> used
         for the training set and <span className="bold">142 users</span> for the
         test set.
-        <br />
-        <br />
+        <span className="vSpace" />
         The algorithm obtains the following scores for each class:
       </p>
       <ScoreTable

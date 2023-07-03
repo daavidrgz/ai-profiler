@@ -45,7 +45,7 @@ export const toProfilingData = (dto: ProfilingDataDto): ProfilingData => {
 				gender: person.result.gender,
 				fame: person.result.fame,
 				occupation: person.result.occupation,
-				personalityTraits: person.result.extroverted ? [
+				personalityTraits: dto.profiling!.algorithm === "grivas" ? [
 					{ trait: "extroverted", weight: person.result.extroverted! },
 					{ trait: "stable", weight: person.result.stable! },
 					{ trait: "agreeable", weight: person.result.agreeable! },

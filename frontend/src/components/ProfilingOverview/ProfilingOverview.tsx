@@ -1,6 +1,6 @@
 import styles from "./profilingOverview.module.scss";
 import DescriptionRoundedIcon from "@mui/icons-material/DescriptionRounded";
-import { formatBytes } from "@/utils/formatter";
+import { formatBytes } from "@/utils/utils";
 import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
 import ProfilingService from "@/services/ProfilingService";
 import { useNotifications } from "@/components/Providers/NotificationProvider/NotificationProvider";

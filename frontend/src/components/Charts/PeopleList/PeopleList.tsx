@@ -12,7 +12,7 @@ import {
 import { Person } from "@/model/person";
 import { AnimatePresence, motion } from "framer-motion";
 import ArrowDownIcon from "@mui/icons-material/KeyboardArrowDownRounded";
-import { capitalize, getPageArray } from "@/utils/formatter";
+import { capitalize, getPageArray } from "@/utils/utils";
 import {
   PersonalityTrait,
   PersonalityTraitSchema,

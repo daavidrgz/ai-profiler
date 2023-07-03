@@ -4,12 +4,14 @@
 }
 
 .title {
-  font-size: 1rem;
-  margin-bottom: 0.6rem;
+  font-size: var(--font-size-m);
+  margin-bottom: 1rem;
+  letter-spacing: 0.6px;
 }
 
 .body {
-  font-size: 0.85rem;
+  font-size: var(--font-size-s);
+  line-height: calc(var(--font-size-s) * 1.5);
 }
 
 .scoreTable {
@@ -17,6 +19,6 @@
 }
 
 .cite {
-  font-size: 0.75rem;
-  margin-top: 1.8rem;
+  font-size: var(--font-size-xs);
+  margin-top: 2rem;
 }

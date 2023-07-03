@@ -69,11 +69,29 @@ input[type="number"] {
 }
 
 .tooltip {
-  --rt-opacity: 0.98;
+  --rt-opacity: 1;
   user-select: text;
-  padding: 1.2rem !important;
+  padding: 1rem !important;
   border-radius: var(--border-radius) !important;
   box-shadow: var(--box-shadow) !important;
   background-color: var(--bg) !important;
   z-index: 1000;
+
+  > h2 {
+    font-size: var(--font-size-m);
+    margin-bottom: 1rem;
+    letter-spacing: 0.6px;
+  }
+
+  > p {
+    font-weight: 400;
+    font-size: var(--font-size-s);
+    line-height: calc(var(--font-size-s) * 1.5);
+  }
+}
+
+.vSpace {
+  display: block;
+  width: 100%;
+  margin: 0.5rem 0;
 }

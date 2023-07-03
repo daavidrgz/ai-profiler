@@ -1,5 +1,4 @@
 .container {
-  margin-top: 4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,30 +7,33 @@
 }
 
 .title {
-  font-size: 1.2rem;
+  font-size: var(--font-size-l);
   font-weight: 700;
   margin-bottom: 2rem;
+  letter-spacing: 1px;
 
-  // background: linear-gradient(to right, #8cc5e8 0%, #1da1f2 90%);
-  // -webkit-background-clip: text;
-  // -webkit-text-fill-color: transparent;
-  // color: #1da1f2;
+  background: linear-gradient(to right, #a8c0ff 30%, #644dc9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
   color: var(--fg);
 }
 
 .input {
-  width: 20vw;
-  padding: 0.8rem 1.5rem;
+  width: 16rem;
+  padding: var(--font-size-s) var(--font-size-l);
   border-radius: var(--border-radius);
   color: var(--fg);
-  font-weight: 500;
-  font-size: 0.9rem;
+  font-weight: 600;
+  font-size: var(--font-size-s);
   text-align: left;
   background-color: var(--bg-subtle);
-  border: 2px solid #1da1f2;
+  border: 2px solid var(--fg-subtle);
+  box-shadow: var(--box-shadow);
 
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, border 0.2s;
   &:focus {
+    border: 2px solid #1da1f2;
     background-color: var(--bg-subtle-alt);
   }
 }

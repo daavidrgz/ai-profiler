@@ -9,8 +9,7 @@ export default function MartincAlgorithmInfo() {
         The Martinc algorithm is a profiling algorithm that uses the
         <span className="bold"> TF-IDF</span>, a statistical measure that
         evaluates the relevance of each word in a collection of documents.
-        <br />
-        <br />
+        <span className="vSpace" />
         It was trained using a{" "}
         <span className="bold">
           collection of tweets from 48335 celebrities
@@ -23,8 +22,7 @@ export default function MartincAlgorithmInfo() {
         >
           Celebrity Profiling PAN competition (2019).
         </a>
-        <br />
-        <br />
+        <span className="vSpace" />
         The algorithm obtains the following score for each class:
       </p>
       <ScoreTable

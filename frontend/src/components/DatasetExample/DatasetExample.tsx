@@ -73,12 +73,14 @@ export default function DatasetExample({ className }: Props) {
         <button
           className={styles.formatButton}
           onClick={() => handleClick(NDJsonCode)}
+          data-selected={language === "json"}
         >
           NDJSON
         </button>
         <button
           className={styles.formatButton}
           onClick={() => handleClick(CSVCode)}
+          data-selected={language === "csv"}
         >
           CSV
         </button>

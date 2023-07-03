@@ -1,13 +1,15 @@
 import ArrowRightRoundedIcon from "@mui/icons-material/ArrowRightRounded";
 import styles from "./charts.module.scss";
 import { useMemo, useRef, useEffect } from "react";
-import { capitalize, count, mergeDeep } from "@/utils/formatter";
+import { capitalize, count, mergeDeep } from "@/utils/utils";
 import { Person } from "@/model/person";
 import { DivProps } from "@/utils/defaultInterfaces";
 import { Bar, Doughnut, Pie } from "react-chartjs-2";
 import { AnimatePresence, motion } from "framer-motion";
 
 const barChartOptions = {
+  responsive: true,
+  maintainAspectRatio: false,
   plugins: {
     legend: {
       display: false,
@@ -60,6 +62,7 @@ const barChartOptions = {
 const pieChartOptions = {
   plugins: {
     legend: {
+      display: false,
       labels: {
         boxWidth: 10,
         color: "#E3E6EF",
@@ -184,7 +187,13 @@ export default function Chart({
         <span>{title}</span>
       </h2>
       <div className={styles.contentWrapper} data-direction={direction}>
-        <div className={styles.chartContainer}>
+        <div
+          className={styles.chartContainer}
+          style={{
+            width: chartType === "bar" ? "100%" : "11rem",
+            height: chartType === "bar" ? "100%" : "11rem",
+          }}
+        >
           {chartType === "pie" && (
             <Pie
               ref={chartRef}

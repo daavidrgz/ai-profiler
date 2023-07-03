@@ -1,21 +1,21 @@
 .container {
-  margin-top: 4rem;
   width: 100%;
   height: 100%;
 }
 
 .title {
-  font-size: 1.2rem;
+  font-size: var(--font-size-m);
   font-weight: 700;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   color: var(--fg);
 
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 0.8rem;
 
   > svg {
+    font-size: 1.2rem;
     cursor: pointer;
     transition: color 0.2s;
     &:hover {
@@ -28,5 +28,6 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  gap: 3rem;
+  align-items: center;
+  gap: 4rem;
 }
