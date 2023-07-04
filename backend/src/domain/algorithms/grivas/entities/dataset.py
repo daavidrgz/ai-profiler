@@ -218,19 +218,6 @@ class ProfilingDataset(DatasetLoader):
         # returns tuple - list of texts, list of labels
         return map(list, zip(*data))
 
-    # visualization stuff
-    def distribution(self, feature):
-        """get and plot the distribution of this feature in the dataset
-
-        :returns: a dataframe with the counts of each feature
-
-        """
-        labels = self.get_labels(feature)
-        df = pd.DataFrame({"count": [0] * len(labels), "labels": labels})
-        df = df.groupby("labels").agg({"count": pd.Series.count})
-        df.plot(kind="bar", colormap="summer")
-        return df
-
     def textsize(self, label="texts"):
         """get and plot the text size for all instances in dataset
 
@@ -300,32 +287,6 @@ class AuthorProfile(object):
         body = body.replace('gender="M"', 'gender="male"')
         body = body.replace('gender="F"', 'gender="female"')
         return header + body + footer
-
-    def to_json(self):
-        result = {}
-        keys = [
-            "age",
-            "gender",
-            "stable",
-            "extroverted",
-            "agreeable",
-            "concientious",
-            "open",
-        ]
-
-        for key in keys:
-            attr = getattr(self, key)
-            if key == "gender":
-                if attr == "M":
-                    attr = "male"
-                elif attr == "F":
-                    attr = "female"
-
-            result[key] = attr
-
-        json = {"id": getattr(self, "userid"), "result": result}
-
-        return json
 
     def get_text(self, separator=""):
         """Get text with preprocess label

@@ -2,6 +2,7 @@ from collections import defaultdict
 import json
 import math
 import os
+from os import path
 from domain.algorithms.profiling_algorithm import ProfilingAlgorithm
 import joblib
 import logging
@@ -17,17 +18,30 @@ from sklearn.metrics import (
 )
 from domain.algorithms.grivas.entities.preprocess import clean_html, detwittify
 from domain.algorithms.grivas.entities.wrapper import FunctionWrapper
+from domain.entities.train_dataset import (
+    PAN14TrainDataset,
+    PAN15TrainDataset,
+    TrainDataset,
+)
 
 logger = logging.getLogger("server_logger")
 
 
 class GrivasAlgorithm(ProfilingAlgorithm):
-    NAME = "grivas"
     MODEL_FOLDER = "./domain/algorithms/grivas/models"
+    SVM_TASKS = ["age", "gender"]
+    SVR_TASKS = ["extroverted", "stable", "agreeable", "conscientious", "open"]
+    TASKS = SVM_TASKS + SVR_TASKS
 
-    def predict(self, dataset: Dataset):
-        model_file = os.path.join(self.MODEL_FOLDER, "en.bin")
-        all_models = joblib.load(model_file)
+    def __init__(self):
+        name = "grivas"
+        supported_train_datasets = [PAN14TrainDataset(), PAN15TrainDataset()]
+        default_train_dataset = PAN15TrainDataset()
+        super().__init__(name, supported_train_datasets, default_train_dataset)
+
+    def predict(self, dataset: Dataset, train_dataset: TrainDataset):
+        trained_model = path.join(self.MODEL_FOLDER, f"{train_dataset.name}.bin")
+        all_models = joblib.load(trained_model)
 
         dataset.convert_to_ndjson()
 
@@ -48,19 +62,9 @@ class GrivasAlgorithm(ProfilingAlgorithm):
             test_documents.append(v)
             test_ids.append(k)
 
-        tasks = [
-            "age",
-            "gender",
-            "extroverted",
-            "stable",
-            "agreeable",
-            "concientious",
-            "open",
-        ]
-
         results = defaultdict(dict)
-        for task in tasks:
-            logger.info("Predicting " + task + "...")
+        for task in self.TASKS:
+            logger.info(f"Predicting {task}...")
             predict = all_models[task].predict(test_documents)
 
             for id, pred in zip(test_ids, predict):
@@ -75,23 +79,21 @@ class GrivasAlgorithm(ProfilingAlgorithm):
         for k, v in results.items():
             output.append({"id": str(k), "result": v})
 
-        logger.info("Grivas algorithm predicted successfully")
+        logger.info("Grivas algorithm prediction successful")
 
         return output
 
-    def train(self):
-        if not os.path.exists(self.MODEL_FOLDER):
+    def train(self, train_dataset: TrainDataset):
+        if not path.exists(self.MODEL_FOLDER):
             os.makedirs(self.MODEL_FOLDER)
 
-        input_folder = "../datasets/PAN15 - Author Profiling/training/english"
+        input_folder = train_dataset.train_path
 
         dataset = ProfilingDataset(input_folder)
         logger.info(f"Loaded {len(dataset.entries)} users...\n")
         all_models = {}
 
-        svm_tasks = ["age", "gender"]
-        svr_tasks = ["extroverted", "stable", "agreeable", "concientious", "open"]
-        for task in svm_tasks + svr_tasks:
+        for task in dataset.config.tasks:
             logger.info(f"Learning to judge {task}..")
             X, y = dataset.get_data(task)
 
@@ -103,41 +105,40 @@ class GrivasAlgorithm(ProfilingAlgorithm):
                         "vectorizer",
                         TfidfVectorizer(analyzer="char", ngram_range=(3, 3)),
                     ),
-                    ("clf", LinearSVC() if task in svm_tasks else LinearSVR()),
+                    ("clf", LinearSVC() if task in self.SVM_TASKS else LinearSVR()),
                 ]
             )
 
             pipe.fit(X, y)
             all_models[task] = pipe
 
-        modelfile = os.path.join(self.MODEL_FOLDER, f"%{dataset.lang}.bin")
+        modelfile = path.join(self.MODEL_FOLDER, f"{train_dataset.name}.bin")
         logger.info(f"Writing model to {modelfile}")
         joblib.dump(all_models, modelfile, compress=3)
 
         logger.info("Grivas algorithm trained successfully")
 
-    def get_performance(self):
-        input_folder = "../datasets/PAN15 - Author Profiling/test/english"
+    def get_performance(self, train_dataset: TrainDataset):
+        input_folder = train_dataset.test_path
 
         dataset = ProfilingDataset(input_folder)
-        model_file = os.path.join(self.MODEL_FOLDER, "en.bin")
-
-        config = dataset.config
-        tasks = config.tasks
+        logger.info(f"Loaded {len(dataset.entries)} users...\n")
+        model_file = path.join(self.MODEL_FOLDER, f"{train_dataset.name}.bin")
         all_models = joblib.load(model_file)
 
         results = {}
-        for task in tasks:
+        for task in dataset.config.tasks:
             X, y = dataset.get_data(feature=task)
             predict = all_models[task].predict(X)
             logger.info(f"\n-- Predictions for {task} --")
-            try:
+            if task in self.SVM_TASKS:
                 acc = accuracy_score(y, predict)
                 f1 = f1_score(y, predict, average="weighted")
                 logger.info(f"Accuracy: {acc}, F1: {f1}")
-            except ValueError:
+                results[task] = {"accuracy": acc, "f1": f1}
+            else:
                 sqe = mean_squared_error(y, predict)
                 logger.info(f"Mean squared error : {math.sqrt(sqe)}")
-            results[task] = {"accuracy": acc, "f1": f1}
+                results[task] = {"mse": math.sqrt(sqe)}
 
         return results

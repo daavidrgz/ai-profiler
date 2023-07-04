@@ -1,6 +1,7 @@
 import os
 import pickle
 
+from os import path
 from sklearn.metrics import accuracy_score
 from domain.algorithms.profiling_algorithm import ProfilingAlgorithm
 from domain.algorithms.martinc.tfidf_kingdom import *
@@ -14,18 +15,25 @@ from application.dataset import Dataset
 from sklearn.metrics import f1_score
 from sklearn.linear_model import LogisticRegression
 import numpy as np
+from domain.entities.train_dataset import PAN19TrainDataset, TrainDataset
 
 
 logger = logging.getLogger("server_logger")
 
 
 class MartincAlgorithm(ProfilingAlgorithm):
-    NAME = "martinc"
     MODEL_FOLDER = "./domain/algorithms/martinc/models"
 
-    def predict(self, dataset: Dataset):
+    def __init__(self):
+        name = "martinc"
+        default_train_dataset = PAN19TrainDataset()
+        supported_train_datasets = [PAN19TrainDataset()]
+        super().__init__(name, supported_train_datasets, default_train_dataset)
+
+    def predict(self, dataset: Dataset, train_dataset: TrainDataset):
         dataset.convert_to_ndjson()
         tasks = ["gender", "fame", "occupation", "age"]
+        trained_model_path = path.join(self.MODEL_FOLDER, train_dataset.name)
 
         documents = {}
         for line in dataset.file:
@@ -45,19 +53,20 @@ class MartincAlgorithm(ProfilingAlgorithm):
             test_ids.append(k)
 
         test_df = build_dataframe(test_documents)
-        vectorizer_file = open(self.MODEL_FOLDER + "/vectorizer.pickle", "rb")
+        vectorizer_file = open(path.join(trained_model_path, "vectorizer.pickle"), "rb")
         vectorizer = pickle.load(vectorizer_file)
         predict_features = vectorizer.transform(test_df)
 
         docs_dict = defaultdict(dict)
 
         for task in tasks:
-            logger.info("Predicting " + task + "...")
+            logger.info(f"Predicting {task}...")
             encoder_file = open(
-                self.MODEL_FOLDER + "/encoder_" + task + ".pickle", "rb"
+                path.join(trained_model_path, f"encoder_{task}.pickle"),
+                "rb",
             )
             encoder = pickle.load(encoder_file)
-            model = joblib.load(self.MODEL_FOLDER + "/trained_LR_" + task + ".pkl")
+            model = joblib.load(path.join(trained_model_path, f"trained_LR_{task}.pkl"))
 
             predictions = model.predict(predict_features)
             predictions = encoder.inverse_transform(predictions)
@@ -72,16 +81,14 @@ class MartincAlgorithm(ProfilingAlgorithm):
 
         return output
 
-    def train(self):
-        if not os.path.exists(self.MODEL_FOLDER):
+    def train(self, train_dataset: TrainDataset):
+        if not path.exists(self.MODEL_FOLDER):
             os.makedirs(self.MODEL_FOLDER)
 
-        labels_file_path = (
-            "../datasets/PAN19 - Celebrity Profiling/training/labels.ndjson"
-        )
-        feeds_file_path = (
-            "../datasets/PAN19 - Celebrity Profiling/training/feeds.ndjson"
-        )
+        output_model_path = path.join(self.MODEL_FOLDER, train_dataset.name)
+
+        labels_file_path = path.join(train_dataset.train_path, "labels.ndjson")
+        feeds_file_path = path.join(train_dataset.train_path, "feeds.ndjson")
 
         num_samples = 100
         train_samples = 40000
@@ -185,26 +192,30 @@ class MartincAlgorithm(ProfilingAlgorithm):
             test_labels = vals[1]
             clf = LogisticRegression(C=1e2, fit_intercept=False)
             clf.fit(feature_matrix, train_labels)
-            joblib.dump(clf, self.MODEL_FOLDER + f"/trained_LR_{target}.pkl")
+            joblib.dump(clf, path.join(output_model_path, f"trained_LR_{target}.pkl"))
             predictions = clf.predict(test_feature_matrix)
 
             accuracy = accuracy_score(test_labels, predictions)
             f1 = f1_score(test_labels, predictions, average="weighted")
             logger.info(f"{target} Performed with accuracy {accuracy} and f1 {f1}")
 
-        with open(self.MODEL_FOLDER + "/encoder_occupation.pickle", "wb") as outfile:
+        with open(
+            path.join(output_model_path, "encoder_occupation.pickle", "wb")
+        ) as outfile:
             pickle.dump(encoder_ocupations, outfile)
 
-        with open(self.MODEL_FOLDER + "/encoder_gender.pickle", "wb") as outfile:
+        with open(
+            path.join(output_model_path, "encoder_gender.pickle", "wb")
+        ) as outfile:
             pickle.dump(encoder_gender, outfile)
 
-        with open(self.MODEL_FOLDER + "/encoder_fame.pickle", "wb") as outfile:
+        with open(path.join(output_model_path, "encoder_fame.pickle", "wb")) as outfile:
             pickle.dump(encoder_fame, outfile)
 
-        with open(self.MODEL_FOLDER + "/encoder_age.pickle", "wb") as outfile:
+        with open(path.join(output_model_path, "encoder_age.pickle", "wb")) as outfile:
             pickle.dump(encoder_age, outfile)
 
-        with open(self.MODEL_FOLDER + "/vectorizer.pickle", "wb") as outfile:
+        with open(path.join(output_model_path, "vectorizer.pickle"), "wb") as outfile:
             pickle.dump(vectorizer, outfile)
 
         logger.info("Martinc algorithm trained successfully")

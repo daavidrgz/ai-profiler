@@ -1,9 +1,18 @@
+from abc import ABC, abstractmethod
 from application.dataset import Dataset
+from domain.entities.train_dataset import TrainDataset
 
 
-class ProfilingAlgorithm:
-    def predict(self, dataset: Dataset):
+class ProfilingAlgorithm(ABC):
+    def __init__(self, name, supported_train_datasets, default_train_dataset):
+        self.name = name
+        self.supported_train_datasets = supported_train_datasets
+        self.default_train_dataset = default_train_dataset
+
+    @abstractmethod
+    def predict(self, dataset: Dataset, train_dataset: TrainDataset):
         raise NotImplementedError
 
-    def train(self):
+    @abstractmethod
+    def train(self, train_dataset: TrainDataset):
         raise NotImplementedError
