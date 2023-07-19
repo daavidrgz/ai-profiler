@@ -5,14 +5,14 @@
 \def\lingua{esp} % descomenta esta liña se redactarás a memoria en español
 %\def\lingua{eng} % descomenta esta liña se redactarás a memoria en inglés
 \def\nome{David Rodríguez Bacelar}                             % substitúe aquí o teu nome
-\def\nomedirectorA{Patricia Martín Rodilla}              % substitúe aquí o nome de quen dirixe
+\def\nomedirectorA{Patricia Martín Rodilla, David Otero Freijeiro}              % substitúe aquí o nome de quen dirixe
 %\def\nomedirectorB{Outro Nome Completo}             % duplica esta liña máis veces se o precisas, cambiando
 % a letra final (A, B, C, D...): úsanse na portada.tex
-\def\titulo{Título completo do traballo fin de grao} % substitúe aquí o título do teu TFG
+\def\titulo{Perfilado automático de usuarios en corpus sociales sobre el movimiento Black Lives Matter} % substitúe aquí o título do teu TFG
 %\def\titulacion{gced}                               % descomenta esta liña e comenta a seguinte se es estudante do GCED
 \def\titulacion{gei}
-%\def\mencion{COMPUTACIÓN}                           % descomenta a mención que che corresponda se es estudante do GEI
-\def\mencion{ENXEÑARÍA DO SOFTWARE}
+\def\mencion{COMPUTACIÓN}
+% \def\mencion{ENXEÑARÍA DO SOFTWARE}
 %\def\mencion{ENXEÑARÍA DE COMPUTADORES}
 %\def\mencion{SISTEMAS DE INFORMACIÓN}
 %\def\mencion{TECNOLOXÍAS DA INFORMACIÓN}
@@ -25,10 +25,14 @@
 
 % Lista de paquetes potencialmente interesantes (uso baixo demanda)
 
+\usepackage{pgfplots}
+\pgfplotsset{width=10cm,compat=1.9}
+% \usepgfplotslibrary{external}
+% \tikzexternalize
 % \usepackage{alltt}       % proporciona o entorno alltt, semellante a verbatim pero que respecta comandos
 % \usepackage{enumitem}    % permite personalizar os entornos de lista
 % \usepackage{eurofont}    % proporciona o comando \euro
-% \usepackage{float}       % permite máis opcións para controlar obxectos flotantes (táboas, figuras)
+\usepackage{float}       % permite máis opcións para controlar obxectos flotantes (táboas, figuras)
 % \usepackage{hhline}      % permite personalizar as liñas horizontais en arrays e táboas
 \usepackage{longtable}   % permite construir táboas que ocupan máis dunha páxina
 % \usepackage{lscape}      % permite colocar partes do documento en orientación apaisada
@@ -74,10 +78,15 @@
 % Capítulos                            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\include{contido/introducion}
-\include{contido/demo}
-%\include{contido/...}
-\include{contido/conclusions}
+\include{contido/introduccion}
+\include{contido/estadoarte}
+\include{contido/herramientas}
+\include{contido/analisis}
+\include{contido/diseño}
+\include{contido/implementacion}
+\include{contido/casouso}
+\include{contido/planificacion}
+\include{contido/conclusiones}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Apéndices, glosarios e bibliografía  %
