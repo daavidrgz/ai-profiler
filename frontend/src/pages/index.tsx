@@ -42,7 +42,7 @@ export default function HomePage() {
               <motion.div
                 key="dataInput"
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 1, transition: { delay: 0.25 } }}
+                animate={{ opacity: 1, transition: { delay: 0.21 } }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >

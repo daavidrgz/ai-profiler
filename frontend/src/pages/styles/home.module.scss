@@ -29,7 +29,7 @@
 .carouselContainer {
   position: relative;
   width: 50%;
-  height: max-content;
+  height: 31rem;
   margin-top: 8rem;
 
   @include for-screens-below("m") {

@@ -79,11 +79,9 @@
   align-items: center;
   flex-direction: column;
 
-  text-align: center;
   > h3 {
-    font-size: 0.9rem;
+    font-size: var(--font-size-s);
     font-weight: 600;
     color: var(--fg);
-    margin-bottom: 1rem;
   }
 }

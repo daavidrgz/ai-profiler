@@ -48,7 +48,7 @@ export default function UploadDataset({ handleImportFile }: Props) {
 
         <label htmlFor="file-upload" className={styles.uploadLabel}>
           <button className={styles.uploadButton} type="button">
-            <span>Upload dataset</span>
+            <span>UPLOAD DATASET</span>
             <UploadFileRoundedIcon />
           </button>
         </label>

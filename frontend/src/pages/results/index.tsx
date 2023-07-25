@@ -22,8 +22,8 @@ Chart.register(CategoryScale);
 export default function ResumePage() {
   const [selectedPerson, setSelectedPerson] = useState<Person | null>(null);
   const router = useRouter();
-  // const { data } = useData();
-  const data = martincData;
+  const { data } = useData();
+  // const data = martincData;
 
   if (!data)
     return (
@@ -98,7 +98,7 @@ export default function ResumePage() {
                 <OccupationChart
                   people={data.people}
                   selectedPerson={selectedPerson}
-                  style={{ width: "26rem", height: "100%" }}
+                  style={{ width: "50rem", height: "100%" }}
                 />
               </>
             )}
@@ -106,7 +106,7 @@ export default function ResumePage() {
               <PersonalityTraitsChart
                 people={data.people}
                 selectedPerson={selectedPerson}
-                style={{ width: "34rem", height: "100%" }}
+                style={{ width: "38rem", height: "100%" }}
               />
             )}
           </div>

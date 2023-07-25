@@ -18,18 +18,19 @@ export default function OccupationChart({
   selectedPerson,
   ...rest
 }: Props) {
+  const baseCount = Object.values(OccupationSchema.Enum).map((occupation) => ({
+    name: occupation,
+    count: 0,
+  }));
+
   const occupationCount = people.reduce(
     (acc: { name: Occupation; count: number }[], person) => {
       const occupation = person.occupation!;
       const index = acc.findIndex((item) => item.name === occupation);
-      if (index >= 0) {
-        acc[index].count++;
-      } else {
-        acc.push({ name: occupation, count: 1 });
-      }
+      acc[index].count++;
       return acc;
     },
-    []
+    baseCount
   );
 
   occupationCount.sort((a, b) => b.count - a.count);
@@ -42,7 +43,7 @@ export default function OccupationChart({
       label="Number of people"
       entityEnum={OccupationSchema.Enum}
       colors={getOccupationColors()}
-      chartType="pie"
+      chartType="bar"
       attribute="occupation"
       dimmable
       direction="horizontal"

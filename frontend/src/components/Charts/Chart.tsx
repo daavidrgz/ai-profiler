@@ -18,14 +18,14 @@ const barChartOptions = {
       backgroundColor: "#252734",
       titleColor: "#E3E6EF",
       bodyColor: "#E3E6EF",
-      padding: 12,
+      padding: 12.8,
       displayColors: false,
       titleFont: {
-        size: 12,
+        size: 12.8,
         weight: "bold",
       },
       bodyFont: {
-        size: 12,
+        size: 11.2,
       },
     },
   },
@@ -36,6 +36,11 @@ const barChartOptions = {
       },
       ticks: {
         color: "#E3E6EF",
+        font: {
+          size: 11.2,
+          family: "Montserrat",
+          weight: "500",
+        },
       },
     },
     x: {
@@ -44,6 +49,11 @@ const barChartOptions = {
       },
       ticks: {
         color: "#E3E6EF",
+        font: {
+          size: 11.2,
+          family: "Montserrat",
+          weight: "500",
+        },
       },
     },
   },
@@ -77,13 +87,13 @@ const pieChartOptions = {
       displayColors: false,
       titleColor: "#E3E6EF",
       bodyColor: "#E3E6EF",
-      padding: 12,
+      padding: 12.8,
       titleFont: {
-        size: 12,
+        size: 12.8,
         weight: "bold",
       },
       bodyFont: {
-        size: 12,
+        size: 11.2,
       },
     },
   },
