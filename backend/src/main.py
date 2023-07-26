@@ -4,7 +4,7 @@ from uuid import uuid4, UUID
 from fastapi import FastAPI, HTTPException, UploadFile
 from domain.services.profiling_service import ProfilingService
 from application.file_type import FileType
-from application.dataset import Dataset
+from application.dataset import PredictDataset
 from logging.config import dictConfig
 from domain.algorithms.martinc.martinc_algorithm import MartincAlgorithm
 from domain.algorithms.grivas.grivas_algorithm import GrivasAlgorithm
@@ -41,7 +41,7 @@ def predict(file: UploadFile, algorithm: str = None, dataset: str = "default"):
     text_file = StringIO(content)
 
     try:
-        profiling_dataset = Dataset(
+        profiling_dataset = PredictDataset(
             filename=filename, file_type=file_type, file=text_file
         )
     except Exception as e:
@@ -70,7 +70,7 @@ def predict_twitter(user: str, algorithm: str = None, dataset: str = "default"):
         raise HTTPException(status_code=400, detail="Error while fetching tweets")
 
     try:
-        dataset = Dataset(
+        dataset = PredictDataset(
             filename=f"{user}_tweets", file_type=FileType.NDJSON, file=file
         )
     except Exception as e:
@@ -105,7 +105,7 @@ def train(algorithm: str = "all", dataset: str = "default"):
 
 
 @app.get("/performance")
-def performance(algorithm: str = "all", dataset: str = "default"):
+def get_performance(algorithm: str = "all", dataset: str = "default"):
     algorithm = __get_algorithm(algorithm)
     train_dataset = __get_train_dataset(dataset)
     __check_compatibilty(algorithm, train_dataset)

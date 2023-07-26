@@ -11,7 +11,7 @@ import tqdm
 from sklearn.feature_extraction.text import TfidfVectorizer
 import json
 import logging
-from application.dataset import Dataset
+from application.dataset import PredictDataset
 from sklearn.metrics import f1_score
 from sklearn.linear_model import LogisticRegression
 import numpy as np
@@ -30,7 +30,7 @@ class MartincAlgorithm(ProfilingAlgorithm):
         supported_train_datasets = [PAN19TrainDataset()]
         super().__init__(name, supported_train_datasets, default_train_dataset)
 
-    def predict(self, dataset: Dataset, train_dataset: TrainDataset):
+    def predict(self, dataset: PredictDataset, train_dataset: TrainDataset):
         dataset.convert_to_ndjson()
         tasks = ["gender", "fame", "occupation", "age"]
         trained_model_path = path.join(self.MODEL_FOLDER, train_dataset.name)

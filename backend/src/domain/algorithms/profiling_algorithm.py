@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from application.dataset import Dataset
+from application.dataset import PredictDataset
 from domain.entities.train_dataset import TrainDataset
 
 
@@ -10,9 +10,13 @@ class ProfilingAlgorithm(ABC):
         self.default_train_dataset = default_train_dataset
 
     @abstractmethod
-    def predict(self, dataset: Dataset, train_dataset: TrainDataset):
+    def predict(self, dataset: PredictDataset, train_dataset: TrainDataset):
         raise NotImplementedError
 
     @abstractmethod
     def train(self, train_dataset: TrainDataset):
+        raise NotImplementedError
+    
+    @abstractmethod
+    def get_performance(self, train_dataset: TrainDataset):
         raise NotImplementedError

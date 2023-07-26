@@ -6,7 +6,7 @@ from domain.converters.ndjson_to_csv_converter import NdjsonToCsvConverter
 from application.file_type import FileType
 
 
-class Dataset:
+class PredictDataset:
     FIELDNAMES = ["id", "text"]
 
     def __init__(self, filename: str, file_type: FileType, file: IOBase):

@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String
-from infraestrcuture.database import Base
+from infraestructure.database import Base
 
 
 class Result(Base):

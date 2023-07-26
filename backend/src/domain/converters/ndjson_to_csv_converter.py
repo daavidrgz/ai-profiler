@@ -1,6 +1,5 @@
 from io import StringIO, TextIOBase
 from domain.converters.converter import Converter
-
 import csv
 import json
 

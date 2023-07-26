@@ -2,7 +2,7 @@ import json
 import os
 import time
 from uuid import UUID
-from application.dataset import Dataset
+from application.dataset import PredictDataset
 from domain.algorithms.martinc.martinc_algorithm import MartincAlgorithm
 from domain.algorithms.grivas.grivas_algorithm import GrivasAlgorithm
 from domain.algorithms.profiling_algorithm import ProfilingAlgorithm
@@ -17,7 +17,7 @@ class ProfilingService:
 
     def predict(
         self,
-        dataset: Dataset,
+        dataset: PredictDataset,
         algorithm: ProfilingAlgorithm,
         train_dataset: TrainDataset,
         profiling_id: UUID,

@@ -6,7 +6,7 @@ from os import path
 from domain.algorithms.profiling_algorithm import ProfilingAlgorithm
 import joblib
 import logging
-from application.dataset import Dataset
+from application.dataset import PredictDataset
 from domain.algorithms.grivas.entities.dataset import ProfilingDataset
 from sklearn.svm import LinearSVC, LinearSVR
 from sklearn.pipeline import Pipeline
@@ -39,7 +39,7 @@ class GrivasAlgorithm(ProfilingAlgorithm):
         default_train_dataset = PAN15TrainDataset()
         super().__init__(name, supported_train_datasets, default_train_dataset)
 
-    def predict(self, dataset: Dataset, train_dataset: TrainDataset):
+    def predict(self, dataset: PredictDataset, train_dataset: TrainDataset):
         trained_model = path.join(self.MODEL_FOLDER, f"{train_dataset.name}.bin")
         all_models = joblib.load(trained_model)
 
