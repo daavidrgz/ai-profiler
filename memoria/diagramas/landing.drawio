@@ -1,0 +1,37 @@
+<mxfile host="app.diagrams.net" modified="2023-07-24T15:38:44.835Z" agent="Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0" etag="VIYatGeXpexS3AFmShXw" version="21.6.5" type="device">
+  <diagram name="Page-1" id="OLFneo4ZFYKLYyF5_C4t">
+    <mxGraphModel dx="1631" dy="872" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="1CEBXTDlmNFpkbdLIULy-1" value="" style="strokeWidth=1;shadow=0;dashed=0;align=center;shape=mxgraph.mockup.containers.browserWindow;rSize=0;strokeColor=#666666;strokeColor2=#008cff;strokeColor3=#c4c4c4;mainText=,;recursiveResize=0;fontSize=22;html=1;aspect=fixed;" parent="1" vertex="1">
+          <mxGeometry y="120" width="1386.67" height="780" as="geometry" />
+        </mxCell>
+        <mxCell id="1CEBXTDlmNFpkbdLIULy-2" value="Page 1" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.containers.anchor;fontSize=17;fontColor=#666666;align=left;whiteSpace=wrap;" parent="1CEBXTDlmNFpkbdLIULy-1" vertex="1">
+          <mxGeometry x="60" y="12" width="110" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="1CEBXTDlmNFpkbdLIULy-3" value="https://www.draw.io" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.containers.anchor;rSize=0;fontSize=17;fontColor=#666666;align=left;" parent="1CEBXTDlmNFpkbdLIULy-1" vertex="1">
+          <mxGeometry x="130" y="60" width="250" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="1CEBXTDlmNFpkbdLIULy-5" value="AI PROFILER" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=55;fontStyle=1;" parent="1CEBXTDlmNFpkbdLIULy-1" vertex="1">
+          <mxGeometry x="528.33" y="150" width="330" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="1CEBXTDlmNFpkbdLIULy-8" value="A simple application that uses AI to extract personal characteristics of the author of texts" style="text;spacingTop=-5;whiteSpace=wrap;html=1;align=center;fontSize=19;fontFamily=Helvetica;fillColor=none;strokeColor=none;" parent="1CEBXTDlmNFpkbdLIULy-1" vertex="1">
+          <mxGeometry x="294.7" y="300" width="796.25" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1CEBXTDlmNFpkbdLIULy-9" value="" style="rounded=1;whiteSpace=wrap;html=1;dashed=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;fontSize=19;" parent="1CEBXTDlmNFpkbdLIULy-1" vertex="1">
+          <mxGeometry x="465.83" y="455" width="455" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="1CEBXTDlmNFpkbdLIULy-10" value="Upload dataset" style="strokeWidth=1;shadow=0;dashed=0;align=center;html=1;shape=mxgraph.mockup.buttons.button;strokeColor=#666666;fontColor=#ffffff;mainText=;buttonStyle=round;fontSize=16;fontStyle=1;fillColor=#008cff;whiteSpace=wrap;" parent="1CEBXTDlmNFpkbdLIULy-1" vertex="1">
+          <mxGeometry x="606.83" y="675" width="172" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="1CEBXTDlmNFpkbdLIULy-11" value="Drag and drop your dataset here or click the button below!" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=17;" parent="1CEBXTDlmNFpkbdLIULy-1" vertex="1">
+          <mxGeometry x="552.83" y="530" width="280" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="1CEBXTDlmNFpkbdLIULy-12" value="UPLOAD YOUR DATASET" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;fontStyle=1" parent="1CEBXTDlmNFpkbdLIULy-1" vertex="1">
+          <mxGeometry x="593.34" y="400" width="200" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
