@@ -6,6 +6,8 @@ import { Person } from "@/model/person";
 import { DivProps } from "@/utils/defaultInterfaces";
 import { Bar, Doughnut, Pie } from "react-chartjs-2";
 import { AnimatePresence, motion } from "framer-motion";
+import { montserrat } from "@/utils/fonts";
+
 
 const barChartOptions = {
   responsive: true,
@@ -38,7 +40,7 @@ const barChartOptions = {
         color: "#E3E6EF",
         font: {
           size: 11.2,
-          family: "Montserrat",
+          family: montserrat.style.fontFamily,
           weight: "500",
         },
       },
@@ -51,7 +53,7 @@ const barChartOptions = {
         color: "#E3E6EF",
         font: {
           size: 11.2,
-          family: "Montserrat",
+          family: montserrat.style.fontFamily,
           weight: "500",
         },
       },
