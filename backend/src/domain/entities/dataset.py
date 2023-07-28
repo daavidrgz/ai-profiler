@@ -3,7 +3,7 @@ import csv
 import json
 from domain.converters.csv_to_ndjson_converter import CsvToNdjsonConverter
 from domain.converters.ndjson_to_csv_converter import NdjsonToCsvConverter
-from application.file_type import FileType
+from domain.entities.file_type import FileType
 
 
 class PredictDataset:

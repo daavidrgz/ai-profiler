@@ -1,23 +1,43 @@
-import json
-import os
 import time
-from uuid import UUID
-from application.dataset import PredictDataset
+from uuid import UUID, uuid4
+from domain.entities.dataset import PredictDataset
 from domain.algorithms.martinc.martinc_algorithm import MartincAlgorithm
 from domain.algorithms.grivas.grivas_algorithm import GrivasAlgorithm
 from domain.algorithms.profiling_algorithm import ProfilingAlgorithm
 from threading import Thread
 
 from domain.entities.train_dataset import TrainDataset
+from domain.entities.profiling import Profiling
+from infraestructure.sqlite_profiling_repository import SqliteRepository
 
 
 class ProfilingService:
-    SAVE_PATH = "/tmp"
     ALL_ALGORITHMS = [MartincAlgorithm(), GrivasAlgorithm()]
+    profiling_repository = SqliteRepository()
 
     def predict(
         self,
-        dataset: PredictDataset,
+        predict_dataset: PredictDataset,
+        algorithm: ProfilingAlgorithm,
+        train_dataset: TrainDataset,
+    ):
+        profiling_id = uuid4()
+
+        self.profiling_repository.create_profiling(
+            Profiling(id=profiling_id, status="PENDING")
+        )
+
+        thread = Thread(
+            target=self.predict_async,
+            args=(predict_dataset, algorithm, train_dataset, profiling_id),
+        )
+        thread.start()
+
+        return {"id": profiling_id}
+
+    def predict_async(
+        self,
+        predict_dataset: PredictDataset,
         algorithm: ProfilingAlgorithm,
         train_dataset: TrainDataset,
         profiling_id: UUID,
@@ -25,7 +45,7 @@ class ProfilingService:
         if train_dataset is None:
             train_dataset = algorithm.default_train_dataset
         start = time.time()
-        output = algorithm.predict(dataset, train_dataset)
+        output = algorithm.predict(predict_dataset, train_dataset)
         end = time.time()
 
         result = {
@@ -34,20 +54,21 @@ class ProfilingService:
             "output": output,
         }
 
-        with open(f"{self.SAVE_PATH}/{profiling_id}.ndjson", "w") as f:
-            f.write(json.dumps(result))
+        self.profiling_repository.update_profiling(
+            Profiling(id=profiling_id, status="SUCCESS", result=result)
+        )
 
     def get_profiling(self, profiling_id: UUID):
-        if os.path.exists(f"{self.SAVE_PATH}/{profiling_id}.ndjson"):
-            with open(f"{self.SAVE_PATH}/{profiling_id}.ndjson", "r") as f:
-                try:
-                    content = json.load(f)
-                    os.remove(f"{self.SAVE_PATH}/{profiling_id}.ndjson")
-                except:
-                    return {"status": "PENDING"}
-            return {"status": "SUCCESS", "profiling": content}
-        else:
-            return {"status": "PENDING"}
+        profiling = self.profiling_repository.get_profiling(profiling_id)
+
+        if profiling is None:
+            return None
+
+        return {
+            "id": profiling.id,
+            "status": profiling.status,
+            "profiling": profiling.result if profiling.result else None,
+        }
 
     def train(self, algorithm: ProfilingAlgorithm, train_dataset: TrainDataset):
         if algorithm:

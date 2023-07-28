@@ -11,7 +11,7 @@ import tqdm
 from sklearn.feature_extraction.text import TfidfVectorizer
 import json
 import logging
-from application.dataset import PredictDataset
+from domain.entities.dataset import PredictDataset
 from sklearn.metrics import f1_score
 from sklearn.linear_model import LogisticRegression
 import numpy as np
