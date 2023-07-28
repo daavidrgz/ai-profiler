@@ -6,7 +6,8 @@ import { FameSchema } from "@/model/fame";
 import { AgeSchema } from "@/model/age";
 
 export const martincData = toProfilingData({
-	status: "success",
+	id: "1234",
+	status: "SUCCESS",
 	profiling: {
 		algorithm: "martinc",
 		time: 4810,
@@ -169,6 +170,7 @@ export const martincData = toProfilingData({
 });
 
 export const grivasData = toProfilingData({
+	id: "12345",
 	"status": "SUCCESS",
 	"profiling": {
 		"algorithm": "grivas",
@@ -460,7 +462,8 @@ const fames = Object.values(FameSchema.Enum)
 const ages = Object.values(AgeSchema.Enum)
 
 export const bigMartincData = toProfilingData({
-	status: "success",
+	id: "12346",
+	status: "SUCCESS",
 	profiling: {
 		algorithm: "martinc",
 		time: 4810,
