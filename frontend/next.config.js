@@ -1,4 +1,7 @@
 /** @type {import('next').NextConfig} */
+
+host = process.env.API_HOST || "localhost";
+
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
@@ -6,7 +9,7 @@ const nextConfig = {
     return [
       {
         source: "/api/:path*",
-        destination: `http://${process.env.API_HOST}:8000/:path*`,
+        destination: `http://${host}:8000/:path*`,
       },
     ];
   },

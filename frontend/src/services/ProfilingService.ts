@@ -17,7 +17,7 @@ export default abstract class ProfilingService {
 				if (data.detail) {
 					throw new Error(data.detail);
 				}
-				return data.profiling_id;
+				return data.id;
 			});
 	};
 
@@ -30,15 +30,14 @@ export default abstract class ProfilingService {
 				if (data.detail) {
 					throw new Error(data.detail);
 				}
-				return data.profiling_id;
+				return data.id;
 			});
 	};
 
-	public static getProfilingData(profilingId: string): Promise<ProfilingDataDto> {
+	public static getProfiling(profilingId: string): Promise<ProfilingDataDto> {
 		return fetch(`${this.endpoint}/profilings/${profilingId}`)
 			.then((res) => res.json())
 			.then((data) => {
-				console.log(data)
 				if (data.detail) {
 					throw new Error(data.detail);
 				}

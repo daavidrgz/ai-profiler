@@ -5,9 +5,8 @@ import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
 import AgeChart from "@/components/Charts/AgeChart";
 import PeopleList from "@/components/Charts/PeopleList/PeopleList";
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
 import ProfilingResume from "@/components/Charts/ProfilingResume/ProfilingResume";
-import { useData } from "@/components/Providers/DataProvider/DataProvider";
 import NavBar from "@/components/UI/NavBar/NavBar";
 import FameChart from "@/components/Charts/FameChart";
 import { grivasData, martincData, bigMartincData } from "@/utils/mocks";
@@ -16,23 +15,51 @@ import OccupationChart from "@/components/Charts/OccupationChart";
 import PersonalityTraitsChart from "@/components/Charts/PersonalityTraitsChart";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import { useRouter } from "next/router";
+import { ProfilingData } from "@/model/profilingData";
+import ProfilingService from "@/services/ProfilingService";
+import { toProfilingData } from "@/model/profilingDataDto";
+import { useNotifications } from "@/components/Providers/NotificationProvider/NotificationProvider";
 
 Chart.register(CategoryScale);
 
 export default function ResumePage() {
   const [selectedPerson, setSelectedPerson] = useState<Person | null>(null);
-  const router = useRouter();
-  const { data } = useData();
-  // const data = martincData;
+  const [profilingData, setProfilingData] = useState<ProfilingData | null>(
+    null
+  );
+  const [fetching, setFetching] = useState(false);
 
-  if (!data)
+  const router = useRouter();
+  const { createErrorNotification } = useNotifications();
+
+  const { id } = router.query;
+
+  useEffect(() => {
+    setFetching(true);
+    if (id && typeof id === "string") {
+      ProfilingService.getProfiling(id)
+        .then((profilingData) =>
+          setProfilingData(toProfilingData(profilingData))
+        )
+        .catch((error) => {
+          createErrorNotification(error.message, 5000);
+        })
+        .finally(() => setFetching(false));
+    }
+  }, [id, createErrorNotification]);
+
+  if (fetching) {
+    return;
+  }
+
+  if (!profilingData)
     return (
       <>
         <NavBar />
         <div className={styles.noContent}>
           <span className={styles.noContentTitle}>NOTHING TO SHOW</span>
           <span className={styles.noContentDescription}>
-            Please, go back and upload a valid dataset
+            Please, make sure the id is correct or go back and upload a new dataset
           </span>
         </div>
       </>
@@ -62,49 +89,49 @@ export default function ResumePage() {
         <div className={styles.chartsContainer}>
           <div className={styles.firstRow}>
             <ProfilingResume
-              profilingData={data}
+              profilingData={profilingData}
               style={{ width: "100%", height: "100%" }}
             />
           </div>
 
           <div className={styles.secondRow}>
             <PeopleList
-              algorithm={data.algorithm}
-              people={data.people}
+              algorithm={profilingData.algorithm}
+              people={profilingData.people}
               selectedPerson={selectedPerson}
               setSelectedPerson={setSelectedPerson}
               style={{ width: "56rem", height: "100%" }}
             />
             <AgeChart
-              people={data.people}
+              people={profilingData.people}
               selectedPerson={selectedPerson}
               style={{ width: "36rem", height: "100%" }}
             />
             <GenderChart
-              people={data.people}
+              people={profilingData.people}
               selectedPerson={selectedPerson}
               style={{ width: "18rem", height: "100%" }}
             />
           </div>
 
           <div className={styles.thirdRow}>
-            {data.algorithm === "martinc" && (
+            {profilingData.algorithm === "martinc" && (
               <>
                 <FameChart
-                  people={data.people}
+                  people={profilingData.people}
                   selectedPerson={selectedPerson}
                   style={{ width: "25rem", height: "100%" }}
                 />
                 <OccupationChart
-                  people={data.people}
+                  people={profilingData.people}
                   selectedPerson={selectedPerson}
                   style={{ width: "50rem", height: "100%" }}
                 />
               </>
             )}
-            {data.algorithm === "grivas" && (
+            {profilingData.algorithm === "grivas" && (
               <PersonalityTraitsChart
-                people={data.people}
+                people={profilingData.people}
                 selectedPerson={selectedPerson}
                 style={{ width: "38rem", height: "100%" }}
               />

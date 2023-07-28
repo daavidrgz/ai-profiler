@@ -8,7 +8,8 @@ import { OccupationSchema } from './occupation';
 
 export const ProfilingDataDtoSchema = z
 	.object({
-		status: z.string(),
+		id: z.string(),
+		status: z.enum(["PENDING", "SUCCESS"]),
 		profiling: z.object({
 			algorithm: ProfilingAlgorithmSchema,
 			time: z.number(),
@@ -29,13 +30,14 @@ export const ProfilingDataDtoSchema = z
 						})
 				}
 			))
-		}).optional()
+		}).optional().nullable()
 	})
 
 export type ProfilingDataDto = z.infer<typeof ProfilingDataDtoSchema>;
 
 export const toProfilingData = (dto: ProfilingDataDto): ProfilingData => {
 	return {
+		id: dto.id,
 		algorithm: dto.profiling!.algorithm,
 		time: dto.profiling!.time,
 		people: dto.profiling!.output.map((person) => {

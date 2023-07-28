@@ -4,9 +4,7 @@ import { formatBytes } from "@/utils/utils";
 import PlayArrowRoundedIcon from "@mui/icons-material/PlayArrowRounded";
 import ProfilingService from "@/services/ProfilingService";
 import { useNotifications } from "@/components/Providers/NotificationProvider/NotificationProvider";
-import { useData } from "../Providers/DataProvider/DataProvider";
 import { useRouter } from "next/router";
-import { toProfilingData } from "@/model/profilingDataDto";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import LinearProgressBar from "../UI/LinearProgressBar/LinearProgressBar";
@@ -32,23 +30,21 @@ export default function ProfilingOverview({
 }: Props) {
   const { createSuccessNotification, createErrorNotification } =
     useNotifications();
-  const { setData } = useData();
   const router = useRouter();
   const [isProcessing, setIsProcessing] = useState(false);
 
   const waitForResult = (profilingId: string) => {
-    ProfilingService.getProfilingData(profilingId)
+    ProfilingService.getProfiling(profilingId)
       .then((profilingDataDto) => {
         if (profilingDataDto.status == "PENDING") {
           setTimeout(() => waitForResult(profilingId), 500);
           return;
         }
 
-        createSuccessNotification("Profiling successfull", 5000);
-        setData(toProfilingData(profilingDataDto));
+        createSuccessNotification("Profiling successful", 5000);
         setIsProcessing(false);
 
-        setTimeout(() => router.push("/results"), 1000);
+        setTimeout(() => router.push(`/results/${profilingDataDto.id}`), 1000);
       })
       .catch((error) => {
         setIsProcessing(false);

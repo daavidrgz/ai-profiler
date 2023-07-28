@@ -4,6 +4,7 @@ import { ProfilingAlgorithmSchema } from './profilingAlgorithm';
 
 export const ProfilingDataSchema = z
 	.object({
+		id: z.string(),
 		algorithm: ProfilingAlgorithmSchema,
 		time: z.number(),
 		people: z.array(PersonSchema)
