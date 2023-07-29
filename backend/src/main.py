@@ -7,3 +7,4 @@ dictConfig(log_config)
 app = FastAPI()
 controller = Controller()
 app.include_router(controller.router)
+

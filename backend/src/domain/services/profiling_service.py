@@ -8,12 +8,12 @@ from threading import Thread
 
 from domain.entities.train_dataset import TrainDataset
 from domain.entities.profiling import Profiling
-from infraestructure.sqlite_profiling_repository import SqliteProfilingRepository
+from infraestructure.postgres_profiling_repository import PostgresProfilingRepository
 
 
 class ProfilingService:
     ALL_ALGORITHMS = [MartincAlgorithm(), GrivasAlgorithm()]
-    profiling_repository = SqliteProfilingRepository()
+    profiling_repository = PostgresProfilingRepository()
 
     def predict(
         self,
