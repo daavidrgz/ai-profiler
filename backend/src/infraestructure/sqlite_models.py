@@ -4,7 +4,7 @@ from infraestructure.sqlite_database import Base
 from domain.entities.profiling import Profiling
 
 
-class ProfilingModel(Base):
+class SqliteProfilingModel(Base):
     __tablename__ = "profilings"
 
     id = Column(String, primary_key=True, index=True)

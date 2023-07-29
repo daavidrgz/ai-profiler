@@ -23,7 +23,7 @@ class SqliteProfilingRepository(ProfilingRepository):
 
     def create_profiling(self, profiling: Profiling):
         db = SessionLocal()
-        db_profiling = sqlite_models.ProfilingModel(
+        db_profiling = sqlite_models.SqliteProfilingModel(
             id=str(profiling.id),
             status=profiling.status,
             result=json.dumps(profiling.result),
@@ -48,7 +48,7 @@ class SqliteProfilingRepository(ProfilingRepository):
 
     def __get_profiling_raw(self, db: Session, profiling_id: UUID):
         return (
-            db.query(sqlite_models.ProfilingModel)
-            .filter(sqlite_models.ProfilingModel.id == str(profiling_id))
+            db.query(sqlite_models.SqliteProfilingModel)
+            .filter(sqlite_models.SqliteProfilingModel.id == str(profiling_id))
             .first()
         )
