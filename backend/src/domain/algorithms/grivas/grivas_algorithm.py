@@ -3,10 +3,10 @@ import json
 import math
 import os
 from os import path
-from domain.algorithms.profiling_algorithm import ProfilingAlgorithm
 import joblib
 import logging
-from domain.entities.dataset import PredictDataset
+from domain.entities.profiling_algorithm import ProfilingAlgorithm
+from domain.entities.predict_dataset import PredictDataset
 from domain.algorithms.grivas.entities.dataset import ProfilingDataset
 from sklearn.svm import LinearSVC, LinearSVR
 from sklearn.pipeline import Pipeline

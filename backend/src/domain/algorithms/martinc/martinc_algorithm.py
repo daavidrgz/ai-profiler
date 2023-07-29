@@ -3,7 +3,7 @@ import pickle
 
 from os import path
 from sklearn.metrics import accuracy_score
-from domain.algorithms.profiling_algorithm import ProfilingAlgorithm
+from domain.entities.profiling_algorithm import ProfilingAlgorithm
 from domain.algorithms.martinc.tfidf_kingdom import *
 from collections import defaultdict
 import joblib
@@ -11,7 +11,7 @@ import tqdm
 from sklearn.feature_extraction.text import TfidfVectorizer
 import json
 import logging
-from domain.entities.dataset import PredictDataset
+from domain.entities.predict_dataset import PredictDataset
 from sklearn.metrics import f1_score
 from sklearn.linear_model import LogisticRegression
 import numpy as np

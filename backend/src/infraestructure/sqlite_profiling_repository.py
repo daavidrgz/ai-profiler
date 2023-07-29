@@ -9,7 +9,7 @@ from infraestructure.sqlite_database import engine
 from infraestructure import sqlite_models
 
 
-class SqliteRepository(ProfilingRepository):
+class SqliteProfilingRepository(ProfilingRepository):
     def __init__(self):
         sqlite_models.Base.metadata.create_all(bind=engine)
 

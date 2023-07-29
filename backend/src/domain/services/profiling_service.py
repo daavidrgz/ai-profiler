@@ -1,19 +1,19 @@
 import time
 from uuid import UUID, uuid4
-from domain.entities.dataset import PredictDataset
+from domain.entities.predict_dataset import PredictDataset
 from domain.algorithms.martinc.martinc_algorithm import MartincAlgorithm
 from domain.algorithms.grivas.grivas_algorithm import GrivasAlgorithm
-from domain.algorithms.profiling_algorithm import ProfilingAlgorithm
+from domain.entities.profiling_algorithm import ProfilingAlgorithm
 from threading import Thread
 
 from domain.entities.train_dataset import TrainDataset
 from domain.entities.profiling import Profiling
-from infraestructure.sqlite_profiling_repository import SqliteRepository
+from infraestructure.sqlite_profiling_repository import SqliteProfilingRepository
 
 
 class ProfilingService:
     ALL_ALGORITHMS = [MartincAlgorithm(), GrivasAlgorithm()]
-    profiling_repository = SqliteRepository()
+    profiling_repository = SqliteProfilingRepository()
 
     def predict(
         self,

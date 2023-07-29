@@ -4,7 +4,7 @@ from fastapi import APIRouter, HTTPException, UploadFile
 from domain.algorithms.grivas.grivas_algorithm import GrivasAlgorithm
 from domain.algorithms.martinc.martinc_algorithm import MartincAlgorithm
 
-from domain.entities.dataset import PredictDataset
+from domain.entities.predict_dataset import PredictDataset
 from domain.services.profiling_service import ProfilingService
 from domain.services.twitter_service import TwitterService
 from domain.entities.file_type import FileType
