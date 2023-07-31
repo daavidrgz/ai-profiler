@@ -8,11 +8,26 @@ import { Bar, Doughnut, Pie } from "react-chartjs-2";
 import { AnimatePresence, motion } from "framer-motion";
 import { montserrat } from "@/utils/fonts";
 
-
 const barChartOptions = {
   responsive: true,
   maintainAspectRatio: false,
+  layout: {
+    padding: {
+      top: 24,
+    },
+  },
   plugins: {
+    datalabels: {
+      align: "end",
+      anchor: "end",
+      color: function (context: any) {
+        return context.dataset.backgroundColor;
+      },
+      font: { weight: "bold" },
+      display: function (context: any) {
+        return context.dataset.data[context.dataIndex] > 1;
+      },
+    },
     legend: {
       display: false,
     },
@@ -75,13 +90,22 @@ const pieChartOptions = {
   plugins: {
     legend: {
       display: false,
-      labels: {
-        boxWidth: 10,
-        color: "#E3E6EF",
-        font: {
-          size: 9.5,
-          weight: "bold",
-        },
+    },
+    datalabels: {
+      font: {
+        weight: "bold",
+        size: 9,
+        family: montserrat.style.fontFamily,
+      },
+      color: "#2d303e",
+      display: function (context: any) {
+        var dataset = context.dataset;
+        var count = dataset.data.length;
+        var value = dataset.data[context.dataIndex];
+        return value > count * 1.5;
+      },
+      formatter: function (_: any, context: any) {
+        return context.chart.data.labels[context.dataIndex].toUpperCase();
       },
     },
     tooltip: {

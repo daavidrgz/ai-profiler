@@ -19,8 +19,10 @@ import { ProfilingData } from "@/model/profilingData";
 import ProfilingService from "@/services/ProfilingService";
 import { toProfilingData } from "@/model/profilingDataDto";
 import { useNotifications } from "@/components/Providers/NotificationProvider/NotificationProvider";
+import plugin from 'chartjs-plugin-datalabels';
 
 Chart.register(CategoryScale);
+Chart.register(plugin);
 
 export default function ResumePage() {
   const [selectedPerson, setSelectedPerson] = useState<Person | null>(null);
