@@ -39,6 +39,7 @@ class MongoProfilingRepository(ProfilingRepository):
             "_id": profiling.id,
             "status": profiling.status,
             "algorithm": profiling.algorithm,
+            "train_dataset": profiling.train_dataset,
             "time": profiling.time,
             "output": profiling.output,
         }
@@ -48,6 +49,7 @@ class MongoProfilingRepository(ProfilingRepository):
             id=mongo_profiling.get("_id"),
             status=mongo_profiling.get("status"),
             algorithm=mongo_profiling.get("algorithm"),
+            train_dataset=mongo_profiling.get("train_dataset"),
             time=mongo_profiling.get("time"),
             output=mongo_profiling.get("output"),
         )

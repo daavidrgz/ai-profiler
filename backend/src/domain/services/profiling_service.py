@@ -21,9 +21,17 @@ class ProfilingService:
         algorithm: ProfilingAlgorithm,
         train_dataset: TrainDataset,
     ):
+        if train_dataset is None:
+            train_dataset = algorithm.default_train_dataset
+
         profiling_id = uuid4()
         self.profiling_repository.create_profiling(
-            Profiling(id=profiling_id, status="PENDING", algorithm=algorithm.name)
+            Profiling(
+                id=profiling_id,
+                status="PENDING",
+                algorithm=algorithm.name,
+                train_dataset=train_dataset.name,
+            )
         )
 
         thread = Thread(
@@ -41,8 +49,6 @@ class ProfilingService:
         train_dataset: TrainDataset,
         profiling_id: UUID,
     ):
-        if train_dataset is None:
-            train_dataset = algorithm.default_train_dataset
         start = time.time()
         output = algorithm.predict(predict_dataset, train_dataset)
         end = time.time()
@@ -54,6 +60,7 @@ class ProfilingService:
                 id=profiling_id,
                 status="SUCCESS",
                 algorithm=algorithm.name,
+                train_dataset=train_dataset.name,
                 time=total_time,
                 output=output,
             ),
