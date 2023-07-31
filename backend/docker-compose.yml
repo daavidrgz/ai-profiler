@@ -1,8 +1,6 @@
 services:
   db:
-    image: postgres
+    image: mongo
     container_name: ai-profiler-database-dev
-    environment:
-      POSTGRES_PASSWORD: postgres
     ports:
-      - 5432:5432
+      - "27017:27017"

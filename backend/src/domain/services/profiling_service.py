@@ -8,12 +8,12 @@ from threading import Thread
 
 from domain.entities.train_dataset import TrainDataset
 from domain.entities.profiling import Profiling
-from infraestructure.postgres_profiling_repository import PostgresProfilingRepository
+from infraestructure.mongo_profiling_repository import MongoProfilingRepository
 
 
 class ProfilingService:
     ALL_ALGORITHMS = [MartincAlgorithm(), GrivasAlgorithm()]
-    profiling_repository = PostgresProfilingRepository()
+    profiling_repository = MongoProfilingRepository()
 
     def predict(
         self,
@@ -22,9 +22,8 @@ class ProfilingService:
         train_dataset: TrainDataset,
     ):
         profiling_id = uuid4()
-
         self.profiling_repository.create_profiling(
-            Profiling(id=profiling_id, status="PENDING")
+            Profiling(id=profiling_id, status="PENDING", algorithm=algorithm.name)
         )
 
         thread = Thread(
@@ -48,27 +47,21 @@ class ProfilingService:
         output = algorithm.predict(predict_dataset, train_dataset)
         end = time.time()
 
-        result = {
-            "algorithm": algorithm.name,
-            "time": int((end - start) * 1000),
-            "output": output,
-        }
+        total_time = int((end - start) * 1000)
 
         self.profiling_repository.update_profiling(
-            Profiling(id=profiling_id, status="SUCCESS", result=result)
+            Profiling(
+                id=profiling_id,
+                status="SUCCESS",
+                algorithm=algorithm.name,
+                time=total_time,
+                output=output,
+            ),
         )
 
     def get_profiling(self, profiling_id: UUID):
         profiling = self.profiling_repository.get_profiling(profiling_id)
-
-        if profiling is None:
-            return None
-
-        return {
-            "id": profiling.id,
-            "status": profiling.status,
-            "profiling": profiling.result if profiling.result else None,
-        }
+        return profiling
 
     def train(self, algorithm: ProfilingAlgorithm, train_dataset: TrainDataset):
         if algorithm:
