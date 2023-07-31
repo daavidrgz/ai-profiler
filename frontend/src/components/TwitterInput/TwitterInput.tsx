@@ -1,5 +1,7 @@
 import { useState } from "react";
 import styles from "./twitterInput.module.scss";
+import SearchIcon from "@mui/icons-material/Search";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface Props {
   setUsername: (username: string) => void;
@@ -16,14 +18,31 @@ export default function TwitterInput({ setUsername }: Props) {
   return (
     <form className={styles.container} onSubmit={handleSubmit}>
       <h2 className={styles.title}>ENTER A TWITTER USERNAME</h2>
-      <input
-        className={styles.input}
-        type="text"
-        placeholder="Twitter username"
-        value={usernameInput}
-        onChange={(e) => setUsernameInput(e.target.value)}
-        autoComplete="off"
-      />
+      <div className={styles.inputContainer}>
+        <input
+          className={styles.input}
+          type="text"
+          placeholder="Twitter username"
+          value={usernameInput}
+          onChange={(e) => setUsernameInput(e.target.value)}
+          autoComplete="off"
+        />
+        <span className={styles.at}>@</span>
+        <AnimatePresence>
+          {usernameInput.length > 0 && (
+            <motion.button
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className={styles.searchButton}
+              type="submit"
+            >
+              <SearchIcon />
+            </motion.button>
+          )}
+        </AnimatePresence>
+      </div>
     </form>
   );
 }

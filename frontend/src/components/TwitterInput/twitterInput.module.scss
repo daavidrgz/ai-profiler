@@ -19,9 +19,29 @@
   color: var(--fg);
 }
 
+.inputContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  > .at {
+    z-index: 1;
+    position: absolute;
+    top: 46%;
+    left: var(--font-size-s);
+    transform: translateY(-50%);
+    color: var(--fg-subtle);
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+}
+
 .input {
   width: 16rem;
   padding: var(--font-size-s) var(--font-size-l);
+  padding-left: 2.2rem;
   border-radius: var(--border-radius);
   color: var(--fg);
   font-weight: 600;
@@ -35,5 +55,38 @@
   &:focus {
     border: 2px solid #1da1f2;
     background-color: var(--bg-subtle-alt);
+
+    ~ .at {
+      color: var(--fg);
+    }
+  }
+}
+
+.searchButton {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  left: calc(100% + var(--font-size-m));
+  transform: translateY(-50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: var(--font-size-xs);
+  border-radius: var(--border-radius);
+  background-color: var(--bg-subtle);
+  border: 2px solid var(--fg-subtle);
+  box-shadow: var(--box-shadow);
+
+  > svg {
+    color: var(--fg);
+    font-size: var(--font-size-m);
+  }
+
+  transition: background-color 0.2s, border 0.2s;
+  &:hover {
+    background-color: var(--bg-subtle-alt);
+    border: 2px solid #1da1f2;
   }
 }

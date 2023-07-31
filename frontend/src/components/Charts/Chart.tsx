@@ -25,7 +25,10 @@ const barChartOptions = {
       },
       font: { weight: "bold" },
       display: function (context: any) {
-        return context.dataset.data[context.dataIndex] > 1;
+        return context.dataset.data[context.dataIndex] > 0;
+      },
+      formatter: function (value: number) {
+        return Math.round(value * 100) / 100;
       },
     },
     legend: {
@@ -93,19 +96,22 @@ const pieChartOptions = {
     },
     datalabels: {
       font: {
-        weight: "bold",
+        weight: 700,
         size: 9,
         family: montserrat.style.fontFamily,
       },
       color: "#2d303e",
       display: function (context: any) {
-        var dataset = context.dataset;
-        var count = dataset.data.length;
-        var value = dataset.data[context.dataIndex];
-        return value > count * 1.5;
+        const value = context.dataset.data[context.dataIndex];
+        const total = context.dataset.data.reduce(
+          (a: number, b: number) => a + b,
+          0
+        );
+
+        return value > total * 0.2;
       },
       formatter: function (_: any, context: any) {
-        return context.chart.data.labels[context.dataIndex].toUpperCase();
+        return context.chart.data.labels[context.dataIndex];
       },
     },
     tooltip: {
