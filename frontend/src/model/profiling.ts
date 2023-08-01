@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { PersonSchema } from './person';
 import { ProfilingAlgorithmSchema } from './profilingAlgorithm';
 
-export const ProfilingDataSchema = z
+export const ProfilingSchema = z
 	.object({
 		id: z.string(),
 		algorithm: ProfilingAlgorithmSchema,
@@ -10,4 +10,4 @@ export const ProfilingDataSchema = z
 		people: z.array(PersonSchema)
 	})
 
-export type ProfilingData = z.infer<typeof ProfilingDataSchema>;
+export type Profiling = z.infer<typeof ProfilingSchema>;

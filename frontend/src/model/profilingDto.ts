@@ -1,12 +1,12 @@
 import { z } from 'zod';
 import { GenderSchema } from './gender';
-import { ProfilingData } from './profilingData';
+import { Profiling } from './profiling';
 import { ProfilingAlgorithmSchema } from './profilingAlgorithm';
 import { AgeSchema } from './age';
 import { FameSchema } from './fame';
 import { OccupationSchema } from './occupation';
 
-export const ProfilingDataDtoSchema = z
+export const ProfilingDtoSchema = z
 	.object({
 		id: z.string(),
 		status: z.enum(["PENDING", "SUCCESS"]),
@@ -31,9 +31,9 @@ export const ProfilingDataDtoSchema = z
 		)).nullable()
 	})
 
-export type ProfilingDataDto = z.infer<typeof ProfilingDataDtoSchema>;
+export type ProfilingDto = z.infer<typeof ProfilingDtoSchema>;
 
-export const toProfilingData = (dto: ProfilingDataDto): ProfilingData => {
+export const toProfiling = (dto: ProfilingDto): Profiling => {
 	return {
 		id: dto.id,
 		algorithm: dto.algorithm,

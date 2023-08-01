@@ -55,7 +55,7 @@ export default function ProfilingOverview({
   const handleClick = () => {
     setIsProcessing(true);
     if (username) {
-      ProfilingService.predictUsername(username, algorithm)
+      ProfilingService.predictTwitter(username, algorithm)
         .then((profilingId) => waitForResult(profilingId))
         .catch((error) => {
           createErrorNotification(error.message, 5000);

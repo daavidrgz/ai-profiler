@@ -1,5 +1,5 @@
 import { ProfilingAlgorithm } from "@/model/profilingAlgorithm";
-import { ProfilingDataDto, ProfilingDataDtoSchema } from "@/model/profilingDataDto";
+import { ProfilingDto, ProfilingDtoSchema } from "@/model/profilingDto";
 
 export default abstract class ProfilingService {
 	private static endpoint = "/api";
@@ -21,7 +21,7 @@ export default abstract class ProfilingService {
 			});
 	};
 
-	public static predictUsername(username: string, algorithm: ProfilingAlgorithm): Promise<string> {
+	public static predictTwitter(username: string, algorithm: ProfilingAlgorithm): Promise<string> {
 		return fetch(`${this.endpoint}/predict/twitter?algorithm=${algorithm}&user=${username}`, {
 			method: "POST"
 		})
@@ -34,14 +34,14 @@ export default abstract class ProfilingService {
 			});
 	};
 
-	public static getProfiling(profilingId: string): Promise<ProfilingDataDto> {
+	public static getProfiling(profilingId: string): Promise<ProfilingDto> {
 		return fetch(`${this.endpoint}/profilings/${profilingId}`)
 			.then((res) => res.json())
 			.then((data) => {
 				if (data.detail) {
 					throw new Error(data.detail);
 				}
-				return ProfilingDataDtoSchema.parse(data);
+				return ProfilingDtoSchema.parse(data);
 			});
 	};
 }
