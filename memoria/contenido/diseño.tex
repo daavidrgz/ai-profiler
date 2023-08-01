@@ -1,6 +1,9 @@
 \chapter{Diseño}
 \label{chap:diseño}
 
+Para abordar el diseño de la aplicación a lo largo de este capítulo, se detallará la arquitectura software elegida para el sistema
+y se mostrarán los prototipos de la interfaz de usuario.
+
 \section{Arquitectura}
 \label{sec:diseño_arquitectura}
 
@@ -9,11 +12,30 @@ así como también las limitaciones temporales del proyecto, se ha optado por un
 por la facilidad en su implementación y por su capacidad de intercomunicación con otros sistemas, especialmente con clientes web. Como
 se aprecia en la Figura \ref{fig:arquitectura_contenedor}, el servidor cuenta con un controlador REST capaz de redirigir las peticiones al servicio
 corresepondiente. En este sentido, a pesar de solo contar con un único servicio (\textit{Servicio de perfilado}) en la versión actual,
-la arquitectura cliente-servidor permite añadir nuevos servicios, junto a nuevas funcionalidades, de forma sencilla y sin poner en riesgo al resto de servicios.
+la arquitectura cliente-servidor permite añadir nuevos servicios, junto a nuevas funcionalidades, de forma sencilla y sin poner en riesgo al resto del sistema.
+Dicho servicio será el que se comunique con la base da datos para garantizar la persistencia de los datos del perfilado y permitir así
+una posterior consulta.
+
+\bigskip
+Por otro lado, para que el código estuviese bien organizado, se decidió utilizar el patrón de diseño DDD (del inglés \textit{Domain-Driven Design}) \cite{ddd}, el cual
+permite separar el código en tres capas: la capa de aplicación, la capa de dominio y la capa de infraestructura. La capa de aplicación es la encargada de gestionar
+la entrada y salida de la aplicación que, en nuestro caso, es el controlador que maneja los \textit{endpoints} REST; la capa de dominio es la que contiene la lógica
+de negocio y las entidades; y la capa de infraestructura es la responsable de administrar las interacciones internas de la aplicación que, en nuestro
+caso, se encarga de la comunicación con la base de datos.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{diagramas/ddd.pdf}
+	\caption{Diagrama de capas del patrón de diseño DDD. Adaptado de Ł, Ryś \cite{dddblog}}
+	\label{fig:ddd}
+\end{figure}
 
 \bigskip
 A mayores, el propio \textit{frontend} web tendrá también una arquitecture basada en cliente-servidor, en la que el servidor será el encargado
-de ofrecer al cliente los archivos estáticos necesarios para mostrar la interfaz (HTML, CSS, JavaScript, fuentes, imágenes...).
+de ofrecer al cliente los archivos estáticos necesarios para mostrar la interfaz (HTML, CSS, JavaScript, fuentes, imágenes...). El hecho
+de elegir una interfaz web gira en torno al requisito no funcional de portabilidad definido en la Sección \ref{sec:analisis_requisitos_no_funcionales},
+puesto que de esta forma, la aplicación podría ser utilizada por cualquier dispositivo con un navegador web, evitando
+desarrollar aplicaciones nativas para cada sistema operativo.
 
 \bigskip
 \begin{figure}[H]
@@ -23,9 +45,6 @@ de ofrecer al cliente los archivos estáticos necesarios para mostrar la interfa
 	\label{fig:arquitectura_contenedor}
 \end{figure}
 
-\section{Diagramas de secuencia}
-\label{sec:diseño_secuencia}
-
 \section{Prototipado}
 \label{sec:diseño_prototipado}
 
@@ -34,8 +53,8 @@ la herramienta Draw.io \cite{drawio} debido a su sencillez y rapidez en la elabo
 como pueden ser Adobe XD \cite{adobexd} o Figma \cite{figma}.
 
 \bigskip
-La filosofía de diseño de la interfaz se centró en el minimalismo y la usabilidad, por lo que todo estará caracterizado por no
-contener excesivos elementos y por ser fácilmente comprensible para el usuario. 
+La filosofía de diseño de la interfaz se centró en el minimalismo y la usabilidad, como se indica en la Sección \ref{sec:analisis_requisitos_no_funcionales}
+, por lo que todo estará caracterizado por no contener excesivos elementos y por ser fácilmente comprensible para el usuario. 
 
 \bigskip
 La pantalla de inicio, como se ve en la Figura \ref{fig:prototipo_inicio}, está compuesta simplemente por un título, 
@@ -105,7 +124,7 @@ Este \textit{dashboard} contendrá los siguientes gráficos y elementos, los cua
 	\item \textbf{Lista detallada de personas}: En esta sección, se muestra la lista de personas perfiladas de forma paginada. Además, la lista
 		permitirá ser ordenada por cada uno de los diferentes campos, según se indica en la historia de usuario con identificador 
 		\textit{6} de la Sección \ref{sec:analisis_requisitos_funcionales}. Para ello, el usuario deberá hacer clic en el nombre de dicho campo, teniendo
-		la opción de, volviendo a clicar, cambiar el orden de ordenación (ascendente o descendente).
+		la opción de, volviendo a clicar, cambiar el sentido de ordenación (ascendente o descendente).
 	\item \textbf{Distribución de edad}: Para la distribución de edad, se ha optado por un gráfico de barras sobre otras opciones de representación
 		categóricas como el gráfico circular. Esto se debe a que, teniendo cinco clases diferentes, el gráfico de barras permite una mejor visualización 
 		de los datos y una comparativa más clara entre ellos, dado que es más fácil comparar longitudes que áreas o ángulos. En la parte inferior del gráfico,

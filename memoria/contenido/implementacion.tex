@@ -1,0 +1,143 @@
+\chapter{Implementación}
+\label{chap:implementacion}
+
+A lo largo de este capítulo, se expondrán las decisiones de implementación más relevantes tomadas durante el desarrollo del proyecto.
+
+\section{\textit{Backend}}
+
+Para analizar la implementación del \textit{backend}, se tomará como referencia el diagrama de clases de la Figura \ref{fig:implementacion_clases} y se profundizará
+en las clases más importantes que lo componen. Asimismo, se estudirá y se justificará cuales han sido los \textit{endpoints} expuestos por el servidor,
+representados en la Figura \ref{fig:implementacion_endpoints}.
+
+\subsection{\textit{Endpoints}}
+
+Dado que el \textit{backend} seguirá una arquitectura REST, se expondrán los \textit{endpoints} que se han implementado para el servidor, así como los parámetros
+que reciben. Como se puede observar en la Figura \ref{fig:implementacion_endpoints}, el servidor expone un total de cuatro \textit{endpoints}:
+
+\begin{itemize}
+	\item \textbf{/predict}: Como indica la historia de usuario con identificador \textit{1} de la Sección \ref{sec:analisis_requisitos_funcionales}, el usuario
+		debe poder subir su propio dataset de textos para su perfilado. Para ello, se ha implementado este \textit{endpoint} que recibe como parámetros de la URL el
+		nombre del algoritmo de perfilado a utilizar junto al \textit{dataset} utilizado para entrenar el modelo. Además, ya que el método de la petición es POST,
+		en el cuerpo de la petición será donde se envíe
+		el archivo con los textos y usuarios a perfilar. En caso de que el archivo no sea correcto, que el algoritmo no exista o que el \textit{dataset} de entrenamiento
+		no sea válido, se devolverá un error HTTP 400 (Bad Request). En caso contrario, se devolverá un identificador correspondiente a la tarea de perfilado
+		que se ha creado de forma asíncrona, generado dinámicamente con la librería uuid \cite{uuidpython} de Python (según el estándar RFC 4122 \cite{rfc4122}) y que coincide
+		con el identificador del documento almacenado en la base de datos. 
+		El hecho de no esperar a que el perfilado se complete 
+		para devolver una respuesta al usuario evita tener problemas con el tiempo de espera de la petición o \textit{timeout} del \textit{socket} TCP, 
+		permitiendo así procesar grandes volúmenes de datos y cumplir con el requisito de escalabilidad establecido en la Sección \ref{sec:analisis_requisitos_no_funcionales}.
+
+	\item \textbf{/train}: Además, ya que el usuario debe poder reentrenar los modelos con los algoritmos disponibles, se ha implementado este \textit{endpoint} de tipo GET.
+		En este caso, se recibe como parámetros de la URL el nombre del algoritmo de perfilado a utilizar junto al \textit{dataset} de entrenamiento. De la misma forma,
+		se validarán los parámetros y, en caso de que sean correctos, se iniciará una tarea asíncrona en el \textit{backend}.
+
+	\item \textbf{/performance}: Puesto que otra de las historias de usuario nos indica que es necesario conocer el rendimiento que tiene los algoritmos,
+		el \textit{backend} expondrá otro \textit{endpoint} de tipo GET que recibe los mismos parámetros que el anterior. La diferencia es que, en este caso,
+		se devolverá un JSON con los valores de rendimiento del algoritmo en lugar de iniciar una tarea asíncrona.
+	
+	\item \textbf{/profilings/\{id\}}: Para poder obtener los resultados del perfilado creado de forma asíncrona, este \textit{endpoint} de tipo GET
+		permite recuperarlos de la base da datos haciendo uso del identificador devuelto por la tarea de predicción. En caso de que la tarea
+		no exista, se devolverá un error HTTP 404 (Not Found). La respuesta devuelta será un JSON con la estructura mostrada en la Figura \ref{fig:profiling_json}.
+
+		\begin{figure}[H]
+			\begin{lstlisting}[language=json]
+{
+	"status": "SUCCESS",
+	"algorithm": "martinc",
+	"time": 4291,
+	"output": [
+		{
+			"id": "29502",
+			"result": {
+				"gender": "male",
+				"fame": "star",
+				"occupation": "sports",
+				"age": "35-49"
+			}
+		},
+		{
+			"id": "38991",
+			"result": {
+				"gender": "female",
+				"fame": "rising",
+				"occupation": "performer",
+				"age": "50-XX"
+			}
+		},
+	]
+}\end{lstlisting}
+			\caption{Estructura del JSON devuelto por el \textit{endpoint} /profilings/\{id\}}
+			\label{fig:profiling_json}
+		\end{figure}
+\end{itemize}
+
+Destacar que en todos los casos, tanto el algoritmo de Grivas como el de Martinc, tienen asociado un \textit{dataset} de entrenamiento por defecto (que coincide
+con el utilizado por los autores originales para su publicación), el cual se utilizará en caso de no especificar ninguno en la URL.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{diagramas/endpoints.pdf}
+	\caption{Diagrama de \textit{endpoints} del \textit{backend}}
+	\label{fig:implementacion_endpoints}
+\end{figure}
+
+\subsection{Clases}
+
+\bigskip
+Como se explicó en la Sección \ref{sec:herramientas_backend}, la estructura del \textit{backend} sigue los principios
+del patrón de diseño DDD \cite{ddd}, en el que se distinguen tres capas: la capa de aplicación, la capa de dominio
+y la capa de infrastructura.
+
+\bigskip
+Nuestro punto de entrada al sistema, es decir, el componente que forma parte de la \textbf{capa de aplicación}, es la clase
+\textit{Controller}, el cual se encarga de realizar las siguientes tareas:
+
+\begin{itemize}
+	\item Exponer los \textit{endpoints} y recibir los parámetros de entrada, ya sea a través de la URL o del cuerpo de la petición
+	haciendo uso de FastAPI \cite{fastapi}.
+	\item Validar dichos parámetros y devolver los errores HTTP correspondientes en caso de que no sean correctos.
+	\item Parsear los parámetros de entrada a los tipos de datos que se necesiten.
+	\item Realizar la llamada al servicio de la capa de dominio y devolver el valor de retorno encapsulado en una respuesta HTTP.
+\end{itemize}
+
+\bigskip
+En la \textbf{capa de dominio}, una vez los datos han sido validados y parseados, el \textit{ProfilingService} es el encargado de orquestar
+las diferentes llamadas y delegar la lógica de negocio a las distintas entidades.
+
+\bigskip
+La más importante de ellas es la clase \textit{ProfilingAlgorithm},
+una clase abstracta que define la interfaz que deben implementar todos los algoritmos de perfilado incluyendo las tres funciones principales:
+\textit{predict()}, \textit{train()} y \textit{get\_performance()}. En este sentido, es importante mencionar que los algoritmos elegidos no estaban implementados
+pensando en formar parte de una aplicación más grande, por lo que fue necesario realizar una adaptación manual para cumplir con la interfaz de
+la clase heredada, lo que implicó comprender a muy bajo nivel como estaban implementados dichos algoritmos. Esta adaptación del código fue, en el caso del algoritmo de Grivas, 
+bastante compleja, ya que conllevó sustituír librerías obsoletas, reimplementar funciones y actualizar la sintaxis a la nueva versión de Python.
+
+\bigskip
+Otra entidad importante de la capa de dominio es la clase \textit{PredictDataset}, que representa el \textit{dataset} que proporciona el usuario
+para realizar la predicción. Dado que los algoritmos de perfilado requieren que el \textit{dataset} tenga un formato específico (en este caso
+ambos solo procesan NDJSON), es necesario implementar conversores que transformen el archvio de entrada a dicho formato por lo que
+fue necesario crear las clases \textit{CsvToNdjsonConverter} y \textit{NdjsonToCsvConverter}.
+
+\bigskip
+También existe una clase llamada \textit{TrainDataset}, que representa
+el \textit{dataset} que se utiliza para entrenar el modelo y validarlo. Esta clase abstracta contiene la locacalización de los elementos
+del conjunto de entrenamiento y test, así como también un nombre que la identifica. Esto nos permite la incorporación de nuevos \textit{datasets} creando simplemente
+una nueva clase que herede de \textit{TrainDataset} y posibilita la generación de modelos haciendo uso de diferentes conjuntos de entrenamiento de forma sencilla y automática. 
+
+\bigskip
+Finalmente, en la capa de dominio, se encuentra la clase abstracta \textit{ProfilingRepository}, la cual define la interfaz que deben implementar
+los repositorios de tecnologías concretas, ya sean relacionales, no relacionales o de otro tipo.
+
+\bigskip
+Ya en la \textbf{capa de infraestructura}, es decir, donde se almacenan todos los componentes externos con los que interactúa el dominio, se encuentran las clases que implementan
+la interfaz definida por la clase \textit{ProfilingRepository}. En nuestro caso, ya que se decidió optar por MongoDB como base de datos, solo existe
+la clase \textit{MongoProfilingRepository}, la cual se encarga de realizar las operaciones CRUD (del inglés \textit{Create, Read, Update, Delete}) sobre la base de datos, así
+como de establecer y mantener la conexión con la misma.
+
+\bigskip
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{diagramas/clases.pdf}
+	\caption{Diagrama de clases del \textit{backend}}
+	\label{fig:implementacion_clases}
+\end{figure}

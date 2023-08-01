@@ -1,30 +1,28 @@
 \chapter{Herramientas, técnicas y lenguajes}
 \label{chap:herramientas}
+
+A lo largo de este capítulo se describirán las herramientas utilizadas para el desarrollo del proyecto y se expondrán las
+razones de su uso. A su vez, para una mejor estructuración, dividiremos dichas herramientas en cuatro grupos diferentes:
+\textit{frontend}, \textit{backend}, algoritmos de perfilado y herramientas de soporte.
 	
 \section{\textit{Backend}}
 \label{sec:herramientas_backend}
 
 Ya que para el \textit{backend} no se necesitaba nada excesivamente complejo, se decidió utilizar el lenguaje de programación Python \cite{python} junto
-con el \textit{framework} FastAPI \cite{fastapi}, el cual permite crear APIs REST de forma sencilla. La decisión de utilizar Python, viene también
-condicionada por el hecho de que los algoritmos de perfilado de autor utilizados, así como también la mayor parte de los algoritmos de aprendizaje automático, 
+con el \textit{framework} FastAPI \cite{fastapi}, el cual permite crear APIs REST de forma sencilla. La decisión de utilizar Python, viene
+condicionada por el hecho de que los algoritmos de perfilado de autor utilizados, así como también la mayor parte de los algoritmos de aprendizaje automático
+y procesamiento de lenguaje natural, 
 están ya programados en Python, evitando así crear nuevos \textit{endpoints}, \textit{sockets} o \textit{bindings} para la ejecución de dichos algoritmos.
 Destacar también que el desarrollo ágil en Python favorecía mucho al trabajo debido a su tipado dinámico, a su ejecución interpretada y a su sintaxis sencilla.
 
 \bigskip
-Por otro lado, para que el cógido estuviese bien organizado, se decidió utilizar el patrón de diseño DDD (del inglés \textit{Domain-Driven Design}) \cite{ddd}, el cual
-permite separar el código en tres capas: la capa de aplicación, la capa de dominio y la capa de infraestructura. La capa de aplicación es la encargada de gestionar
-la entrada y salida de la aplicación que, en nuestro caso, es el controlador que maneja los \textit{endpoints} REST; la capa de dominio es la que contiene la lógica
-de negocio y las entidades; y la capa de infraestructura es la responsable de administrar las interacciones internas de la aplicación que, en nuestro
-caso, se encarga de la comunicación con la base de datos.
-
-\bigskip
-Esta es una figura adaptada de https://www.baeldung.com/hexagonal-architecture-ddd-spring Łukasz Ryś 2022
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.9\textwidth]{diagramas/ddd.pdf}
-	\caption{Diagrama de capas del patrón de diseño DDD}
-	\label{fig:ddd}
-\end{figure}
+En cuanto a la persistencia de los datos, se optó por MongoDB \cite{mongodb}, una base de datos NoSQL (del inglés \textit{Not Only SQL}) que permite almacenar
+datos en formato JSON (del inglés \textit{JavaScript Object Notation}). La decisión de utilizar una base de datos NoSQL sobre otras opciones como puede ser
+PostgreSQL \cite{postgresql} o MySQL \cite{mysql}, se debe a dos factores principales. Uno de ellos es la fácil implementación de MongoDB en Python
+haciendo uso de la librería PyMongo \cite{pymongo}, dado que permite realizar operaciones sobre las colecciones de forma muy intuitiva.
+El otro factor tiene que ver con la extensibilidad de la aplicación a largo plazo, es decir, frente a la creación de nuevas funcionalidades,
+campos o relaciones, MongoDB permitiría integrarlos gracias a la flexibilidad que ofrece sobre los esquemas de datos, algo imposible 
+si se emplease una base de datos relacional
 
 \section{\textit{Frontend}}
 \label{sec:herramientas_frontend}
@@ -53,7 +51,7 @@ de CSS, de Framer Motion \cite{framermotion}, una librería que permite crear an
 \label{sec:herramientas_algoritmos}
 
 A pesar de que los algoritmos de perfilado se ejecutan en el \textit{backend}, se ha decidido incluirlos en esta sección debido a que se trata de una parte
-importante y característica en el proyecto. Decir también que en este caso, las herramientas utilizadas estaban condicinadas, lógicamente,
+importante y característica del proyecto. Decir también que en este caso, las herramientas utilizadas estaban condicionadas, lógicamente,
 por aquellas utilizadas en las implementaciones de ambos algoritmos seleccionados.
 
 \bigskip
@@ -65,11 +63,11 @@ serializar objetos Python (en nuestro caso los modelos ya entrenados), o NumPy \
 \section{Soporte}
 \label{sec:herramientas_soporte}
 
-Para la gestión de tareas, debido a que nuestro ciclo de desarrollo era ágil, se utilizó Trello \cite{trello}, una herramienta que permite crear tableros con listas de tareas, las cuales pueden ser movidas
+En lo que respecta a la gestión de tareas, debido a que nuestro ciclo de desarrollo era ágil, se utilizó Trello \cite{trello}, una herramienta que permite crear tableros con listas de tareas, las cuales pueden ser movidas
 entre ellas según su estado: pendiente, en progreso o completada. 
 
 \bigskip
-Además, debido a la importancia de mantener un control sobre los cambios realizados en el código, se optó por utilizar Git \cite{git} como herramienta de control de versiones junto con GitHub \cite{github}, una plataforma que permite
+Además, debido a la importancia de mantener un historial sobre los cambios realizados en el código, se optó por utilizar Git \cite{git} como herramienta de control de versiones junto con GitHub \cite{github}, una plataforma que permite
 almacenar repositorios de Git de forma remota, similar a otras como GitLab \cite{gitlab} o BitBucket \cite{bitbucket}.
 
 \bigskip
@@ -81,9 +79,10 @@ ESLint \cite{eslint}, una herramienta que permite detectar errores en el código
 al control de cambios.
 
 \bigskip
-Con respecto, a la elaboración de los diagramas y los \textit{wireframes} que aparecen en este trabajo, se utilizó la herramienta Draw.io \cite{drawio}, la cual permite crear todo tipo de diagramas
+En relación a la elaboración de los diagramas y los \textit{wireframes} que aparecen en este trabajo, se utilizó la herramienta Draw.io \cite{drawio}, la cual permite crear todo tipo de diagramas
 \textit{online} de forma gratuita, sin la obligación de registrarse y sin la necesidad de instalar ningún programa, puediendo exportarlos en varios formatos, entre ellos SVG.
 Junto a esta herramienta, se utilizó también la librería pgfplots \cite{pgfplots} para la creación de las gráficas en el propio \LaTeX.
 
 \bigskip
-\textbf{Mencionar Docker e implementarlo}
+Finalmente, para facilitar la puesta en marcha de todas las partes que conforman el sistema y evitar instalar todas las dependencias de forma manual, se utilizó Docker \cite{docker}, una herramienta que permite crear contenedores
+, es decir, entornos de ejecución aislados que contienen todo lo necesario para que una aplicación funcione correctamente.
