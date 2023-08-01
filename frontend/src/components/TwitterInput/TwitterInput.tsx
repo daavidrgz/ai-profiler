@@ -28,20 +28,9 @@ export default function TwitterInput({ setUsername }: Props) {
           autoComplete="off"
         />
         <span className={styles.at}>@</span>
-        <AnimatePresence>
-          {usernameInput.length > 0 && (
-            <motion.button
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className={styles.searchButton}
-              type="submit"
-            >
-              <SearchIcon />
-            </motion.button>
-          )}
-        </AnimatePresence>
+        <button className={styles.searchButton} type="submit">
+          <SearchIcon />
+        </button>
       </div>
     </form>
   );

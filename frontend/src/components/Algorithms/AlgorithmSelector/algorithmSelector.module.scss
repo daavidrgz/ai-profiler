@@ -1,3 +1,5 @@
+@import "~/src/styles/builders.scss";
+
 .container {
   width: 100%;
   height: 100%;
@@ -14,12 +16,20 @@
   align-items: center;
   gap: 0.8rem;
 
+  @include for-screens-below("m") {
+    font-size: var(--font-size-s);
+  }
+
   > svg {
     font-size: 1.2rem;
     cursor: pointer;
     transition: color 0.2s;
     &:hover {
       color: var(--accent);
+    }
+
+    @include for-screens-below("m") {
+      font-size: 1rem;
     }
   }
 }
@@ -30,4 +40,8 @@
   justify-content: center;
   align-items: center;
   gap: 4rem;
+
+  @include for-screens-below("m") {
+    gap: 2rem;
+  }
 }

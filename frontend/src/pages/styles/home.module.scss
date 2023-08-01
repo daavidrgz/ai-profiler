@@ -7,6 +7,10 @@
   align-items: center;
   text-align: center;
   padding: 2rem 0;
+
+  @include for-screens-below("m") {
+    padding: 1rem 0;
+  }
 }
 
 .title {
@@ -17,6 +21,10 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   letter-spacing: -1px;
+
+  @include for-screens-below("m") {
+    font-size: 3.5rem;
+  }
 }
 
 .subtitle {
@@ -24,6 +32,11 @@
   font-size: var(--font-size-l);
   margin-top: 2rem;
   font-weight: 500;
+
+  @include for-screens-below("m") {
+    font-size: var(--font-size-s);
+    margin-top: 1rem;
+  }
 }
 
 .carouselContainer {
@@ -33,17 +46,24 @@
   margin-top: 8rem;
 
   @include for-screens-below("m") {
-    width: 90%;
+    width: 95%;
+    margin-top: 4rem;
+    height: 26rem;
   }
 }
 
 .examplesTitle {
   margin-top: 8rem;
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-xxl);
   font-weight: 800;
   background: linear-gradient(to right, #30d0ab 0%, #1660b0 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+
+  @include for-screens-below("m") {
+    font-size: var(--font-size-xl);
+    margin-top: 4rem;
+  }
 }
 
 .examplesSubtitle {
@@ -51,6 +71,12 @@
   font-size: var(--font-size-m);
   margin-top: 2rem;
   font-weight: 500;
+
+  @include for-screens-below("m") {
+    font-size: var(--font-size-s);
+    margin-top: 1rem;
+    line-height: 1.5;
+  }
 }
 
 .fieldName {
@@ -62,11 +88,22 @@
   border: 1px solid var(--fg-subtle);
   padding: 0.2rem 1rem;
   margin-left: 0.5rem;
+
+  @include for-screens-below("m") {
+    font-size: var(--font-size-xs);
+    padding: 0.1rem 0.8rem;
+    border-radius: 0.4rem;
+  }
 }
 
 .datasetExample {
   margin-top: 4rem;
   width: 50%;
+
+  @include for-screens-below("m") {
+    width: 90%;
+    margin-top: 2rem;
+  }
 }
 
 .divider {
@@ -80,11 +117,19 @@
     font-weight: 600;
     color: var(--fg-subtle-alt);
     margin: 0 2rem;
+
+    @include for-screens-below("m") {
+      font-size: var(--font-size-s);
+    }
   }
 
   > .line {
     width: 32rem;
     height: 1px;
     background-color: var(--bg-subtle);
+
+    @include for-screens-below("m") {
+      width: 12rem;
+    }
   }
 }

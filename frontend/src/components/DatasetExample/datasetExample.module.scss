@@ -1,3 +1,5 @@
+@import "~/src/styles/builders.scss";
+
 .codeContainer {
   position: relative;
   width: 100%;
@@ -10,6 +12,10 @@
   overflow-x: auto;
   padding: 1rem;
   padding-top: 2rem;
+
+  @include for-screens-below("m") {
+    height: 18rem;
+  }
 }
 
 .fileNameContainer {
@@ -24,15 +30,27 @@
   align-items: center;
   gap: var(--font-size-xs);
 
+  @include for-screens-below("m") {
+    gap: var(--font-size-xxs);
+  }
+
   > span {
     font-size: var(--font-size-xs);
     font-weight: 600;
     color: var(--fg);
+
+    @include for-screens-below("m") {
+      font-size: var(--font-size-xxs);
+    }
   }
   > svg {
     font-size: var(--font-size-s);
     font-weight: 600;
     color: var(--fg);
+
+    @include for-screens-below("m") {
+      font-size: var(--font-size-xs);
+    }
   }
 }
 
@@ -41,6 +59,10 @@
   height: 2.4rem;
   display: flex;
   align-items: center;
+
+  @include for-screens-below("m") {
+    height: 2.2rem;
+  }
 
   > .lineNumber {
     display: flex;
@@ -54,12 +76,22 @@
 
     margin-right: var(--font-size-l);
     border-right: 1px solid var(--fg-subtle);
+
+    @include for-screens-below("m") {
+      width: var(--font-size-l);
+      font-size: var(--font-size-xxs);
+      margin-right: var(--font-size-s);
+    }
   }
 
   > .codeLine {
     width: 50%;
     font-size: var(--font-size-s);
     white-space: nowrap;
+
+    @include for-screens-below("m") {
+      font-size: var(--font-size-xs);
+    }
   }
 }
 
@@ -70,6 +102,10 @@
   justify-content: center;
   align-items: center;
   gap: 1rem;
+
+  @include for-screens-below("m") {
+    margin-top: 1rem;
+  }
 }
 
 .formatButton {
@@ -87,6 +123,11 @@
 
   font-size: var(--font-size-s);
   font-weight: 600;
+
+  @include for-screens-below("m") {
+    font-size: var(--font-size-xs);
+    padding: var(--font-size-xxs) var(--font-size-s);
+  }
 
   &:hover {
     background-position: 100% 50%;

@@ -1,3 +1,5 @@
+@import "~/src/styles/builders.scss";
+
 .algorithmCard {
   text-align: left;
   padding: 1rem;
@@ -26,6 +28,10 @@
     font-weight: 600;
     color: var(--fg);
     margin-bottom: 1rem;
+
+    @include for-screens-below("m") {
+      font-size: var(--font-size-s);
+    }
   }
 }
 
@@ -38,6 +44,10 @@
     font-size: var(--font-size-s);
     font-weight: 400;
     margin-bottom: var(--font-size-s);
+
+    @include for-screens-below("m") {
+      font-size: var(--font-size-xs);
+    }
   }
 
   > ul > li {
@@ -48,6 +58,11 @@
     display: flex;
     align-items: center;
     gap: 0.4rem;
+
+    @include for-screens-below("m") {
+      font-size: var(--font-size-xxs);
+      margin: var(--font-size-xxs) 0;
+    }
   }
 
   svg {

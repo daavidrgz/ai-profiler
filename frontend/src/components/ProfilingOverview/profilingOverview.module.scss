@@ -1,3 +1,5 @@
+@import "~/src/styles/builders.scss";
+
 .container {
   width: 100%;
   height: 100%;
@@ -19,12 +21,20 @@
   align-items: center;
   gap: 0.8rem;
 
+  @include for-screens-below("m") {
+    font-size: var(--font-size-s);
+  }
+
   > svg {
     font-size: 1.2rem;
     cursor: pointer;
     transition: color 0.2s;
     &:hover {
       color: var(--accent);
+    }
+
+    @include for-screens-below("m") {
+      font-size: 1rem;
     }
   }
 }
@@ -90,6 +100,10 @@
 .fileIcon {
   font-size: 2.5rem !important;
   color: var(--fg);
+
+  @include for-screens-below("m") {
+    font-size: 2rem !important;
+  }
 }
 
 .fileInfo {
@@ -106,11 +120,17 @@
   > .fileName {
     font-size: var(--font-size-s);
     font-weight: 600;
+    @include for-screens-below("m") {
+      font-size: var(--font-size-xs);
+    }
   }
 
   > .fileSize {
     font-size: var(--font-size-xs);
     font-weight: 500;
+    @include for-screens-below("m") {
+      font-size: var(--font-size-xxs);
+    }
   }
 }
 
@@ -135,6 +155,11 @@
   background-size: 150% auto;
   background-position: 0% 50%;
 
+  @include for-screens-below("m") {
+    padding: var(--font-size-xs) var(--font-size-l);
+    font-size: var(--font-size-xs);
+  }
+
   &[data-disabled="true"] {
     cursor: not-allowed;
     filter: grayscale(0.5);
@@ -150,6 +175,9 @@
 
   > svg {
     font-size: 1.1rem;
+    @include for-screens-below("m") {
+      font-size: 0.9rem;
+    }
   }
 }
 

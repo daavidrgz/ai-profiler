@@ -1,3 +1,5 @@
+@import "~/src/styles/builders.scss";
+
 .container {
   display: flex;
   flex-direction: column;
@@ -17,6 +19,10 @@
   -webkit-text-fill-color: transparent;
 
   color: var(--fg);
+
+  @include for-screens-below("m") {
+    font-size: var(--font-size-m);
+  }
 }
 
 .inputContainer {
@@ -61,15 +67,15 @@
       color: var(--fg);
     }
   }
+
+  @include for-screens-below("m") {
+    width: 12rem;
+    font-size: var(--font-size-xs);
+  }
 }
 
 .searchButton {
   cursor: pointer;
-  position: absolute;
-  top: 50%;
-  left: calc(100% + var(--font-size-m));
-  transform: translateY(-50%);
-
   display: flex;
   align-items: center;
   justify-content: center;
