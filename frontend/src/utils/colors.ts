@@ -6,9 +6,9 @@ import { PersonalityTraitSchema } from "@/model/personalityTrait";
 
 export function getGenderColors() {
 	return [
-		"#72db95",
-		"#c0edcf",
-		"#e1fcea",
+		"#48db92",
+		"#aae3c9",
+		"#d0f5e4",
 	]
 }
 

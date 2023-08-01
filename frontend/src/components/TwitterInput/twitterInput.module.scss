@@ -33,6 +33,7 @@
     left: var(--font-size-s);
     transform: translateY(-50%);
     color: var(--fg-subtle);
+    font-size: var(--font-size-s);
     font-weight: 600;
     transition: color 0.2s;
   }
@@ -41,7 +42,7 @@
 .input {
   width: 16rem;
   padding: var(--font-size-s) var(--font-size-l);
-  padding-left: 2.2rem;
+  padding-left: 2rem;
   border-radius: var(--border-radius);
   color: var(--fg);
   font-weight: 600;

@@ -7,6 +7,7 @@ import { DivProps } from "@/utils/defaultInterfaces";
 import { Bar, Doughnut, Pie } from "react-chartjs-2";
 import { AnimatePresence, motion } from "framer-motion";
 import { montserrat } from "@/utils/fonts";
+import { alpha, darken, lighten } from "@mui/system/colorManipulator";
 
 const barChartOptions = {
   responsive: true,
@@ -20,16 +21,10 @@ const barChartOptions = {
     datalabels: {
       align: "end",
       anchor: "end",
-      color: function (context: any) {
-        return context.dataset.backgroundColor;
-      },
       font: { weight: "bold" },
-      display: function (context: any) {
-        return context.dataset.data[context.dataIndex] > 0;
-      },
-      formatter: function (value: number) {
-        return Math.round(value * 100) / 100;
-      },
+      color: (context: any) => context.dataset.backgroundColor,
+      display: (context: any) => context.dataset.data[context.dataIndex] > 0,
+      formatter: (value: number) => Math.round(value * 100) / 100,
     },
     legend: {
       display: false,
@@ -43,9 +38,11 @@ const barChartOptions = {
       titleFont: {
         size: 12.8,
         weight: "bold",
+        family: montserrat.style.fontFamily,
       },
       bodyFont: {
         size: 11.2,
+        family: montserrat.style.fontFamily,
       },
     },
   },
@@ -92,27 +89,18 @@ const barChartOptions = {
 const pieChartOptions = {
   plugins: {
     legend: {
-      display: false,
+      labels: {
+        boxWidth: 10,
+        color: "#E3E6EF",
+        font: {
+          size: 8.5,
+          weight: 700,
+          family: montserrat.style.fontFamily,
+        },
+      },
     },
     datalabels: {
-      font: {
-        weight: 700,
-        size: 9,
-        family: montserrat.style.fontFamily,
-      },
-      color: "#2d303e",
-      display: function (context: any) {
-        const value = context.dataset.data[context.dataIndex];
-        const total = context.dataset.data.reduce(
-          (a: number, b: number) => a + b,
-          0
-        );
-
-        return value > total * 0.2;
-      },
-      formatter: function (_: any, context: any) {
-        return context.chart.data.labels[context.dataIndex];
-      },
+      display: false,
     },
     tooltip: {
       backgroundColor: "#252734",
@@ -123,9 +111,11 @@ const pieChartOptions = {
       titleFont: {
         size: 12.8,
         weight: "bold",
+        family: montserrat.style.fontFamily,
       },
       bodyFont: {
         size: 11.2,
+        family: montserrat.style.fontFamily,
       },
     },
   },
@@ -232,8 +222,8 @@ export default function Chart({
         <div
           className={styles.chartContainer}
           style={{
-            width: chartType === "bar" ? "100%" : "11rem",
-            height: chartType === "bar" ? "100%" : "11rem",
+            width: chartType === "bar" ? "100%" : "12rem",
+            height: chartType === "bar" ? "100%" : "12rem",
           }}
         >
           {chartType === "pie" && (
@@ -254,7 +244,7 @@ export default function Chart({
             <Doughnut
               ref={chartRef}
               data={chartData}
-              options={pieChartOptions}
+              options={fullPieChartOptions}
             />
           )}
         </div>
