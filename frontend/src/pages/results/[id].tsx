@@ -15,9 +15,9 @@ import OccupationChart from "@/components/Charts/OccupationChart";
 import PersonalityTraitsChart from "@/components/Charts/PersonalityTraitsChart";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import { useRouter } from "next/router";
-import { ProfilingData } from "@/model/profilingData";
+import { Profiling } from "@/model/profiling";
 import ProfilingService from "@/services/ProfilingService";
-import { toProfilingData } from "@/model/profilingDataDto";
+import { toProfiling } from "@/model/profilingDto";
 import { useNotifications } from "@/components/Providers/NotificationProvider/NotificationProvider";
 import plugin from 'chartjs-plugin-datalabels';
 
@@ -26,7 +26,7 @@ Chart.register(plugin);
 
 export default function ResumePage() {
   const [selectedPerson, setSelectedPerson] = useState<Person | null>(null);
-  const [profilingData, setProfilingData] = useState<ProfilingData | null>(
+  const [profiling, setProfiling] = useState<Profiling | null>(
     null
   );
   const [fetching, setFetching] = useState(false);
@@ -40,8 +40,8 @@ export default function ResumePage() {
     setFetching(true);
     if (id && typeof id === "string") {
       ProfilingService.getProfiling(id)
-        .then((profilingData) =>
-          setProfilingData(toProfilingData(profilingData))
+        .then((profiling) =>
+          setProfiling(toProfiling(profiling))
         )
         .catch((error) => {
           createErrorNotification(error.message, 5000);
@@ -54,7 +54,7 @@ export default function ResumePage() {
     return;
   }
 
-  if (!profilingData)
+  if (!profiling)
     return (
       <>
         <NavBar />
@@ -91,49 +91,49 @@ export default function ResumePage() {
         <div className={styles.chartsContainer}>
           <div className={styles.firstRow}>
             <ProfilingResume
-              profilingData={profilingData}
+              profiling={profiling}
               style={{ width: "100%", height: "100%" }}
             />
           </div>
 
           <div className={styles.secondRow}>
             <PeopleList
-              algorithm={profilingData.algorithm}
-              people={profilingData.people}
+              algorithm={profiling.algorithm}
+              people={profiling.people}
               selectedPerson={selectedPerson}
               setSelectedPerson={setSelectedPerson}
               style={{ width: "56rem", height: "100%" }}
             />
             <AgeChart
-              people={profilingData.people}
+              people={profiling.people}
               selectedPerson={selectedPerson}
               style={{ width: "36rem", height: "100%" }}
             />
             <GenderChart
-              people={profilingData.people}
+              people={profiling.people}
               selectedPerson={selectedPerson}
               style={{ width: "18rem", height: "100%" }}
             />
           </div>
 
           <div className={styles.thirdRow}>
-            {profilingData.algorithm === "martinc" && (
+            {profiling.algorithm === "martinc" && (
               <>
                 <FameChart
-                  people={profilingData.people}
+                  people={profiling.people}
                   selectedPerson={selectedPerson}
                   style={{ width: "25rem", height: "100%" }}
                 />
                 <OccupationChart
-                  people={profilingData.people}
+                  people={profiling.people}
                   selectedPerson={selectedPerson}
                   style={{ width: "50rem", height: "100%" }}
                 />
               </>
             )}
-            {profilingData.algorithm === "grivas" && (
+            {profiling.algorithm === "grivas" && (
               <PersonalityTraitsChart
-                people={profilingData.people}
+                people={profiling.people}
                 selectedPerson={selectedPerson}
                 style={{ width: "38rem", height: "100%" }}
               />

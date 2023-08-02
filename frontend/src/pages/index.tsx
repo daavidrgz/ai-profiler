@@ -48,9 +48,9 @@ export default function HomePage() {
               >
                 <TwitterInput setUsername={setUsername} />
                 <div className={styles.divider}>
-                  <div className={styles.line} />
+                  {/* <div className={styles.line} /> */}
                   <span>OR</span>
-                  <div className={styles.line} />
+                  {/* <div className={styles.line} /> */}
                 </div>
                 <UploadDataset handleImportFile={handleImportFile} />
               </motion.div>

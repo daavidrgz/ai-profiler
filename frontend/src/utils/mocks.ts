@@ -1,11 +1,11 @@
 import { GenderSchema } from "@/model/gender";
 import { OccupationSchema } from "@/model/occupation";
-import { toProfilingData } from "@/model/profilingDataDto";
+import { toProfiling } from "@/model/profilingDto";
 import { getRandomItem } from "./utils";
 import { FameSchema } from "@/model/fame";
 import { AgeSchema } from "@/model/age";
 
-export const martincData = toProfilingData({
+export const martincData = toProfiling({
 	id: "1234",
 	status: "SUCCESS",
 	algorithm: "martinc",
@@ -167,7 +167,7 @@ export const martincData = toProfilingData({
 	],
 });
 
-export const grivasData = toProfilingData({
+export const grivasData = toProfiling({
 	id: "12345",
 	"status": "SUCCESS",
 	"algorithm": "grivas",
@@ -457,7 +457,7 @@ const genders = Object.values(GenderSchema.Enum)
 const fames = Object.values(FameSchema.Enum)
 const ages = Object.values(AgeSchema.Enum)
 
-export const bigMartincData = toProfilingData({
+export const bigMartincData = toProfiling({
 	id: "12346",
 	status: "SUCCESS",
 	algorithm: "martinc",

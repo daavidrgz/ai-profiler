@@ -35,8 +35,8 @@ export default function ProfilingOverview({
 
   const waitForResult = (profilingId: string) => {
     ProfilingService.getProfiling(profilingId)
-      .then((profilingDataDto) => {
-        if (profilingDataDto.status == "PENDING") {
+      .then((profilingDto) => {
+        if (profilingDto.status == "PENDING") {
           setTimeout(() => waitForResult(profilingId), 500);
           return;
         }
@@ -44,7 +44,7 @@ export default function ProfilingOverview({
         createSuccessNotification("Profiling successful", 5000);
         setIsProcessing(false);
 
-        setTimeout(() => router.push(`/results/${profilingDataDto.id}`), 1000);
+        setTimeout(() => router.push(`/results/${profilingDto.id}`), 1000);
       })
       .catch((error) => {
         setIsProcessing(false);

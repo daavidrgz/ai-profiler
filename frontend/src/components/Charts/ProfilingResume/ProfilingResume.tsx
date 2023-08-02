@@ -4,22 +4,22 @@ import PeopleOutlineRoundedIcon from "@mui/icons-material/PeopleOutlineRounded";
 import { capitalize, formatTime } from "@/utils/utils";
 import FunctionsIcon from "@mui/icons-material/Functions";
 import { Tooltip } from "react-tooltip";
-import { ProfilingData } from "@/model/profilingData";
+import { Profiling } from "@/model/profiling";
 import AlgorithmInfo from "../../Algorithms/AlgorithmInfo/AlgorithmInfo";
 import HourglassEmptyRoundedIcon from "@mui/icons-material/HourglassEmptyRounded";
 import InfoCard from "../InfoCard/InfoCard";
 
 interface Props extends DivProps {
-  profilingData: ProfilingData;
+  profiling: Profiling;
 }
 
-export default function ProfilingResume({ profilingData, ...rest }: Props) {
+export default function ProfilingResume({ profiling, ...rest }: Props) {
   return (
     <div className={styles.card} {...rest}>
       <InfoCard
         title="TOTAL"
         icon={<PeopleOutlineRoundedIcon />}
-        mainValue={profilingData.people.length}
+        mainValue={profiling.people.length}
         unselectable
         tooltip={
           <Tooltip
@@ -40,7 +40,7 @@ export default function ProfilingResume({ profilingData, ...rest }: Props) {
       <InfoCard
         title="PROFILING TIME"
         icon={<HourglassEmptyRoundedIcon />}
-        mainValue={formatTime(profilingData.time)}
+        mainValue={formatTime(profiling.time)}
         unselectable
         tooltip={
           <Tooltip
@@ -68,7 +68,7 @@ export default function ProfilingResume({ profilingData, ...rest }: Props) {
       <InfoCard
         title="ALGORITHM"
         icon={<FunctionsIcon />}
-        mainValue={capitalize(profilingData.algorithm)}
+        mainValue={capitalize(profiling.algorithm)}
         unselectable
         tooltip={
           <Tooltip
@@ -77,7 +77,7 @@ export default function ProfilingResume({ profilingData, ...rest }: Props) {
             className={`${styles.algorithmTooltip} tooltip`}
             clickable
           >
-            <AlgorithmInfo algorithm={profilingData.algorithm} />
+            <AlgorithmInfo algorithm={profiling.algorithm} />
           </Tooltip>
         }
       />
