@@ -18,6 +18,8 @@
 
   @include for-screens-below("m") {
     font-size: var(--font-size-s);
+    gap: 0.5rem;
+    margin-bottom: 2rem;
   }
 
   > svg {

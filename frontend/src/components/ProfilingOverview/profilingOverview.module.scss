@@ -23,6 +23,7 @@
 
   @include for-screens-below("m") {
     font-size: var(--font-size-s);
+    gap: 0.5rem;
   }
 
   > svg {
@@ -183,4 +184,8 @@
 
 .barContainer {
   width: 50%;
+
+  @include for-screens-below("m") {
+    width: 70%;
+  }
 }

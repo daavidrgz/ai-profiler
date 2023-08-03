@@ -134,9 +134,9 @@
   }
 
   &[data-selected="true"] {
-    filter: grayscale(0) brightness(1);
+    filter: brightness(1);
   }
   &[data-selected="false"] {
-    filter: grayscale(0.4) brightness(0.7);
+    filter: brightness(0.7);
   }
 }

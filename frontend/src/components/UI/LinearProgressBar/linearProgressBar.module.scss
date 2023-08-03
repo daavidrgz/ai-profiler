@@ -1,8 +1,16 @@
+@import "~/src/styles/builders.scss";
+
 .barContainer {
   width: 100%;
 
   > span {
     background-color: #1a363080;
+    border-radius: 4px;
+    height: 4px;
+
+    @include for-screens-below("m") {
+      height: 2px;
+    }
   }
   > span > span:nth-child(1) {
     background: linear-gradient(to right, #30d0ab 0%, #1660b0 100%);
@@ -13,9 +21,14 @@
 }
 
 .label {
-  font-size: 0.8rem;
+  font-size: var(--font-size-s);
   font-weight: 600;
-  margin-bottom: 0.6rem;
+  margin-bottom: var(--font-size-s);
   text-align: left;
   color: var(--fg);
+
+  @include for-screens-below("m") {
+    font-size: var(--font-size-xs);
+    margin-bottom: var(--font-size-xs);
+  }
 }
