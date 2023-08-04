@@ -5,7 +5,7 @@ A lo largo de este capítulo, se expondrán las decisiones de implementación m�
 
 \section{\textit{Backend}}
 
-Para analizar la implementación del \textit{backend}, se tomará como referencia el diagrama de clases de la Figura \ref{fig:implementacion_clases} y se profundizará
+Para analizar la implementación del \textit{backend}, se tomará como referencia el diagrama de clases de la Figura \ref{fig:implementacion_clases_backend} y se profundizará
 en las clases más importantes que lo componen. Asimismo, se estudirá y se justificará cuales han sido los \textit{endpoints} expuestos por el servidor,
 representados en la Figura \ref{fig:implementacion_endpoints}.
 
@@ -115,7 +115,7 @@ bastante compleja, ya que conllevó sustituír librerías obsoletas, reimplement
 \bigskip
 Otra entidad importante de la capa de dominio es la clase \textit{PredictDataset}, que representa el \textit{dataset} que proporciona el usuario
 para realizar la predicción. Dado que los algoritmos de perfilado requieren que el \textit{dataset} tenga un formato específico (en este caso
-ambos solo procesan NDJSON), es necesario implementar conversores que transformen el archvio de entrada a dicho formato por lo que
+ambos solo procesan NDJSON), es necesario implementar conversores que transformen el archivo de entrada a dicho formato por lo que
 fue necesario crear las clases \textit{CsvToNdjsonConverter} y \textit{NdjsonToCsvConverter}.
 
 \bigskip
@@ -130,14 +130,66 @@ los repositorios de tecnologías concretas, ya sean relacionales, no relacionale
 
 \bigskip
 Ya en la \textbf{capa de infraestructura}, es decir, donde se almacenan todos los componentes externos con los que interactúa el dominio, se encuentran las clases que implementan
-la interfaz definida por la clase \textit{ProfilingRepository}. En nuestro caso, ya que se decidió optar por MongoDB como base de datos, solo existe
+la interfaz definida por el \textit{ProfilingRepository}. En nuestro caso, ya que se decidió optar por MongoDB como base de datos, solo existe
 la clase \textit{MongoProfilingRepository}, la cual se encarga de realizar las operaciones CRUD (del inglés \textit{Create, Read, Update, Delete}) sobre la base de datos, así
 como de establecer y mantener la conexión con la misma.
 
 \bigskip
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{diagramas/clases.pdf}
+	\includegraphics[width=\textwidth]{diagramas/clases_back.pdf}
 	\caption{Diagrama de clases del \textit{backend}}
-	\label{fig:implementacion_clases}
+	\label{fig:implementacion_clases_backend}
+\end{figure}
+
+\section{\textit{Frontend}}
+
+En lo que respecta a la implementación del \textit{frontend}, como se explicó en la Sección \ref{sec:herramientas_frontend}, se optó
+por utilizar NextJS como \textit{framework} de desarrollo, el cual está basado en React. Así, teniendo esto en cuenta y apoyándonos
+en el diagrama de clases de la Figura \ref{fig:implementacion_clases_frontend}, analizaremos
+las clases más relevantes del proyecto y su relación con el resto de módulos y componentes.
+
+\bigskip
+Primero, como elemento principal que conforma la interfaz de usuario, estarían todas las páginas que se encuentran en el módulo \textit{pages}, es decir,
+la página principal o \textit{landing} (\textit{Home}) y la página de resultados (\textit{Results}).
+
+\bigskip
+Como se ve reflejado en el diagrama, cada página está formada por varios componentes, los cuales se almacenan dentro del módulo \textit{components}.
+En este sentido, el componente \textit{Chart} es uno de los más complejos e interesantes, dado que en él reside toda la lógica y la configuración común
+ de los gráficos que se muestran en el \textit{dashboard} de la página de resultados. Otros componentes importantes son el \textit{UploadDataset},
+el cual se encarga de gestionar los eventos de \textit{drag and drop} y de la subida de archivos; el componente \textit{AlgorithmCard}, que
+presenta la información de las caraterísiticas que perfila cada algoritmo y se ocupa de mostrar el \textit{tooltip} con la información detallada;
+o el componente \textit{PeopleList}, el cual se hace cargo de manejar la paginación, la ordenación y la selección de la lista de personas.
+
+\bigskip
+Es importante
+destacar aquí el hecho de que cada uno de los componentes tiene una hoja de estilos propia gracias a la utilización de los módulos CSS \cite{cssmodules}. A su vez
+se buscó sacarle partido a SASS, haciendo uso de variables globales que definen colores o distancias; empleando el anidamiento para una mejor
+estructuración de los estilos; y utilizando los \textit{mixins}, esto es, funciones que permiten reutilizar código CSS para, por ejemplo, simplificar la implementación de las \textit{media queries}. En este
+sentido, para cumplir con el requisito no funcional de portabilidad explicado en la Sección \ref{sec:analisis_requisitos_no_funcionales}, 
+era necesario que la aplicación fuese \textit{responsive}, es decir, adaptable a cualquier tamaño de pantalla, desde móviles a monitores.
+
+
+\bigskip
+Por otro lado, ya que algunos componentes y páginas necesitan realizar peticiones al \textit{backend}, es necesario implementar un servicio
+que mantenga la lógica de la comunicación y exponga funciones que faciliten su uso. De esta tarea se encarga la clase abstracta \textit{ProfilingService},
+la cual define funciones estáticas tales como \textit{getProfiling()} o \textit{predict()} que abstraen al resto de componentes de la lógica de las peticiones HTTP.
+Dicho servicio hace uso por debajo de \textit{fetch}, una API nativa de JavaScript muy flexible que permite programar casi cualquier cosa
+relacionada con peticiones HTTP. Asimismo, ya que la asincronía es un concepto muy extendido y necesario en el desarrollo web, se ha optado
+por usar las \textit{Promises} de JavaScript, las cuales permiten realizar operaciones asíncronas de forma muy sencilla.
+
+\bigskip
+Por último, como toda aplicación tipada, es necesario definir un modelo de datos que represente cada entidad. En este sentido, se ha optado
+por el uso de enumeraciones o \textit{enums} para representar la mayor parte de los datos, tales como los algoritmos de perfilado, los géneros,
+las edades o los rasgos personales. Asimismo, se ha creado una clase \textit{Person} que aúna todas las características
+perfiladas de una persona junto a su nombre. Finalmente, para representar los datos enviados por el \textit{backend}, se ha definido la clase \textit{ProfilingDto},
+la cual, en última instancia, permite realizar la conversión a la clase \textit{Profiling} empleada por el resto de la aplicación.
+
+
+\bigskip
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{diagramas/clases_front.pdf}
+	\caption{Diagrama de clases del \textit{frontend}}
+	\label{fig:implementacion_clases_frontend}
 \end{figure}

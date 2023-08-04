@@ -5,6 +5,7 @@ En este capítulo se expondrá la planificación y distribución del trabajo en 
 se detallará el coste asociado a todos los recursos involucrados en el proceso de desarrollo.
 
 \section{Planificación temporal}
+\label{sec:planificacion_temporal}
 
 Con todo, el proyecto se ha dividido finalmente en 6 \textit{sprints} de aproximadamente tres semanas de duración cada uno.
 Se estima que las horas diarias de trabajo de un desarrollador sean 4 horas de media por lo que, teniendo en cuenta los fines de semana, se obtiene
@@ -15,7 +16,8 @@ a la gestión del proyecto, lo que supone un total de 12 horas.
 	\item \textbf{Sprint 1}: Durante el primer sprint, del 15 de abril al 5 de mayo, se realizó la instalación del entorno
 	de desarrollo sobre el que se trabajaría posteriormente y se familiarizó con las librería más comunes de NLP.
 	\item \textbf{Sprint 2}: Del 6 al 26 de mayo, se llevó a cabo una investigación de los posibles algoritmos a utilizar
-	junto a su rendimiento e implementación.
+	junto a su rendimiento e implementación. A mayores, se buscó replicar los resultados que reportaban dichos algoritmos
+	en sus publicaciones y se seleccionaron los que mejor rendimiento mostraban. Este proceso se detalla más a fondo en la Sección \ref{sec:algoritmos_analizados}.
 	\item \textbf{Sprint 3}: Durante el tercer \textit{sprint}, del 27 de mayo al 16 de junio, se comenzó con el desarrollo
 	de la interfaz de usuario, es decir, diseño de \textit{mockups} e implementación de algunos componentes.
 	\item \textbf{Sprint 4}: Del 17 de junio al 7 de julio, se continuó con el desarrollo de la interfaz de usuario y se integraron
@@ -31,49 +33,62 @@ a la gestión del proyecto, lo que supone un total de 12 horas.
 \label{sec:planificacion_costes}
 
 A lo largo del proyecto, se han empleado recuros de tres tipos diferentes: humanos, materiales y software.
-Como recursos de tipo humano asociados al proyecto
-contamos con un grupo de trabajo de tres personas, el autor de este documento y los tutores del trabajo, c
-omo se mecionó anteriormente en Sección \ref{sec:metodologia_roles}.
+Como recursos de tipo humano,
+contamos con un grupo de trabajo de tres personas, el autor de este documento y los tutores del trabajo, 
+como se mecionó anteriormente en la Sección \ref{sec:metodologia_roles}.
 En cuanto a los recursos de tipo software, todos los programas, librerías y herramientas en general
 se han descrito en detalle en el Capítulo \ref{chap:herramientas}.
-Finalmente, en lo que respecta a recursos materiales, se ha hecho uso del portátil personal del autor, 
+Finalmente, en lo que respecta a los recursos materiales asociados al proyecto, se ha hecho uso del portátil personal del autor, 
 cuyas especificaciones se muestran en la Tabla \ref{tab:costes_hardware}.
 
+\bigskip
 \begin{table}[H]
 	\centering
 	\rowcolors{2}{white}{udcgray!25}
 	\begin{tabular}{l|l}
 		\rowcolor{udcpink!25}
-		\textbf{Componente} & \textbf{Modelo} \\
-		Procesador & Intel Core™ i5-9300H @ 2.40GHz 4C/8T \\
-		Memoria RAM & 16GB 2667MHz DDR4 \\
-		Disco duro & 512GB SSD NVMe M.2 \\
-		Tarjeta gráfica & NVIDIA GeForce GTX 1660Ti \\
-		Sistema operativo & Arch Linux 6.1.12 \\
+		\small \textbf{Componente} & \small \textbf{Modelo} \\
+		\small \textit{Procesador} & \small Intel Core™ i5-9300H @ 2.40GHz 4C/8T \\
+		\small \textit{Memoria RAM} & \small 16GB 2667MHz DDR4 \\
+		\small \textit{Disco duro} & \small 512GB SSD NVMe M.2 \\
+		\small \textit{Tarjeta gráfica} & \small NVIDIA GeForce GTX 1660Ti \\
+		\small \textit{Sistema operativo} & \small Arch Linux 6.1.12 \\
 	\end{tabular}
 	\caption{Especificaciones del portátil empleado para el desarrollo del proyecto}
 	\label{tab:costes_hardware}
 \end{table}
 
-Dado que todos los recursos de tipo software utilizados con gratuitos no se ha incurrido en ningún coste
-asociado a ellos. Por otro lado, ya que el portátil no se adquirió específicamente para el desarrollo de este proyecto,
-no se ha tenido en cuenta en la estimación de costes del proyecto. Por lo tanto, para estimar el coste de los recursos
-humanos utilizados se ha tenido en cuenta el salario medio de empleados con el mismo puesto en España. Según publica
+\bigskip
+En lo que respecta a los costes, dado que todos los recursos de tipo software utilizados son gratuitos, no se ha incurrido en ningún coste
+asociado a ellos.
+
+\bigskip
+Por otro lado, ya que se hizo uso de un recurso material,
+es necesario calcular su amortización asociada. Para ello, según la Ley 27/2014 del Impuesto sobre Sociedades (LIS) \cite{leysociedades},
+los equipos para procesos de información tienen asociado un porcentaje anual de amortización del 25\% sobre el coste inicial del bien,
+por lo que, dado que el valor en el momento de compra fue de aproximadamente 1.000€, la amortización anual ascendería a 250€. Este número, sin embargo,
+tiene que ser proporcional al tiempo de uso del portátil, de aproximadamente cuatro meses, por lo que el resultado final sería de 83,30€.
+
+\bigskip
+Finalmente, para estimar el coste de los recursos
+humanos utilizados, se ha tenido en cuenta el salario medio de empleados con el mismo puesto en España. Según publica
 uno de los portales de empleo más populares a nivel mundial, Indeed, el salario medio de un ingeniero de software que desarrolla
 utilizando Python es de alrededor de 32.100€ anuales \cite{indeedsalario}. Además, el salario medio de un \textit{Project Manager}
-del sector de las TIC es de unos 43.500€ anuales. Con estos datos, el coste del proyecto se puede ver detallado en la Tabla \ref{tab:costes}.
+del sector de las TIC es de unos 43.500€ anuales. Con estos datos y junto al cómputo total de horas calculado en la Sección \ref{sec:planificacion_temporal},
+el coste del proyecto se puede ver detallado en la Tabla \ref{tab:costes}.
 
+\bigskip
 \begin{table}[H]
 	\centering
 	\rowcolors{2}{white}{udcgray!25}
 	\begin{tabular}{l|l|l|l|l}
 		\rowcolor{udcpink!25}
-		\textbf{Recurso} & \textbf{Coste por hora} & \textbf{Horas} & \textbf{Total} \\
-		\textit{Desarrollador} & 17.8€/h & 360h & 6.408€ \\
-		\textit{Project Manager} & 2 x 24.17€/h & 12h & 580€ \\
-		\textit{Software} & - & - & 0€ \\
-		\textit{Materiales} & - & - & 0€ \\
-		\textit{Total} & - & - & \textbf{6.988€} \\
+		\small \textbf{Recurso} & \small \textbf{Coste por hora} & \small \textbf{Horas} & \small \textbf{Total} \\
+		\small \textit{Desarrollador} & \small 17.8€/h & \small 360h & \small 6.408€ \\
+		\small \textit{Project Manager} & \small 2 x 24.17€/h & \small 12h & \small 580€ \\
+		\small \textit{Software} & \small - & \small - & \small 0€ \\
+		\small \textit{Materiales} & \small - & \small - & \small 83,30€ \\
+		\small \textit{Total} & \small - & \small - & \small \textbf{7.071,30€} \\
 	\end{tabular}
 	\caption{Coste del proyecto}
 	\label{tab:costes}

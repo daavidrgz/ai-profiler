@@ -23,6 +23,8 @@
 
 % Lista de paquetes potencialmente interesantes (uso baixo demanda)
 
+\usepackage{fancyvrb}
+\fvset{xleftmargin=1em,frame=single,fontsize=\small,numbers=left}
 \usepackage{pgfplots}
 \pgfplotsset{width=10cm,compat=1.9}
 % \usepgfplotslibrary{external}
@@ -38,7 +40,7 @@
 % \usepackage{multirow}    % permite crear celdas que ocupan varias filas da mesma táboa
 % \usepackage{pdfpages}    % permite insertar ficheiros en PDF no documento
 % \usepackage{rotating}    % permite diferentes tipos de rotacións para figuras e táboas
-% \usepackage{subcaption}  % permite a inclusión de varias subfiguras nunha figura
+\usepackage{subcaption}
 % \usepackage{tabu}        % permite táboas flexibles
 % \usepackage{tabularx}    % permite táboas con columnas de anchura determinada
 \colorlet{punct}{red!60!black}
@@ -125,11 +127,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Apéndices, glosarios e bibliografía  %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\appendix
-\appendixpage\
-\include{anexos/adicional}
-%\include{anexos/...}
 
 \printglossary[type=\acronymtype,title=\nomeglosarioacronimos]
 \printglossary[title=\nomeglosariotermos]

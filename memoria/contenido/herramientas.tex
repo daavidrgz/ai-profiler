@@ -2,8 +2,8 @@
 \label{chap:herramientas}
 
 A lo largo de este capítulo se describirán las herramientas utilizadas para el desarrollo del proyecto y se expondrán las
-razones de su uso. A su vez, para una mejor estructuración, dividiremos dichas herramientas en cuatro grupos diferentes:
-\textit{frontend}, \textit{backend}, algoritmos de perfilado y herramientas de soporte.
+razones de su uso. A su vez, para una mejor estructuración, se dividirán en cuatro grupos diferentes:
+herramientas del \textit{backend}, \textit{frontend}, algoritmos de perfilado y  soporte.
 	
 \section{\textit{Backend}}
 \label{sec:herramientas_backend}
@@ -63,11 +63,12 @@ serializar objetos Python (en nuestro caso los modelos ya entrenados), o NumPy \
 \section{Soporte}
 \label{sec:herramientas_soporte}
 
-En lo que respecta a la gestión de tareas, debido a que nuestro ciclo de desarrollo era ágil, se utilizó Trello \cite{trello}, una herramienta que permite crear tableros con listas de tareas, las cuales pueden ser movidas
-entre ellas según su estado: pendiente, en progreso o completada. 
+En lo que respecta a la gestión de tareas, debido a que nuestro ciclo de desarrollo era ágil, se utilizó Trello \cite{trello}, una herramienta que permite crear tableros con listas de tareas, las cuales pueden moverse
+entre ellas según su estado: pendiente, en progreso o completada. En la misma línea, para realizar las reuniones necesarias para la planificación de las tareas, se utilizó Microsoft Teams \cite{teams}, una plataforma
+de comunicación que permite realizar videollamadas, compartir la pantalla o enviar archivos, entre otras funcionalidades.
 
 \bigskip
-Además, debido a la importancia de mantener un historial sobre los cambios realizados en el código, se optó por utilizar Git \cite{git} como herramienta de control de versiones junto con GitHub \cite{github}, una plataforma que permite
+Además, debido a la importancia de mantener un historial sobre los cambios realizados en el código, se optó por utilizar Git \cite{git} como herramienta de control de versiones junto a GitHub \cite{github}, una plataforma que permite
 almacenar repositorios de Git de forma remota, similar a otras como GitLab \cite{gitlab} o BitBucket \cite{bitbucket}.
 
 \bigskip
@@ -80,9 +81,9 @@ al control de cambios.
 
 \bigskip
 En relación a la elaboración de los diagramas y los \textit{wireframes} que aparecen en este trabajo, se utilizó la herramienta Draw.io \cite{drawio}, la cual permite crear todo tipo de diagramas
-\textit{online} de forma gratuita, sin la obligación de registrarse y sin la necesidad de instalar ningún programa, puediendo exportarlos en varios formatos, entre ellos SVG.
+\textit{online} de forma gratuita, sin la necesidad de registrarse ni de instalar ningún programa, puediendo exportarlos en varios formatos, entre ellos SVG.
 Junto a esta herramienta, se utilizó también la librería pgfplots \cite{pgfplots} para la creación de las gráficas en el propio \LaTeX.
 
 \bigskip
-Finalmente, para facilitar la puesta en marcha de todas las partes que conforman el sistema y evitar instalar todas las dependencias de forma manual, se utilizó Docker \cite{docker}, una herramienta que permite crear contenedores
-, es decir, entornos de ejecución aislados que contienen todo lo necesario para que una aplicación funcione correctamente.
+Finalmente, para facilitar la puesta en marcha de todas las partes que conforman el sistema y evitar instalar todas las dependencias de forma manual, se utilizó Docker \cite{docker}, 
+una herramienta que permite crear contenedores, es decir, entornos de ejecución aislados que contienen todo lo necesario para que una aplicación funcione correctamente.
