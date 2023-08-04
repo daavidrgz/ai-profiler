@@ -6,6 +6,7 @@ import StarRoundedIcon from "@mui/icons-material/StarRounded";
 import WorkRoundedIcon from "@mui/icons-material/WorkRounded";
 import styles from "./algorithmCard.module.scss";
 import { ProfilingAlgorithm } from "@/model/profilingAlgorithm";
+import CircleIcon from "@mui/icons-material/Circle";
 
 interface Props {
   readonly?: boolean;
@@ -24,23 +25,36 @@ export default function MartincAlgorithmCard({
       onClick={() => !readonly && setAlgorithm!("martinc")}
     >
       <h3>Martinc Algorithm</h3>
+      <div className={styles.languageList}>
+        <span>Available in:</span>
+        <ul>
+          <li>
+            <CircleIcon className={styles.dot}/>
+            <span>English</span>
+          </li>
+        </ul>
+      </div>
       <div className={styles.algorithmClasses}>
         <span>Includes profiling of:</span>
         <ul>
           <li>
-            <span> • Gender</span>
+            <CircleIcon className={styles.dot}/>
+            <span>Gender</span>
             <WcRoundedIcon />
           </li>
           <li>
-            <span> • Age</span>
+            <CircleIcon className={styles.dot}/>
+            <span>Age</span>
             <TodayRoundedIcon />
           </li>
           <li>
-            <span> • Fame</span>
+            <CircleIcon className={styles.dot}/>
+            <span>Fame</span>
             <StarRoundedIcon />
           </li>
           <li>
-            <span> • Occupation</span>
+            <CircleIcon className={styles.dot}/>
+            <span>Occupation</span>
             <WorkRoundedIcon />
           </li>
         </ul>

@@ -5,6 +5,7 @@ import TodayRoundedIcon from "@mui/icons-material/TodayRounded";
 import PsychologyAltRoundedIcon from "@mui/icons-material/PsychologyAltRounded";
 import styles from "./algorithmCard.module.scss";
 import { ProfilingAlgorithm } from "@/model/profilingAlgorithm";
+import CircleIcon from "@mui/icons-material/Circle";
 
 interface Props {
   readonly?: boolean;
@@ -23,19 +24,31 @@ export default function GrivasAlgorithmCard({
       onClick={() => !readonly && setAlgorithm!("grivas")}
     >
       <h3>Grivas Algorithm</h3>
+      <div className={styles.languageList}>
+        <span>Available in:</span>
+        <ul>
+          <li>
+            <CircleIcon className={styles.dot} />
+            <span>English</span>
+          </li>
+        </ul>
+      </div>
       <div className={styles.algorithmClasses}>
         <span>Includes profiling of:</span>
         <ul>
           <li>
-            <span> • Gender</span>
+            <CircleIcon className={styles.dot} />
+            <span>Gender</span>
             <WcRoundedIcon />
           </li>
           <li>
-            <span> • Age</span>
+            <CircleIcon className={styles.dot} />
+            <span>Age</span>
             <TodayRoundedIcon />
           </li>
           <li>
-            <span> • Personality Traits</span>
+            <CircleIcon className={styles.dot} />
+            <span>Personality Traits</span>
             <PsychologyAltRoundedIcon />
           </li>
         </ul>

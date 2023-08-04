@@ -27,7 +27,7 @@
     font-size: var(--font-size-m);
     font-weight: 600;
     color: var(--fg);
-    margin-bottom: 1rem;
+    margin-bottom: var(--font-size-m);
 
     @include for-screens-below("m") {
       font-size: var(--font-size-s);
@@ -35,7 +35,7 @@
   }
 }
 
-.algorithmClasses {
+.featureList {
   width: 100%;
   color: var(--fg);
 
@@ -43,10 +43,20 @@
     display: block;
     font-size: var(--font-size-s);
     font-weight: 400;
-    margin-bottom: var(--font-size-s);
+    margin-bottom: var(--font-size-xs);
 
     @include for-screens-below("m") {
       font-size: var(--font-size-xs);
+    }
+  }
+
+  > ul {
+    display: flex;
+    flex-direction: column;
+    gap: var(--font-size-xs);
+
+    @include for-screens-below("m") {
+      gap: var(--font-size-xxs);
     }
   }
 
@@ -54,20 +64,31 @@
     font-size: var(--font-size-s);
     font-weight: 500;
 
-    margin: var(--font-size-xs) 0;
     display: flex;
     align-items: center;
     gap: 0.4rem;
 
     @include for-screens-below("m") {
       font-size: var(--font-size-xxs);
-      margin: var(--font-size-xxs) 0;
     }
   }
 
   svg {
     font-size: 0.9rem;
   }
+
+  .dot {
+    font-size: 0.2rem;
+  }
+}
+
+.languageList {
+  @extend .featureList;
+  margin-bottom: var(--font-size-m);
+}
+
+.algorithmClasses {
+  @extend .featureList;
 }
 
 .algorithmTooltip {

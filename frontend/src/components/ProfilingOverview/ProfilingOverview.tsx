@@ -135,7 +135,7 @@ export default function ProfilingOverview({
           key="startButton"
           data-disabled={isProcessing}
           className={styles.startButton}
-          onClick={handleClick}
+          onClick={() => !isProcessing && handleClick()}
         >
           <span>START PROFILING</span>
           <PlayArrowRoundedIcon />
