@@ -1,9 +1,14 @@
+@import "~/src/styles/builders.scss";
+
 .main {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 2rem 0;
-  height: 100vh;
+
+  @include for-screens-below("m") {
+    padding: 1rem 0;
+  }
 }
 
 .noContent {
@@ -39,19 +44,27 @@
   justify-content: center;
   align-items: center;
   gap: var(--font-size-s);
+
+  @include for-screens-below("m") {
+    font-size: var(--font-size-l);
+    margin-bottom: 1rem;
+    gap: var(--font-size-xs);
+  }
 }
 
 .chartsContainer {
   width: 90vw;
-  heigth: 100vh;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
+  @include for-screens-below("m") {
+    width: 94vw;
+  }
 }
 
 .firstRow {
   width: 100%;
-  height: max-content;
 }
 
 .secondRow {
@@ -60,6 +73,12 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+
+  @include for-screens-below("m") {
+    flex-wrap: wrap;
+    justify-content: center;
+    height: max-content;
+  }
 }
 
 .thirdRow {
@@ -68,6 +87,12 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+  
+  @include for-screens-below("m") {
+    flex-wrap: wrap;
+    justify-content: center;
+    height: max-content;
+  }
 }
 
 .goBackContainer {
@@ -79,6 +104,10 @@
   > svg {
     color: var(--accent);
     font-size: 1.9rem;
+
+    @include for-screens-below("m") {
+      font-size: 1.2rem;
+    }
   }
 }
 

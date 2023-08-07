@@ -1,14 +1,20 @@
+@import "~/src/styles/builders.scss";
+
 .card {
   position: relative;
   padding: 1rem;
   padding-top: 0;
-  min-width: min-content;
 
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow-subtle);
 
   background-color: var(--bg-subtle);
   overflow: auto;
+}
+
+.contentWrapper {
+  width: 100%;
+  min-width: max-content;
 }
 
 .title {
@@ -23,14 +29,22 @@
     font-size: var(--font-size-s);
     font-weight: 600;
     letter-spacing: 0.8px;
+    @include for-screens-below("m") {
+      font-size: var(--font-size-xs);
+    }
   }
 
   > svg {
     font-size: 1.3rem;
+    @include for-screens-below("m") {
+      font-size: 1rem;
+    }
   }
 }
 
 .listHeader {
+  width: 100%;
+  min-width: max-content;
   position: sticky;
   padding-top: 1rem;
   padding-bottom: 0.6rem;
@@ -38,7 +52,7 @@
   z-index: 1;
   background-color: var(--bg-subtle);
   display: flex;
-  justify-content: flex-start;
+  align-items: center;
   border-bottom: 1px solid var(--fg-subtle);
 
   > div {
@@ -54,10 +68,17 @@
     align-items: center;
     gap: 0.4rem;
 
+    @include for-screens-below("m") {
+      font-size: var(--font-size-xs);
+    }
+
     svg {
       font-size: var(--font-size-m);
       margin-top: 1px;
       transition: transform 0.1s ease-in-out;
+      @include for-screens-below("m") {
+        font-size: var(--font-size-s);
+      }
     }
 
     svg[data-order="asc"] {
@@ -70,6 +91,8 @@
 }
 
 .listItem {
+  width: 100%;
+  min-width: max-content;
   cursor: pointer;
   position: relative;
   display: flex;
@@ -83,6 +106,9 @@
     text-align: center;
     font-size: var(--font-size-s);
     font-weight: 600;
+    @include for-screens-below("m") {
+      font-size: var(--font-size-xs);
+    }
   }
 
   transition: border 0.2s, box-shadow 0.2s, border-radius 0.4s,
@@ -105,6 +131,10 @@
   align-items: center;
   color: var(--fg);
 
+  @include for-screens-below("m") {
+    padding: var(--font-size-xs) 0;
+  }
+
   > * {
     transition: all 0.2s;
   }
@@ -113,6 +143,10 @@
     font-size: 0.95rem;
     cursor: pointer;
     margin: 0 var(--font-size-xs);
+    @include for-screens-below("m") {
+      font-size: 0.8rem;
+      margin: 0 var(--font-size-xxs);
+    }
 
     &[data-disabled="true"] {
       color: var(--fg-subtle);
@@ -131,6 +165,10 @@
   margin: 0 0.1rem;
   font-size: var(--font-size-s);
   font-weight: 600;
+
+  @include for-screens-below("m") {
+    font-size: var(--font-size-xs);
+  }
 
   &[data-selected="true"] {
     opacity: 1;

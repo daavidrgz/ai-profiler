@@ -1,3 +1,5 @@
+@import "~/src/styles/builders.scss";
+
 .infoCard {
   display: flex;
   flex-direction: column;
@@ -17,22 +19,38 @@
   letter-spacing: 0.5px;
   margin-bottom: var(--font-size-xs);
 
+  @include for-screens-below("m") {
+    font-size: var(--font-size-xxs);
+    margin-bottom: var(--font-size-xxs);
+  }
+
   > svg {
     margin-bottom: 1px;
     font-size: var(--font-size-s);
+    @include for-screens-below("m") {
+      font-size: var(--font-size-xs);
+    }
   }
 }
 
 .mainValue {
   color: var(--fg);
   font-weight: 600;
-  margin-right: 0.4rem;
   letter-spacing: 0.8px;
   font-size: var(--font-size-m);
+
+  @include for-screens-below("m") {
+    font-size: var(--font-size-s);
+  }
 }
 
 .secondaryValue {
+  margin-left: 0.4rem;
   color: var(--fg);
   font-size: var(--font-size-xs);
   font-weight: 500;
+
+  @include for-screens-below("m") {
+    font-size: var(--font-size-xxs);
+  }
 }

@@ -10,11 +10,12 @@ import FlareRoundedIcon from "@mui/icons-material/FlareRounded";
 import { count } from "@/utils/utils";
 
 interface Props extends DivProps {
+  direction: "horizontal" | "vertical";
   people: Person[];
   selectedPerson: Person | null;
 }
 
-export default function FameChart({ people, selectedPerson, ...rest }: Props) {
+export default function FameChart({ direction, people, selectedPerson, ...rest }: Props) {
   const superstarCount = count(
     people,
     (person) => person.fame! === "superstar"
@@ -38,7 +39,7 @@ export default function FameChart({ people, selectedPerson, ...rest }: Props) {
       chartType="pie"
       attribute="fame"
       dimmable
-      direction="horizontal"
+      direction={direction}
       {...rest}
     >
       <InfoCard

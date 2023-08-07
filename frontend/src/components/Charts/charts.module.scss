@@ -1,3 +1,5 @@
+@import "~/src/styles/builders.scss";
+
 .card {
   position: relative;
   padding: 1rem;
@@ -20,10 +22,16 @@
     font-size: var(--font-size-s);
     font-weight: 600;
     letter-spacing: 0.8px;
+    @include for-screens-below("m") {
+      font-size: var(--font-size-xs);
+    }
   }
 
   > svg {
     font-size: 1.3rem;
+    @include for-screens-below("m") {
+      font-size: 1rem;
+    }
   }
 }
 
@@ -83,5 +91,9 @@
     font-size: var(--font-size-s);
     font-weight: 600;
     color: var(--fg);
+
+    @include for-screens-below("m") {
+      font-size: var(--font-size-xs);
+    }
   }
 }

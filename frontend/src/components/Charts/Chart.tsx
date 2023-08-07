@@ -7,9 +7,10 @@ import { DivProps } from "@/utils/defaultInterfaces";
 import { Bar, Doughnut, Pie } from "react-chartjs-2";
 import { AnimatePresence, motion } from "framer-motion";
 import { montserrat } from "@/utils/fonts";
-import { alpha, darken, lighten } from "@mui/system/colorManipulator";
+import { ScreenSize } from "@/utils/mediaqueries";
+import { useMediaQuery } from "react-responsive";
 
-const barChartOptions = {
+const barChartOptions = (fontSize: number) => ({
   responsive: true,
   maintainAspectRatio: false,
   layout: {
@@ -21,7 +22,7 @@ const barChartOptions = {
     datalabels: {
       align: "end",
       anchor: "end",
-      font: { weight: "bold" },
+      font: { weight: "bold", size: fontSize },
       color: (context: any) => context.dataset.backgroundColor,
       display: (context: any) => context.dataset.data[context.dataIndex] > 0,
       formatter: (value: number) => Math.round(value * 100) / 100,
@@ -33,15 +34,15 @@ const barChartOptions = {
       backgroundColor: "#252734",
       titleColor: "#E3E6EF",
       bodyColor: "#E3E6EF",
-      padding: 12.8,
+      padding: fontSize + 1,
       displayColors: false,
       titleFont: {
-        size: 12.8,
+        size: fontSize + 1,
         weight: "bold",
         family: montserrat.style.fontFamily,
       },
       bodyFont: {
-        size: 11.2,
+        size: fontSize,
         family: montserrat.style.fontFamily,
       },
     },
@@ -54,7 +55,7 @@ const barChartOptions = {
       ticks: {
         color: "#E3E6EF",
         font: {
-          size: 11.2,
+          size: fontSize,
           family: montserrat.style.fontFamily,
           weight: "500",
         },
@@ -67,7 +68,7 @@ const barChartOptions = {
       ticks: {
         color: "#E3E6EF",
         font: {
-          size: 11.2,
+          size: fontSize,
           family: montserrat.style.fontFamily,
           weight: "500",
         },
@@ -84,9 +85,9 @@ const barChartOptions = {
       barThickness: 35,
     },
   },
-};
+});
 
-const pieChartOptions = {
+const pieChartOptions = (fontSize: number) => ({
   plugins: {
     legend: {
       labels: {
@@ -107,19 +108,19 @@ const pieChartOptions = {
       displayColors: false,
       titleColor: "#E3E6EF",
       bodyColor: "#E3E6EF",
-      padding: 12.8,
+      padding: fontSize + 1,
       titleFont: {
-        size: 12.8,
+        size: fontSize + 1,
         weight: "bold",
         family: montserrat.style.fontFamily,
       },
       bodyFont: {
-        size: 11.2,
+        size: fontSize,
         family: montserrat.style.fontFamily,
       },
     },
   },
-};
+});
 
 interface Props extends DivProps {
   people: Person[];
@@ -209,8 +210,17 @@ export default function Chart({
     chart.update();
   }, [selectedPerson, colors, entityEnum, attribute, dimmable]);
 
-  const fullBarChartOptions = mergeDeep(barChartOptions, chartOptions);
-  const fullPieChartOptions = mergeDeep(pieChartOptions, chartOptions);
+  const isBelowScreenM = useMediaQuery({ maxWidth: ScreenSize.M - 1 });
+  const fontSize = useMemo(() => (isBelowScreenM ? 9 : 11.2), [isBelowScreenM]);
+
+  const fullBarChartOptions = useMemo(
+    () => mergeDeep(barChartOptions(fontSize), chartOptions),
+    [fontSize, chartOptions]
+  );
+  const fullPieChartOptions = useMemo(
+    () => mergeDeep(pieChartOptions(fontSize), chartOptions),
+    [fontSize, chartOptions]
+  );
 
   return (
     <div className={styles.card} {...rest}>
@@ -248,7 +258,7 @@ export default function Chart({
             />
           )}
         </div>
-        <div className={styles.dataContainer}>{children}</div>
+        {children && <div className={styles.dataContainer}>{children}</div>}
       </div>
       <AnimatePresence>
         {dataset.length === 0 && (

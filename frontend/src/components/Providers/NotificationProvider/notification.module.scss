@@ -19,7 +19,7 @@
   cursor: pointer;
   pointer-events: auto;
   position: relative;
-  padding: 1.4rem;
+  padding: var(--font-size-m) var(--font-size-l);
 
   background-color: var(--bg);
   border-radius: var(--border-radius);
@@ -54,17 +54,28 @@
   align-items: center;
   padding-right: 0.5rem;
   gap: 0.8rem;
-  font-size: 0.9rem;
-  font-weight: 500;
-
+  font-size: var(--font-size-s);
+  font-weight: 600;
   color: var(--fg);
+
+  >svg {
+    font-size: var(--font-size-l);
+  }
+
+  @include for-screens-below("m") {
+    font-size: var(--font-size-xs);
+  }
 }
 
 .Notification_message {
   margin-top: 1rem;
   color: var(--fg);
-  font-size: 1rem;
+  font-size: var(--font-size-s);
   font-weight: 500;
+
+  @include for-screens-below("m") {
+    font-size: var(--font-size-xs);
+  }
 }
 
 .Notification_success {

@@ -9,11 +9,13 @@ import TrendingDownRoundedIcon from "@mui/icons-material/TrendingDownRounded";
 import { capitalize } from "@/utils/utils";
 
 interface Props extends DivProps {
+  direction: "horizontal" | "vertical";
   people: Person[];
   selectedPerson: Person | null;
 }
 
 export default function OccupationChart({
+  direction,
   people,
   selectedPerson,
   ...rest
@@ -46,7 +48,7 @@ export default function OccupationChart({
       chartType="bar"
       attribute="occupation"
       dimmable
-      direction="horizontal"
+      direction={direction}
       {...rest}
     >
       <InfoCard

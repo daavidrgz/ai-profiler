@@ -67,6 +67,7 @@ function ListItem({
   algorithm,
 }: ListItemProps) {
   const width = `calc(100% / ${columns})`;
+  const minWidth = "6rem";
   return (
     <motion.div
       layout
@@ -75,11 +76,12 @@ function ListItem({
       onClick={onClick}
       data-selected={selected}
     >
-      <span style={{ width: width }}>{person.name}</span>
+      <span style={{ width: width, minWidth: minWidth }}>{person.name}</span>
       <span
         style={{
           color: getGenderColor(person.gender),
           width: width,
+          minWidth: minWidth,
         }}
       >
         {capitalize(person.gender)}
@@ -88,6 +90,7 @@ function ListItem({
         style={{
           color: getAgeColor(person.age),
           width: width,
+          minWidth: minWidth,
         }}
       >
         {person.age}
@@ -98,6 +101,7 @@ function ListItem({
             style={{
               color: getFameColor(person.fame!),
               width: width,
+              minWidth: minWidth,
             }}
           >
             {capitalize(person.fame!)}
@@ -106,6 +110,7 @@ function ListItem({
             style={{
               color: getOccupationColor(person.occupation!),
               width: width,
+              minWidth: minWidth,
             }}
           >
             {capitalize(person.occupation!)}
@@ -121,6 +126,7 @@ function ListItem({
               style={{
                 color: getPersonalityTraitColor(trait),
                 width: width,
+                minWidth: minWidth,
               }}
             >
               {person
@@ -143,7 +149,10 @@ function ListHeaderItem({
   columns,
 }: ListHeaderItemProps) {
   return (
-    <div onClick={onClick} style={{ width: `calc(100% / ${columns})` }}>
+    <div
+      onClick={onClick}
+      style={{ width: `calc(100% / ${columns})`, minWidth: "6rem" }}
+    >
       <AnimatePresence>
         <motion.span key="span" layout transition={{ duration: 0.2 }}>
           {label}
@@ -270,73 +279,75 @@ export default function PeopleList({
 
   return (
     <div className={styles.card} {...rest}>
-      <div className={styles.title}>
-        <ArrowRightRoundedIcon />
-        <span>PEOPLE LIST</span>
-      </div>
-      <div className={styles.peopleList}>
-        <div className={styles.listHeader}>
-          {normalProps.map((prop) => (
-            <ListHeaderItem
-              key={prop}
-              label={capitalize(prop)}
-              orderBy={prop}
-              onClick={() => handleSort(prop)}
-              currentOrderBy={currentOrderBy}
-              currentDirection={currentDirection}
-              columns={columns}
-            />
-          ))}
-
-          {algorithm === "martinc" && (
-            <>
-              {martincProps.map((prop) => (
-                <ListHeaderItem
-                  key={prop}
-                  label={capitalize(prop)}
-                  orderBy={prop}
-                  onClick={() => handleSort(prop)}
-                  currentOrderBy={currentOrderBy}
-                  currentDirection={currentDirection}
-                  columns={columns}
-                />
-              ))}
-            </>
-          )}
-
-          {algorithm === "grivas" && (
-            <>
-              {grivasProps.map((prop) => (
-                <ListHeaderItem
-                  key={prop}
-                  label={capitalize(prop)}
-                  orderBy={prop}
-                  onClick={() => handleSort(prop)}
-                  currentOrderBy={currentOrderBy}
-                  currentDirection={currentDirection}
-                  columns={columns}
-                />
-              ))}
-            </>
-          )}
+      <div className={styles.contentWrapper}>
+        <div className={styles.title}>
+          <ArrowRightRoundedIcon />
+          <span>PEOPLE LIST</span>
         </div>
-
-        <PageSelector page={page} maxPage={maxPage} setPage={setPage} />
-        <AnimatePresence>
-          {orderedPeople
-            .slice(page * rowsPerPage, (page + 1) * rowsPerPage)
-            .map((person, idx) => (
-              <ListItem
-                key={idx}
-                selected={selectedPerson?.name === person.name}
-                person={person}
-                onClick={() => handlePersonClick(person)}
+        <div className={styles.peopleList}>
+          <div className={styles.listHeader}>
+            {normalProps.map((prop) => (
+              <ListHeaderItem
+                key={prop}
+                label={capitalize(prop)}
+                orderBy={prop}
+                onClick={() => handleSort(prop)}
+                currentOrderBy={currentOrderBy}
+                currentDirection={currentDirection}
                 columns={columns}
-                algorithm={algorithm}
               />
             ))}
-        </AnimatePresence>
-        <PageSelector page={page} maxPage={maxPage} setPage={setPage} />
+
+            {algorithm === "martinc" && (
+              <>
+                {martincProps.map((prop) => (
+                  <ListHeaderItem
+                    key={prop}
+                    label={capitalize(prop)}
+                    orderBy={prop}
+                    onClick={() => handleSort(prop)}
+                    currentOrderBy={currentOrderBy}
+                    currentDirection={currentDirection}
+                    columns={columns}
+                  />
+                ))}
+              </>
+            )}
+
+            {algorithm === "grivas" && (
+              <>
+                {grivasProps.map((prop) => (
+                  <ListHeaderItem
+                    key={prop}
+                    label={capitalize(prop)}
+                    orderBy={prop}
+                    onClick={() => handleSort(prop)}
+                    currentOrderBy={currentOrderBy}
+                    currentDirection={currentDirection}
+                    columns={columns}
+                  />
+                ))}
+              </>
+            )}
+          </div>
+
+          <PageSelector page={page} maxPage={maxPage} setPage={setPage} />
+          <AnimatePresence>
+            {orderedPeople
+              .slice(page * rowsPerPage, (page + 1) * rowsPerPage)
+              .map((person, idx) => (
+                <ListItem
+                  key={idx}
+                  selected={selectedPerson?.name === person.name}
+                  person={person}
+                  onClick={() => handlePersonClick(person)}
+                  columns={columns}
+                  algorithm={algorithm}
+                />
+              ))}
+          </AnimatePresence>
+          <PageSelector page={page} maxPage={maxPage} setPage={setPage} />
+        </div>
       </div>
     </div>
   );

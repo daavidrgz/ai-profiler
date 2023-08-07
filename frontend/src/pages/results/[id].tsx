@@ -19,16 +19,16 @@ import { Profiling } from "@/model/profiling";
 import ProfilingService from "@/services/ProfilingService";
 import { toProfiling } from "@/model/profilingDto";
 import { useNotifications } from "@/components/Providers/NotificationProvider/NotificationProvider";
-import plugin from 'chartjs-plugin-datalabels';
+import plugin from "chartjs-plugin-datalabels";
+import { ScreenSize } from "@/utils/mediaqueries";
+import { useMediaQuery } from "react-responsive";
 
 Chart.register(CategoryScale);
 Chart.register(plugin);
 
 export default function ResumePage() {
   const [selectedPerson, setSelectedPerson] = useState<Person | null>(null);
-  const [profiling, setProfiling] = useState<Profiling | null>(
-    null
-  );
+  const [profiling, setProfiling] = useState<Profiling | null>(null);
   const [fetching, setFetching] = useState(false);
 
   const router = useRouter();
@@ -40,9 +40,7 @@ export default function ResumePage() {
     setFetching(true);
     if (id && typeof id === "string") {
       ProfilingService.getProfiling(id)
-        .then((profiling) =>
-          setProfiling(toProfiling(profiling))
-        )
+        .then((profiling) => setProfiling(toProfiling(profiling)))
         .catch((error) => {
           createErrorNotification(error.message, 5000);
         })
@@ -50,9 +48,9 @@ export default function ResumePage() {
     }
   }, [id, createErrorNotification]);
 
-  if (fetching) {
-    return;
-  }
+  const isBelowScreenM = useMediaQuery({ maxWidth: ScreenSize.M - 1 });
+
+  if (fetching) return;
 
   if (!profiling)
     return (
@@ -61,7 +59,8 @@ export default function ResumePage() {
         <div className={styles.noContent}>
           <span className={styles.noContentTitle}>NOTHING TO SHOW</span>
           <span className={styles.noContentDescription}>
-            Please, make sure the id is correct or go back and upload a new dataset
+            Please, make sure the id is correct or go back and upload a new
+            dataset
           </span>
         </div>
       </>
@@ -102,17 +101,26 @@ export default function ResumePage() {
               people={profiling.people}
               selectedPerson={selectedPerson}
               setSelectedPerson={setSelectedPerson}
-              style={{ width: "56rem", height: "100%" }}
+              style={{
+                width: isBelowScreenM ? "100%" : "56rem",
+                height: isBelowScreenM ? "22rem" : "100%",
+              }}
             />
             <AgeChart
               people={profiling.people}
               selectedPerson={selectedPerson}
-              style={{ width: "36rem", height: "100%" }}
+              style={{
+                width: isBelowScreenM ? "100%" : "36rem",
+                height: isBelowScreenM ? "22rem" : "100%",
+              }}
             />
             <GenderChart
               people={profiling.people}
               selectedPerson={selectedPerson}
-              style={{ width: "18rem", height: "100%" }}
+              style={{
+                width: isBelowScreenM ? "100%" : "18rem",
+                height: isBelowScreenM ? "22rem" : "100%",
+              }}
             />
           </div>
 
@@ -120,14 +128,22 @@ export default function ResumePage() {
             {profiling.algorithm === "martinc" && (
               <>
                 <FameChart
+                  direction={isBelowScreenM ? "vertical" : "horizontal"}
                   people={profiling.people}
                   selectedPerson={selectedPerson}
-                  style={{ width: "25rem", height: "100%" }}
+                  style={{
+                    width: isBelowScreenM ? "100%" : "25rem",
+                    height: isBelowScreenM ? "22rem" : "100%",
+                  }}
                 />
                 <OccupationChart
+                  direction={isBelowScreenM ? "vertical" : "horizontal"}
                   people={profiling.people}
                   selectedPerson={selectedPerson}
-                  style={{ width: "50rem", height: "100%" }}
+                  style={{
+                    width: isBelowScreenM ? "100%" : "50rem",
+                    height: isBelowScreenM ? "22rem" : "100%",
+                  }}
                 />
               </>
             )}
@@ -135,7 +151,10 @@ export default function ResumePage() {
               <PersonalityTraitsChart
                 people={profiling.people}
                 selectedPerson={selectedPerson}
-                style={{ width: "38rem", height: "100%" }}
+                style={{
+                  width: isBelowScreenM ? "100%" : "38rem",
+                  height: isBelowScreenM ? "22rem" : "100%",
+                }}
               />
             )}
           </div>
