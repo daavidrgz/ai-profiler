@@ -16,18 +16,19 @@ Tabla \ref{tab:historias_usuario}.
 \begin{table}[H]
   \centering
   \rowcolors{2}{white}{udcgray!25}
-  \begin{tabular}{c|p{11cm}}
+  \begin{tabular}{|c|p{11cm}|}
 		\rowcolor{udcpink!25}
+		\hline
 		\small \textbf{ID} & \small \textbf{Historia de usuario} \\\hline
-		\small \textit{1} & \small Como usuario quiero poder subir mi propio dataset de textos para su perfilado \\
-		\small \textit{2} & \small Como usuario quiero conocer ejemplos del formato de los datasets aceptados \\
-		\small \textit{3} & \small Como usuario quiero poder seleccionar el algoritmo de perfilado que se va a utilizar \\
-		\small \textit{4} & \small Como usuario quiero poder visualizar los datos obtenidos tras el perfilado \\
-		\small \textit{5} & \small Como usuario quiero poder ver una lista detallada de cada persona perfilada \\
-		\small \textit{6} & \small Como usuario quiero poder ordenar la lista de personas por cada uno de los campos perfilados \\
-		\small \textit{7} & \small Como usuario quiero poder saber como funcionan los diferentes algoritmos de perfilado disponibles \\
-		\small \textit{8} & \small Como usuario quiero ver el rendimiento de los algoritmos de perfilado disponibles \\
-		\small \textit{9} & \small Como usuario quiero poder reentrenar los algoritmos con diferentes datasets \\
+		\small \textit{1} & \small Como usuario quiero poder subir mi propio dataset de textos para su perfilado \\ \hline
+		\small \textit{2} & \small Como usuario quiero conocer ejemplos del formato de los datasets aceptados \\ \hline
+		\small \textit{3} & \small Como usuario quiero poder seleccionar el algoritmo de perfilado que se va a utilizar \\ \hline
+		\small \textit{4} & \small Como usuario quiero poder visualizar los datos obtenidos tras el perfilado \\ \hline
+		\small \textit{5} & \small Como usuario quiero poder ver una lista detallada de cada persona perfilada \\ \hline
+		\small \textit{6} & \small Como usuario quiero poder ordenar la lista de personas por cada uno de los campos perfilados \\ \hline
+		\small \textit{7} & \small Como usuario quiero poder saber como funcionan los diferentes algoritmos de perfilado disponibles \\ \hline
+		\small \textit{8} & \small Como usuario quiero ver el rendimiento de los algoritmos de perfilado disponibles \\ \hline
+		\small \textit{9} & \small Como usuario quiero poder reentrenar los algoritmos con diferentes datasets \\ \hline
   \end{tabular}
   \caption{Historias de usuario}
   \label{tab:historias_usuario}
@@ -48,22 +49,24 @@ A partir de estas historias de usuario se ha obtenido el diagrama de casos de us
 \label{sec:analisis_requisitos_no_funcionales}
 
 Una vez definidas las funcionalidades que debe tener la aplicación, es necesario definir cuales van a ser sus requisitos
-no funcionales, esto es, aquellos que están relacionados en cómo debe funcionar la aplicación. Para ello, se han tenido
-en cuenta los aspectos recogidos en la Tabla \ref{tab:requisitos_no_funcionales}.
+no funcionales, esto es, aquellos que están relacionados con cómo debe funcionar la aplicación. En este sentido, a pesar
+de que la propia metodología Scrum no contempla la definición de requisitos no funcionales más allá de las historias de usuario,
+se ha considerado adaptar esta parte y definirlos por separado para dotarlos de una mayor importancia.
+De esta forma, se han determinado los requisitos recogidos en la Tabla \ref{tab:requisitos_no_funcionales}.
 
 \bigskip
 \begin{table}[hp!]
   \centering
   \rowcolors{2}{white}{udcgray!25}
-  \begin{tabular}{c|p{9.6cm}}
+  \begin{tabular}{|c|p{9.6cm}|}
 		\rowcolor{udcpink!25}
+		\hline
 		\small \textbf{Requisito} & \small \textbf{Descripción} \\\hline
 		\small \textit{Usabilidad} & \small La aplicación debe ser fácil de usar, de forma que cualquier usuario pueda utilizarla sin
-		necesidad de tener conocimientos previos sobre el perfilado de autores \\
-		\small \textit{Escalabilidad} & \small La aplicación debe ser capaz de procesar datasets de cualquier tamaño, de forma que no
-		exista un límite en el tamaño de los mismos \\
-		\small \textit{Portabilidad} & \small La aplicación debe ser capaz de ejecutarse en cualquier sistema, de forma que
-		los usuarios no tengan que preocuparse por el dispositivo que utilizan \\
+		necesidad de tener conocimientos previos sobre el perfilado de autores. \\\hline
+		\small \textit{Escalabilidad} & \small La aplicación debe ser capaz de procesar \textit{datasets} de cualquier tamaño.  \\\hline
+		\small \textit{Portabilidad} & \small La aplicación debe ser capaz de ejecutarse en cualquier sistema, haciendo que
+		los usuarios no tengan que preocuparse por el dispositivo que utilizan. \\\hline
   \end{tabular}
   \caption{Requisitos no funcionales}
   \label{tab:requisitos_no_funcionales}

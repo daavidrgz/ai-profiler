@@ -11,16 +11,16 @@ representados en la Figura \ref{fig:implementacion_endpoints}.
 
 \subsection{\textit{Endpoints}}
 
-Dado que el \textit{backend} seguirá una arquitectura REST, se expondrán los \textit{endpoints} que se han implementado para el servidor, así como los parámetros
-que reciben. Como se puede observar en la Figura \ref{fig:implementacion_endpoints}, el servidor expone un total de cuatro \textit{endpoints}:
+Dado que el \textit{backend} seguirá una arquitectura REST, se explicarán a continuación los \textit{endpoints} que se han implementado para el servidor, así como los parámetros
+que recibe cada uno. Como se puede observar en la Figura \ref{fig:implementacion_endpoints}, el servidor expone un total de cuatro \textit{endpoints}:
 
 \begin{itemize}
 	\item \textbf{/predict}: Como indica la historia de usuario con identificador \textit{1} de la Sección \ref{sec:analisis_requisitos_funcionales}, el usuario
 		debe poder subir su propio dataset de textos para su perfilado. Para ello, se ha implementado este \textit{endpoint} que recibe como parámetros de la URL el
 		nombre del algoritmo de perfilado a utilizar junto al \textit{dataset} utilizado para entrenar el modelo. Además, ya que el método de la petición es POST,
-		en el cuerpo de la petición será donde se envíe
-		el archivo con los textos y usuarios a perfilar. En caso de que el archivo no sea correcto, que el algoritmo no exista o que el \textit{dataset} de entrenamiento
-		no sea válido, se devolverá un error HTTP 400 (Bad Request). En caso contrario, se devolverá un identificador correspondiente a la tarea de perfilado
+		será en el cuerpo donde se envíe
+		el archivo con los textos a perfilar. En caso de que el archivo no sea correcto, que el algoritmo no exista o que el \textit{dataset} de entrenamiento
+		no sea válido, se devolverá un error HTTP 400 (\textit{Bad Request}). En caso contrario, se devolverá un identificador correspondiente a la tarea de perfilado
 		que se ha creado de forma asíncrona, generado dinámicamente con la librería uuid \cite{uuidpython} de Python (según el estándar RFC 4122 \cite{rfc4122}) y que coincide
 		con el identificador del documento almacenado en la base de datos. 
 		El hecho de no esperar a que el perfilado se complete 
@@ -37,7 +37,7 @@ que reciben. Como se puede observar en la Figura \ref{fig:implementacion_endpoin
 	
 	\item \textbf{/profilings/\{id\}}: Para poder obtener los resultados del perfilado creado de forma asíncrona, este \textit{endpoint} de tipo GET
 		permite recuperarlos de la base da datos haciendo uso del identificador devuelto por la tarea de predicción. En caso de que la tarea
-		no exista, se devolverá un error HTTP 404 (Not Found). La respuesta devuelta será un JSON con la estructura mostrada en la Figura \ref{fig:profiling_json}.
+		no exista, se devolverá un error HTTP 404 (\textit{Not Found}). La respuesta devuelta será un JSON con la estructura mostrada en la Figura \ref{fig:profiling_json}.
 
 		\begin{figure}[H]
 			\begin{lstlisting}[language=json]
@@ -71,8 +71,8 @@ que reciben. Como se puede observar en la Figura \ref{fig:implementacion_endpoin
 		\end{figure}
 \end{itemize}
 
-Destacar que en todos los casos, tanto el algoritmo de Grivas como el de Martinc, tienen asociado un \textit{dataset} de entrenamiento por defecto (que coincide
-con el utilizado por los autores originales para su publicación), el cual se utilizará en caso de no especificar ninguno en la URL.
+Destacar que en todos los casos, tanto el algoritmo de Grivas et al. \cite{grivas2015author} como el de Martinc et al. \cite{martinc2019hot}, tienen asociado un \textit{dataset} de entrenamiento por defecto (que coincide
+con el utilizado por los autores originales en su publicación), el cual se utilizará en caso de no especificar ninguno en la URL.
 
 \begin{figure}[H]
 	\centering
@@ -109,7 +109,7 @@ La más importante de ellas es la clase \textit{ProfilingAlgorithm},
 una clase abstracta que define la interfaz que deben implementar todos los algoritmos de perfilado incluyendo las tres funciones principales:
 \textit{predict()}, \textit{train()} y \textit{get\_performance()}. En este sentido, es importante mencionar que los algoritmos elegidos no estaban implementados
 pensando en formar parte de una aplicación más grande, por lo que fue necesario realizar una adaptación manual para cumplir con la interfaz de
-la clase heredada, lo que implicó comprender a muy bajo nivel como estaban implementados dichos algoritmos. Esta adaptación del código fue, en el caso del algoritmo de Grivas, 
+la clase heredada, lo que implicó comprender a muy bajo nivel como estaban implementados dichos algoritmos. Esta adaptación del código fue, en el caso del algoritmo de Grivas et al. \cite{grivas2015author}, 
 bastante compleja, ya que conllevó sustituír librerías obsoletas, reimplementar funciones y actualizar la sintaxis a la nueva versión de Python.
 
 \bigskip
@@ -120,13 +120,13 @@ fue necesario crear las clases \textit{CsvToNdjsonConverter} y \textit{NdjsonToC
 
 \bigskip
 También existe una clase llamada \textit{TrainDataset}, que representa
-el \textit{dataset} que se utiliza para entrenar el modelo y validarlo. Esta clase abstracta contiene la locacalización de los elementos
+el \textit{dataset} que se utiliza para entrenar y validar el modelo. Esta clase abstracta contiene la locacalización de los elementos
 del conjunto de entrenamiento y test, así como también un nombre que la identifica. Esto nos permite la incorporación de nuevos \textit{datasets} creando simplemente
-una nueva clase que herede de \textit{TrainDataset} y posibilita la generación de modelos haciendo uso de diferentes conjuntos de entrenamiento de forma sencilla y automática. 
+una nueva clase que herede de \textit{TrainDataset}, posibilitando la generación de modelos haciendo uso de diferentes conjuntos de entrenamiento de forma sencilla y automática. 
 
 \bigskip
 Finalmente, en la capa de dominio, se encuentra la clase abstracta \textit{ProfilingRepository}, la cual define la interfaz que deben implementar
-los repositorios de tecnologías concretas, ya sean relacionales, no relacionales o de otro tipo.
+los repositorios de tecnologías de bases de datos concretas, ya sean relacionales, no relacionales o de otro tipo.
 
 \bigskip
 Ya en la \textbf{capa de infraestructura}, es decir, donde se almacenan todos los componentes externos con los que interactúa el dominio, se encuentran las clases que implementan
@@ -138,7 +138,7 @@ como de establecer y mantener la conexión con la misma.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{diagramas/clases_back.pdf}
-	\caption{Diagrama de clases del \textit{backend}}
+	\caption{Diagrama de clases de la implementación del \textit{backend}}
 	\label{fig:implementacion_clases_backend}
 \end{figure}
 
@@ -174,7 +174,7 @@ era necesario que la aplicación fuese \textit{responsive}, es decir, adaptable 
 Por otro lado, ya que algunos componentes y páginas necesitan realizar peticiones al \textit{backend}, es necesario implementar un servicio
 que mantenga la lógica de la comunicación y exponga funciones que faciliten su uso. De esta tarea se encarga la clase abstracta \textit{ProfilingService},
 la cual define funciones estáticas tales como \textit{getProfiling()} o \textit{predict()} que abstraen al resto de componentes de la lógica de las peticiones HTTP.
-Dicho servicio hace uso por debajo de \textit{fetch}, una API nativa de JavaScript muy flexible que permite programar casi cualquier cosa
+Dicho servicio hace uso por debajo de \textit{fetch}, una API nativa de JavaScript muy flexible que permite programar casi cualquier funcionalidad
 relacionada con peticiones HTTP. Asimismo, ya que la asincronía es un concepto muy extendido y necesario en el desarrollo web, se ha optado
 por usar las \textit{Promises} de JavaScript, las cuales permiten realizar operaciones asíncronas de forma muy sencilla.
 
@@ -190,6 +190,6 @@ la cual, en última instancia, permite realizar la conversión a la clase \texti
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{diagramas/clases_front.pdf}
-	\caption{Diagrama de clases del \textit{frontend}}
+	\caption{Diagrama de clases de la implementación del \textit{frontend}}
 	\label{fig:implementacion_clases_frontend}
 \end{figure}

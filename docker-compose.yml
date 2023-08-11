@@ -10,9 +10,6 @@ services:
       start_period: 30s
 
   backend:
-    depends_on:
-      db:
-        condition: service_healthy
     build: backend/
     image: profiler/backend
     container_name: ai-profiler-backend
