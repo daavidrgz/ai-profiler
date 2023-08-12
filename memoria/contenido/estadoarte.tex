@@ -2,8 +2,9 @@
 \label{chap:estadoarte}
 
 Durante los inicios del perfilado automático de autor, los algoritmos se centraban en la tarea de la clasificación por género.
-En esta línea, trabajos como (Koppel et al., 2002) \cite{koppel2002automatically} se desmarcaban de la tendencia de la época,
-la cual se basaba en la clasificación de textos en base a su contenido, para centrarse en la clasificación de textos \textbf{en base a su estilo}. En este caso, se centraban en la obtención del género del autor mediante el análisis
+En esta línea, trabajos como Koppel et al., 2002 \cite{koppel2002automatically} se desmarcaban de la tendencia de la época,
+la cual se basaba en la clasificación de textos en base a su contenido, para enfocarse en la clasificación de textos en base a su estilo.
+En este caso, se centraban en la obtención del género del autor mediante el análisis
 de 920 documentos de carácter formal escritos en inglés con una media de alrededor de 34.300 palabras cada uno, obteniendo una precisión en la clasificación de
 aproximadamente el 77\%.
 
@@ -11,18 +12,28 @@ aproximadamente el 77\%.
 Así, la demostración de la existencia de rasgos diferenciadores en la escritura que permitían perfilar ciertos ascpectos del individuo, especialmente del género, 
 supuso un gran avance en el campo del perfilado de autor
 y dió pié a la realización de trabajos como (Argamon et al., 2003) \cite{argamon2003gender}, (Corney et.al, 2002) \cite{corney2002gender} o (Otterbacher et al., 2010) \cite{otterbacher2010inferring}, 
-así como también permitió el inicio de una clasificación más compleja en base a otras características como la edad, la orientación sexual o la personalidad.
+así como también permitió el inicio de una clasificación más compleja en base a otras características demográficas.
 
 \bigskip
-Más tarde, en el año 2011 se celebraría el primer evento organizado por el \textit{PAN} (\textit{Plagiarism Analysis, Authorship Identification, and Near-Duplicate Detection}) \cite{pan},
-un foro de investigación que organiza eventos científicos y tareas anuales relacionadas con el análisis forense de textos digitales
-y rasgos estilométricos. La primera de estas tareas centrada en el perfilado de autor se celebraría en el año 2013 (Rangel et al., 2013) \cite{rangel2013overview},
+Posteriormente, en los años siguientes, tal como recoge Wiegmann et al., 2019 \cite{wiegmann2019overview}, se continuarían llevando a cabo estudios en esta línea, diversificando
+las características a clasificar. En este sentido, se realizarían trabajos como Álvarez-Carmona et al., 2018 \cite{alvarez2018overview}, donde se buscaba
+predecir el lugar de residencia del autor junto a su ocupación; otros como Volkova et al., 2015 \cite{volkova2015predicting}, en el que se trataba de perfilar la orientación política,
+el salario, el optimismo del autor o su sentimiento de satisfacción vital; Preoţiuc-Pietro et al., 2018 \cite{preoctiuc2018user}, en el que se llevaba a cabo la tarea de
+clasificar la raza y la etnia del autor; u otros como Fatima et al., 2017 \cite{fatima2017multilingual} que buscaban extender el perfilado de autor a otros idiomas. Asimismo,
+la mayor parte de los \textit{datasets} utilizados para la creación de los modelos con estos algoritmos, se basaban en textos de redes sociales como Twitter (Burger et al., 2011) \cite{burger2011discriminating},
+Facebook (Fatima et al., 2017) \cite{fatima2017multilingual} o Reddit (Gjurković et al., 2018) \cite{gjurkovic2018reddit}, reflejando así la importancia de estas plataformas
+en la actualidad.
+
+\bigskip
+Por otro lado, en el año 2011, se celebraría el primer evento organizado por el \textit{PAN} (\textit{Plagiarism Analysis, Authorship Identification, and Near-Duplicate Detection}) \cite{pan},
+uno de los foro de investigación más importantes que organiza eventos científicos y tareas anuales relacionadas con el análisis forense de textos digitales
+y rasgos estilométricos, así como uno de los grandes implusores del perfilado de autor. La primera de las tareas centrada en este campo se celebraría en el año 2013 (Rangel et al., 2013) \cite{rangel2013overview},
 en la que se pedía a los participantes que obtuvieran, a partir de una serie de \textit{tweets}, la edad y el género de su autor. El ganador de este concurso obtuvo una
 precisión del 60\% en la clasificación de género y del 67\% en la clasificación de edad, haciendo uso, la mayor parte de los participantes, de técnicas de aprendizaje
 supervisado como los Árboles de Decisión (en inglés \textit{Decission Trees}) o las Máquinas de Soporte Vectorial (en inglés \textit{Support Vector Machines}) e inluyendo
 en sus modelos características basadas en el TF-IDF, n-gramas, etiquetas POS u otras como el número de emoticonos o la frecuencia de signos de puntuación.
-En los siguientes años se celebrarían nuevas ediciones de esta tarea (Rangel et al., 2014 \cite{rangel2014overview}; Rangel et al., 2015 \cite{rangel2015overview};
-Rangel et al., 2016 \cite{rangel2016overview}...), añadiendo nuevas sub-tareas como el reconocimiento de rasgos personales, la ocupación o los dialectos del lenguaje,
+En los siguientes años se celebrarían nuevas ediciones con el perfilado de autor en el centro (Rangel et al., 2014 \cite{rangel2014overview}; Rangel et al., 2015 \cite{rangel2015overview};
+Rangel et al., 2016 \cite{rangel2016overview}...), en las que se añadiríán nuevas sub-tareas como el reconocimiento de rasgos personales, la ocupación o los dialectos del lenguaje,
 así como también alcanzando mejores resultados en la clasificación.
 
 \section{Conceptos básicos}
@@ -30,7 +41,7 @@ así como también alcanzando mejores resultados en la clasificación.
 Cuando hablamos del perfilado automático de autores, nos referimos a la tarea del análisis detallado de un texto para la obtención de ciertas características
 que nos permitan identificar a su autor.
 Dicha tarea de análisis está enmarcada dentro del campo del Procesado del Lenguaje Natural (\textit{Natural Language Processing} o NLP en inglés) y, más concretamente,
-dentro de la rama de la Estilometría, la cual se encarga del estudio de los rasgos estilísticos de un texto. De esta forma, para las tareas de NLP se hace uso
+dentro de la rama de la Estilometría. De esta forma, para las tareas de NLP se hace uso
 de una serie de algoritmos y técnicas básicas que permiten la extracción de características numéricas y objetivas de un texto. Las más utilizadas y relevantes
 para la comprensión de este trabajo son las siguientes:
 
@@ -115,13 +126,15 @@ no tiene en cuenta el significado real de las palabras.
 \section{Competiciones analizadas}
 \label{sec:competiciones_analizados}
 
-Una vez explicados los conceptos básicos sobre NLP, procederemos en esta sección al análisis de las competiciones más relevantes en el contexto
-del perfilado automático de autores.
-Asimismo, dado que el perfilado de la edad era una característica fundamental que debía incluir este trabajo, se seleccionaron aquellas
-que contaban con dicha tarea, en este caso, las celebradas en los años 2014 (Rangel et al.) \cite{rangel2014overview}, 2015 (Rangel et al.) \cite{rangel2015overview} y 2019 (Wiegmann et al.) \cite{wiegmann2019overview},
-de las que se extraerá la mayor parte de la información mostrada a lo largo de esta sección.
+Una vez explicados los conceptos básicos, procederemos en esta sección al análisis de las competiciones más relevantes en el contexto
+del perfilado automático de autores. En este sentido, destacar que, ya que el objetivo de este trabajo estaba encuadrado en
+la investigación sobre algoritmos de perfilado de autores de habla inglesa, se obviaron otras competiciones relevantes como pueden ser
+las organizadas por IberLEF \cite{iberlef}, un foro de investigación que promueve el desarrollo de sistemas basados en NLP en español y otras
+lenguas ibéricas.
+Asimismo, dado que el perfilado de la edad era otra característica fundamental que debía incluir este trabajo, se seleccionaron aquellas competiciones
+que contaban con dicha tarea, en este caso, las celebradas en los años 2014 (Rangel et al.) \cite{rangel2014overview}, 2015 (Rangel et al.) \cite{rangel2015overview} y 2019 (Wiegmann et al.) \cite{wiegmann2019overview}.
 
-\subsection{PAN \textit{Author Profiling} 2014}
+\subsection{\textit{PAN Author Profiling 2014}}
 
 Esta segunda edición de la competición internacional de perfilado de autores celebrada en 2014 por PAN, estaba enfocada en la clasificación de género y edad de los autores, en la que se consideraban, para esta última, las siguientes
 clases: 18-24, 25-34, 35-49, 50-64, 65-XX.
@@ -139,27 +152,6 @@ mejores predicciones para la lengua inglesa. Asimismo, existe un amplio desbalan
 donde las clases 18-24 y 65-XX cuentan con un número de autores significativamente inferior al resto de clases. Destacar finalemente que,
 en cuanto al género, el \textit{dataset} está perfectamente balanceado, existiendo el mismo número de autores masculinos y femeninos, lo que
 ayuda a evitar un posible sesgo.
-
-\bigskip
-\begin{table}[H]
-	\centering
-	\resizebox{0.7\textwidth}{!}{
-		\rowcolors{2}{white}{udcgray!25}
-		\begin{tabular}{|c|c|c|c|c|}
-			\hhline{~|----|}
-			\multicolumn{1}{c|}{\cellcolor{white}} & \multicolumn{2}{c|}{\cellcolor{udcpink!25}\textbf{Entrenamiento}} & \multicolumn{2}{c|}{\cellcolor{udcpink!25}\textbf{Test}} \\ \hline
-			\textbf{Edad} & \textbf{Inglés} & \textbf{Español} & \textbf{Inglés} & \textbf{Español} \\ \hline
-			18-24 & 1.936 & 346 & 850 & 158  \\ \hline
-			25-34 & 3.246 & 494 & 1.380 & 218  \\ \hline
-			35-49 & 3.430 & 425 & 1.470  & 210 \\ \hline
-			50-64 & 2.921 & 204 & 1.226 & 92 \\ \hline
-			65-XX & 826 & 42 & 324 & 32 \\ \hline
-			\textbf{Total} & \textbf{12.359} & \textbf{1.511} & \textbf{5.250} & \textbf{710} \\ \hline
-		\end{tabular}
-	}
-	\caption{Distribución del número de autores en cada rango de edad en el \textit{corpus} del \textit{PAN Author Profiling 2014}}
-	\label{tab:dataset_2014}
-\end{table}
 
 \bigskip
 \begin{figure}[H]
@@ -208,6 +200,27 @@ ayuda a evitar un posible sesgo.
 	\label{fig:dataset_2014}
 \end{figure}
 
+\bigskip
+\begin{table}[H]
+	\centering
+	\resizebox{0.7\textwidth}{!}{
+		\rowcolors{2}{white}{udcgray!25}
+		\begin{tabular}{|c|c|c|c|c|}
+			\hhline{~|----|}
+			\multicolumn{1}{c|}{\cellcolor{white}} & \multicolumn{2}{c|}{\cellcolor{udcpink!25}\textbf{Entrenamiento}} & \multicolumn{2}{c|}{\cellcolor{udcpink!25}\textbf{Test}} \\ \hline
+			\textbf{Edad} & \textbf{Inglés} & \textbf{Español} & \textbf{Inglés} & \textbf{Español} \\ \hline
+			18-24 & 1,936 & 346 & 850 & 158  \\ \hline
+			25-34 & 3,246 & 494 & 1,380 & 218  \\ \hline
+			35-49 & 3,430 & 425 & 1,470  & 210 \\ \hline
+			50-64 & 2,921 & 204 & 1,226 & 92 \\ \hline
+			65-XX & 826 & 42 & 324 & 32 \\ \hline
+			\textbf{Total} & \textbf{12,359} & \textbf{1,511} & \textbf{5,250} & \textbf{710} \\ \hline
+		\end{tabular}
+	}
+	\caption{Distribución del número de autores en cada rango de edad en el \textit{corpus} del \textit{PAN Author Profiling 2014}}
+	\label{tab:dataset_2014}
+\end{table}
+
 \subsubsection{\textit{Resultados}}
 
 Basándonos en los resultados de la competición, reflejados en la Tabla \ref{tab:algoritmos_2014}, podemos observar que los mejores datos de precisión
@@ -241,20 +254,20 @@ En cuanto a las aproximaciones algorítmicas llevadas a cabo por los equipos mej
 			\hhline{~|-------|}
 			\multicolumn{1}{c|}{\cellcolor{white}} & \multicolumn{3}{c|}{\textbf{Global}}  & \multicolumn{2}{c|}{\textbf{Inglés}} & \multicolumn{2}{c|}{\textbf{Español}} \\ \hline
 			\textbf{Equipo participante} & \textbf{Conjunta} & \textbf{Género} & \textbf{Edad} & \textbf{Género} & \textbf{Edad} & \textbf{Género} & \textbf{Edad} \\ \hline
-			López-Monroy et al. 2014 \cite{lopez2014using} & 0,2790 & 0,6310 & 0,4421 & 0,6512  & 0,3950 & 0,6108 & 0,4892 \\ \hline
-			Siang et al. & 0,2758 & 0,6344 & 0,4348 & 0,663 & 0,3909 & 0,6057 & 0,4786 \\ \hline
-			Maharjan et al., 2014 \cite{maharjan2014simple} & 0,2624 & 0,5948 & 0,4411 & 0,6132 & 0,3811 & 0,5764 & 0,5010 \\ \hline
-			Weren et al., 2014 \cite{weren2014exploring} & 0,2266 & 0,5866 & 0,3863 & 0,6066 & 0,3690 & 0,5666 & 0,4035 \\ \hline
+			López-Monroy et al. 2014 \cite{lopez2014using} & 0.2790 & 0.6310 & 0.4421 & 0.6512  & 0.3950 & 0.6108 & 0.4892 \\ \hline
+			Siang et al. & 0.2758 & 0.6344 & 0.4348 & 0.663 & 0.3909 & 0.6057 & 0.4786 \\ \hline
+			Maharjan et al., 2014 \cite{maharjan2014simple} & 0.2624 & 0.5948 & 0.4411 & 0.6132 & 0.3811 & 0.5764 & 0.5010 \\ \hline
+			Weren et al., 2014 \cite{weren2014exploring} & 0.2266 & 0.5866 & 0.3863 & 0.6066 & 0.3690 & 0.5666 & 0.4035 \\ \hline
 		\end{tabular}
 	}
-	\caption{Mejores cuatro clasificados en la competición \textit{PAN Author Profiling 2014}}
+	\caption{Cuatro mejores clasificados en la competición \textit{PAN Author Profiling 2014}}
 	\label{tab:algoritmos_2014}
 \end{table}
 
-\subsection{PAN Author Profiling 2015}
+\subsection{\textit{PAN Author Profiling 2015}}
 
 En esta competición, a mayores de la clasificación por género y edad del autor, se añadió la predicción de rasgos de la personalidad. En concreto,
-se buscaba predecir los cinco rasgos descritos en el modelo \textit{Big Five} (Goldberg, 1993) \cite{goldberg1993structure}: extroversión (\textit{extroversion}),
+se buscaba predecir los cinco rasgos descritos en el modelo \textit{Big Five} (Goldberg, 1990) \cite{goldberg1990alternative}: extroversión (\textit{extroversion}),
 estabilidad emocional / neuroticismo (\textit{stability / neuroticism}), apertura a la experiencia (\textit{openness to experience}), amabilidad (\textit{agreeableness}) y
 responsabilidad (\textit{conscientiousness}). En cuanto a la edad, y a diferencia de la edición anterior de 2014, se eliminó la categoría de 65 años o más,
 resultando en cuatro categorías: 18-24, 25-34, 35-49 y 50-XX.
@@ -280,7 +293,7 @@ contando con un 50\% de autores de cada género para todos los idiomas.
 	\begin{tikzpicture}
 			\begin{axis}[
 					width=0.8\textwidth,
-					height=6cm,
+					height=5cm,
 					xmajorgrids=false,
 					x tick label style={/pgf/number format/1000 sep=},
 					x tick label style={font=\scriptsize},
@@ -295,8 +308,8 @@ contando con un 50\% de autores de cada género para todos los idiomas.
 					symbolic x coords={18-24, 25-34, 35-49, 50-XX},
 					xtick=data,
 					ymin=0,
-					ymax=130,
-					legend style={at={(0.5,1.25)},font=\scriptsize, anchor=north,legend columns=-1},
+					ymax=140,
+					legend style={at={(0.5,1.28)},font=\scriptsize, anchor=north,legend columns=-1},
 			]
 			\addplot table[x=Edad,y=Inglés] {
 					Edad    Inglés
@@ -357,7 +370,7 @@ la clasificación conjunta de edad y género en aproximadamente un 40\%.
 \bigskip
 Más en concreto, destacar los grandes resultados que
 ofrecen los algoritmos presentados con respecto al género en los dos idiomas principales del \textit{corpus}, llegando a alcanzar
-precisiones del 96\% para el español en el caso de Alvarez-Carmona et al. 2015 \cite{alvarez2015inaoe}. Con respecto a la edad,
+precisiones del 96\% para el español en el caso de Alvarez-Carmona et al. \cite{alvarez2015inaoe}. Con respecto a la edad,
 se puede ver como se obtienen unos mejores resultados, de alrededor de un 5\%, en la clasificación en inglés que en español, algo que
 hipotéticamente puede ser un reflejo de las pequeñas diferencias existentes entre el número de autores en cada uno de los idiomas en
 el \textit{dataset} de entrenamiento.
@@ -368,16 +381,16 @@ Con respecto a la implementación de los algoritmos, podemos destacar lo siguien
 \begin{itemize}
 	\item \textbf{Preprocesado}: De forma similar a los algoritmos de años anteriores, la mayoría realizaron una limpieza del HTML incluído
 	en los \textit{tweets} y, tanto González-Gallardo et al. \cite{gonzalez2015tweets} como Grivas et al. \cite{grivas2015author}, utilizaron
-	las menciones, los \textit{hashtags} y los enlaces como características adicionales para una posterior clasificación.
-	\item \textbf{\textit{Features}}: En cuanto a las características, la mayor parte de los algoritmos combinaron el uso de características
+	las menciones, los \textit{hashtags} y los enlaces como características adicionales.
+	\item \textbf{\textit{Features}}: En la mayor parte de los algoritmos presentados, se combinaba el uso de características
 	basadas en el estilo y en el contenido. Así, en cuanto a contenido, González-Gallardo et al. \cite{gonzalez2015tweets} hizo uso de n-gramas de caracteres
 	mientras que Grivas et al. \cite{grivas2015author} empleó n-gramas basados en TF-IDF. Además, en el caso de Grivas et al. \cite{grivas2015author},
 	se analizaron otras caracterísitcas basadas en el estilo como la longitud de las palabras o el número de mayúsculas. En el caso de Alvarez-Carmona et al. \cite{alvarez2015inaoe},
-	hicieron uso del Análisis Semántico Latente, explicado en la Sección \ref{sec:analisis_semantico_latente}, junto a una técnica similar a la empleada por
+	se hizo uso del Análisis Semántico Latente, explicado en la Sección \ref{sec:analisis_semantico_latente}, junto a una técnica similar a la empleada por
 	López-Monroy et al. \cite{lopez2014using} en el año 2014.
 	\item \textbf{Clasificación}: En lo referente a los métodos utilizados para realizar las predicciones, destaca el uso de la librería LIBLINEAR \cite{fan2008liblinear}
 	por parte de Alvarez-Carmona et al. \cite{alvarez2015inaoe} y González-Gallardo et al. \cite{gonzalez2015tweets}. En el caso de Grivas et al. \cite{grivas2015author}, se hizo
-	uso de SVMs para la clasificación del género y la edad junto a SVRs (Drucker et al., 1996) \cite{drucker1996support} para el reconocimiento de los rasgos personales.
+	uso de SVMs para la clasificación del género y la edad mientras que se emplearon SVRs (Drucker et al., 1996) \cite{drucker1996support} para el reconocimiento de los rasgos personales.
 \end{itemize}
 
 \begin{table}[H]
@@ -391,15 +404,124 @@ Con respecto a la implementación de los algoritmos, podemos destacar lo siguien
 			\hhline{~|---------|}
 			\multicolumn{1}{c|}{\cellcolor{white}} & \multicolumn{3}{c|}{\textbf{Global}} & \multicolumn{2}{c|}{\textbf{Inglés}} & \multicolumn{2}{c|}{\textbf{Español}} & \multicolumn{1}{c|}{\textbf{Italiano}} & \multicolumn{1}{c|}{\textbf{Holandés}} \\ \hline
 			\textbf{Equipo participante} & \textbf{Conjunta} & \textbf{Género} & \textbf{Edad} & \textbf{Género} & \textbf{Edad} & \textbf{Género} & \textbf{Edad} & \textbf{Género} & \textbf{Género} \\ \hline
-			Alvarez-Carmona et al. 2015 \cite{alvarez2015inaoe} & 0,7116 & 0,8712 & 0,8168 & 0,8592 & 0,8380 & 0,9659 & 0,7955 & 0,7222 & 0,9375 \\ \hline
-			González-Gallardo et al., 2015 \cite{gonzalez2015tweets} & 0,6693 & 0,8871 & 0,7545 & 0,8521 & 0,7817 & 0,8977 & 0,7273 & 0,8611 & 0,9375 \\ \hline
-			Grivas et al., 2015 \cite{grivas2015author} & 0,6487 & 0,9011 & 0,7199 & 0,8592 & 0,7465 & 0,9432 & 0,6932 & 0,8333 & 0,9688 \\ \hline
-			Kocher et al., 2015 \cite{kocher2015unine} & 0,5655 & 0,7800 & 0,7250 & 0,7113 & 0,7113 & 0,8182 & 0,7386 & 0,7778 & 0,8125 \\ \hline
+			Alvarez-Carmona et al. 2015 \cite{alvarez2015inaoe} & 0.7116 & 0.8712 & 0.8168 & 0.8592 & 0.8380 & 0.9659 & 0.7955 & 0.7222 & 0.9375 \\ \hline
+			González-Gallardo et al., 2015 \cite{gonzalez2015tweets} & 0.6693 & 0.8871 & 0.7545 & 0.8521 & 0.7817 & 0.8977 & 0.7273 & 0.8611 & 0.9375 \\ \hline
+			Grivas et al., 2015 \cite{grivas2015author} & 0.6487 & 0.9011 & 0.7199 & 0.8592 & 0.7465 & 0.9432 & 0.6932 & 0.8333 & 0.9688 \\ \hline
+			Kocher et al., 2015 \cite{kocher2015unine} & 0.5655 & 0.7800 & 0.7250 & 0.7113 & 0.7113 & 0.8182 & 0.7386 & 0.7778 & 0.8125 \\ \hline
 		\end{tabular}
 	}
 	\caption{Cuatro mejores clasificados en la competición \textit{PAN Author Profiling 2015}}
 	\label{tab:algoritmos_2015}
 \end{table}
+
+\subsection{\textit{PAN Celebrity Profiling 2019}}
+
+En esta última competición, la primera de ellas celebrada específicamente para el perfilado de celebridades, la tarea consistía en predecir
+cuatro caracterísitcas demográficas a partir de sus publicaciones en Twitter:
+
+\begin{itemize}
+	\item \textbf{Género}: Masculino, femenino o no binario.
+	\item \textbf{Año de nacimiento}: A la hora de calcular la precisión del algoritmos,
+		se contemplará una ventana de error adaptativa entre los 2 y los 9 años en función de la edad real de la celebridad. 
+	\item \textbf{Ocupación o motivo de fama}: Deportista (\textit{sports}), actor (\textit{performer}), político (\textit{politics}), creador de contenido (\textit{creator}),
+		director (\textit{manager}), científico (\textit{science}), professional (\textit{professional}) o religioso (\textit{religious}).
+	\item \textbf{Fama}: Revelación (\textit{rising}), estrella (\textit{star}) o superestrella (\textit{superstar}).
+\end{itemize}
+
+\subsubsection{\textit{Corpus}}
+
+En este caso, como se mencionó anteriormente, el \textit{corpus} empleado está compuesto por publicaciones en inglés en la red social Twitter. En concreto,
+el \textit{dataset} contenía un total de 48.335 celebridades con aproximadamente 2.180 \textit{tweets} cada una. El \textit{corpus} fue obtenido
+a partir del \textit{Webis Celebrity Profiling Corpus} (Wiegmann et al., 2019) \cite{wiegmann2019celebrity}, en el cual se relacionaban los perfiles
+de Twitter de las celebridades con sus entradas en Wikidata. De esta forma, se obtuvieron los \textit{tweets} de sus \textit{timelines} de la red social
+y se simplificaron las caracterísitcas demográficas que ofrecía Wikidata, filtrando finalmente las celebridades nacidas antes de 1940 y que no tuvieran
+el inglés como lengua de uso principal.
+
+\bigskip
+\begin{figure}[H]
+	\centering
+	\begin{subfigure}{0.5\textwidth}
+			\begin{tikzpicture}
+					\begin{axis}[
+							width=\linewidth,
+							height=5cm,
+							xmajorgrids=false,
+							x tick label style={font=\scriptsize},
+							y tick label style={font=\scriptsize},
+							ybar=6pt,
+							bar width=12pt,
+							enlarge x limits=0.2,
+							ymin=0,
+							ymax=42000,
+							nodes near coords,
+							nodes near coords style={font=\tiny},
+							xtick=data,
+							xticklabels={Masculino, Femenino, {No binario}},
+							xlabel={Género},
+							scaled y ticks=false
+					]
+					\addplot coordinates {(1,34630) (2,13655) (3,50)};
+					\end{axis}
+			\end{tikzpicture}
+			\label{fig:distribucion_genero_2019}
+	\end{subfigure}%
+	\hfill
+	\begin{subfigure}{0.5\textwidth}
+			\begin{tikzpicture}
+					\begin{axis}[
+							width=\linewidth,
+							height=5cm,
+							xmajorgrids=false,
+							x tick label style={font=\scriptsize},
+							y tick label style={font=\scriptsize},
+							ybar=6pt,
+							bar width=12pt,
+							enlarge x limits=0.2,
+							ymin=0,
+							ymax=42000,
+							nodes near coords,
+							nodes near coords style={font=\tiny},
+							xtick=data,
+							xticklabels={Estrella, Superestrella, Revelación},
+							xlabel={Fama},
+							scaled y ticks=false
+					]
+					\addplot[color=red, fill=red!30] coordinates {(1,36120) (2,10177) (3,2098)};
+					\end{axis}
+			\end{tikzpicture}
+			\label{fig:distribucion_fama_2019}
+	\end{subfigure}
+	\caption{Distribuciones de género y fama en el \textit{corpus} de la competición \textit{PAN Celebrity Profiling 2019}.}
+	\label{fig:distribuciones_2019}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+				width=\linewidth,
+				height=5cm,
+				xmajorgrids=false,
+				x tick label style={font=\scriptsize},
+				y tick label style={font=\scriptsize},
+				ybar=6pt,
+				bar width=12pt,
+				enlarge x limits=0.08,
+				ymin=0,
+				ymax=24000,
+				nodes near coords,
+				nodes near coords style={font=\tiny},
+				xtick=data,
+				xticklabels={Deportista, Actor, Creador, Político, Científico, Director, Profesional, Religioso},
+				xlabel={Ocupación},
+				scaled y ticks=false
+		]
+		\addplot[color=purple, fill=purple!30] coordinates {(1,19285) (2,14178) (3,7811) (4,4009) (5,1141) (6,1094) (7,763) (8,54)};
+		\end{axis}
+	\end{tikzpicture}
+	\label{fig:distribucion_ocupacion_2019}
+	\caption{Distribución de ocupaciones en el \textit{corpus} de la competición \textit{PAN Celebrity Profiling 2019}.}
+\end{figure}
 
 \begin{table}[H]
 	\centering
@@ -409,13 +531,13 @@ Con respecto a la implementación de los algoritmos, podemos destacar lo siguien
 			\hhline{~|---|}
 			\multicolumn{1}{c|}{\cellcolor{white}} & \multicolumn{3}{c|}{\cellcolor{udcpink!25}\textbf{Precisión}} \\ \hline
 			\textbf{Equipo participante} & \textbf{Conjunta} & \textbf{Género} & \textbf{Edad} \\ \hline
-			Radivchev et al. 2019 \cite{radivchev2019celebrity} & 0,477 & 0,928 & 0,514  \\ \hline
-			Martinc et al., 2019 \cite{martinc2019hot} & 0,410 & 0,906 & 0,453 \\ \hline
-			Fernquist et al., 2019 & 0,362 & 0,774 & 0,468 \\ \hline
-			Moreno-Sandoval et al., 2019 \cite{moreno2019celebrity} & 0,320 & 0,862 & 0,371  \\ \hline
+			Radivchev et al. 2019 \cite{radivchev2019celebrity} & 0.477 & 0.928 & 0.514  \\ \hline
+			Martinc et al., 2019 \cite{martinc2019hot} & 0.410 & 0.906 & 0.453 \\ \hline
+			Fernquist et al., 2019 & 0.362 & 0.774 & 0.468 \\ \hline
+			Moreno-Sandoval et al., 2019 \cite{moreno2019celebrity} & 0.320 & 0.862 & 0.371  \\ \hline
 		\end{tabular}
 	}
-	\caption{Clasificación en la competición \textit{PAN Celebrity Profiling 2019}}
+	\caption{Cuatro mejores clasificados en la competición \textit{PAN Celebrity Profiling 2019}}
 	\label{tab:algoritmos_2019}
 \end{table}
 
