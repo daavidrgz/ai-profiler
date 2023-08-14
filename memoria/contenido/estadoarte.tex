@@ -132,7 +132,8 @@ la investigación sobre algoritmos de perfilado de autores de habla inglesa, se 
 las organizadas por IberLEF \cite{iberlef}, un foro de investigación que promueve el desarrollo de sistemas basados en NLP en español y otras
 lenguas ibéricas.
 Asimismo, dado que el perfilado de la edad era otra característica fundamental que debía incluir este trabajo, se seleccionaron aquellas competiciones
-que contaban con dicha tarea, en este caso, las celebradas en los años 2014 (Rangel et al.) \cite{rangel2014overview}, 2015 (Rangel et al.) \cite{rangel2015overview} y 2019 (Wiegmann et al.) \cite{wiegmann2019overview}.
+que contaban con dicha tarea, en este caso, las celebradas en los años 2014 (Rangel et al.) \cite{rangel2014overview}, 2015 (Rangel et al.) \cite{rangel2015overview} y 2019 (Wiegmann et al.) \cite{wiegmann2019overview}
+por PAN.
 
 \subsection{\textit{PAN Author Profiling 2014}}
 
@@ -422,20 +423,31 @@ cuatro caracterísitcas demográficas a partir de sus publicaciones en Twitter:
 \begin{itemize}
 	\item \textbf{Género}: Masculino, femenino o no binario.
 	\item \textbf{Año de nacimiento}: A la hora de calcular la precisión del algoritmos,
-		se contemplará una ventana de error adaptativa entre los 2 y los 9 años en función de la edad real de la celebridad. 
+		se contempló una ventana de error adaptativa, entre los 2 y los 9 años, en función de la edad real de la celebridad. 
 	\item \textbf{Ocupación o motivo de fama}: Deportista (\textit{sports}), actor (\textit{performer}), político (\textit{politics}), creador de contenido (\textit{creator}),
 		director (\textit{manager}), científico (\textit{science}), professional (\textit{professional}) o religioso (\textit{religious}).
-	\item \textbf{Fama}: Revelación (\textit{rising}), estrella (\textit{star}) o superestrella (\textit{superstar}).
+	\item \textbf{Fama}: Revelación (\textit{rising}), estrella (\textit{star}) o superestrella (\textit{superstar}), determinado en función del número de seguidores en Twitter.
 \end{itemize}
 
 \subsubsection{\textit{Corpus}}
 
-En este caso, como se mencionó anteriormente, el \textit{corpus} empleado está compuesto por publicaciones en inglés en la red social Twitter. En concreto,
-el \textit{dataset} contenía un total de 48.335 celebridades con aproximadamente 2.180 \textit{tweets} cada una. El \textit{corpus} fue obtenido
+Como se mencionó anteriormente, el \textit{corpus} empleado está compuesto por publicaciones en inglés de celebridades en la red social Twitter.
+En este caso, un usuario era considerado una celebridad si tenía un perfil verificado en Twitter y superaba cierto umbral
+de notoriedad en Wikidata. El \textit{corpus},
+que contenía un total de 48.335 celebridades con aproximadamente 2.180 \textit{tweets} cada una, fue obtenido
 a partir del \textit{Webis Celebrity Profiling Corpus} (Wiegmann et al., 2019) \cite{wiegmann2019celebrity}, en el cual se relacionaban los perfiles
 de Twitter de las celebridades con sus entradas en Wikidata. De esta forma, se obtuvieron los \textit{tweets} de sus \textit{timelines} de la red social
-y se simplificaron las caracterísitcas demográficas que ofrecía Wikidata, filtrando finalmente las celebridades nacidas antes de 1940 y que no tuvieran
-el inglés como lengua de uso principal.
+y se simplificaron las caracterísitcas demográficas que ofrecía Wikidata, filtrando las celebridades nacidas antes de 1940 y que no tuvieran
+el inglés como lengua de uso principal. Finalmente, para generar un conjunto de entrenamiento y otro de validación, se optó por una división
+70-30, obteniendo 33.836 y 14.499 celebridades para cada uno, respectivamente.
+
+\bigskip
+Con todo, las distribuciones de las celebridades en las distintas características demográficas se muestran en las Figuras \ref{fig:distribuciones_genero_fama_2019}
+y \ref{fig:distribucion_ocupacion_2019}. Como se puede observar, existe un gran desbalanceo en todas las clases, propiciando un posible sesgo
+hacia las clases mayoritarias (masculino, estrella y deportista) en las predicciones de los algoritmos.
+
+\bigskip
+HABLAR DE LA DISTRIBUCIÓN DE EDAD. OBTENERLA A MANO A PARTIR DEL DATASET.
 
 \bigskip
 \begin{figure}[H]
@@ -444,7 +456,7 @@ el inglés como lengua de uso principal.
 			\begin{tikzpicture}
 					\begin{axis}[
 							width=\linewidth,
-							height=5cm,
+							height=4.5cm,
 							xmajorgrids=false,
 							x tick label style={font=\scriptsize},
 							y tick label style={font=\scriptsize},
@@ -470,7 +482,7 @@ el inglés como lengua de uso principal.
 			\begin{tikzpicture}
 					\begin{axis}[
 							width=\linewidth,
-							height=5cm,
+							height=4.5cm,
 							xmajorgrids=false,
 							x tick label style={font=\scriptsize},
 							y tick label style={font=\scriptsize},
@@ -492,7 +504,7 @@ el inglés como lengua de uso principal.
 			\label{fig:distribucion_fama_2019}
 	\end{subfigure}
 	\caption{Distribuciones de género y fama en el \textit{corpus} de la competición \textit{PAN Celebrity Profiling 2019}.}
-	\label{fig:distribuciones_2019}
+	\label{fig:distribuciones_genero_fama_2019}
 \end{figure}
 
 \begin{figure}[H]
@@ -519,9 +531,38 @@ el inglés como lengua de uso principal.
 		\addplot[color=purple, fill=purple!30] coordinates {(1,19285) (2,14178) (3,7811) (4,4009) (5,1141) (6,1094) (7,763) (8,54)};
 		\end{axis}
 	\end{tikzpicture}
-	\label{fig:distribucion_ocupacion_2019}
 	\caption{Distribución de ocupaciones en el \textit{corpus} de la competición \textit{PAN Celebrity Profiling 2019}.}
+	\label{fig:distribucion_ocupacion_2019}
 \end{figure}
+
+\subsubsection{\textit{Resultados}}
+
+Como se aprecia en la Tabla \ref{tab:algoritmos_2019}, la precisión conjunta en edad y género obtenida por los algoritmos mejor
+clasificados es de aproximadamente un 20\% inferior a la alcanzada en la competición del año 2015. Esto es debido a que,
+como se comentó anteriormente, la clasificación de edad no se realizó en base a rangos en esta edición, sino que se
+buscó una predicción exacta de la edad del autor, junto a una grado de tolerancia adaptativo, provocando así precisiones mucho
+más bajas de cerca de un 30\% para este atributo. En lo que respecta a la clasificación del género, vemos como los dos 
+mejores participantes obtienen resultados de aproximadamente un 90\%, superior a los obtenidos en la edición de 2015. 
+
+\bigskip
+Centrándonos en las implementaciones realizadas en esta competición, podemos destacar lo siguiente:
+
+\begin{itemize}
+	\item \textbf{Preprocesado}: Para el preprocesado, Martinc et al. \cite{martinc2019hot}, Radivchev et al. \cite{radivchev2019celebrity}
+		y Moreno-Sandoval et al. \cite{moreno2019celebrity}, optaron por sustituír los enlaces,
+		las menciones y los \textit{hashtags} por etiquetas especiales. Por otro lado, Martinc et al. \cite{martinc2019hot} se decantó por eliminar los signos de puntuación
+		y las \textit{stopwords}, es decir, las palabras poco significativas, para mejorar el modelado de los documentos con TF-IDF puro basado en unigramas de palabras.
+	\item \textbf{\textit{Features}}: La mayor parte de los algoritmos presentados utilizaron técnicas basadas en TF-IDF y n-gramas. 
+		Más concretamente, Radivchev et al. \cite{radivchev2019celebrity} utilizó como características los vectores obtenidos mediante TF-IDF sobre los 10.000 bigramas más frecuentes;
+		Martinc et al. \cite{martinc2019hot} obtuvo los vectores mediante el TF-IDF de unigramas de palabras y tetragramas de caracteres; Moreno-Sandoval et al. \cite{moreno2019celebrity}, en cambio, a mayores
+		de emplear n-gramas como características, calculó el número medio de emojis, \textit{hashtags}, meciones, enlaces, \textit{retweets}, palabras y longitud de las
+		palabras por \textit{tweet}.
+	\item \textbf{Clasificación}: Al igual que en las pasadas ediciones, los métodos de clasificación más utilizados fueron las
+		SVMs y la regresión logística. Radivchev et al. \cite{radivchev2019celebrity} utilizó SVMs para la predicción de la fama y la ocupación, mientras que para la edad y género
+		hizo uso de la regresión logística; Moreno-Sandoval et al. \cite{moreno2019celebrity}, en cambio, empleó la regresión logística para la clasificación de todos los atributos
+		excepto para la ocupación, que obtuvo mejores resultados empleando un clasificador multinomial Bayesiano Ingenuo (\textit{Multinomial Naive Bayes} o MNB en inglés).
+		Por último, Martinc et al. \cite{martinc2019hot} empleó regresión logística para la clasificación de las cuatro características demográficas.
+\end{itemize}
 
 \begin{table}[H]
 	\centering
@@ -540,6 +581,39 @@ el inglés como lengua de uso principal.
 	\caption{Cuatro mejores clasificados en la competición \textit{PAN Celebrity Profiling 2019}}
 	\label{tab:algoritmos_2019}
 \end{table}
+
+\subsection{Conclusiones}
+
+Tras el ánalisis de estas tres competiciones sobre el perfilado de autor, en lo que concierne al objetivo de este trabajo,
+podemos concluir que la clasificación tanto del de género como de la edad son tareas
+que ofrecen resultados sorprendentes, llegando a superar precisiones de hasta un 90\% en el caso del género y un 80\% en el caso de la edad
+y convirtiéndose en herramientas de gran fiabilidad para el perfilado automático de autores.
+
+\bigskip
+En lo que respecta a los algoritmos, no apreciemos grandes diferencias entre ediciones, ya que el preprocesado sigue invlucrando
+la sustitución de elementos caracterísitcos por \textit{tokens} especiales o la eliminación de palabras poco significativas; 
+las caracterísitcas continúan estando basadas en medidas estadísticas como el TF-IDF y los n-gramas, junto 
+a otras como el número de mayúsculas o la longitud de las palabras; y los métodos de clásificación más utilizados
+siguen estando basados en técnicas de aprendizaje supervisado clásicas como las SVMs y la regresión logística.
+
+\bigskip
+En este sentido, autores como Martinc et al., 2019 \cite{martinc2019hot} o Radivchev et al. 2019 \cite{radivchev2019celebrity}, destacan 
+la gran efectividad que tienen estos métodos clásicos
+con respecto a técnicas más modernas como las basadas en Aprendizaje Profundo (\textit{Deep Learning} en inglés). Martinc et al. \cite{martinc2019hot}, por ejemplo,
+apunta que, haciendo uso de BERT, una red neuronal basada en Transformers propuesta por Devlin et al., 2018 \cite{devlin2018bert},
+los resultados obtenidos fueron significativamente peores en comparación a la regresión logistica de alrededor de un 10\% en F1. En el caso
+de Radivchev et al. \cite{radivchev2019celebrity}, se reportaron resultados similares, en este caso haciendo uso de DPCNN, propuesta por
+Johnson et al., 2017 \cite{johnson2017deep} para el procesado de textos.
+
+\bigskip
+IGUAL ESTO ES MEJOR PONERLO EN TRABAJOS FUTUROS (el probar LLMs para el perfilado de autor)
+
+Sin embargo, a raíz de la publicación de LLMs (\textit{Large Langauge Model} en inglés) como GPT-3 (Brown et al., 2020) \cite{brown2020language}
+y posterimente con modelos como GPT-4 en 2023, se ha visto un gran avance en las técnicas de Aprendizaje Profundo
+y se ha demostrado el gran potencial que ofrecen estas herramientas.
+
+\section{Algoritmos seleccionados}
+\label{sec:algoritmos_seleccionados}
 
 \subsection{Martinc}
 \label{sec:algoritmos_martinc}

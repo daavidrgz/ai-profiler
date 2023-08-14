@@ -1,14 +1,13 @@
 \chapter{Caso de uso: \#BLM}
 \label{chap:casouso}
 
-Para mostrar el funcionamiento de la aplicación, a lo largo de este capítulo se desarrollará un caso de uso real y se irá
-comentando paso a paso.
+Para mostrar el funcionamiento de la aplicación, a lo largo de este capítulo se desarrollará un caso de uso real y se comentará paso a paso.
 
 \section{Puesta en marcha del sistema}
 \label{sec:casouso_puesta_en_marcha}
 
-Como se mencionó en la Sección \ref{sec:herramientas_soporte}, para poder ejecutar la aplicación simplemente es necesario tener
-instalado Docker y Docker-Compose. Una vez instalados, es necesario ejecutar el siguiente comando en la raíz del
+Como se mencionó en la Sección \ref{sec:herramientas_soporte}, para poder ejecutar la aplicación es necesario tener
+instalado Docker y Docker-Compose. Una vez instalados, simplemente se debe ejecutar el siguiente comando en la raíz del
 proyecto:
 
 \bigskip
@@ -45,13 +44,13 @@ en un \textit{dataset} con un formato sencillo y aceptado por la aplicación. As
 en inglés, en formato NDJSON, cada uno con 
 un número diferente de posts para cada usuario (50, 500 y 1000) con el fin de analizar las posibles diferencias en cuanto a los resultados
 obtenidos por el perfilado. Además, destacar que, ya que ninguno de estos tres \textit{datasets} están etiquetados, no conocemos a priori 
-la distribución de cada característica y por lo tanto no podemos obtener una medida del balanceo entre las clases.
+la distribución de cada característica y, por lo tanto, no podemos obtener una medida del balanceo entre clases.
 
 \section{Subida del \textit{dataset}}
 \label{sec:casouso_subida_dataset}
 
 Una vez contamos con el \textit{dataset} que vamos a procesar para el perfilado, el primer paso es subirlo a la aplicación. Para ello,
-en la página de inicio, mostrada en la Figura \ref{fig:casouso_home}, se puede observar, a mayores de un
+en la página de inicio mostrada en la Figura \ref{fig:casouso_home}, se puede observar, a mayores de un
 campo de búsqueda por usuario de Twitter, un campo para la subida del \textit{dataset}, que será el que empleemos.
 Destacar que, en este caso y a lo largo del resto de secciones de este capítulo,
 se mostrarán las capturas de pantalla tanto de la versión de escritorio (izquierda) como de la versión móvil (derecha).

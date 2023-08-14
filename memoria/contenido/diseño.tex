@@ -2,7 +2,7 @@
 \label{chap:diseño}
 
 Para abordar el diseño de la aplicación se detallará, a lo largo de este capítulo, la arquitectura software elegida para el sistema
-y se mostrarán los prototipos de la interfaz de usuario.
+y se mostrarán los prototipos de la interfaz de usuario elaborados.
 
 \section{Arquitectura}
 \label{sec:diseño_arquitectura}
@@ -34,7 +34,7 @@ caso, se encarga de la comunicación con la base de datos.
 A mayores, el propio \textit{frontend} web tendrá también una arquitectura basada en cliente-servidor, en la que el servidor será el encargado
 de ofrecer al cliente los archivos estáticos necesarios para mostrar la interfaz (HTML, CSS, JavaScript, fuentes, imágenes...). El hecho
 de elegir una interfaz web gira en torno al requisito no funcional de portabilidad definido en la Sección \ref{sec:analisis_requisitos_no_funcionales},
-puesto que, de esta forma, la aplicación podría ser utilizada por cualquier dispositivo con un navegador web, evitando
+puesto que, de esta forma, la aplicación podría ser utilizada por cualquier dispositivo con un navegador, evitando
 desarrollar aplicaciones nativas para cada sistema operativo.
 
 \bigskip
@@ -58,8 +58,8 @@ recogido en la Sección \ref{sec:analisis_requisitos_no_funcionales}, por lo que
 
 \bigskip
 La pantalla de inicio, como se ve en la Figura \ref{fig:prototipo_inicio}, está compuesta simplemente por un título, 
-un subtítulo y un campo que permitirá al usuario subir un \textit{dataset}, tanto mediante un elemento \textit{drag and drop} como
-mediante un botón que abrirá el explorador de archivos del sistema operativo.
+un subtítulo y un campo que dará la opción al usuario de subir un \textit{dataset}, tanto mediante un elemento \textit{drag and drop} como
+mediante un botón que permitirá la selección de un archivo almacenado en el dispositivo.
 
 \bigskip
 \begin{figure}[H]
@@ -71,8 +71,8 @@ mediante un botón que abrirá el explorador de archivos del sistema operativo.
 
 \bigskip
 Una vez el usuario haya subido el \textit{dataset}, el campo de subida se sustituirá por la lista de los
-algoritmos de perfilado disponibles, como se puede ver en la Figura \ref{fig:prototipo_algoritmo_perfilado}. De cada algoritmo se mostrará, en una tarjeta, las características que es capaz de extraer
-del perfilado junto con su título. Además, ya que uno de los requisitos era el de mostrar información del funcionamiento
+algoritmos de perfilado disponibles, como se puede ver en la Figura \ref{fig:prototipo_algoritmo_perfilado}. De cada algoritmo se mostrará,
+en una tarjeta, su nombre junto a las características demográficas que es capaz de extraer. Además, ya que uno de los requisitos era el de mostrar información del funcionamiento
 y del rendimiento de los algoritmos, se decidió crear un \textit{tooltip} para ello. Un \textit{tooltip} es una ventana emergente
 que aparece al pasar el ratón por encima de un elemento y que muestra información adicional sobre el mismo sin ocupar espacio
 en la interfaz. Finalmente, si el usuario desease cambiar el \textit{dataset} seleccionado, se permitirá retroceder mediante
@@ -88,7 +88,7 @@ la flecha situada junto al título del paso actual.
 
 \bigskip
 Ya con el \textit{dataset} y el algoritmo seleccionados, se presentará al usuario un resumen del perfilado, donde se mostrará
-el nombre del fichero subido, la tarjeta del algoritmo seleccionado y un botón que permitirá comenzar con el proceso de perfialdo.
+el nombre del fichero subido, la tarjeta del algoritmo seleccionado y un botón que permitirá comenzar con el proceso.
 Además, como se aprecia en la Figura \ref{fig:prototipo_resumen_perfilado}, una vez comienza el perfilado, se mostrará una barra de progreso
 o un \textit{spinner} que le indicará al usuario que el proceso está en marcha. De la misma forma que en el paso anterior, si el usuario
 decide cambiar de algoritmo, puede retroceder haciendo uso de la flecha situada junto al título del paso actual.

@@ -71,7 +71,7 @@ que recibe cada uno. Como se puede observar en la Figura \ref{fig:implementacion
 		\end{figure}
 \end{itemize}
 
-Destacar que en todos los casos, tanto el algoritmo de Grivas et al. \cite{grivas2015author} como el de Martinc et al. \cite{martinc2019hot}, tienen asociado un \textit{dataset} de entrenamiento por defecto (que coincide
+Destacar que, en todos los casos, tanto el algoritmo de Grivas et al. \cite{grivas2015author} como el de Martinc et al. \cite{martinc2019hot}, tienen asociado un \textit{dataset} de entrenamiento por defecto (que coincide
 con el utilizado por los autores originales en su publicación), el cual se utilizará en caso de no especificar ninguno en la URL.
 
 \begin{figure}[H]
@@ -89,7 +89,7 @@ del patrón de diseño DDD \cite{ddd}, en el que se distinguen tres capas: la ca
 y la capa de infrastructura.
 
 \bigskip
-Nuestro punto de entrada al sistema, es decir, el componente que forma parte de la \textbf{capa de aplicación}, es la clase
+Nuestro punto de entrada al sistema, es decir, el componente que forma parte de la capa de aplicación, es la clase
 \textit{Controller}, el cual se encarga de realizar las siguientes tareas:
 
 \begin{itemize}
@@ -101,7 +101,7 @@ Nuestro punto de entrada al sistema, es decir, el componente que forma parte de 
 \end{itemize}
 
 \bigskip
-En la \textbf{capa de dominio}, una vez los datos han sido validados y parseados, el \textit{ProfilingService} es el encargado de orquestar
+En la capa de dominio, una vez los datos han sido validados y parseados, el \textit{ProfilingService} es el encargado de orquestar
 las diferentes llamadas y delegar la lógica de negocio a las distintas entidades.
 
 \bigskip
@@ -129,10 +129,10 @@ Finalmente, en la capa de dominio, se encuentra la clase abstracta \textit{Profi
 los repositorios de tecnologías de bases de datos concretas, ya sean relacionales, no relacionales o de otro tipo.
 
 \bigskip
-Ya en la \textbf{capa de infraestructura}, es decir, donde se almacenan todos los componentes externos con los que interactúa el dominio, se encuentran las clases que implementan
+Ya en la capa de infraestructura, es decir, donde se almacenan todos los componentes externos con los que interactúa el dominio, se encuentran las clases que implementan
 la interfaz definida por el \textit{ProfilingRepository}. En nuestro caso, ya que se decidió optar por MongoDB como base de datos, solo existe
 la clase \textit{MongoProfilingRepository}, la cual se encarga de realizar las operaciones CRUD (del inglés \textit{Create, Read, Update, Delete}) sobre la base de datos, así
-como de establecer y mantener la conexión con la misma.
+como de establecer y mantener las conexiones con la misma.
 
 \bigskip
 \begin{figure}[H]
@@ -151,7 +151,7 @@ las clases más relevantes del proyecto y su relación con el resto de módulos 
 
 \bigskip
 Primero, como elemento principal que conforma la interfaz de usuario, estarían todas las páginas que se encuentran en el módulo \textit{pages}, es decir,
-la página principal o \textit{landing} (\textit{Home}) y la página de resultados (\textit{Results}).
+la página principal (\textit{Home}) y la página de resultados (\textit{Results}).
 
 \bigskip
 Como se ve reflejado en el diagrama, cada página está formada por varios componentes, los cuales se almacenan dentro del módulo \textit{components}.
@@ -172,10 +172,10 @@ era necesario que la aplicación fuese \textit{responsive}, es decir, adaptable 
 
 \bigskip
 Por otro lado, ya que algunos componentes y páginas necesitan realizar peticiones al \textit{backend}, es necesario implementar un servicio
-que mantenga la lógica de la comunicación y exponga funciones que faciliten su uso. De esta tarea se encarga la clase abstracta \textit{ProfilingService},
+que contenga la lógica de la comunicación y exponga funciones que faciliten su uso. De esta tarea se encarga la clase abstracta \textit{ProfilingService},
 la cual define funciones estáticas tales como \textit{getProfiling()} o \textit{predict()} que abstraen al resto de componentes de la lógica de las peticiones HTTP.
 Dicho servicio hace uso por debajo de \textit{fetch}, una API nativa de JavaScript muy flexible que permite programar casi cualquier funcionalidad
-relacionada con peticiones HTTP. Asimismo, ya que la asincronía es un concepto muy extendido y necesario en el desarrollo web, se ha optado
+relacionada con peticiones HTTP. Asimismo, ya que la asincronía es un concepto muy extendido y necesario en el desarrollo web, se optó
 por usar las \textit{Promises} de JavaScript, las cuales permiten realizar operaciones asíncronas de forma muy sencilla.
 
 \bigskip
