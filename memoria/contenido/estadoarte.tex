@@ -277,15 +277,15 @@ resultando en cuatro categorías: 18-24, 25-34, 35-49 y 50-XX.
 
 \bigskip
 En lo que respecta al \textit{corpus} proporcionado para la competición, los organizadores recopilaron \textit{tweets} de la red social Twitter
-de 726 usuarios en cuatro idiomas diferentes: inglés, español, italiano y holandés. Dicho \textit{dataset} está etiquetado con el género y la edad
-(solamente para inglés y español) de los autores, que ellos mismos reportaron en sus perfiles de Twitter. Para determinar los rasgos de la personalidad,
-los autores completaron el test BFI-10 (Rammstedt et al., 2007) \cite{rammstedt2007measuring}, proporcionando valores para cada rasgo normalizados entre -0.5 y 0.5.
+de 632 usuarios en cuatro idiomas diferentes: inglés, español, italiano y holandés. Dicho \textit{dataset} está etiquetado con el género y la edad
+(solamente para inglés y español) de los autores, que ellos mismos reportaban en sus perfiles de Twitter. Para determinar los rasgos de la personalidad,
+los autores completaron el test BFI-10 (Rammstedt et al., 2007) \cite{rammstedt2007measuring}, el cual proporcionaba valores para cada rasgo normalizados entre -0.5 y 0.5.
 
 \bigskip
 Así, como se puede ver en la Figura \ref{fig:dataset_2015}, el \textit{dataset} vuelve a estar desbalanceado en cuanto a la edad, ya que existen
-clases como la 50-XX la cual apenas tiene un 7\% de la representación con respecto al total. Sin embargo,
+clases como la 50-XX la cual apenas cuenta con un un 7\% de representación. Sin embargo,
 a excepción de la clase 18-24, existe un número similar de autores de habla española e inglesa, por lo que cabe esperar una generalización
-similar para ambos idiomas. En lo referente a la ditribución de género, como se puede ver en la Tabla \ref{tab:dataset_2015}, está perfectamente balanceada,
+semejante para ambos idiomas. En lo referente a la ditribución de género, como se puede ver en la Tabla \ref{tab:dataset_2015}, está perfectamente balanceada,
 contando con un 50\% de autores de cada género para todos los idiomas.
 
 \bigskip
@@ -374,7 +374,9 @@ ofrecen los algoritmos presentados con respecto al género en los dos idiomas pr
 precisiones del 96\% para el español en el caso de Alvarez-Carmona et al. \cite{alvarez2015inaoe}. Con respecto a la edad,
 se puede ver como se obtienen unos mejores resultados, de alrededor de un 5\%, en la clasificación en inglés que en español, algo que
 hipotéticamente puede ser un reflejo de las pequeñas diferencias existentes entre el número de autores en cada uno de los idiomas en
-el \textit{dataset} de entrenamiento.
+el \textit{dataset} de entrenamiento. Sin embargo, estos tan buenos resultados, pueden ser también un reflejo del reducido número de
+autores con los que cuenta el \textit{dataset}, de apenas 600 autores, lo que puede provocar un sobreajuste (\textit{overfitting} en inglés)
+de los modelos.
 
 \bigskip
 Con respecto a la implementación de los algoritmos, podemos destacar lo siguiente:
@@ -385,7 +387,7 @@ Con respecto a la implementación de los algoritmos, podemos destacar lo siguien
 	las menciones, los \textit{hashtags} y los enlaces como características adicionales.
 	\item \textbf{\textit{Features}}: En la mayor parte de los algoritmos presentados, se combinaba el uso de características
 	basadas en el estilo y en el contenido. Así, en cuanto a contenido, González-Gallardo et al. \cite{gonzalez2015tweets} hizo uso de n-gramas de caracteres
-	mientras que Grivas et al. \cite{grivas2015author} empleó n-gramas basados en TF-IDF. Además, en el caso de Grivas et al. \cite{grivas2015author},
+	mientras que Grivas et al. \cite{grivas2015author} empleó TF-IDF con trigramas. Además, en el caso de Grivas et al. \cite{grivas2015author},
 	se analizaron otras caracterísitcas basadas en el estilo como la longitud de las palabras o el número de mayúsculas. En el caso de Alvarez-Carmona et al. \cite{alvarez2015inaoe},
 	se hizo uso del Análisis Semántico Latente, explicado en la Sección \ref{sec:analisis_semantico_latente}, junto a una técnica similar a la empleada por
 	López-Monroy et al. \cite{lopez2014using} en el año 2014.
