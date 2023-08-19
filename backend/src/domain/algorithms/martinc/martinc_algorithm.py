@@ -21,7 +21,7 @@ logger = logging.getLogger("server_logger")
 
 class MartincAlgorithm(ProfilingAlgorithm):
     MODEL_FOLDER = "./domain/algorithms/martinc/models"
-    TASKS = ["gender", "fame", "occupation", "birthyear"]
+    TASKS = ["gender", "fame", "occupation", "age"]
 
     def __init__(self):
         name = "martinc"
@@ -120,10 +120,9 @@ class MartincAlgorithm(ProfilingAlgorithm):
             pickle.dump(encoder, open(encoder_path, "wb"))
 
         for task, encoded_task_labels in all_encoded_task_labels.items():
-            if task == "birthyear":
-                clf = LogisticRegression(C=1e2, fit_intercept=False)
-                clf.fit(feature_vector, encoded_task_labels)
-                joblib.dump(clf, path.join(model_path, f"trained_LR_{task}.pkl"))
+            clf = LogisticRegression(C=1e2, fit_intercept=False)
+            clf.fit(feature_vector, encoded_task_labels)
+            joblib.dump(clf, path.join(model_path, f"trained_LR_{task}.pkl"))
 
         logger.info("Martinc algorithm trained successfully")
 
@@ -176,23 +175,9 @@ class MartincAlgorithm(ProfilingAlgorithm):
 
             predictions = model.predict(test_features)
             predictions = encoder.inverse_transform(predictions)
-
-            if task == "birthyear":
-                total = len(predictions)
-                true_positives = 0
-                for i in range(len(task_labels)):
-                    year = int(predictions[i])
-                    true_year = int(task_labels[i])
-                    window_size = (-0.1 * true_year) + 202.8
-                    if abs(year - true_year) <= window_size:
-                        true_positives += 1
-
-                accuracy = true_positives / total
-                f1 = 0
-
-            else:
-                accuracy = accuracy_score(task_labels, predictions)
-                f1 = f1_score(task_labels, predictions, average="weigh")
+            
+            accuracy = accuracy_score(task_labels, predictions)
+            f1 = f1_score(task_labels, predictions, average="weighted")
 
             results[task] = {"accuracy": accuracy, "f1": f1}
             logger.info(f"{task} performed with Accuracy: {accuracy} and F1: {f1}")
