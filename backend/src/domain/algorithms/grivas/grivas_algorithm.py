@@ -39,26 +39,15 @@ class GrivasAlgorithm(ProfilingAlgorithm):
         default_train_dataset = PAN15TrainDataset()
         super().__init__(name, supported_train_datasets, default_train_dataset)
 
-    def predict(self, dataset: PredictDataset, train_dataset: TrainDataset):
-        trained_model = path.join(self.MODEL_FOLDER, f"{train_dataset.name}.bin")
-        all_models = joblib.load(trained_model)
+    def predict(self, predict_dataset: PredictDataset, train_dataset: TrainDataset):
+        models_path = path.join(self.MODEL_FOLDER, f"{train_dataset.name}.bin")
+        all_models = joblib.load(models_path)
 
-        dataset.convert_to_ndjson()
-
-        documents = {}
-        for line in dataset.file:
-            lx = json.loads(line)
-            if isinstance(lx["text"], list):
-                tokens_word = " ".join(lx["text"])
-            else:
-                tokens_word = lx["text"]
-
-            documents[lx["id"]] = documents.get(lx["id"], "") + tokens_word
+        predict_documents = predict_dataset.get_documents()
 
         test_documents = []
         test_ids = []
-
-        for k, v in documents.items():
+        for k, v in predict_documents.items():
             test_documents.append(v)
             test_ids.append(k)
 

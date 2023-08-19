@@ -15,6 +15,20 @@ class PredictDataset:
         self.file = file
         self.check_validity()
 
+    def get_documents(self):
+        self.convert_to_ndjson()
+
+        documents = {}
+        for line in self.file:
+            lx = json.loads(line)
+            if isinstance(lx["text"], list):
+                tokens_word = " ".join(lx["text"])
+            else:
+                tokens_word = lx["text"]
+
+            documents[lx["id"]] = documents.get(lx["id"], "") + tokens_word
+        return documents
+
     def convert_to_ndjson(self):
         if self.file_type == FileType.CSV:
             self.file = CsvToNdjsonConverter().convert(self.file)
