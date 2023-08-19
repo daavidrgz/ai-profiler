@@ -102,7 +102,7 @@ export default function ResumePage() {
               selectedPerson={selectedPerson}
               setSelectedPerson={setSelectedPerson}
               style={{
-                width: isBelowScreenM ? "100%" : "56rem",
+                width: isBelowScreenM ? "100%" : "50%",
                 height: isBelowScreenM ? "22rem" : "100%",
               }}
             />
@@ -110,7 +110,7 @@ export default function ResumePage() {
               people={profiling.people}
               selectedPerson={selectedPerson}
               style={{
-                width: isBelowScreenM ? "100%" : "36rem",
+                width: isBelowScreenM ? "100%" : "35%",
                 height: isBelowScreenM ? "22rem" : "100%",
               }}
             />
@@ -118,7 +118,7 @@ export default function ResumePage() {
               people={profiling.people}
               selectedPerson={selectedPerson}
               style={{
-                width: isBelowScreenM ? "100%" : "18rem",
+                width: isBelowScreenM ? "100%" : "20%",
                 height: isBelowScreenM ? "22rem" : "100%",
               }}
             />
@@ -132,7 +132,7 @@ export default function ResumePage() {
                   people={profiling.people}
                   selectedPerson={selectedPerson}
                   style={{
-                    width: isBelowScreenM ? "100%" : "25rem",
+                    width: isBelowScreenM ? "100%" : "25%",
                     height: isBelowScreenM ? "22rem" : "100%",
                   }}
                 />
@@ -141,7 +141,7 @@ export default function ResumePage() {
                   people={profiling.people}
                   selectedPerson={selectedPerson}
                   style={{
-                    width: isBelowScreenM ? "100%" : "50rem",
+                    width: isBelowScreenM ? "100%" : "45%",
                     height: isBelowScreenM ? "22rem" : "100%",
                   }}
                 />
@@ -152,7 +152,7 @@ export default function ResumePage() {
                 people={profiling.people}
                 selectedPerson={selectedPerson}
                 style={{
-                  width: isBelowScreenM ? "100%" : "38rem",
+                  width: isBelowScreenM ? "100%" : "35%",
                   height: isBelowScreenM ? "22rem" : "100%",
                 }}
               />
