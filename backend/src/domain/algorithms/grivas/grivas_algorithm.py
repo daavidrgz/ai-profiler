@@ -78,6 +78,7 @@ class GrivasAlgorithm(ProfilingAlgorithm):
 
         input_folder = train_dataset.train_path
 
+        logger.info(f"Loading dataset from {input_folder}...")
         dataset = ProfilingDataset(input_folder)
         logger.info(f"Loaded {len(dataset.entries)} users...\n")
         all_models = {}

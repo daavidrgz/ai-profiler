@@ -19,8 +19,8 @@ class PAN19TrainDataset(TrainDataset):
 class PAN14TrainDataset(TrainDataset):
     def __init__(self):
         name = "PAN14"
-        train_path = "../datasets/PAN14 - Author Profiling/english/reviews"
-        test_path = "../datasets/PAN14 - Author Profiling/english/blogs"
+        train_path = "../datasets/PAN14 - Author Profiling/english/joint"
+        test_path = "../datasets/PAN15 - Author Profiling/test/english"
         super().__init__(name, train_path, test_path)
 
 
