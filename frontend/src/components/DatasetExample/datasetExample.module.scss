@@ -61,7 +61,7 @@
   align-items: center;
 
   @include for-screens-below("m") {
-    height: 2.2rem;
+    height: 2rem;
   }
 
   > .lineNumber {
