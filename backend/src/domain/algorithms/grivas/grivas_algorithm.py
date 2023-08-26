@@ -123,7 +123,7 @@ class GrivasAlgorithm(ProfilingAlgorithm):
             logger.info(f"\n-- Predictions for {task} --")
             if task in self.SVM_TASKS:
                 acc = accuracy_score(y, predict)
-                f1 = f1_score(y, predict, average="weighted")
+                f1 = f1_score(y, predict, average="macro")
                 logger.info(f"Accuracy: {acc}, F1: {f1}")
                 results[task] = {"accuracy": acc, "f1": f1}
             else:
