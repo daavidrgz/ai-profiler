@@ -21,7 +21,7 @@ logger = logging.getLogger("server_logger")
 
 class MartincAlgorithm(ProfilingAlgorithm):
     MODEL_FOLDER = "./domain/algorithms/martinc/models"
-    TASKS = ["gender", "fame", "occupation", "birthyear"]
+    TASKS = ["gender", "fame", "occupation", "age"]
 
     def __init__(self):
         name = "martinc"
@@ -130,7 +130,7 @@ class MartincAlgorithm(ProfilingAlgorithm):
         model_path = path.join(self.MODEL_FOLDER, train_dataset.name)
 
         test_labels_file_path = path.join(
-            train_dataset.test_path, "labels-legacy.ndjson"
+            train_dataset.test_path, "labels.ndjson"
         )
         test_feeds_file_path = path.join(train_dataset.test_path, "feeds.ndjson")
 
@@ -178,28 +178,8 @@ class MartincAlgorithm(ProfilingAlgorithm):
             predictions = model.predict(test_features)
             predictions = encoder.inverse_transform(predictions)
 
-            if task == "birthyear":
-
-                def map_to_window(prediction, true_label):
-                    window_size = (-0.1 * true_label) + 202.8
-                    if abs(prediction - true_label) <= window_size:
-                        return true_label
-                    return prediction
-
-                true_labels = [int(label) for label in task_labels]
-                predicted_labels = [int(label) for label in predictions]
-
-                mapped_predictions = [
-                    map_to_window(pred, true)
-                    for pred, true in zip(predicted_labels, true_labels)
-                ]
-
-                f1 = f1_score(true_labels, mapped_predictions, average="macro")
-                accuracy = accuracy_score(true_labels, mapped_predictions)
-
-            else:
-                accuracy = accuracy_score(task_labels, predictions)
-                f1 = f1_score(task_labels, predictions, average="macro")
+            accuracy = accuracy_score(task_labels, predictions)
+            f1 = f1_score(task_labels, predictions, average="macro")
 
             results[task] = {"accuracy": accuracy, "f1": f1}
             logger.info(f"{task} performed with Accuracy: {accuracy} and F1: {f1}")
