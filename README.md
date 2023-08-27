@@ -14,8 +14,9 @@ https://github.com/daavidrgz/tfg/assets/72865058/c9f57c27-36ec-4482-bf21-d130463
 <summary><strong>&nbsp;O V E R V I E W &nbsp;👁️‍🗨️</strong></summary>
 <br>
 
-AI Profiler is a revolutionary tool mainly focused on the modularity and the possiblity of being expanded. It currently
-supports the following features:
+AI Profiler is a revolutionary tool that extracts the personal characteristics of text's authors and presents them
+in a dashboard. It is mainly focused on the modularity and the possiblity of being effortlessly expanded. It currently
+boasts the following features:
 
 - **Dataset upload:** You can upload your own text datasets to profile several people at once.
 - **Twitter user profile:** You can extract personal characteristic of a Twitter user by just providing its username.
