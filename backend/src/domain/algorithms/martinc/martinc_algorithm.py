@@ -129,9 +129,7 @@ class MartincAlgorithm(ProfilingAlgorithm):
     def get_performance(self, train_dataset: TrainDataset):
         model_path = path.join(self.MODEL_FOLDER, train_dataset.name)
 
-        test_labels_file_path = path.join(
-            train_dataset.test_path, "labels.ndjson"
-        )
+        test_labels_file_path = path.join(train_dataset.test_path, "labels.ndjson")
         test_feeds_file_path = path.join(train_dataset.test_path, "feeds.ndjson")
 
         documents = {}

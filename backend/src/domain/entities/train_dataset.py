@@ -12,7 +12,7 @@ class PAN19TrainDataset(TrainDataset):
     def __init__(self):
         name = "PAN19"
         train_path = "../datasets/PAN19 - Celebrity Profiling/training"
-        test_path = "../datasets/PAN19 - Celebrity Profiling/test2"
+        test_path = "../datasets/PAN19 - Celebrity Profiling/test"
         super().__init__(name, train_path, test_path)
 
 
