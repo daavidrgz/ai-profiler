@@ -46,12 +46,12 @@ export default function HomePage() {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
               >
-                {/* <TwitterInput setUsername={setUsername} /> */}
-                {/* <div className={styles.divider}> */}
+                <TwitterInput setUsername={setUsername} />
+                <div className={styles.divider}>
                   {/* <div className={styles.line} /> */}
-                  {/* <span>OR</span> */}
+                  <span>OR</span>
                   {/* <div className={styles.line} /> */}
-                {/* </div> */}
+                </div>
                 <UploadDataset handleImportFile={handleImportFile} />
               </motion.div>
             )}
