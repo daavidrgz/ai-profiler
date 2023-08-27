@@ -1,8 +1,8 @@
 <div align="center"> <h1><strong>AI PROFILER</strong></h1> </div>
 <div align="center">
 
-The ultimate tool that will help sociologists, entrepreneurs, politicians and any other people to **infer personal
-characteristics of people from the text they write using AI.**
+The ultimate tool that will help sociologists, entrepreneurs, politicians and many other people to **infer personal
+characteristics of people from the text they write using AI** ✍🏻 🧠
 
 https://github.com/daavidrgz/tfg/assets/72865058/c9f57c27-36ec-4482-bf21-d1304639eceb
 
