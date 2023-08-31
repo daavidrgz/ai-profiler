@@ -1,7 +1,7 @@
 import os
 import pickle
 from os import path
-from sklearn.metrics import accuracy_score, precision_recall_fscore_support
+from sklearn.metrics import accuracy_score
 from domain.entities.profiling_algorithm import ProfilingAlgorithm
 from domain.algorithms.martinc.tfidf_kingdom import *
 from collections import defaultdict
@@ -12,7 +12,6 @@ import logging
 from domain.entities.predict_dataset import PredictDataset
 from sklearn.metrics import f1_score
 from sklearn.linear_model import LogisticRegression
-import numpy as np
 from domain.entities.train_dataset import PAN19TrainDataset, TrainDataset
 
 

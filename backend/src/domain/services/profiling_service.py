@@ -1,13 +1,13 @@
 import time
-from uuid import UUID, uuid4
-from domain.entities.predict_dataset import PredictDataset
-from domain.algorithms.martinc.martinc_algorithm import MartincAlgorithm
-from domain.algorithms.grivas.grivas_algorithm import GrivasAlgorithm
-from domain.entities.profiling_algorithm import ProfilingAlgorithm
 from threading import Thread
+from uuid import UUID, uuid4
 
-from domain.entities.train_dataset import TrainDataset
+from domain.algorithms.grivas.grivas_algorithm import GrivasAlgorithm
+from domain.algorithms.martinc.martinc_algorithm import MartincAlgorithm
+from domain.entities.predict_dataset import PredictDataset
 from domain.entities.profiling import Profiling
+from domain.entities.profiling_algorithm import ProfilingAlgorithm
+from domain.entities.train_dataset import TrainDataset
 from infraestructure.mongo_profiling_repository import MongoProfilingRepository
 
 

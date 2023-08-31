@@ -1,4 +1,3 @@
-""" accessor for configuration settings of pan """
 import yaml
 import os.path
 from collections import OrderedDict

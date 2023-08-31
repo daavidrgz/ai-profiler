@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-import json
 from domain.entities.predict_dataset import PredictDataset
 from domain.entities.train_dataset import TrainDataset
 

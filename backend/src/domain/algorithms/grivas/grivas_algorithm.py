@@ -1,8 +1,6 @@
 from collections import defaultdict
-import json
 import math
-import os
-from os import path
+from os import path, makedirs
 import joblib
 import logging
 from domain.entities.profiling_algorithm import ProfilingAlgorithm
@@ -74,7 +72,7 @@ class GrivasAlgorithm(ProfilingAlgorithm):
 
     def train(self, train_dataset: TrainDataset):
         if not path.exists(self.MODEL_FOLDER):
-            os.makedirs(self.MODEL_FOLDER)
+            makedirs(self.MODEL_FOLDER)
 
         input_folder = train_dataset.train_path
 
