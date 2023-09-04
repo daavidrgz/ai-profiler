@@ -1,195 +1,239 @@
 \chapter{Implementación}
 \label{chap:implementacion}
 
-A lo largo de este capítulo, se expondrán las decisiones de implementación más relevantes tomadas durante el desarrollo del proyecto.
+\lettrine{A} lo largo de este capítulo, se expondrán las decisiones de implementación más relevantes tomadas durante el desarrollo de la aplicación.
+y se detallará la estructura de directorios que se ha seguido para organizar el código fuente del proyecto. Finalmente, se hablará
+de la importancia del código abierto y de como contribuye a la innovación en el campo de la informática.
 
-\section{\textit{Backend}}
+\section{Adaptación de los algoritmos}
+\label{sec:adaptacion_algoritmos}
 
-Para analizar la implementación del \textit{backend}, se tomará como referencia el diagrama de clases de la Figura \ref{fig:implementacion_clases_backend} y se profundizará
-en las clases más importantes que lo componen. Asimismo, se estudirá y se justificará cuales han sido los \textit{endpoints} expuestos por el servidor,
-representados en la Figura \ref{fig:implementacion_endpoints}.
-
-\subsection{\textit{Endpoints}}
-
-Dado que el \textit{backend} seguirá una arquitectura REST, se explicarán a continuación los \textit{endpoints} que se han implementado para el servidor, así como los parámetros
-que recibe cada uno. Como se puede observar en la Figura \ref{fig:implementacion_endpoints}, el servidor expone un total de cuatro \textit{endpoints}:
-
-\begin{itemize}
-	\item \textbf{/predict}: Como indica la historia de usuario con identificador \textit{1} de la Sección \ref{sec:analisis_requisitos_funcionales}, el usuario
-		debe poder subir su propio dataset de textos para su perfilado. Para ello, se ha implementado este \textit{endpoint} que recibe como parámetros de la URL el
-		nombre del algoritmo de perfilado a utilizar junto al \textit{dataset} utilizado para entrenar el modelo. Además, ya que el método de la petición es POST,
-		será en el cuerpo donde se envíe
-		el archivo con los textos a perfilar. En caso de que el archivo no sea correcto, que el algoritmo no exista o que el \textit{dataset} de entrenamiento
-		no sea válido, se devolverá un error HTTP 400 (\textit{Bad Request}). En caso contrario, se devolverá un identificador correspondiente a la tarea de perfilado
-		que se ha creado de forma asíncrona, generado dinámicamente con la librería uuid \cite{uuidpython} de Python (según el estándar RFC 4122 \cite{rfc4122}) y que coincide
-		con el identificador del documento almacenado en la base de datos. 
-		El hecho de no esperar a que el perfilado se complete 
-		para devolver una respuesta al usuario evita tener problemas con el tiempo de espera de la petición o \textit{timeout} del \textit{socket} TCP, 
-		permitiendo así procesar grandes volúmenes de datos y cumplir con el requisito de escalabilidad establecido en la Sección \ref{sec:analisis_requisitos_no_funcionales}.
-
-	\item \textbf{/train}: Además, ya que el usuario debe poder reentrenar los modelos con los algoritmos disponibles, se ha implementado este \textit{endpoint} de tipo GET.
-		En este caso, se recibe como parámetros de la URL el nombre del algoritmo de perfilado a utilizar junto al \textit{dataset} de entrenamiento. De la misma forma,
-		se validarán los parámetros y, en caso de que sean correctos, se iniciará una tarea asíncrona en el \textit{backend}.
-
-	\item \textbf{/performance}: Puesto que otra de las historias de usuario nos indica que es necesario conocer el rendimiento que tiene los algoritmos,
-		el \textit{backend} expondrá otro \textit{endpoint} de tipo GET que recibe los mismos parámetros que el anterior. La diferencia es que, en este caso,
-		se devolverá un JSON con los valores de rendimiento del algoritmo en lugar de iniciar una tarea asíncrona.
-	
-	\item \textbf{/profilings/\{id\}}: Para poder obtener los resultados del perfilado creado de forma asíncrona, este \textit{endpoint} de tipo GET
-		permite recuperarlos de la base da datos haciendo uso del identificador devuelto por la tarea de predicción. En caso de que la tarea
-		no exista, se devolverá un error HTTP 404 (\textit{Not Found}). La respuesta devuelta será un JSON con la estructura mostrada en la Figura \ref{fig:profiling_json}.
-
-		\begin{figure}[H]
-			\begin{lstlisting}[language=json]
 {
-	"status": "SUCCESS",
-	"algorithm": "martinc",
-	"time": 4291,
-	"output": [
-		{
-			"id": "29502",
-			"result": {
-				"gender": "male",
-				"fame": "star",
-				"occupation": "sports",
-				"age": "35-49"
-			}
-		},
-		{
-			"id": "38991",
-			"result": {
-				"gender": "female",
-				"fame": "rising",
-				"occupation": "performer",
-				"age": "50-XX"
-			}
-		},
-	]
-}\end{lstlisting}
-			\caption{Estructura del JSON devuelto por el \textit{endpoint} /profilings/\{id\}}
-			\label{fig:profiling_json}
-		\end{figure}
-\end{itemize}
+	\color{blue}
+	Dado que el código fuente de los algoritmos de perfilado seleccionados estaba disponible para su uso, fue necesario adaptarlo
+	para ofrecer una interfaz comúna a través de la cual se pudiese comunicar el resto de la aplicación.
+	Para ello se barajaron en un inicio dos aproximaciones diferentes. La primera de ellas pasaba
+	por implementar APIs sencillas en cada uno de los algoritmos, es decir, crear microservicios que se encargasen de recibir
+	las peticiones y devolver los resultados al \textit{backend}. La segunda aproximación consistía en adaptar el propio código
+	fuente para que cada algoritmo formase parte de una clase que implemente la interfaz mencionada en el diagrama de la Figura \ref{fig:clases_backend}
+	(\textit{ProfilingAlgorithm}). Finalmente, se optó por esta segunda opción ya que, a pesar de ser más compleja, permitía
+	una mayor integración con el resto de la aplicación y un mejor rendimiento debido a la eliminación de la latencia de red. Además,
+	podíamos aprovechar el hecho de que los algoritmos estaban programados en Python para utilizarlos directamente
+	en el \textit{backend} sin hacer uso de llamadas interlenguaje.
 
-Destacar que, en todos los casos, tanto el algoritmo de Grivas et al. \cite{grivas2015author} como el de Martinc et al. \cite{martinc2019hot}, tienen asociado un \textit{dataset} de entrenamiento por defecto (que coincide
-con el utilizado por los autores originales en su publicación), el cual se utilizará en caso de no especificar ninguno en la URL.
+	\bigskip
+	Sin embargo, esta decisión implicó comprender a muy bajo nivel como estaban implementados dichos algoritmos para realizar las modificaciones necesarias
+	e implementar nuevas funciones. Esta adaptación del código fue, en el caso del algoritmo de Grivas et al. \cite{grivas2015author},
+	bastante compleja, ya que conllevó sustituír librerías obsoletas, reimplementar funciones y resolver los cambios disruptivos (\textit{breaking changes} en inglés) que suponía
+	dar el salto desde la versión 2.7 de Python a la 3.10.
+}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.5\textwidth]{diagramas/endpoints.pdf}
-	\caption{Diagrama de \textit{endpoints} del \textit{backend}}
-	\label{fig:implementacion_endpoints}
-\end{figure}
+\section{Estructura del proyecto}
+\label{sec:estructura_proyecto}
 
-\subsection{Clases}
+En relación a la estructura del proyecto, se ha optado por agrupar el código fuente de todo el sistema
+bajo un mismo directorio, como se muestra en el diagrama de la Figura \ref{fig:estructura_proyecto},
+dado que facilita en gran medida su portabilidad y su mantenimiento al tratarse de un proyecto relativamente
+pequeño.
 
 \bigskip
-Como se explicó en la Sección \ref{sec:herramientas_backend}, la estructura del \textit{backend} sigue los principios
-del patrón de diseño DDD \cite{ddd}, en el que se distinguen tres capas: la capa de aplicación, la capa de dominio
-y la capa de infrastructura.
-
-\bigskip
-Nuestro punto de entrada al sistema, es decir, el componente que forma parte de la capa de aplicación, es la clase
-\textit{Controller}, el cual se encarga de realizar las siguientes tareas:
+En primer lugar, situados en la raíz del proyecto, podemos diferenciar las carpetas principales que lo conforman, esto es,
+\textit{backend}, \textit{fronted} y \textit{datasets}, así como dos archivos:
 
 \begin{itemize}
-	\item Exponer los \textit{endpoints} y recibir los parámetros de entrada, ya sea a través de la URL o del cuerpo de la petición
-	haciendo uso de FastAPI \cite{fastapi}.
-	\item Validar dichos parámetros y devolver los errores HTTP correspondientes en caso de que no sean correctos.
-	\item Parsear los parámetros de entrada a los tipos de datos que se necesiten.
-	\item Realizar la llamada al servicio de la capa de dominio y devolver el valor de retorno encapsulado en una respuesta HTTP.
+	\item \textbf{\textit{README.md}}: Contiene un resumen en formato Markdown \cite{markdown} de lo que es la aplicación, de sus características y de la forma de ejecutarla.
+	\item \textbf{\textit{docker-compose.yml}}: Es el archivo que almacena las configuraciones de los contenedores de Docker que se deben levantar para que el sistema funcione adecuadamente.
 \end{itemize}
 
 \bigskip
-En la capa de dominio, una vez los datos han sido validados y parseados, el \textit{ProfilingService} es el encargado de orquestar
-las diferentes llamadas y delegar la lógica de negocio a las distintas entidades.
+Continuando con el directorio \textit{backend}, distinguimos varias carpetas y archivos:
+
+\begin{itemize}
+	\item \textbf{\textit{requirements.txt}}: Contiene todas las dependencias de Python que necesita el \textit{backend} para funcionar.
+	\item \textbf{\textit{Dockerfile}}: Es el archivo en el que se definen los pasos necesarios, es decir, los comandos a ejecutar en una
+	      máquina recién instalada, para construir la imagen de Docker del \textit{backend}.
+	\item \textbf{\textit{docker-compose.yml}}: A diferencia del situado en la raíz, este archivo contiene las configuraciones de los contenedores necesarios
+	      para el correcto funcionamiento del entorno de desarrollo en el \textit{backend}.
+	\item \textbf{\textit{/venv}}: Dado que el proyecto está creado haciendo uso de un entorno virtual para aislar las dependencias de Python, este directorio
+	      contiene los archivos para su puesta en marcha.
+	\item \textbf{\textit{/src}}: Aquí se almacena todo el código fuente del \textit{backend}, donde podemos encontrar las siguientes carpetas principales:
+	      \begin{itemize}
+		      \item \textbf{\textit{/application}}: Contiene los controladores y, en general, lo que se encarga de gestionar las comunicaciones exteriores con el sistema.
+		      \item \textbf{\textit{/domain}}: Contiene las clases que conforman la capa de dominio, es decir, las entidades, los repositorios, los servicios, los algoritmos
+		            y los conversores.
+		      \item \textbf{\textit{/infraestructure}}: Contiene los repositorios de tecnologías concretas que implementan las interfaces definidas en la capa de dominio.
+		      \item \textbf{\textit{/utils}}: Contiene clases de utilidad requeridas en diversas partes del sistema.
+		      \item \textbf{\textit{main.py}}: Se corresponde con el punto de entrada de la aplicación.
+	      \end{itemize}
+\end{itemize}
 
 \bigskip
-La más importante de ellas es la clase \textit{ProfilingAlgorithm},
-una clase abstracta que define la interfaz que deben implementar todos los algoritmos de perfilado incluyendo las tres funciones principales:
-\textit{predict()}, \textit{train()} y \textit{get\_performance()}. En este sentido, es importante mencionar que los algoritmos elegidos no estaban implementados
-pensando en formar parte de una aplicación más grande, por lo que fue necesario realizar una adaptación manual para cumplir con la interfaz de
-la clase heredada, lo que implicó comprender a muy bajo nivel como estaban implementados dichos algoritmos. Esta adaptación del código fue, en el caso del algoritmo de Grivas et al. \cite{grivas2015author}, 
-bastante compleja, ya que conllevó sustituír librerías obsoletas, reimplementar funciones y actualizar la sintaxis a la nueva versión de Python.
+Por otro lado, la estructura que sigue el \textit{frontend}, muy ligada al \textit{framework} de dearrollo NextJS, es la siguiente:
+
+\begin{itemize}
+	\item \textbf{\textit{package.json}}: En este archivo se almacenan todas las dependencias de NodeJS que requiere el \textit{frontend}.
+	\item \textbf{\textit{next.config.js}}: La importancia de este archivo, más allá de contener las configuraciones básicas de NextJS, reside en la posibilidad
+	      de definir un \textit{reverse proxy} capaz de redirigir las peticiones al \textit{backend} a la máquina local durante el desarrollo o a la máquina remota,
+	      en este caso otro contenedor de Docker, en producción.
+	\item \textbf{\textit{Dockerfile}}: Archivo análogo al presente en el directorio \textit{backend}, necesario para la construcción de la imagen del \textit{frontend}.
+	\item \textbf{\textit{/src}}: Dentro de esta carpeta, nos encotramos la estructura típica de un proyecto en NextJS:
+	      \begin{itemize}
+		      \item \textbf{\textit{/components}}: Contiene los componentes que conforman las páginas de la aplicación.
+		      \item \textbf{\textit{/model}}: Contiene las clases que representan las entidades del sistema en el \textit{frontend}.
+		      \item \textbf{\textit{/pages}}: Contiene las páginas navegables de la aplicación, estructuradas en directorios según su ruta.
+		      \item \textbf{\textit{/services}}: Contiene los servicios encargados de abstraer las peticiones que se realizan al \textit{backend}.
+		      \item \textbf{\textit{/styles}}: Contiene las hojas de estilos globales de la aplicación.
+		      \item \textbf{\textit{/utils}}: Contiene funciones de diversa utilidad en el proyecto.
+	      \end{itemize}
+\end{itemize}
 
 \bigskip
-Otra entidad importante de la capa de dominio es la clase \textit{PredictDataset}, que representa el \textit{dataset} que proporciona el usuario
-para realizar la predicción. Dado que los algoritmos de perfilado requieren que el \textit{dataset} tenga un formato específico (en este caso
-ambos solo procesan NDJSON), es necesario implementar conversores que transformen el archivo de entrada a dicho formato por lo que
-fue necesario crear las clases \textit{CsvToNdjsonConverter} y \textit{NdjsonToCsvConverter}.
-
-\bigskip
-También existe una clase llamada \textit{TrainDataset}, que representa
-el \textit{dataset} que se utiliza para entrenar y validar el modelo. Esta clase abstracta contiene la locacalización de los elementos
-del conjunto de entrenamiento y test, así como también un nombre que la identifica. Esto nos permite la incorporación de nuevos \textit{datasets} creando simplemente
-una nueva clase que herede de \textit{TrainDataset}, posibilitando la generación de modelos haciendo uso de diferentes conjuntos de entrenamiento de forma sencilla y automática. 
-
-\bigskip
-Finalmente, en la capa de dominio, se encuentra la clase abstracta \textit{ProfilingRepository}, la cual define la interfaz que deben implementar
-los repositorios de tecnologías de bases de datos concretas, ya sean relacionales, no relacionales o de otro tipo.
-
-\bigskip
-Ya en la capa de infraestructura, es decir, donde se almacenan todos los componentes externos con los que interactúa el dominio, se encuentran las clases que implementan
-la interfaz definida por el \textit{ProfilingRepository}. En nuestro caso, ya que se decidió optar por MongoDB como base de datos, solo existe
-la clase \textit{MongoProfilingRepository}, la cual se encarga de realizar las operaciones CRUD (del inglés \textit{Create, Read, Update, Delete}) sobre la base de datos, así
-como de establecer y mantener las conexiones con la misma.
-
-\bigskip
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\textwidth]{diagramas/clases_back.pdf}
-	\caption{Diagrama de clases de la implementación del \textit{backend}}
-	\label{fig:implementacion_clases_backend}
-\end{figure}
-
-\section{\textit{Frontend}}
-
-En lo que respecta a la implementación del \textit{frontend}, como se explicó en la Sección \ref{sec:herramientas_frontend}, se optó
-por utilizar NextJS como \textit{framework} de desarrollo, el cual está basado en React. Así, teniendo esto en cuenta y apoyándonos
-en el diagrama de clases de la Figura \ref{fig:implementacion_clases_frontend}, analizaremos
-las clases más relevantes del proyecto y su relación con el resto de módulos y componentes.
-
-\bigskip
-Primero, como elemento principal que conforma la interfaz de usuario, estarían todas las páginas que se encuentran en el módulo \textit{pages}, es decir,
-la página principal (\textit{Home}) y la página de resultados (\textit{Results}).
-
-\bigskip
-Como se ve reflejado en el diagrama, cada página está formada por varios componentes, los cuales se almacenan dentro del módulo \textit{components}.
-En este sentido, el componente \textit{Chart} es uno de los más complejos e interesantes, dado que en él reside toda la lógica y la configuración común
- de los gráficos que se muestran en el \textit{dashboard} de la página de resultados. Otros componentes importantes son el \textit{UploadDataset},
-el cual se encarga de gestionar los eventos de \textit{drag and drop} y de la subida de archivos; el componente \textit{AlgorithmCard}, que
-presenta la información de las caraterísiticas que perfila cada algoritmo y se ocupa de mostrar el \textit{tooltip} con la información detallada;
-o el componente \textit{PeopleList}, el cual se hace cargo de manejar la paginación, la ordenación y la selección de la lista de personas.
-
-\bigskip
-Es importante
-destacar aquí el hecho de que cada uno de los componentes tiene una hoja de estilos propia gracias a la utilización de los módulos CSS \cite{cssmodules}. A su vez
-se buscó sacarle partido a SASS, haciendo uso de variables globales que definen colores o distancias; empleando el anidamiento para una mejor
-estructuración de los estilos; y utilizando los \textit{mixins}, esto es, funciones que permiten reutilizar código CSS para, por ejemplo, simplificar la implementación de las \textit{media queries}. En este
-sentido, para cumplir con el requisito no funcional de portabilidad explicado en la Sección \ref{sec:analisis_requisitos_no_funcionales}, 
-era necesario que la aplicación fuese \textit{responsive}, es decir, adaptable a cualquier tamaño de pantalla, desde móviles a monitores.
-
-
-\bigskip
-Por otro lado, ya que algunos componentes y páginas necesitan realizar peticiones al \textit{backend}, es necesario implementar un servicio
-que contenga la lógica de la comunicación y exponga funciones que faciliten su uso. De esta tarea se encarga la clase abstracta \textit{ProfilingService},
-la cual define funciones estáticas tales como \textit{getProfiling()} o \textit{predict()} que abstraen al resto de componentes de la lógica de las peticiones HTTP.
-Dicho servicio hace uso por debajo de \textit{fetch}, una API nativa de JavaScript muy flexible que permite programar casi cualquier funcionalidad
-relacionada con peticiones HTTP. Asimismo, ya que la asincronía es un concepto muy extendido y necesario en el desarrollo web, se optó
-por usar las \textit{Promises} de JavaScript, las cuales permiten realizar operaciones asíncronas de forma muy sencilla.
-
-\bigskip
-Por último, como toda aplicación tipada, es necesario definir un modelo de datos que represente cada entidad. En este sentido, se ha optado
-por el uso de enumeraciones o \textit{enums} para representar la mayor parte de los datos, tales como los algoritmos de perfilado, los géneros,
-las edades o los rasgos personales. Asimismo, se ha creado una clase \textit{Person} que aúna todas las características
-perfiladas de una persona junto a su nombre. Finalmente, para representar los datos enviados por el \textit{backend}, se ha definido la clase \textit{ProfilingDto},
-la cual, en última instancia, permite realizar la conversión a la clase \textit{Profiling} empleada por el resto de la aplicación.
-
+Finalmente, el directorio \textit{datasets} se corresponde con el lugar donde se agrupan todas las colecciones que se han utilizado
+para el entrenamiento y la validación de los modelos. Entre ellos se incluye una gran parte de \textit{datasets} ofrecidos por PAN \cite{pan} en las competiciones
+de perfilado de autor que organiza, además de otras como la del movimiento \#BLM ofrecida en este trabajo y de la que se profundizará más en la Sección \ref{sec:casouso_dataset}.
 
 \bigskip
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\textwidth]{diagramas/clases_front.pdf}
-	\caption{Diagrama de clases de la implementación del \textit{frontend}}
-	\label{fig:implementacion_clases_frontend}
+	\begin{subfigure}[T]{0.5\textwidth}
+		\begin{forest}
+			for tree={
+			font=\ttfamily\tiny,
+			grow'=0,
+			child anchor=west,
+			parent anchor=south,
+			inner xsep=10pt,
+			anchor=west,
+			calign=first,
+			edge path={
+					\noexpand\path [draw, \forestoption{edge}]
+					(!u.south west) +(7.5pt,0) |- node[fill,inner sep=1.25pt] {} (.child anchor)\forestoption{edge label};
+				},
+			before typesetting nodes={
+					if n=1
+						{insert before={[,phantom]}}
+						{}
+				},
+			fit=band,
+			s sep=8pt,
+			before computing xy={l=15pt},
+			}
+			[root, fill=gray!20
+			[README.md, fill=gray!20]
+			[docker-compose.yml, fill=gray!20]
+			[/backend, for tree={fill=blue!20}
+			[/src
+			[/application]
+			[/domain
+			[/algorithms]
+			[/converters]
+			[/entities]
+			[/repositories]
+			[/services]
+			]
+			[/infraestructure]
+			[/utils]
+			[/main.py]
+			]
+			[/venv]
+			[docker-compose.yml]
+			[Dockerfile]
+			[requirements.txt]
+			]
+			]
+		\end{forest}
+	\end{subfigure}%
+	\begin{subfigure}[T]{0.5\textwidth}
+		\begin{forest}
+			for tree={
+			font=\ttfamily\tiny,
+			grow'=0,
+			child anchor=west,
+			parent anchor=south,
+			inner xsep=10pt,
+			anchor=west,
+			calign=first,
+			edge path={
+					\noexpand\path [draw, \forestoption{edge}]
+					(!u.south west) +(7.5pt,0) |- node[fill,inner sep=1.25pt] {} (.child anchor)\forestoption{edge label};
+				},
+			before typesetting nodes={
+					if n=1
+						{insert before={[,phantom]}}
+						{}
+				},
+			fit=band,
+			s sep=8pt,
+			before computing xy={l=15pt},
+			}
+			[root, fill=gray!20
+			[/frontend, for tree={fill=orange!20}
+			[/src
+			[/components]
+			[/model]
+			[/pages]
+			[/services]
+			[/styles]
+			[/utils]
+			]
+			[Dockerfile]
+			[package.json]
+			[next.config.js]
+			]
+			[/datasets, for tree={fill=red!20}
+				[/BLM20 - Reddit Collection]
+				[/PAN13 - Author Profiling]
+				[/PAN14 - Author Profiling]
+				[/PAN15 - Author Profiling]
+				[/PAN19 - Celebrity Profiling]
+				[/PAN19 - Bots and Gender Profiling]
+			]
+			]
+		\end{forest}
+	\end{subfigure}
+	\caption{Estructura de directorios del proyecto}
+	\label{fig:estructura_proyecto}
 \end{figure}
+
+\section{Publicación del código fuente}
+\label{sec:codigo_abierto}
+
+{
+	\color{blue}
+	Una vez explicado el funcionamiento a bajo nivel de la aplicación, es necesario valorar la forma de publicar y
+	distribuír el código fuente de la misma.
+
+	\bigskip
+	En este sentido, existen dos enfoques principales: el código abierto y el código privado.
+	El código privado (\textit{closed source} o \textit{propietary source} en inglés) es aquel que no está disponible para el público en general, es decir, que no se puede acceder a él ni
+	modificarlo, por lo que normalmente se asocia al mundo empresarial y a la venta de licencias para su uso.
+	Por otro lado, el código abierto (\textit{open source} en inglés) es aquel que
+	está disponible públicamente y puede ser modificado, utilizado y distribuído por cualquier persona en función
+	de la licencia bajo la que esté publicado. Normalmente, el código abierto se asocia con la filosofía del \textit{software} libre
+	y con la gratuidad de la aplicación, aunque esto no siempre es así.
+
+	\bigskip
+	En nuestro caso, creemos que la mejor forma de publicar el código fuente de la aplicación es hacerlo de forma abierta,
+	favoreciendo a una mejora continua de la misma por parte de la comunidad y a ofrecer la posibilidad de que cualquiera pueda
+	utilizarla y adaptarla a sus necesidades.
+
+	\bigskip
+	Sin embargo, para que esto sea posible, como se mencionó anteriormente, es necesario elegir una licencia bajo la cual publicarla. Así, existen licencias
+	como la GPL (\textit{General Public License} en inglés) \cite{gpl} que permiten a los usuarios hacer uso del código, modificarlo y distribuirlo
+	siempre y cuando se mantenga la misma licencia. Por otro lado, existen licencias como la MIT \cite{mitlicense} o la Apache \cite{apachelicense} que ofrecen una mayor libertad,
+	permitiendo incluso la utilización del código en proyectos privados. Por lo tanto, teniendo en cuenta que la filosofía de este proyecto es la de ofrecer una herramienta útil y gratuita a la mayor
+	cantidad de usuarios, sin importar si sus fines son comerciales o no, se ha optado por utilizar la licencia MIT.
+
+	\bigskip
+	En lo que respecta al lugar de publicación, se ha decidido hacer público el repositorio almacenado en GitHub \cite{github}, una de las
+	plataformas más populares para el alojamiento de proyectos de software con más de 100 millones de desarrolladores \cite{100milliongithub}.
+	Además, GitHub ofrece una gran cantidad de herramientas que facilitan el desarrollo colaborativo, como la posibilidad de crear \textit{issues} para
+	reportar errores o sugerir mejoras o la opción realizar \textit{pull requests} para proponer cambios en el código.
+
+	\bigskip
+	Por úlitmo, para que la comunidad pueda contribuir al proyecto de la mejor forma posible, se ha creado una guía de contribución
+	en la que se detallan los pasos a seguir para proponer cambios en el código, así como las normas de estilo que se deben cumplir.
+
+	\bigskip
+	Para acceder al repositorio, se puede hacer uso del siguiente enlace: \url{https://github.com/daavidrgz/ai-profiler}.
+}

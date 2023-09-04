@@ -1,19 +1,26 @@
 \chapter{Herramientas, técnicas y lenguajes}
 \label{chap:herramientas}
 
-A lo largo de este capítulo se describirán las herramientas utilizadas para el desarrollo del proyecto y se expondrán las
-razones de su uso. A su vez, para una mejor estructuración, se dividirán en cuatro grupos diferentes:
-herramientas del \textit{backend}, \textit{frontend}, algoritmos de perfilado y  soporte.
-	
+{
+	\color{blue}
+	\lettrine{U}na vez abordada la tarea de investigación del estado del arte del perfilado de autor y de la selección
+	de los algoritmos que formarán parte fundamental de la aplicación, nos centraremos
+	en el desarrollo de la misma.
+	Así, a largo de este capítulo se describirán las herramientas utilizadas en todo el proceso y se expondrán las
+	razones de su uso. A su vez, para una mejor estructuración, se dividirán en cuatro grupos diferentes:
+	herramientas del \textit{backend}, \textit{frontend}, algoritmos de perfilado y soporte.
+}
+
 \section{\textit{Backend}}
 \label{sec:herramientas_backend}
 
 Ya que para el \textit{backend} no se necesitaba nada excesivamente complejo, se decidió utilizar el lenguaje de programación Python \cite{python} junto
-con el \textit{framework} FastAPI \cite{fastapi}, el cual permite crear APIs REST de forma sencilla. La decisión de utilizar Python, viene
+con el FastAPI \cite{fastapi}, un \textit{framework} el cual permite crear APIs (del inglés \textit{Application Programming Interface})
+REST (del inglés \textit{Representational State Transfer}) de forma sencilla. La decisión de utilizar Python, viene
 condicionada por el hecho de que los algoritmos de perfilado de autor utilizados, así como también la mayor parte de los algoritmos de aprendizaje automático
-y procesamiento de lenguaje natural, 
+y procesamiento de lenguaje natural,
 están ya programados en Python, lo que evitó crear nuevos \textit{endpoints}, \textit{sockets} o \textit{bindings} para la ejecución de dichos algoritmos.
-Destacar también que el desarrollo ágil en Python favorecía mucho al trabajo debido a su tipado dinámico, a su ejecución interpretada y a su sintaxis sencilla.
+Destacar también que el desarrollo ágil en Python favorecía mucho al trabajo debido a su tipado dinámico, a su ejecución interpretada y a su sintaxis simple.
 
 \bigskip
 En cuanto a la persistencia de los datos, se optó por MongoDB \cite{mongodb}, una base de datos NoSQL (del inglés \textit{Not Only SQL}) que permite almacenar
@@ -21,7 +28,7 @@ datos en formato JSON (del inglés \textit{JavaScript Object Notation}). La deci
 PostgreSQL \cite{postgresql} o MySQL \cite{mysql}, se debe a dos factores principales. Uno de ellos es la fácil implementación de MongoDB en Python
 haciendo uso de la librería PyMongo \cite{pymongo}, dado que permite realizar operaciones sobre las colecciones de forma muy intuitiva.
 El otro factor tiene que ver con la extensibilidad de la aplicación a largo plazo, y es que, frente a la creación de nuevos
-campos o relaciones, MongoDB permitiría una simple integracion gracias a la flexibilidad que ofrece sobre los esquemas de datos, algo imposible 
+campos o relaciones, MongoDB permitiría una integración simple gracias a la flexibilidad que ofrece sobre los esquemas de datos, algo imposible
 si se emplease una base de datos relacional.
 
 \section{\textit{Frontend}}
@@ -29,8 +36,8 @@ si se emplease una base de datos relacional.
 
 En cuanto al \textit{frontend}, se decidió utilizar NextJS \cite{nextjs} como herramienta para el desarrollo de la interfaz de usuario, dado que ya
 se contaba con bastante experiencia previa en su uso. NextJS es un \textit{framework} basado en React \cite{react}, es decir, en la construcción de interfaces dinámicas e interactivas mediante la composición
-de elementos que pueden tener estado. Además, este \textit{framework} implementa varias mejoras sobre React como por ejemplo el \textit{server-side rendering}, algo que ayuda en gran medida
-al SEO (del inglés \textit{Search Engine Optimizations}), esto es, a que los motores de búsqueda como Google puedan indexar mejor la página y, por tanto, que esta aparezca en una posición superior en los resultados de búsqueda.
+de elementos que pueden tener estado. Además, esta herramienta implementa varias mejoras sobre React como por ejemplo el \textit{server-side rendering}, algo que ayuda en gran medida
+al SEO (del inglés \textit{Search Engine Optimizations}), esto es, a que los motores de búsqueda como \textit{Google} puedan indexar mejor la página y, por tanto, que esta aparezca en una posición superior en los resultados de búsqueda.
 Además, también cuenta con optimizaciones para la carga y el renderizado de imágenes o fuentes, entre otras.
 
 \bigskip
@@ -45,7 +52,7 @@ funcionalidades extra como son el uso de variables, bucles o anidamiento de clas
 una aplicación innovadora, se buscó crear un estilo propio haciendo uso de CSS "puro", desmarcándose así de librerías que proporcionasen estilos predefinidos como Bootstrap \cite{bootstrap} o componentes ya implementados
 como Material UI \cite{materialui} o Chakra UI \cite{chakraui}. Por otra parte, para la creación de gráficos, se utilizó la librería ChartJS \cite{chartjs}, una de las más conocidas
 y con más soporte en la actualidad. Finalmente, para implementar las animaciones en la interfaz, se hizo uso, en conjunto con las transiciones nativas
-de CSS, de Framer Motion \cite{framermotion}, una librería que permite crear animaciones de una mayor complejidad desde JavaScript/TypeScript. 
+de CSS, de Framer Motion \cite{framermotion}, una librería que permite crear animaciones de una mayor complejidad desde JavaScript/TypeScript.
 
 \section{Algoritmos de perfilado}
 \label{sec:herramientas_algoritmos}
@@ -85,5 +92,5 @@ En relación a la elaboración de los diagramas y los \textit{wireframes} que ap
 Junto a esta herramienta, se utilizó también la librería pgfplots \cite{pgfplots} para la creación de las gráficas en el propio \LaTeX.
 
 \bigskip
-Finalmente, para facilitar la puesta en marcha de todas las partes que conforman el sistema y evitar instalar todas las dependencias de forma manual, se utilizó Docker \cite{docker}, 
+Finalmente, para facilitar la puesta en marcha de todas las partes que conforman el sistema y evitar instalar todas las dependencias de forma manual, se utilizó Docker \cite{docker},
 una herramienta que permite crear contenedores, esto es, entornos de ejecución aislados que contienen todo lo necesario para que una aplicación funcione correctamente.

@@ -3,15 +3,15 @@
 
 \lettrine{A}{partir} de la segunda década de los 2000, las redes sociales han experimentado
 un crecimiento continuado de su uso, tanto en número de usuarios como en
-cantidad de información generada. Como se muestra en el reporte \textit{"Digital 2023 Global Overview Report"} (We Are Social et al., 2023)
-\cite{wearesocial}, a principios del año 2013 existían alrededor de 1.7 millones de usuarios en las redes sociales,
-mientras que a principios del año 2023, esta cifra aumentó hasta los 4.7 millones, con una variación anual media del 10.8\% (se puede ver
+cantidad de información generada. Como se muestra en el informe \textit{Digital 2023 Global Overview Report} (We Are Social et al., 2023)
+\cite{wearesocial}, a principios del año 2013 existían alrededor de 1,700 millones de usuarios en las redes sociales,
+mientras que a principios del año 2023, esta cifra aumentó hasta los 4,700 millones, con una variación anual media del 10.8\% (se puede ver
 más información en la Figura \ref{fig:usuarios_redes_sociales}).
 Así, plataformas como Facebook, Instagram, Twitter o YouTube, cuentan con millones de usuarios activos diariamente,
 donde se comparte información o se crea contenido de entretenimiento. Además, las redes sociales se han convertido en
-un lugar donde se debate sobre temas políticos, sociales o económicos, y donde se comparten diversas opiniones y noticias. 
-Este hecho se puede ver, de nuevo, en el reporte mecionado anteriormente, donde se muestra que el 34.2\% de los usuarios
-de redes sociales las utilizan para informarse sobre noticias, el 28.8\% para saber cuales son los temas de actualidad
+un lugar donde se debate sobre temas políticos, sociales o económicos, y donde se comparten diversas opiniones y noticias.
+Este hecho se puede ver, de nuevo, en el informe mecionado anteriormente, donde se muestra que el 34.2\% de los usuarios
+de redes sociales las utilizan para informarse sobre noticias, el 28.8\% para saber cuáles son los temas de actualidad
 y el 23.4\% para compartir opiniones y debatir con otros usuarios.
 
 \bigskip
@@ -19,25 +19,25 @@ y el 23.4\% para compartir opiniones y debatir con otros usuarios.
 	\centering
 	\begin{tikzpicture}
 		\begin{axis}[
-			width=0.9\textwidth,
-			height=6cm,
-			xmajorgrids=false,
-			x tick label style={/pgf/number format/1000 sep=},
-			x tick label style={font=\scriptsize},
-			y tick label style={font=\scriptsize},
-			ylabel=Usuarios (millones),
-			xlabel=Año,
-			ybar=6pt,
-			bar width=12pt,
-			enlarge x limits=0.08,
-			enlarge y limits=0.12,
-			nodes near coords,
-			nodes near coords style={font=\tiny}
-		]
-		\addplot 
+				width=0.9\textwidth,
+				height=6cm,
+				xmajorgrids=false,
+				x tick label style={/pgf/number format/1000 sep=},
+				x tick label style={font=\scriptsize},
+				y tick label style={font=\scriptsize},
+				ylabel=Usuarios (miles de millones),
+				xlabel=Año,
+				ybar=6pt,
+				bar width=12pt,
+				enlarge x limits=0.08,
+				enlarge y limits=0.12,
+				nodes near coords,
+				nodes near coords style={font=\tiny}
+			]
+			\addplot
 			coordinates {(2013,1.720) (2014,1.857) (2015,2.078)
-			(2016,2.307) (2017,2.789) (2018,3.196) (2019,3.461)
-			(2020,3.709) (2021,4.199) (2022,4.623) (2023,4.760)};
+					(2016,2.307) (2017,2.789) (2018,3.196) (2019,3.461)
+					(2020,3.709) (2021,4.199) (2022,4.623) (2023,4.760)};
 		\end{axis}
 	\end{tikzpicture}
 	\caption{Evolución del número de usuarios en redes sociales.}
@@ -48,31 +48,64 @@ y el 23.4\% para compartir opiniones y debatir con otros usuarios.
 \label{sec:intr_importancia}
 Toda esta información generada tiene una gran relevancia a distintos niveles. En primer lugar, cabe destacar el impacto que
 tienen las redes sociales a nivel político. Y es que en la actualidad, vivimos en una campaña permanente (Blumenthal, 1980)
-\cite{sydney1980permanent}, 
-donde el acceso a la redes sociales ofrece la posibilidad a los ciudadanos de estar informados sobre política, mientras que a las instituciones
+\cite{sydney1980permanent},
+donde el acceso a estas plataformas ofrece la posibilidad a los ciudadanos de estar informados sobre política, mientras que a las instituciones
 de poder les permite conocer el estado de la opinión pública (Strömbäck, 2008)
 \cite{stromback2008four}, pudiendo llegar a influenciar "mucho" o "bastante" la intención de voto (Gallardo-Paúls, 2016) \cite{gallardo2016pseudopolitica}.
-En segundo lugar, la información generada en las redes sociales es de gran relevancia a nivel social. ¿Quiénes son los
-usuarios más activos? ¿Qué género predomina en las redes sociales? ¿Qué edad tienen los usuarios?. Cabe resaltar también la influencia
-que tienen las redes sociales a nivel económico, ya que estas plataformas se han convertido en un lugar donde las empresas
-publicitan sus productos y servicios y a las que destinan gran parte de sus presupuestos en publicidad 
-(Saxena et al., 2013) \cite{saxena2013advertising}. Finalmente, destacar la importancia que tienen las redes sociales a nivel de seguridad,
-ya que estas plataformas se han convertido en un lugar donde se comparte información personal, y donde se pueden cometer delitos como
+En segundo lugar, el contenido que se genera en las redes sociales es de gran relevancia a nivel sociológico ya que sirve para analizar, entre muchas cosas,
+la representación que tienen en ellas la sociedad o la forma en la que interactuamos (Mislove et al., 2011) \cite{mislove2011understanding}. Cabe resaltar también la influencia
+que tienen las plataformas digitales a nivel económico, ya que se han convertido en un lugar donde las empresas
+publicitan sus productos y servicios y a las que destinan gran parte de sus presupuestos en publicidad
+(Saxena et al., 2013) \cite{saxena2013advertising}. Finalmente, destacar el rol fundamental que juega la seguridad en las redes sociales,
+ya que se han convertido en lugares donde se comparte información personal, y donde se pueden cometer delitos como
 el \textit{cyberbullying} o el \textit{grooming} (Machimbarrena et al., 2018) \cite{machimbarrena2018internet}.
 
 \section{Perfilado de autor}
 \label{sec:intro_perfilado}
 
-El perfilado de autor, también conocido como \textit{author profiling} en inglés, consiste en determinar, a partir de un texto, 
+El perfilado de autor, también conocido como perfilado de usuario o \textit{author profiling} en inglés, consiste en determinar, a partir de un texto,
 las características de su autor, como su género, edad, rasgos personales, etc. Para ello se hace uso de diversas técnicas de aprendizaje automático
 basadas en el procesado del lenguaje natural (\textit{Natural Language Processing} o NLP en inglés), que permiten extraer características lingüísticas del texto y utilizarlas para una
 posterior clasificación.
 
 \bigskip
 De esta forma, el perfilado de autor en redes sociales se ha convertido en un área de investigación de gran interés
-en los últimos años, posicionándose como una herramienta de creciente importancia en áreas como la seguridad, el \textit{marketing}
-o la investigación forense (Rangel et al., 2013) \cite{rangel2013overview}. Sería una herramienta de gran ayuda a la hora de realizar
-análisis sociales sobre temas específicos; sería muy práctico para empresas que quieran conocer el perfil de los clientes que opinan de 
+en los últimos años, posicionándose como una herramienta de creciente importancia en campos como la seguridad, el \textit{marketing}
+o la investigación forense (Rangel et al., 2013) \cite{rangel2013overview}. Así, la evolución y el perfeccionamiento del perfilado de autor propiciaría la creación de
+una herramienta de gran ayuda para los sociólogos a la hora de realizar análisis sobre temas que dispongan de información digital;
+ofrecería a las empresas  una forma de conocer el perfil de los clientes que opinan de
 forma positiva y negativa de sus productos; tendría un gran valor
-para los partidos políticos, dado que podrían conocer cuál es el perfil de sus votantes; y sería también de gran utilidad para los cuerpos de seguridad
-a la hora de la evaluación de sospechosos teniendo en cuenta su perfil lingüístico.
+para los partidos políticos, dado que podrían conocer cuál es el perfil de sus votantes; y respaldaría el trabajo de los cuerpos de seguridad
+a la hora de la evaluación de sospechosos en base a su perfil lingüístico.
+
+\section{Objetivos del trabajo}
+\label{sec:intro_objetivos}
+
+Tras la introducción al perfilado de autor y las motivaciones que existen para su estudio a nivel de las redes sociales,
+se expondrán a continuación los objetivos principales de este trabajo.
+
+\bigskip
+El primero de ellos es la investigación del estado del arte del perfilado automático de autor, enmarcado en
+el análisis de documentos digitales. Para acotar
+el estudio, la investigación se centrará en el perfilado de autor en el ámbito de la lengua inglesa y se priorizarán
+aquellos algoritmos que perfilen los rasgos generacionales del autor.
+Asimismo, se profundizará en cuáles son las técnicas de aprendizaje automático más utilizadas en el campo,
+cuáles son las características que se extraen comúnmente y cuáles son los algoritmos que mejores resultados obtienen.
+
+\bigskip
+Como segundo objetivo, una vez se hayan logrado ejecutar satisfactoriamente los algoritmos seleccionados tras el estudio,
+se pretende desarrollar una aplicación que permita a los usuarios el perfilado automático de una serie de características
+demográficas de una colección de textos, mostrando un tablero web visual de datos (\textit{dashboard} en inglés) accesible y usable con los resultados obtenidos.
+Además, se liberará el código de la aplicación en un repositorio público de GitHub \cite{github}, para que pueda ser utilizado de forma
+gratuita por cualquier persona y pueda crecer gracias a la colaboración de la comunidad.
+
+\bigskip
+Por último, empleando la aplicación previamente desarrollada, se utilizará como caso de uso la colección, sobre el movimiento
+\textit{Black Lives Matter} (\#BLM) proporcionado para este TFG. Se busca, por lo tanto, realizar un análisis con un componente sociológico
+de los perfiles obtenidos,
+con el objetivo de obtener conclusiones acerca del movimiento y de los usuarios que participaron debatiendo sobre el mismo en las redes sociales.
+
+\bigskip
+Se trata, en definitiva, de un trabajo que pretende profundizar en el perfilado de autor, tanto desde un punto de vista teórico como práctico,
+haciendo accesible mediante la creación de una aplicación, una herramienta basada en técnicas de aprendizaje automático, y
+demostrando su utilidad con el análisis de un fenómeno social de gran relevancia.

@@ -1,8 +1,62 @@
 \chapter{Conclusiones}
 \label{chap:conclusiones}
 
-\section{Lecciones aprendidas}
-\label{sec:lecciones_aprendidas}
+{
+	\color{blue}
+\lettrine{E}{n} este capítulo final se presentan las posibles mejoras que se podrían realizar en un futuro a la herramienta desarrollada,
+así como las lecciones aprendidas durante el transcurso de este trabajo.
+
 
 \section{Trabajo futuro}
 \label{sec:trabajo_futuro}
+
+Mirando hacia el futuro, existen varias inquietudes y mejoras que se podrían realizar con respecto a la herramienta desarrollada.
+
+\bigskip
+En primer lugar, el problema que suponen los conjuntos de datos desbalanceados y poco representativos, como se ha comprobado en el Capítulo \ref{chap:casouso},
+es algo que perjudica en gran medida a los resultados obtenidos y limita los casos de uso de la aplicación a aquellos en los que se quieran predecir características
+de autores similares a los utilizados para entrenar los modelos. Así, uno de los objetivos principales sería del de conseguir un mayor y más variado número de \textit{datasets}
+con los que entrenar los modelos haciendo uso de los algoritmos previamente implementados.
+
+\bigskip
+En segundo lugar, se podría mejorar la experiencia de usuario ofreciendo más formas de especificar la fuente de textos para el perfilado.
+Así, a mayores de un campo que permita la subida de un \textit{dataset} almacenado en local, se podría incluír un campo que permita la introducción
+de un usuario de una red social como Twitter o Reddit, de forma que se puedan obtener los textos automáticamente y clasificar así a dicho usuario.
+
+\bigskip
+Por otro lado, a raíz de la aparición de los LLMs (\textit{Large Langauge Model} en inglés) como GPT-3 (Brown et al., 2020) \cite{brown2020language}
+y, posterimente, con modelos como GPT-4 en 2023, se ha visto un gran avance en las técnicas de \textit{Deep Learning}
+y se ha demostrado el gran potencial que ofrecen estas herramientas para el procesado de lenguaje natural. Tal es así, que estos modelos
+podrían ser utilizados en el campo del perfilado de autores. Sin embargo, debido a la gran cantidad de recursos
+computacionales que actualmente requieren, en el caso de que su código haya sido liberado, o a la inversión de dinero que supondría su uso, en el caso
+de que sea privado, irían en contra de los principios fundamentales de este trabajo: ofrecer una herramienta gratuita
+y accesible a todo el mundo.
+
+\section{Lecciones aprendidas}
+\label{sec:lecciones_aprendidas}
+
+El hecho de profundizar tanto en el campo del procesado del lenguaje natural y, más específicamente,
+en las técnicas de perfilado automático de autores, supuso un gran reto tanto desde el punto de vista teórico como
+desde el punto de vista de la propia investigación, a lo que se le suma la poca exepriencia en el campo. De esta forma, a lo largo del
+proceso de investigación se comprendieron las bases teóricas de técnicas como el TF-IDF o los n-gramas y se entendió a
+bajo nivel el funcionamiento de los algoritmos que mejores resultados obtenían en las competiciones analizadas.
+
+\bigskip
+Asimismo, ya que los objetivos del proyecto, más ambiciosos, no se quedaban en el terreno de la investigación
+sino que buscaban implementar una aplicación completa con la información adquirida, el desarrollo implicó un trabajo
+mucho más amplio abordando diversas ramas de la informática. Desde el diseño y la implementación de una interfaz web gráfica,
+pasando por la creación de un servidor web y el entrenamiento de modelos basados en algoritmos clásicos
+de apredizaje automático, hasta el seguimiento de metodologías de desarrollo ágiles como Scrum, conllevó
+un gran esfuerzo junto a un aprendizaje continuo.
+
+\bigskip
+Más concretamente, se aprendió a desarrollar haciendo uso de Python en el \textit{backend} de la aplicación, consolidándose
+como una opción ágil y fiable; se comprendió también la importancia de diseñar una buena interfaz
+y de ofrecer una buena experiencia de usuario; y se profundizó más en el terreno del \textit{open source} y de las licencias
+que, de alguna forma, promueven algo fundamental en nuestro campo.
+
+\bigskip
+En conclusión, se puede decir que los objetivos establecidos al inicio del proyecto se han cumplido y que,
+además, su desarrollo ha contribuído a poner en práctica los conocimientos adquiridos durante la carrera,
+demostrando la capacidad de investigación y de desarrollo de una aplicación completa.
+}
