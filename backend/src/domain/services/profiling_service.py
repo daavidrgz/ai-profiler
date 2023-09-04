@@ -21,9 +21,7 @@ class ProfilingService:
         algorithm: ProfilingAlgorithm,
         train_dataset: TrainDataset,
     ):
-        if train_dataset is None:
-            train_dataset = algorithm.default_train_dataset
-
+        train_dataset = train_dataset or algorithm.default_train_dataset
         profiling_id = uuid4()
         self.profiling_repository.create_profiling(
             Profiling(
@@ -33,13 +31,10 @@ class ProfilingService:
                 train_dataset=train_dataset.name,
             )
         )
-
-        thread = Thread(
+        Thread(
             target=self.predict_async,
             args=(predict_dataset, algorithm, train_dataset, profiling_id),
-        )
-        thread.start()
-
+        ).start()
         return {"id": profiling_id}
 
     def predict_async(
@@ -71,31 +66,27 @@ class ProfilingService:
         return profiling
 
     def train(self, algorithm: ProfilingAlgorithm, train_dataset: TrainDataset):
-        if algorithm:
-            if train_dataset is None:
-                train_dataset = algorithm.default_train_dataset
-            thread = Thread(target=algorithm.train, args=(train_dataset,))
-            thread.start()
-            return "Training started for " + algorithm.name
-        else:
+        if not algorithm:
             for algorithm in self.ALL_ALGORITHMS:
-                default_train_dataset = algorithm.default_train_dataset
-                thread = Thread(target=algorithm.train, args=(default_train_dataset,))
-                thread.start()
+                train_dataset = algorithm.default_train_dataset
+                Thread(target=algorithm.train, args=(train_dataset,)).start()
             return "Training started for all algorithms"
+
+        train_dataset = train_dataset or algorithm.default_train_dataset
+        Thread(target=algorithm.train, args=(train_dataset,)).start()
+        return f"Training started for {algorithm.name}"
 
     def get_performance(
         self, algorithm: ProfilingAlgorithm, train_dataset: TrainDataset
     ):
         if algorithm:
-            if train_dataset is None:
-                train_dataset = algorithm.default_train_dataset
+            train_dataset = train_dataset or algorithm.default_train_dataset
             return algorithm.get_performance(train_dataset)
-        else:
-            return [
-                algorithm.get_performance(algorithm.default_train_dataset)
-                for algorithm in self.ALL_ALGORITHMS
-            ]
+
+        return [
+            algorithm.get_performance(algorithm.default_train_dataset)
+            for algorithm in self.ALL_ALGORITHMS
+        ]
 
     def get_algorithm_names(self):
         return [algorithm.name for algorithm in self.ALL_ALGORITHMS]
