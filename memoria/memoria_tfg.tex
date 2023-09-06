@@ -83,6 +83,31 @@
       {]}{{{\color{delim}{]}}}}{1},
 }
 
+\pgfplotsset{
+  y tick label style={
+    /pgf/number format/.cd,%
+    scaled y ticks=false,
+    set thousands separator={.},
+    set decimal separator={,},
+    fixed,
+  },
+  x tick label style={/pgf/number format/set thousands separator={}},
+  tick label style={
+    font=\scriptsize
+  },
+  nodes near coords,
+  every node near coord/.append style={
+    font=\tiny
+  },
+  every node near coord/.append style={
+    /pgf/number format/.cd,%
+    set thousands separator={.},
+    set decimal separator={,},
+    fixed,
+    /tikz/.cd
+  },
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Corpo                                                                        %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -96,10 +121,22 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \include{portada/portada}
-\dedicatoria{Dedicatoria} % escribe neste comando o teu texto de dedicatoria
+\dedicatoria{A todos los que me ayudaron a llegar hasta aquí.}
 \paxinaenbranco\
 \begin{agradecementos}
-  \blindtext\                % substitúe este comando polo teu texto de agradecementos
+  En primer lugar, me gustaría agradecerles a mis tutores, Patricia y David, por su ayuda durante todo el desarrollo del trabajo y por sentar
+  las bases de lo que es este proyecto.
+
+  Agradecerle a mi familia por su incansable paciencia, su constante apoyo y sus incontables
+  palabras de ánimo durante todo este tiempo, sin las cuales todo habría sido mucho más difícil.
+
+  Quería agradecerle también a mi pareja todo lo que me da día a día, todo el apoyo que hace que pueda
+  seguir adelante ante cualquier problema y todo lo que significa para mí una persona tan maravillosa
+  en todos los sentidos y sin la que no habría llegado a ser quien soy.
+
+  Por úlitmo, agradecerles a todos mis amigos, tanto a los que tuve la oportunidad de conocer durante
+  la carrera como a los de toda la vida, haciendo mención especial a mi gran amigo y compañero de
+  piso, por todo lo que me ha aportado desde que lo conocí.
 \end{agradecementos}
 \include{portada/resumo}
 

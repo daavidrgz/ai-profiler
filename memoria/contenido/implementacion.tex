@@ -8,25 +8,22 @@ de la importancia del código abierto y de como contribuye a la innovación en e
 \section{Adaptación de los algoritmos}
 \label{sec:adaptacion_algoritmos}
 
-{
-	\color{blue}
-	Dado que el código fuente de los algoritmos de perfilado seleccionados estaba disponible para su uso, fue necesario adaptarlo
-	para ofrecer una interfaz comúna a través de la cual se pudiese comunicar el resto de la aplicación.
-	Para ello se barajaron en un inicio dos aproximaciones diferentes. La primera de ellas pasaba
-	por implementar APIs sencillas en cada uno de los algoritmos, es decir, crear microservicios que se encargasen de recibir
-	las peticiones y devolver los resultados al \textit{backend}. La segunda aproximación consistía en adaptar el propio código
-	fuente para que cada algoritmo formase parte de una clase que implemente la interfaz mencionada en el diagrama de la Figura \ref{fig:clases_backend}
-	(\textit{ProfilingAlgorithm}). Finalmente, se optó por esta segunda opción ya que, a pesar de ser más compleja, permitía
-	una mayor integración con el resto de la aplicación y un mejor rendimiento debido a la eliminación de la latencia de red. Además,
-	podíamos aprovechar el hecho de que los algoritmos estaban programados en Python para utilizarlos directamente
-	en el \textit{backend} sin hacer uso de llamadas interlenguaje.
+Dado que el código fuente de los algoritmos de perfilado seleccionados estaba disponible para su uso, fue necesario adaptarlo
+para ofrecer una interfaz común a través de la cual se pudiese comunicar el resto de la aplicación.
+Para ello se barajaron en un inicio dos aproximaciones diferentes. La primera de ellas pasaba
+por implementar APIs sencillas en cada uno de los algoritmos, es decir, crear microservicios que se encargasen de recibir
+las peticiones y devolver los resultados al \textit{backend}. La segunda aproximación consistía en adaptar el propio código
+fuente para que cada algoritmo formase parte de una clase que implemente la interfaz mencionada en el diagrama de la Figura \ref{fig:clases_backend}
+(\textit{ProfilingAlgorithm}). Finalmente, se optó por esta segunda opción ya que, a pesar de ser más compleja, permitía
+una mayor integración con el resto de la aplicación y un mejor rendimiento debido a la eliminación de la latencia de red. Además,
+podíamos aprovechar el hecho de que los algoritmos estaban programados en Python para utilizarlos directamente
+en el \textit{backend} sin hacer uso de llamadas interlenguaje.
 
-	\bigskip
-	Sin embargo, esta decisión implicó comprender a muy bajo nivel como estaban implementados dichos algoritmos para realizar las modificaciones necesarias
-	e implementar nuevas funciones. Esta adaptación del código fue, en el caso del algoritmo de Grivas et al. \cite{grivas2015author},
-	bastante compleja, ya que conllevó sustituír librerías obsoletas, reimplementar funciones y resolver los cambios disruptivos (\textit{breaking changes} en inglés) que suponía
-	dar el salto desde la versión 2.7 de Python a la 3.10.
-}
+\bigskip
+Sin embargo, esta decisión implicó comprender a muy bajo nivel como estaban implementados dichos algoritmos para realizar las modificaciones necesarias
+e implementar nuevas funciones. Esta adaptación del código fue, en el caso del algoritmo de Grivas et al. \cite{grivas2015author},
+bastante compleja, ya que conllevó sustituír librerías obsoletas, reimplementar funciones y resolver los cambios disruptivos (\textit{breaking changes} en inglés) que suponía
+dar el salto desde la versión 2.7 de Python a la 3.10.
 
 \section{Estructura del proyecto}
 \label{sec:estructura_proyecto}
@@ -198,42 +195,40 @@ de perfilado de autor que organiza, además de otras como la del movimiento \#BL
 \section{Publicación del código fuente}
 \label{sec:codigo_abierto}
 
-{
-	\color{blue}
-	Una vez explicado el funcionamiento a bajo nivel de la aplicación, es necesario valorar la forma de publicar y
-	distribuír el código fuente de la misma.
+Una vez explicado el funcionamiento a bajo nivel de la aplicación, es necesario valorar la forma de publicar y
+distribuír el código fuente de la misma.
 
-	\bigskip
-	En este sentido, existen dos enfoques principales: el código abierto y el código privado.
-	El código privado (\textit{closed source} o \textit{propietary source} en inglés) es aquel que no está disponible para el público en general, es decir, que no se puede acceder a él ni
-	modificarlo, por lo que normalmente se asocia al mundo empresarial y a la venta de licencias para su uso.
-	Por otro lado, el código abierto (\textit{open source} en inglés) es aquel que
-	está disponible públicamente y puede ser modificado, utilizado y distribuído por cualquier persona en función
-	de la licencia bajo la que esté publicado. Normalmente, el código abierto se asocia con la filosofía del \textit{software} libre
-	y con la gratuidad de la aplicación, aunque esto no siempre es así.
+\bigskip
+En este sentido, existen dos enfoques principales: el código abierto y el código privado.
+El código privado (\textit{closed source} o \textit{propietary source} en inglés) es aquel que no está disponible para el público en general, es decir, que no se puede acceder a él ni
+modificarlo, por lo que normalmente se asocia al mundo empresarial y a la venta de licencias para su uso.
+Por otro lado, el código abierto (\textit{open source} en inglés) es aquel que
+está disponible públicamente y puede ser modificado, utilizado y distribuído por cualquier persona en función
+de la licencia bajo la que esté publicado. Normalmente, el código abierto se asocia con la filosofía del \textit{software} libre
+y con la gratuidad de la aplicación, aunque esto no siempre es así.
 
-	\bigskip
-	En nuestro caso, creemos que la mejor forma de publicar el código fuente de la aplicación es hacerlo de forma abierta,
-	favoreciendo a una mejora continua de la misma por parte de la comunidad y a ofrecer la posibilidad de que cualquiera pueda
-	utilizarla y adaptarla a sus necesidades.
+\bigskip
+En nuestro caso, creemos que la mejor forma de publicar el código fuente de la aplicación es hacerlo de forma abierta,
+favoreciendo a una mejora continua de la misma por parte de la comunidad y a ofrecer la posibilidad de que cualquiera pueda
+utilizarla y adaptarla a sus necesidades.
 
-	\bigskip
-	Sin embargo, para que esto sea posible, como se mencionó anteriormente, es necesario elegir una licencia bajo la cual publicarla. Así, existen licencias
-	como la GPL (\textit{General Public License} en inglés) \cite{gpl} que permiten a los usuarios hacer uso del código, modificarlo y distribuirlo
-	siempre y cuando se mantenga la misma licencia. Por otro lado, existen licencias como la MIT \cite{mitlicense} o la Apache \cite{apachelicense} que ofrecen una mayor libertad,
-	permitiendo incluso la utilización del código en proyectos privados. Por lo tanto, teniendo en cuenta que la filosofía de este proyecto es la de ofrecer una herramienta útil y gratuita a la mayor
-	cantidad de usuarios, sin importar si sus fines son comerciales o no, se ha optado por utilizar la licencia MIT.
+\bigskip
+Sin embargo, para que esto sea posible, como se mencionó anteriormente, es necesario elegir una licencia bajo la cual publicarla. Así, existen licencias
+como la GPL (\textit{General Public License} en inglés) \cite{gpl} que permiten a los usuarios hacer uso del código, modificarlo y distribuirlo
+siempre y cuando se mantenga la misma licencia. Por otro lado, existen licencias como la MIT \cite{mitlicense} o la Apache \cite{apachelicense} que ofrecen una mayor libertad,
+permitiendo incluso la utilización del código en proyectos privados. Por lo tanto, teniendo en cuenta que la filosofía de este proyecto es la de ofrecer una herramienta útil y gratuita a la mayor
+cantidad de usuarios, sin importar si sus fines son comerciales o no, se ha optado por utilizar la licencia MIT. Asimismo, también se consideró la opción de publicar el código
+bajo una doble licencia, pero se descartó por los complicaciones legales que suponía y por la confusión que podría generar.
 
-	\bigskip
-	En lo que respecta al lugar de publicación, se ha decidido hacer público el repositorio almacenado en GitHub \cite{github}, una de las
-	plataformas más populares para el alojamiento de proyectos de software con más de 100 millones de desarrolladores \cite{100milliongithub}.
-	Además, GitHub ofrece una gran cantidad de herramientas que facilitan el desarrollo colaborativo, como la posibilidad de crear \textit{issues} para
-	reportar errores o sugerir mejoras o la opción realizar \textit{pull requests} para proponer cambios en el código.
+\bigskip
+En lo que respecta al lugar de publicación, se ha decidido hacer público el repositorio almacenado en GitHub \cite{github}, una de las
+plataformas más populares para el alojamiento de proyectos de software con más de 100 millones de desarrolladores \cite{100milliongithub}.
+Además, GitHub ofrece una gran cantidad de herramientas que facilitan el desarrollo colaborativo, como la posibilidad de crear \textit{issues} para
+reportar errores o sugerir mejoras o la opción realizar \textit{pull requests} para proponer cambios en el código.
 
-	\bigskip
-	Por úlitmo, para que la comunidad pueda contribuir al proyecto de la mejor forma posible, se ha creado una guía de contribución
-	en la que se detallan los pasos a seguir para proponer cambios en el código, así como las normas de estilo que se deben cumplir.
+\bigskip
+Por úlitmo, para que la comunidad pueda contribuir al proyecto de la mejor forma posible, se ha creado una guía de contribución
+en la que se detallan los pasos a seguir para proponer cambios en el código, así como las normas de estilo que se deben cumplir.
 
-	\bigskip
-	Para acceder al repositorio, se puede hacer uso del siguiente enlace: \url{https://github.com/daavidrgz/ai-profiler}.
-}
+\bigskip
+Para acceder al repositorio, se puede hacer uso del siguiente enlace: \url{https://github.com/daavidrgz/ai-profiler}.

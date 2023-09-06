@@ -256,20 +256,20 @@ el número de usuarios clasificados como femeninos disminuye drásticamente. Com
 dicho algoritmo era muy limitado, de apenas 150 personas, por lo que no es lo suficientemente representativo y no generaliza de forma óptima.
 
 \bigskip
-{\color{blue}En lo que respecta al algoritmo de Martinc \cite{martinc2019hot}, vemos como, al aumentar el número de posts por usuario, aquellos clasificados como masculinos
+En lo que respecta al algoritmo de Martinc \cite{martinc2019hot}, vemos como, al aumentar el número de posts por usuario, aquellos clasificados como masculinos
 se estabilizan alrededor de 1,320 (94\%), mientras que aquellos clasificados como femeninos se quedan en 82 (6\%).
 Estos resultados, a simple vista, no tienen una relación clara con la realidad dado que, según Statista, la distribución de género en Reddit es
 de un 64\% para los hombres y un 36\% para las mujeres \cite{statistagenero}.
 Sin embargo, es importante resaltar que la proporción de género puede variar ampliamente
 en función del tema del que se esté hablando. Así, como recoge Thelwall et al., 2019 \cite{thelwall2019she}, existen amplias diferencias en cuanto a la participación
 de cada género en temas políticos, y es que, la proporción de mujeres en \textit{subreddits} como \textit{Politics}, en el que se tratan temas de actualidad
-política en Estados Unidos, es de tan solo un 20.5\%. A raíz de este hecho, podemos deducir que existió una menor participación de las mujeres en el movimiento \#BLM
-en el marco de las redes sociales, lo que, a su vez, puede ofrecernos una información relevante sobre cuál fue la proporción real de cada género en las manifestaciones y protestas
-sucedidas en la vida real.
+política en Estados Unidos, es de tan solo un 20,5\%. A raíz de este hecho, podemos inferir que existió una menor participación de las mujeres en el movimiento \#BLM
+en el marco de las redes sociales, lo que, a su vez, permite trazar como hipótesis de trabajo si en las manifestaciones y protestas
+sucedidas en la vida real existía también una menor participación del género femenino.
 
 \bigskip
 Por otro lado, antendiendo a las limitaciones del propio modelo, podemos destacar el hecho de que el conjunto de entrenamiento está formado por \textit{tweets} de celebridades,
-haciendo que pueda no ser directamente aplicable a cualquier conjunto de usuarios o redes sociales diferentes.}
+haciendo que pueda no ser directamente aplicable a cualquier conjunto de usuarios o redes sociales diferentes.
 
 \bigskip
 \begin{figure}[H]
@@ -279,16 +279,11 @@ haciendo que pueda no ser directamente aplicable a cualquier conjunto de usuario
 				width=0.9\textwidth,
 				height=5cm,
 				xmajorgrids=false,
-				x tick label style={/pgf/number format/1000 sep=},
-				x tick label style={font=\scriptsize},
-				y tick label style={font=\scriptsize},
 				ylabel=Número de autores,
 				xlabel=Posts/usuario,
 				ybar=8pt,
 				bar width=12pt,
 				enlarge x limits=0.19,
-				nodes near coords,
-				nodes near coords style={font=\tiny},
 				symbolic x coords={50, 500, 1000},
 				xtick=data,
 				ymin=0,
@@ -338,9 +333,9 @@ haciendo que pueda no ser directamente aplicable a cualquier conjunto de usuario
 			\multicolumn{1}{c|}{\cellcolor{white}}       & \multicolumn{2}{c|}{\cellcolor{udcpink!25}\textbf{Martinc}} & \multicolumn{2}{c|}{\cellcolor{udcpink!25}\textbf{Grivas}}              \\ \hline
 			\multicolumn{1}{|c|}{\textbf{Posts/usuario}} & \multicolumn{1}{c|}{\textbf{Masculino}}                     & \multicolumn{1}{c|}{\textbf{Femenino}}                     &
 			\multicolumn{1}{c|}{\textbf{Masculino}}      & \multicolumn{1}{c|}{\textbf{Femenino}}                                                                                                \\ \hline
-			50                                           & 1,288                                                       & 114                                                        & 1,385 & 17 \\ \hline
-			500                                          & 1,315                                                       & 87                                                         & 1,400 & 2  \\ \hline
-			1,000                                        & 1,318                                                       & 84                                                         & 1,400 & 2  \\ \hline
+			50                                           & 1.288                                                       & 114                                                        & 1.385 & 17 \\ \hline
+			500                                          & 1.315                                                       & 87                                                         & 1.400 & 2  \\ \hline
+			1.000                                        & 1.318                                                       & 84                                                         & 1.400 & 2  \\ \hline
 		\end{tabular}
 	}
 	\caption{Distribución de género obtenida por ambos algoritmos}
@@ -355,18 +350,18 @@ ver en las Tablas \ref{tab:comparativa_edad_martinc} y \ref{tab:comparativa_edad
 
 \bigskip
 Para el algoritmo de Martinc et al. \cite{martinc2019hot}, observamos
-como, a medida que aumenta el número de posts por usuario, el número de usuarios pertenecientes a la franja de edad 25-34 disminuye
-considerablemente, mientras que los pertenecientes a los rangos 35-49 y 50-XX fluctúan.
-La principal conclusión que se extrae de esto es que el modelo, basado recordemos en TF-IDF, consige encontrar patrones lingúísticos
+como, a medida que aumenta el número de posts por usuario, el número de usuarios pertenecientes a la franja de edad \textit{25-34} disminuye
+considerablemente, mientras que los pertenecientes a los rangos \textit{35-49} y \textit{50-XX} fluctúan.
+La principal conclusión que se extrae de esto es que el modelo, basado, recordemos, en TF-IDF, consige encontrar patrones lingúísticos
 relacionados con rangos de edad más altos cuantos más posts tenga para predecir.
 Otra hipótesis gira entorno a la posibilidad de que al contar con más posts y, por ende, con más información por usuario,
 el algoritmo sea capaz de realizar una clasificación más precisa, debido al gran rendimiento que mostraba en cuanto
-a precisión y al elevado número de usuarios utilizados para el entrenamiento, cerca de 20,000.
+a precisión y al elevado número de usuarios utilizados para el entrenamiento, cerca de 20.000.
 Sin embargo, es importante destacar que los rangos con más número de usuarios coinciden con aquellos
 más representados en el conjunto de entrenamiento, como se representaba en la Figura \ref{fig:distribucion_edad_2019}, lo que denota quizá problemas
 a causa del desbalanceo.
 
-{\color{blue}\bigskip
+\bigskip
 En cuanto a la distribución real de la edad, la encuesta llevada a cabo por Statista a la población estadounidense adulta en 2021,
 revela que los usuarios de entre 18 y 29 años conforman el 36\% de la plataforma de Reddit, los usuarios de entre 30 y 49 años el 22\% y los mayores de 50 el 13\% \cite{statistaedad}.
 Esto contrasta en gran medida con los resultados obtenidos, lo que puede tener varias implicaciones.
@@ -374,8 +369,8 @@ Esto contrasta en gran medida con los resultados obtenidos, lo que puede tener v
 \bigskip
 La primera de ellas gira en torno
 al hecho de que sea la gente más mayor la que más se exprese en Reddit sobre el \#BLM y la que más empatize con el movimiento. Esto
-puede deberse a que la gente más joven no haya vivido tantos episodios de racismo y, por lo tanto, no se sienta tan identificada con el movimiento.
-Esta hipótesis es respaldada por diferentes estudios como el realizado por Thernstrom et al., 1998 \cite{thernstrom1998black} en el que se puede observar un claro descenso de 
+puede deberse a que la gente más joven no haya vivido tantos episodios de racismo y, por lo tanto, no se sienta tan identificada con las protestas.
+Esta hipótesis es respaldada por diferentes estudios como el realizado por Thernstrom et al., 1998 \cite{thernstrom1998black}, en el que se puede observar un claro descenso de
 racismo en EEUU en diferentes ámbitos. Así, como se recoge en el estudio, en 1958 el 44\% de los estadounidenses blancos afirmaban que se mudarían si
 una familia de raza negra se convirtiera en su vecina, mientras que en 1998 este porcentaje se redujo al 1\%. Asimismo, en 1964 tan solo el 18\% de los estadounidenses blancos
 admitían tener compañeros de raza negra; en 1998 ya el 86\% afirmaba tenerlos.
@@ -385,7 +380,7 @@ La segunda hipótesis tiene que ver con el propio modelo utilizado, y es que, co
 de celebridades utilizados para el entrenamiento de este algoritmo, puede no ser directamente aplicable al análisis de este caso de uso.
 Esto es así debido a las diferencias notables que existen en la forma de expresarse de cada grupo demográfico, ya que las celebridades
 hacen uso, normalmente, de un lenguaje más correcto, claro y sin errores, al contrario de lo que puede suceder con un usuario medio de cualquier
-red social.}
+red social.
 
 \bigskip
 \begin{figure}[H]
@@ -395,16 +390,11 @@ red social.}
 				width=0.9\textwidth,
 				height=5cm,
 				xmajorgrids=false,
-				x tick label style={/pgf/number format/1000 sep=},
-				x tick label style={font=\scriptsize},
-				y tick label style={font=\scriptsize},
 				ylabel=Número de autores,
 				xlabel=Posts/usuario,
 				ybar=6pt,
 				bar width=12pt,
 				enlarge x limits=0.18,
-				nodes near coords,
-				nodes near coords style={font=\tiny},
 				symbolic x coords={50, 500, 1000},
 				xtick=data,
 				ymin=0,
@@ -438,7 +428,7 @@ red social.}
 			\legend{{18-24}, {25-34}, {35-49}, {50-XX}}
 		\end{axis}
 	\end{tikzpicture}
-	\caption{Distribución de edad obtenia por el algoritmo de Martinc at al., \cite{martinc2019hot}}
+	\caption{Distribución de edad obtenida por el algoritmo de Martinc at al. \cite{martinc2019hot}}
 	\label{fig:comparativa_edad_martinc}
 \end{figure}
 
@@ -456,15 +446,18 @@ red social.}
 			1,000                                  & 0                                                           & 4              & 63             & 665            & 670            \\ \hline
 		\end{tabular}
 	}
-	\caption{Distribución de edad obtenida por Martinc et al. \cite{martinc2019hot}}
+	\caption{Distribución de edad obtenida por el algoritmo de Martinc et al. \cite{martinc2019hot}}
 	\label{tab:comparativa_edad_martinc}
 \end{table}
 
 \bigskip
 Pasando al algoritmo de Grivas et al. \cite{grivas2015author}, y de la misma forma que sucedía con la distribución de género, los resultados obtenidos
 parecen estar la mayor parte concentrados en dos clases, las cuales coinciden con las más representadas en la colección de entrenamiento para el algoritmo (ver Figura \ref{fig:dataset_2015}).
-Esto denota, lógicamente, un claro sobreajuste del modelo a dicha colección.
-
+Esto denota, lógicamente, un claro sobreajuste del modelo a dicha colección. 
+{\color{red}
+A pesar de ello, todas estas inferencias desde los datos a nivel sociológico representan en sí mismo contribuciones de este TFG,
+ya que abren nuevas hipótesis de trabajo acerca del fenómeno \#BLM.
+}
 \bigskip
 \begin{figure}[H]
 	\centering
@@ -473,16 +466,11 @@ Esto denota, lógicamente, un claro sobreajuste del modelo a dicha colección.
 				width=0.9\textwidth,
 				height=5cm,
 				xmajorgrids=false,
-				x tick label style={/pgf/number format/1000 sep=},
-				x tick label style={font=\scriptsize},
-				y tick label style={font=\scriptsize},
 				ylabel=Número de autores,
 				xlabel=Posts/usuario,
 				ybar=6pt,
 				bar width=12pt,
 				enlarge x limits=0.18,
-				nodes near coords,
-				nodes near coords style={font=\tiny},
 				symbolic x coords={50, 500, 1000},
 				xtick=data,
 				ymin=0,
@@ -516,22 +504,22 @@ Esto denota, lógicamente, un claro sobreajuste del modelo a dicha colección.
 			\hhline{~|-----|}
 			\multicolumn{1}{c|}{\cellcolor{white}} & \multicolumn{5}{c|}{\cellcolor{udcpink!25}\textbf{Grivas}}                                                                     \\ \hline
 			\textbf{Posts/usuario}                 & \textbf{XX-17}                                             & \textbf{18-24} & \textbf{25-34} & \textbf{35-49} & \textbf{50-XX} \\ \hline
-			50                                     & 0                                                          & 278            & 1,124          & 0              & 0              \\ \hline
-			500                                    & 0                                                          & 170            & 1,232          & 0              & 0              \\ \hline
-			1,000                                  & 0                                                          & 168            & 1,234          & 0              & 0              \\ \hline
+			50                                     & 0                                                          & 278            & 1.124          & 0              & 0              \\ \hline
+			500                                    & 0                                                          & 170            & 1.232          & 0              & 0              \\ \hline
+			1.000                                  & 0                                                          & 168            & 1.234          & 0              & 0              \\ \hline
 		\end{tabular}
 	}
-	\caption{Distribución de edad obtenida por Grivas et al. \cite{grivas2015author}}
+	\caption{Distribución de edad obtenida por el algoritmo de Grivas et al. \cite{grivas2015author}}
 	\label{tab:comparativa_edad_grivas}
 \end{table}
 
 \subsection{Otras características}
 
-{\color{blue}En lo que respecta al perfilado de los rasgos personales que ofrece el algoritmo de Grivas et al. \cite{grivas2015author},
+En lo que respecta al perfilado de los rasgos personales que ofrece el algoritmo de Grivas et al. \cite{grivas2015author},
 lo primero que observamos es que existe muy poca variación con respecto al número de posts por usuario, como se puede ver en la Tabla \ref{tab:comparativa_rasgos_personales}.
-A grandes rasgos, recordemos que los valores de cada rasgo personal oscilan entre -0.5 y 0.5, vemos como la característica que más destaca es claramente la de \textit{Open} (abierto a nuevas experiencias), seguida de \textit{Stable} (estable) y \textit{Agreeable} (amable).
+A grandes rasgos, recordemos que los valores de cada rasgo personal oscilan entre -0,5 y 0,5, vemos como la característica que más destaca es claramente la de \textit{Open} (abierto a nuevas experiencias), seguida de \textit{Stable} (estable) y \textit{Agreeable} (amable).
 Las implicaciones que tiene estos resultados con la realidad no son claras, pero podemos deducir que, en general, los usuarios que se lanzan a ser partícipes de los debates
-en Reddit sobre el \#BLM son personas que se muestran abiertas.
+en Reddit sobre el \#BLM son personas categorizadas en unos rasgos de personalidad abiertos y estables.
 
 \bigskip
 \begin{table}[H]
@@ -543,14 +531,14 @@ en Reddit sobre el \#BLM son personas que se muestran abiertas.
 			\hhline{~|-----|}
 			\multicolumn{1}{c|}{\cellcolor{white}} & \multicolumn{5}{c|}{\cellcolor{udcpink!25}\textbf{Martinc}}                                                                                                                     \\ \hline
 			\textbf{Posts/usuario}                 & \textbf{\textit{Extroverted}}                               & \textbf{\textit{Stable}} & \textbf{\textit{Agreeable}} & \textbf{\textit{Conscientious}} & \textbf{\textit{Open}} \\ \hline
-			50                                     & 0.1630                                                      & 0.1956                   & 0.1877                      & 0.1787                          & 0.3271                 \\ \hline
-			500                                    & 0.1536                                                      & 0.1974                   & 0.1968                      & 0.1771                          & 0.3349                 \\ \hline
-			1,000                                  & 0.1529                                                      & 0.1972                   & 0.1969                      & 0.1769                          & 0.3358                 \\ \hline
+			50                                     & 0,1630                                                      & 0,1956                   & 0,1877                      & 0,1787                          & 0,3271                 \\ \hline
+			500                                    & 0,1536                                                      & 0,1974                   & 0,1968                      & 0,1771                          & 0,3349                 \\ \hline
+			1,000                                  & 0,1529                                                      & 0,1972                   & 0,1969                      & 0,1769                          & 0,3358                 \\ \hline
 		\end{tabular}
 	}
-	\caption{Distribución media de los rasgos personales obtenidos por Grivas et al. \cite{grivas2015author}}
+	\caption{Distribución media de los rasgos personales obtenidos por el algoritmo de Grivas et al. \cite{grivas2015author}}
 	\label{tab:comparativa_rasgos_personales}
-\end{table}}
+\end{table}
 
 Finalmente, en lo que respecta a las características únicas perfiladas por el algoritmo de Martinc et al. \cite{martinc2019hot}, es decir, la ocupación y el nivel de fama,
 creemos que no aportan información relevante para este análisis, dado que son características pensadas
@@ -572,7 +560,7 @@ Tablas \ref{tab:comparativa_ocupacion_martinc} y \ref{tab:comparativa_fama_marti
 			1,000                                  & 2                                                           & 691                         & 73                        & 3                          & 1                         & 321                       & 311                      & 0                           \\ \hline
 		\end{tabular}
 	}
-	\caption{Distribución de ocupación obtenida por Martinc et al. \cite{martinc2019hot}}
+	\caption{Distribución de ocupación obtenida por el algoritmo de Martinc et al. \cite{martinc2019hot}}
 	\label{tab:comparativa_ocupacion_martinc}
 \end{table}
 
@@ -585,11 +573,11 @@ Tablas \ref{tab:comparativa_ocupacion_martinc} y \ref{tab:comparativa_fama_marti
 			\hhline{~|---|}
 			\multicolumn{1}{c|}{\cellcolor{white}} & \multicolumn{3}{c|}{\cellcolor{udcpink!25}\textbf{Martinc}}                                                        \\ \hline
 			\textbf{Posts/usuario}                 & \textbf{\textit{Rising}}                                    & \textbf{\textit{Star}} & \textbf{\textit{Superstar}} \\ \hline
-			50                                     & 2                                                           & 1,202                  & 198                         \\ \hline
-			500                                    & 1                                                           & 1,226                  & 175                         \\ \hline
-			1,000                                  & 1                                                           & 1,261                  & 140                         \\ \hline
+			50                                     & 2                                                           & 1.202                  & 198                         \\ \hline
+			500                                    & 1                                                           & 1.226                  & 175                         \\ \hline
+			1.000                                  & 1                                                           & 1.261                  & 140                         \\ \hline
 		\end{tabular}
 	}
-	\caption{Distribución de fama obtenida por Martinc et al. \cite{martinc2019hot}}
+	\caption{Distribución de fama obtenida por algoritmo de Martinc et al. \cite{martinc2019hot}}
 	\label{tab:comparativa_fama_martinc}
 \end{table}

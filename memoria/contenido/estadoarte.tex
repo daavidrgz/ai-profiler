@@ -6,7 +6,7 @@ En esta línea, trabajos como Koppel et al., 2002 \cite{koppel2002automatically}
 la cual se basaba en la clasificación de textos en base a su contenido, para enfocarse en la clasificación de textos en base a su estilo.
 En este caso, se centraban en la obtención del género del autor mediante el análisis
 de 920 documentos de carácter formal escritos en inglés con una media de alrededor de 34.300 palabras cada uno, obteniendo una precisión en la clasificación de
-aproximadamente el 77\%.
+aproximadamente el 77\% \textit{(accuracy=0,773)}.
 
 \bigskip
 Así, la demostración de la existencia de rasgos diferenciadores en la escritura que permitían perfilar ciertos aspectos del individuo, especialmente del género,
@@ -29,12 +29,12 @@ Por otro lado, en el año 2011, se celebraría el primer evento organizado por e
 uno de los foros de investigación más importantes que organiza eventos científicos y tareas anuales relacionadas con el análisis forense de textos digitales
 y rasgos estilométricos, así como uno de los grandes implusores del perfilado de autor. La primera de las tareas centradas en este campo se celebraría en el año 2013 (Rangel et al., 2013) \cite{rangel2013overview},
 en la que se pedía a los participantes que obtuvieran, a partir de una serie de \textit{tweets}, la edad y el género de su autor. El ganador de este concurso obtuvo una
-precisión del 60\% en la clasificación de género y del 67\% en la clasificación de edad, haciendo uso, la mayor parte de los participantes, de técnicas de aprendizaje
+precisión del 60\% \textit{(accuracy=0,5921)}en la clasificación de género y del 65\% \textit{(accuracy=0,6491)} en la clasificación de edad, haciendo uso, la mayor parte de los participantes, de técnicas de aprendizaje
 supervisado como los Árboles de Decisión (\textit{Decission Trees} en inglés) o las Máquinas de Soporte Vectorial (\textit{Support Vector Machines} o SVMs en inglés).
 Además, la mayoría de ellos incluyeron en sus modelos características basadas en el TF-IDF, n-gramas o etiquetas POS, explicadas en detalle en la Sección \ref{sec:conceptos_basicos},
 junto a otras como el número de emoticonos o la frecuencia de signos de puntuación.
-En los siguientes años se celebrarían nuevas ediciones con el perfilado de autor en el centro (Rangel et al., 2014 \cite{rangel2014overview}; Rangel et al., 2015 \cite{rangel2015overview};
-Rangel et al., 2016 \cite{rangel2016overview}...), en las que se añadirían nuevas subtareas como el reconocimiento de rasgos personales, la ocupación o los dialectos del lenguaje,
+En los siguientes años, se celebrarían nuevas ediciones centradas en perfilado (Rangel et al., 2014 \cite{rangel2014overview}, Rangel et al., 2015 \cite{rangel2015overview} o
+Rangel et al., 2016 \cite{rangel2016overview}), en las que se añadirían nuevas subtareas como el reconocimiento de rasgos personales, la ocupación o los dialectos del lenguaje,
 así como también alcanzando mejores resultados en la clasificación.
 
 \section{Conceptos básicos}
@@ -49,7 +49,7 @@ ser procesadas por un ordenador. Las más utilizadas y relevantes
 para la comprensión de los análisis posteriores y, en general, de este trabajo son las siguientes:
 
 \subsection{TF-IDF}
-El TF-IDF (del inglés \textit{Term Frequency-Inverse Document Frequency}) es una medida estadística muy utilizada en el campo de la recuperación de información
+El TF-IDF (del inglés, \textit{Term Frequency-Inverse Document Frequency}) es una medida estadística muy utilizada en el campo de la recuperación de información
 (en inglés \textit{Information Retrieval} o IR) que expresa cuán relevante es una palabra para un documento en una colección.
 
 \bigskip
@@ -96,7 +96,7 @@ de la palabra en la colección, lo que permite manejar el hecho de que algunas p
 
 \subsection{Etiquetas POS}
 
-Las etiquetas POS (\textit{Part-Of-Speech} en inglés) son etiquetas gramaticales que se asignan a las palabras de un texto según su función sintáctica, es
+Las etiquetas POS (del inglés, \textit{Part-Of-Speech}) son etiquetas gramaticales que se asignan a las palabras de un texto según su función sintáctica, es
 decir, si se trata de un sustantivo, un verbo, un adjetivo, etc.
 Existen varios tipos de etiquetas POS, pero las más empleadas son las descritas en el \textit{Penn Treebank Project} \cite{marcus1993building}.
 
@@ -112,13 +112,13 @@ Cabe destacar también que el TF-IDF, en su versión más común, es un caso par
 \label{sec:bag_of_words}
 
 La \textit{bag-of-words} o BoW es una técnica simple de representación de documentos que consiste en la extracción de las palabras que aparecen en un texto,
-sin tener en cuenta el orden en el que aparecen ni la estructura gramatical de la que forman parte. De esta modo, se obtiene un vector de características en el
+sin tener en cuenta el orden en el que aparecen ni la estructura gramatical de la que forman parte. De este modo, se obtiene un vector de características en el
 que cada posición representa una palabra y que tiene como valores el número de veces que aparece dicha palabra en el documento.
 
 \subsection{Análisis Semántico Latente}
 \label{sec:analisis_semantico_latente}
 
-El Análisis Semántico Latente (\textit{Latent Semantic Analysis} o LSA en inglés) es una técnica de IR (del inglés \textit{Information Retrieval}) desarrollada por Deerwester et al., 1990 \cite{deerwester1990indexing}
+El Análisis Semántico Latente (\textit{Latent Semantic Analysis} o LSA en inglés) es una técnica de IR (del inglés, \textit{Information Retrieval}) desarrollada por Deerwester et al., 1990 \cite{deerwester1990indexing}
 que busca descubrir relaciones latentes
 entre las palabras y los documentos que forman una colección. Esta técnica se basa
 en el idea de que las palabras que aparecen en contextos similares
@@ -130,16 +130,16 @@ y encontrar relaciones palabras-documentos.
 Esta técnica tiene limitaciones, sobre todo a la hora de manejar sinónimos y polisemias, ya que al basarse únicamente en patrones estadísticos,
 no tiene en cuenta el significado real de las palabras.
 
-\section{Competiciones analizadas}
+\section{Tareas analizadas}
 \label{sec:competiciones_analizadas}
 
-Una vez explicados los conceptos básicos, procederemos en esta sección al análisis de las competiciones más relevantes en el contexto
+Una vez explicados los conceptos básicos, procederemos en esta sección al análisis de las tareas más relevantes en el contexto
 del perfilado automático de autores. En este sentido, cabe destacar que, dado que el objetivo de este trabajo estaba encuadrado en
 la investigación sobre algoritmos de perfilado de autores de habla inglesa, se obviaron otras competiciones relevantes como pueden ser
 las organizadas por IberLEF \cite{iberlef}, un foro de investigación que promueve el desarrollo de sistemas basados en NLP en español y otras
 lenguas ibéricas.
-Asimismo, puesto que el perfilado de la edad era otra característica fundamental que debía incluir este trabajo, se seleccionaron aquellas competiciones
-que contaban con dicha tarea, en este caso, las celebradas en los años 2014 (Rangel et al.) \cite{rangel2014overview}, 2015 (Rangel et al.) \cite{rangel2015overview} y 2019 (Wiegmann et al.) \cite{wiegmann2019overview}
+Asimismo, puesto que el perfilado de la edad era otra característica fundamental que debía incluir este trabajo, se seleccionaron aquellas tareas
+en las que se incluía dicha característica, en este caso, las celebradas en los años 2014 (Rangel et al.) \cite{rangel2014overview}, 2015 (Rangel et al.) \cite{rangel2015overview} y 2019 (Wiegmann et al.) \cite{wiegmann2019overview}
 por PAN.
 
 \subsection{\textit{PAN Author Profiling 2014}}
@@ -169,16 +169,11 @@ ayuda a evitar un posible sesgo.
 				width=0.8\textwidth,
 				height=6cm,
 				xmajorgrids=false,
-				x tick label style={/pgf/number format/1000 sep=},
-				x tick label style={font=\scriptsize},
-				y tick label style={font=\scriptsize},
 				ylabel=Número de autores,
 				xlabel=Edad,
 				ybar=6pt,
 				bar width=12pt,
 				enlarge x limits=0.12,
-				nodes near coords,
-				nodes near coords style={font=\tiny},
 				symbolic x coords={18-24, 25-34, 35-49, 50-64, 65-XX},
 				xtick=data,
 				ymin=0,
@@ -204,7 +199,7 @@ ayuda a evitar un posible sesgo.
 			\legend{Inglés, Español}
 		\end{axis}
 	\end{tikzpicture}
-	\caption{Comparativa del número de autores por idioma en el \textit{corpus} del \textit{PAN Author Profiling 2014}}
+	\caption{Comparativa del número de autores por idioma en el \textit{corpus} de la competición \textit{PAN Author Profiling 2014}}
 	\label{fig:dataset_2014}
 \end{figure}
 
@@ -217,31 +212,31 @@ ayuda a evitar un posible sesgo.
 			\hhline{~|----|}
 			\multicolumn{1}{c|}{\cellcolor{white}} & \multicolumn{2}{c|}{\cellcolor{udcpink!25}\textbf{Entrenamiento}} & \multicolumn{2}{c|}{\cellcolor{udcpink!25}\textbf{Test}}                                      \\ \hline
 			\textbf{Edad}                          & \textbf{Inglés}                                                   & \textbf{Español}                                         & \textbf{Inglés} & \textbf{Español} \\ \hline
-			18-24                                  & 1,936                                                             & 346                                                      & 850             & 158              \\ \hline
-			25-34                                  & 3,246                                                             & 494                                                      & 1,380           & 218              \\ \hline
-			35-49                                  & 3,430                                                             & 425                                                      & 1,470           & 210              \\ \hline
-			50-64                                  & 2,921                                                             & 204                                                      & 1,226           & 92               \\ \hline
+			18-24                                  & 1.936                                                             & 346                                                      & 850             & 158              \\ \hline
+			25-34                                  & 3.246                                                             & 494                                                      & 1.380           & 218              \\ \hline
+			35-49                                  & 3.430                                                             & 425                                                      & 1.470           & 210              \\ \hline
+			50-64                                  & 2.921                                                             & 204                                                      & 1.226           & 92               \\ \hline
 			65-XX                                  & 826                                                               & 42                                                       & 324             & 32               \\ \hline
-			\textbf{Total}                         & \textbf{12,359}                                                   & \textbf{1,511}                                           & \textbf{5,250}  & \textbf{710}     \\ \hline
+			\textbf{Total}                         & \textbf{12.359}                                                   & \textbf{1.511}                                           & \textbf{5.250}  & \textbf{710}     \\ \hline
 		\end{tabular}
 	}
-	\caption{Distribución del número de autores en cada rango de edad en el \textit{corpus} del \textit{PAN Author Profiling 2014}}
+	\caption{Distribución del número de autores en cada rango de edad en el \textit{corpus} de la competición \textit{PAN Author Profiling 2014}}
 	\label{tab:dataset_2014}
 \end{table}
 
 \subsubsection{\textit{Resultados}}
 
 Basándonos en los resultados de la competición, reflejados en la Tabla \ref{tab:algoritmos_2014}, podemos observar que los mejores datos de precisión
-en cuanto a género fueron de alrededor de un 66\% para el inglés (precisión=0.6630) y de un 61\% para el español (precisión=0.6108), mientras que para la edad fueron de aproximadamente un 40\% para el inglés
-(precisión=0.3950) y de un 50\% para el español (precisión=0.5010).
+en cuanto a género fueron de alrededor de un 66\% para el inglés \textit{(accuracy=0,6630)} y de un 61\% para el español \textit{(accuracy=0,6108)}, mientras que para la edad fueron de aproximadamente un 40\% para el inglés
+\textit{(accuracy=0,3950)} y de un 50\% para el español \textit{(accuracy=0,5010)}.
 
 \bigskip
 En cuanto a las aproximaciones algorítmicas llevadas a cabo por los equipos mejor clasificados en la competición, podemos destacar lo siguiente:
 
 \begin{itemize}
 	\item \textbf{Preprocesado}: En cuanto al preprocesado, tanto Maharjan et al. \cite{maharjan2014simple} como Weren et al. \cite{weren2014exploring} realizaron un limpiado de los documentos
-	      (del inglés \textit{Extensible Markup Language}) para obtener texto plano, escapando caracteres inválidos en el caso del segundo equipo.
-	\item \textbf{\textit{Features}}: En relación a las características extraídas de los documentos para la clasificación, Maharjan \cite{maharjan2014simple}, Weren et al. \cite{weren2014exploring} y Siang et al.,
+	      (del inglés, \textit{Extensible Markup Language}) para obtener texto plano, escapando caracteres inválidos en el caso del segundo equipo.
+	\item \textbf{Características}: En relación a las características (\textit{features} en inglés) extraídas de los documentos para la clasificación, Maharjan \cite{maharjan2014simple}, Weren et al. \cite{weren2014exploring} y Siang et al.,
 	      consideraron diferentes rasgos estilométricos como la frecuencia de los signos de puntuación, el tamaño de las frases o la frecuencia de las palabras, entre otros. Con respecto
 	      a los rasgos basados en el contenido, Siang et al. y Maharjan et al. \cite{maharjan2014simple}, modelizaron el lenguaje con \textit{bag-of-word} y n-gramas, respectivamente, mientras
 	      que López-Monroy et al. \cite{lopez2014using} emplearon representaciones más complejas basadas en las relaciones entre palabras y documentos, explicadas a fondo
@@ -262,10 +257,10 @@ En cuanto a las aproximaciones algorítmicas llevadas a cabo por los equipos mej
 			\hhline{~|-------|}
 			\multicolumn{1}{c|}{\cellcolor{white}}          & \multicolumn{3}{c|}{\textbf{Global}}                          & \multicolumn{2}{c|}{\textbf{Inglés}} & \multicolumn{2}{c|}{\textbf{Español}}                                                                     \\ \hline
 			\textbf{Equipo participante}                    & \textbf{Conjunta}                                             & \textbf{Género}                      & \textbf{Edad}                         & \textbf{Género} & \textbf{Edad} & \textbf{Género} & \textbf{Edad} \\ \hline
-			López-Monroy et al. 2014 \cite{lopez2014using}  & 0.2790                                                        & 0.6310                               & 0.4421                                & 0.6512          & 0.3950        & 0.6108          & 0.4892        \\ \hline
-			Siang et al.                                    & 0.2758                                                        & 0.6344                               & 0.4348                                & 0.6630          & 0.3909        & 0.6057          & 0.4786        \\ \hline
-			Maharjan et al., 2014 \cite{maharjan2014simple} & 0.2624                                                        & 0.5948                               & 0.4411                                & 0.6132          & 0.3811        & 0.5764          & 0.5010        \\ \hline
-			Weren et al., 2014 \cite{weren2014exploring}    & 0.2266                                                        & 0.5866                               & 0.3863                                & 0.6066          & 0.3690        & 0.5666          & 0.4035        \\ \hline
+			López-Monroy et al. 2014 \cite{lopez2014using}  & 0,2790                                                        & 0,6310                               & 0,4421                                & 0,6512          & 0,3950        & 0,6108          & 0,4892        \\ \hline
+			Siang et al.                                    & 0,2758                                                        & 0,6344                               & 0,4348                                & 0,6630          & 0,3909        & 0,6057          & 0,4786        \\ \hline
+			Maharjan et al., 2014 \cite{maharjan2014simple} & 0,2624                                                        & 0,5948                               & 0,4411                                & 0,6132          & 0,3811        & 0,5764          & 0,5010        \\ \hline
+			Weren et al., 2014 \cite{weren2014exploring}    & 0,2266                                                        & 0,5866                               & 0,3863                                & 0,6066          & 0,3690        & 0,5666          & 0,4035        \\ \hline
 		\end{tabular}
 	}
 	\caption{Cuatro mejores clasificados en la competición \textit{PAN Author Profiling 2014}}
@@ -289,15 +284,15 @@ a los 50 años.
 En lo que respecta al \textit{corpus} proporcionado para la competición, los organizadores recopilaron \textit{tweets} de la red social Twitter
 de 632 usuarios en cuatro idiomas diferentes: inglés, español, italiano y holandés. Dicho \textit{dataset} está etiquetado con el género y la edad
 (solamente para inglés y español) de los autores, que ellos mismos reportaban en sus perfiles de Twitter. Para determinar los rasgos de la personalidad,
-los autores completaron el test BFI-10 (Rammstedt et al., 2007) \cite{rammstedt2007measuring}, el cual proporcionaba valores para cada rasgo normalizados entre -0.5 y 0.5.
+los autores completaron el test BFI-10 (Rammstedt et al., 2007) \cite{rammstedt2007measuring}, el cual proporcionaba valores para cada rasgo normalizados entre -0,5 y 0,5.
 En este sentido, es importante destacar la gran reducción en cuanto al número de autores con los que cuenta el \textit{dataset} en comparación, por ejemplo,
-con competicón celebrada en año anterior, la cual cuenta con cerca de 12,000. Esto puede generar problemas de sobreajuste (\textit{overfitting} en inglés) en los modelos
+con competicón celebrada en año anterior, la cual cuenta con cerca de 12.000. Esto puede generar problemas de sobreajuste (\textit{overfitting} en inglés) en los modelos
 entrenados con esta colección, fenómeno que limita en gran medida la generalización y empeora notablemente los resultados en casso de uso reales.
 
 \bigskip
 Así, como se puede ver en la Figura \ref{fig:dataset_2015}, el \textit{dataset} vuelve a estar desbalanceado en cuanto a la edad, ya que existen
-clases como la 50-XX la cual apenas cuenta con un un 7\% de representación. Sin embargo,
-a excepción de la clase 18-24, existe un número similar de autores de habla española e inglesa, por lo que cabe esperar una generalización
+clases como la \textit{50-XX} la cual apenas cuenta con un un 7\% de representación. Sin embargo,
+a excepción de la clase \textit{18-24}, existe un número similar de autores de habla española e inglesa, por lo que cabe esperar una generalización
 semejante para ambos idiomas. En lo referente a la distribución de género, como se puede ver en la Tabla \ref{tab:dataset_2015}, está perfectamente balanceada,
 contando con un 50\% de autores de cada género para todos los idiomas.
 
@@ -309,16 +304,11 @@ contando con un 50\% de autores de cada género para todos los idiomas.
 				width=0.8\textwidth,
 				height=5cm,
 				xmajorgrids=false,
-				x tick label style={/pgf/number format/1000 sep=},
-				x tick label style={font=\scriptsize},
-				y tick label style={font=\scriptsize},
 				ylabel=Número de autores,
 				xlabel=Edad,
 				ybar=6pt,
 				bar width=12pt,
 				enlarge x limits=0.12,
-				nodes near coords,
-				nodes near coords style={font=\tiny},
 				symbolic x coords={18-24, 25-34, 35-49, 50-XX},
 				xtick=data,
 				ymin=0,
@@ -342,7 +332,7 @@ contando con un 50\% de autores de cada género para todos los idiomas.
 			\legend{Inglés, Español}
 		\end{axis}
 	\end{tikzpicture}
-	\caption{Comparativa del número de autores por idioma en el \textit{corpus} del \textit{PAN Author Profiling 2015}}
+	\caption{Comparativa del número de autores por idioma en el \textit{corpus} de la competición \textit{PAN Author Profiling 2015}}
 	\label{fig:dataset_2015}
 \end{figure}
 
@@ -364,14 +354,14 @@ contando con un 50\% de autores de cada género para todos los idiomas.
 			Masculino                              & 76                                                                & 55                                                       & 19                & 17                & 71              & 44               & 18                & 16                \\ \hline
 			Femenino                               & 76                                                                & 55                                                       & 19                & 17                & 71              & 44               & 18                & 16                \\ \hline
 			\hline
-			Extrovertido                           & 0.16                                                              & 0.18                                                     & 0.17              & 0.24              & 0.17            & 0.16             & 0.15              & 0.24              \\ \hline
-			Estabilidad                            & 0.14                                                              & 0.07                                                     & 0.20              & 0.21              & 0.13            & 0.09             & 0.20              & 0.22              \\ \hline
-			Amabilidad                             & 0.12                                                              & 0.14                                                     & 0.22              & 0.13              & 0.14            & 0.14             & 0.19              & 0.15              \\ \hline
-			Responsabilidad                        & 0.17                                                              & 0.24                                                     & 0.18              & 0.14              & 0.17            & 0.21             & 0.21              & 0.17              \\ \hline
-			Apertura                               & 0.24                                                              & 0.18                                                     & 0.23              & 0.29              & 0.26            & 0.19             & 0.25              & 0.28              \\ \hline
+			Extrovertido                           & 0,16                                                              & 0,18                                                     & 0,17              & 0,24              & 0,17            & 0,16             & 0,15              & 0,24              \\ \hline
+			Estabilidad                            & 0,14                                                              & 0,07                                                     & 0,20              & 0,21              & 0,13            & 0,09             & 0,20              & 0,22              \\ \hline
+			Amabilidad                             & 0,12                                                              & 0,14                                                     & 0,22              & 0,13              & 0,14            & 0,14             & 0,19              & 0,15              \\ \hline
+			Responsabilidad                        & 0,17                                                              & 0,24                                                     & 0,18              & 0,14              & 0,17            & 0,21             & 0,21              & 0,17              \\ \hline
+			Apertura                               & 0,24                                                              & 0,18                                                     & 0,23              & 0,29              & 0,26            & 0,19             & 0,25              & 0.28              \\ \hline
 		\end{tabular}
 	}
-	\caption{Distribución de los autores por característica y lenguaje en el \textit{corpus} del \textit{PAN Author Profiling 2015}}
+	\caption{Distribución de los autores por característica y lenguaje en el \textit{corpus} de la competición \textit{PAN Author Profiling 2015}}
 	\label{tab:dataset_2015}
 \end{table}
 
@@ -379,13 +369,13 @@ contando con un 50\% de autores de cada género para todos los idiomas.
 
 A la vista de los datos de precisión obtenidos por los primeros equipos clasificados, mostrados en la Tabla \ref{tab:algoritmos_2015},
 podemos determinar que existe una gran mejora con respecto a los resultados de la competición anterior del año 2014, mejorando
-la clasificación conjunta de edad y género en aproximadamente un 40\%.
+la clasificación conjunta de edad y género en aproximadamente un 40\% \textit{($\Delta$accuracy=0,4326)}.
 
 \bigskip
 Más en concreto, cabe destacar los grandes resultados que
 ofrecen los algoritmos presentados con respecto al género en los dos idiomas principales del \textit{corpus}, llegando a alcanzar
-precisiones del 96\% para el español en el caso de Alvarez-Carmona et al. \cite{alvarez2015inaoe} (precisión=0.9659). Con respecto a la edad,
-se puede ver como se obtienen unos mejores resultados, de alrededor de un 5\%, en la clasificación en inglés que en español, algo que
+precisiones del 96\% \textit{(accuracy=0,9659)} para el español en el caso de Alvarez-Carmona et al. \cite{alvarez2015inaoe}. Con respecto a la edad,
+se puede ver como se obtienen unos mejores resultados, de alrededor de un 4,5\% \textit{($\Delta$accuracy=0,0444)}, en la clasificación en inglés que en español, algo que
 hipotéticamente puede ser un reflejo de las pequeñas diferencias existentes entre el número de autores en cada uno de los idiomas en
 el \textit{dataset} de entrenamiento. Sin embargo, estos tan buenos resultados, pueden ser también un reflejo del reducido número de
 autores con los que cuenta el \textit{dataset}, de apenas 600 autores, lo que puede provocar un sobreajuste (\textit{overfitting} en inglés)
@@ -398,7 +388,7 @@ Con respecto a la implementación de los algoritmos, podemos destacar lo siguien
 	\item \textbf{Preprocesado}: De forma similar a los algoritmos de años anteriores, la mayoría realizaron una limpieza del HTML incluído
 	      en los \textit{tweets} y, tanto González-Gallardo et al. \cite{gonzalez2015tweets} como Grivas et al. \cite{grivas2015author}, utilizaron
 	      las menciones, los \textit{hashtags} y los enlaces como características adicionales.
-	\item \textbf{\textit{Features}}: En la mayor parte de los algoritmos presentados, se combinaba el uso de características
+	\item \textbf{Características}: En la mayor parte de los algoritmos presentados, se combinaba el uso de características
 	      basadas en el estilo y en el contenido. Así, en cuanto a contenido, González-Gallardo et al. \cite{gonzalez2015tweets} hizo uso de n-gramas de caracteres
 	      mientras que Grivas et al. \cite{grivas2015author} empleó TF-IDF con trigramas. Además, en el caso de Grivas et al. \cite{grivas2015author},
 	      se analizaron otras características basadas en el estilo como la longitud de las palabras o el número de mayúsculas. En el caso de Alvarez-Carmona et al. \cite{alvarez2015inaoe},
@@ -420,10 +410,10 @@ Con respecto a la implementación de los algoritmos, podemos destacar lo siguien
 			\hhline{~|---------|}
 			\multicolumn{1}{c|}{\cellcolor{white}}                   & \multicolumn{3}{c|}{\textbf{Global}}                          & \multicolumn{2}{c|}{\textbf{Inglés}} & \multicolumn{2}{c|}{\textbf{Español}} & \multicolumn{1}{c|}{\textbf{Italiano}} & \multicolumn{1}{c|}{\textbf{Holandés}}                                                                       \\ \hline
 			\textbf{Equipo participante}                             & \textbf{Conjunta}                                             & \textbf{Género}                      & \textbf{Edad}                         & \textbf{Género}                        & \textbf{Edad}                          & \textbf{Género} & \textbf{Edad} & \textbf{Género} & \textbf{Género} \\ \hline
-			Alvarez-Carmona et al. 2015 \cite{alvarez2015inaoe}      & 0.7116                                                        & 0.8712                               & 0.8168                                & 0.8592                                 & 0.8380                                 & 0.9659          & 0.7955        & 0.7222          & 0.9375          \\ \hline
-			González-Gallardo et al., 2015 \cite{gonzalez2015tweets} & 0.6693                                                        & 0.8871                               & 0.7545                                & 0.8521                                 & 0.7817                                 & 0.8977          & 0.7273        & 0.8611          & 0.9375          \\ \hline
-			Grivas et al., 2015 \cite{grivas2015author}              & 0.6487                                                        & 0.9011                               & 0.7199                                & 0.8592                                 & 0.7465                                 & 0.9432          & 0.6932        & 0.8333          & 0.9688          \\ \hline
-			Kocher et al., 2015 \cite{kocher2015unine}               & 0.5655                                                        & 0.7800                               & 0.7250                                & 0.7113                                 & 0.7113                                 & 0.8182          & 0.7386        & 0.7778          & 0.8125          \\ \hline
+			Alvarez-Carmona et al. 2015 \cite{alvarez2015inaoe}      & 0,7116                                                        & 0,8712                               & 0,8168                                & 0,8592                                 & 0,8380                                 & 0,9659          & 0,7955        & 0,7222          & 0,9375          \\ \hline
+			González-Gallardo et al., 2015 \cite{gonzalez2015tweets} & 0,6693                                                        & 0,8871                               & 0,7545                                & 0,8521                                 & 0,7817                                 & 0,8977          & 0,7273        & 0,8611          & 0,9375          \\ \hline
+			Grivas et al., 2015 \cite{grivas2015author}              & 0,6487                                                        & 0,9011                               & 0,7199                                & 0,8592                                 & 0,7465                                 & 0,9432          & 0,6932        & 0,8333          & 0,9688          \\ \hline
+			Kocher et al., 2015 \cite{kocher2015unine}               & 0,5655                                                        & 0,7800                               & 0,7250                                & 0,7113                                 & 0,7113                                 & 0,8182          & 0,7386        & 0,7778          & 0,8125          \\ \hline
 		\end{tabular}
 	}
 	\caption{Cuatro mejores clasificados en la competición \textit{PAN Author Profiling 2015}}
@@ -474,15 +464,11 @@ para el año 2000, la cual se debe a un error de los datos proporcionados por Wi
 					width=\linewidth,
 					height=4.5cm,
 					xmajorgrids=false,
-					x tick label style={font=\scriptsize},
-					y tick label style={font=\scriptsize},
 					ybar=6pt,
 					bar width=12pt,
 					enlarge x limits=0.2,
 					ymin=0,
 					ymax=42000,
-					nodes near coords,
-					nodes near coords style={font=\tiny},
 					xtick=data,
 					xticklabels={Masculino, Femenino, {No binario}},
 					xlabel={Género},
@@ -500,15 +486,11 @@ para el año 2000, la cual se debe a un error de los datos proporcionados por Wi
 					width=\linewidth,
 					height=4.5cm,
 					xmajorgrids=false,
-					x tick label style={font=\scriptsize},
-					y tick label style={font=\scriptsize},
 					ybar=6pt,
 					bar width=12pt,
 					enlarge x limits=0.2,
 					ymin=0,
 					ymax=44000,
-					nodes near coords,
-					nodes near coords style={font=\tiny},
 					xtick=data,
 					xticklabels={Estrella, Superestrella, Revelación},
 					xlabel={Fama},
@@ -519,7 +501,7 @@ para el año 2000, la cual se debe a un error de los datos proporcionados por Wi
 		\end{tikzpicture}
 		\label{fig:distribucion_fama_2019}
 	\end{subfigure}
-	\caption{Distribuciones de género y fama en el \textit{corpus} de la competición \textit{PAN Celebrity Profiling 2019}.}
+	\caption{Distribuciones de género y fama en el \textit{corpus} de la competición \textit{PAN Celebrity Profiling 2019}}
 	\label{fig:distribuciones_genero_fama_2019}
 \end{figure}
 
@@ -530,15 +512,11 @@ para el año 2000, la cual se debe a un error de los datos proporcionados por Wi
 				width=\linewidth,
 				height=5cm,
 				xmajorgrids=false,
-				x tick label style={font=\scriptsize},
-				y tick label style={font=\scriptsize},
 				ybar=6pt,
 				bar width=12pt,
 				enlarge x limits=0.08,
 				ymin=0,
 				ymax=24000,
-				nodes near coords,
-				nodes near coords style={font=\tiny},
 				xtick=data,
 				xticklabels={Deportista, Actor, Creador, Político, Científico, Director, Profesional, Religioso},
 				xlabel={Ocupación},
@@ -547,7 +525,7 @@ para el año 2000, la cual se debe a un error de los datos proporcionados por Wi
 			\addplot[color=violet, fill=violet!30] coordinates {(1,19285) (2,14178) (3,7811) (4,4009) (5,1141) (6,1094) (7,763) (8,54)};
 		\end{axis}
 	\end{tikzpicture}
-	\caption{Distribución de ocupaciones en el \textit{corpus} de la competición \textit{PAN Celebrity Profiling 2019}.}
+	\caption{Distribución de ocupaciones en el \textit{corpus} de la competición \textit{PAN Celebrity Profiling 2019}}
 	\label{fig:distribucion_ocupacion_2019}
 \end{figure}
 
@@ -558,13 +536,12 @@ para el año 2000, la cual se debe a un error de los datos proporcionados por Wi
 				width=\textwidth,
 				height=5cm,
 				xmajorgrids=false,
-				x tick label style={font=\scriptsize},
-				y tick label style={font=\scriptsize},
 				ybar=1pt,
 				bar width=4.5pt,
 				enlarge x limits=0.05,
 				ymin=0,
 				ymax=2000,
+				nodes near coords=,
 				xlabel={Año de nacimiento},
 				scaled y ticks=false
 			]
@@ -579,21 +556,21 @@ para el año 2000, la cual se debe a un error de los datos proporcionados por Wi
 					(2000,484) (2001,57) (2002,33) (2003,34) (2004,20) (2005,6) (2006,2) (2007,5) (2008,1) (2010,2) (2011,1) (2012,1)};
 		\end{axis}
 	\end{tikzpicture}
-	\caption{Distribución del año de nacimiento en el \textit{corpus} de la competición \textit{PAN Celebrity Profiling 2019}.}
+	\caption{Distribución del año de nacimiento en el \textit{corpus} de la competición \textit{PAN Celebrity Profiling 2019}}
 	\label{fig:distribucion_edad_2019}
 \end{figure}
 
 
 \subsubsection{\textit{Resultados}}
 
-Como se aprecia en la Tabla \ref{tab:algoritmos_2019}, la precisión conjunta en edad y género obtenida por los algoritmos mejor
-clasificados es de aproximadamente un 20\% inferior a la alcanzada en la competición del año 2015. Esto es debido a que,
+Como se aprecia en la Tabla \ref{tab:algoritmos_2019}, la precisión conjunta en edad y género obtenida por el algoritmo mejor
+clasificado es de aproximadamente un 20\% \textit{($\Delta$accuracy=0,2346)} inferior a la alcanzada en la competición del año 2015. Esto es debido a que,
 como se comentó anteriormente, la clasificación de edad no se realizó en base a rangos en esta edición, sino que se
 buscó una predicción exacta de la edad del autor, junto a una grado de tolerancia adaptativo, provocando así precisiones mucho
-más bajas para este atributo. {\color{red}En lo que respecta a la clasificación del género, vemos como los dos
-mejores participantes obtienen resultados de aproximadamente un 90\%, superior a los obtenidos en la edición de 2015.
+más bajas para este atributo. En lo que respecta a la clasificación del género, vemos como los dos
+mejores participantes obtienen resultados de aproximadamente un 90\% \textit{(accuracy=0,928; accuracy=0,906)}, superior a los obtenidos en la edición de 2015.
 Por último, en cuanto a la clasificación de ocupación, destacar el gran resultado que ofrece el algoritmo de Radivchev et al. \cite{radivchev2019celebrity},
-obteniendo una precisión del 75\% para una característica con ocho clases diferentes (precisión=0.757)}.
+obteniendo una precisión del 75\% para una característica con ocho clases diferentes \textit{(accuracy=0,757)}.
 
 \bigskip
 Centrándonos en las implementaciones realizadas en esta competición, podemos destacar lo siguiente:
@@ -603,7 +580,7 @@ Centrándonos en las implementaciones realizadas en esta competición, podemos d
 	      y Moreno-Sandoval et al. \cite{moreno2019celebrity}, optaron por sustituír los enlaces,
 	      las menciones y los \textit{hashtags} por etiquetas especiales. Por otro lado, Martinc et al. \cite{martinc2019hot} se decantó por eliminar los signos de puntuación
 	      y las \textit{stopwords}, es decir, las palabras poco significativas, para mejorar el modelado de los documentos con TF-IDF puro basado en unigramas de palabras.
-	\item \textbf{\textit{Features}}: La mayor parte de los algoritmos presentados emplearon técnicas basadas en TF-IDF y n-gramas.
+	\item \textbf{Características}: La mayor parte de los algoritmos presentados emplearon técnicas basadas en TF-IDF y n-gramas.
 	      Más concretamente, Radivchev et al. \cite{radivchev2019celebrity} utilizó como características los vectores obtenidos mediante TF-IDF sobre los 10.000 bigramas más frecuentes;
 	      Martinc et al. \cite{martinc2019hot} obtuvo los vectores mediante el TF-IDF de unigramas de palabras y tetragramas de caracteres; Moreno-Sandoval et al. \cite{moreno2019celebrity}, en cambio, además de
 	      de emplear n-gramas como características, calculó el número medio de emojis, \textit{hashtags}, meciones, enlaces, \textit{retweets}, palabras y longitud de las
@@ -624,10 +601,10 @@ Centrándonos en las implementaciones realizadas en esta competición, podemos d
 			\hhline{~|-----|}
 			\multicolumn{1}{c|}{\cellcolor{white}}                  & \multicolumn{5}{c|}{\cellcolor{udcpink!25}\textbf{Precisión}}                                                                        \\ \hline
 			\textbf{Equipo participante}                            & \textbf{Conjunta} (Género y Edad)                             & \textbf{Género} & \textbf{Edad} & \textbf{Ocupación} & \textbf{Fama} \\ \hline
-			Radivchev et al. 2019 \cite{radivchev2019celebrity}     & 0.477                                                         & 0.928           & 0.514         & 0.757              & 0.777         \\ \hline
-			Martinc et al., 2019 \cite{martinc2019hot}              & 0.410                                                         & 0.906           & 0.453         & 0.732              & 0.755         \\ \hline
-			Fernquist et al., 2019                                  & 0.362                                                         & 0.774           & 0.468         & 0.642              & 0.773         \\ \hline
-			Moreno-Sandoval et al., 2019 \cite{moreno2019celebrity} & 0.320                                                         & 0.862           & 0.371         & 0.703              & 0.545         \\ \hline
+			Radivchev et al., 2019 \cite{radivchev2019celebrity}    & 0,477                                                         & 0,928           & 0,514         & 0,757              & 0,777         \\ \hline
+			Martinc et al., 2019 \cite{martinc2019hot}              & 0,410                                                         & 0,906           & 0,453         & 0,732              & 0,755         \\ \hline
+			Fernquist et al., 2019                                  & 0,362                                                         & 0,774           & 0,468         & 0,642              & 0,773         \\ \hline
+			Moreno-Sandoval et al., 2019 \cite{moreno2019celebrity} & 0,320                                                         & 0,862           & 0,371         & 0,703              & 0,545         \\ \hline
 		\end{tabular}
 	}
 	\caption{Cuatro mejores clasificados en la competición \textit{PAN Celebrity Profiling 2019}}
@@ -661,18 +638,29 @@ propuesta por Johnson et al., 2017 \cite{johnson2017deep} para el procesado de t
 \label{sec:algoritmos_seleccionados}
 
 Con todo, para seleccionar los algoritmos que formarán parte de la aplicación que se expondrá en los siguientes capítulos, se ha optado
-por buscar aquellos que contasen con una implementación pública y que, además, ofreciesen un buen rendimiento en las competiciones.
+por buscar aquellos que contasen con una implementación pública y que, además, ofreciesen un buen rendimiento en las tareas.
 Por ello, dado que los algoritmos de la edición de 2014 no obtenían restulados comparables a las otras dos competiciones,
 no se ha tenido en cuenta ninguno de ellos. Así, de los cuatro algoritmos mejor clasificados del \textit{PAN Author Profiling 2015} y
 del \textit{PAN Celebrity Profiling 2019} se ha seleccionado uno de cada competición, concretamente las implementaciones propuestas por
 Grivas et al. \cite{grivas2015author} (disponible en \url{https://github.com/pan-webis-de/grivas15})
 y Martinc et al. \cite{martinc2019hot} (disponible en \url{https://github.com/EMBEDDIA/PAN2019}).
 
+\bigskip
+{En este punto, cabe destacar que la mayor parte de los trabajos analizados en la Sección \ref{sec:competiciones_analizadas} no ofrecían
+implementaciones públicas de sus algoritmos, sino que se limitaban a explicar a alto nivel su funcionamiento. Así,
+de los tres únicos casos encontrados que contaban con el código fuente publicado, solo los dos algoritmos mencionados anteriormente disponían de
+una implementación funcional y bien documentada. Concretamente, se intentó ejecutar la implementación ofrecida por Pizarro, 2019 \cite{pizarro2019using}
+presentada en la competición \textit{PAN Bots and Gender Profiling 2019}, lo que resultó en errores continuados e intentos fallidos por lograr su correcto funcionamiento.
+Este problema ha sido ampliamente reconocido por la comunidad, especialmente en el campo del aprendizaje automático y la inteligencia artifical.
+Tal es así, que en trabajos como el presentado por Hutson, 2018 \cite{hutson2018artificial}, se critica la falta de reproducibilidad de los algoritmos
+y se apuntan varios problemas, entre ellos: la inexistencia de código fuente, la ausencia de los \textit{datasets} utilizados para el entrenamiento
+del modelo y las diferencias conforme al rendimiento esperado de los mismos.
+
 \subsection{Algoritmo de Grivas et al. \cite{grivas2015author}}
 
 Este algoritmo sigue una aproximación particular basada en la creación de dos grupos de características, unas basadas en el contenido (estructurales) y otras basadas en el estilo (estilométricas).
 Como se puede ver en la Figura \ref{fig:features_grivas}, las características estructurales se corresponden con el número de \textit{hashtags}, enlaces y menciones que aparecen en los \textit{tweets},
-mientras que las características estilométricas se corresponden con algunas más comunes como el TF-IDF de n-gramas o el número de mayúsculas junto con otras menos
+mientras que las características estilométricas se corresponden con otras como el TF-IDF de n-gramas o el número de mayúsculas. A estas últimas se le suman algunas características menos
 utilizadas como la bolsa de emoticonos (\textit{bag-of-smileys} en inglés), una técnica similar a la \textit{bag-of-words} explicada en la Sección \ref{sec:bag_of_words} o los grafos de n-gramas, propuestos
 por Giannakopoulos et al., 2008 \cite{giannakopoulos2008summarization}.
 
@@ -737,7 +725,7 @@ para ello en una serie de heurísticas y de pruebas realizadas con el \textit{da
 			Rasgos personales                      & Número de menciones \newline Número de \textit{hashtags} \newline Número de enlaces & TF-IDF de trigramas	\newline Longitud de palabras \newline Número de mayúsculas \\ \hline
 		\end{tabular}
 	}
-	\caption{Características extraídas en el algoritmo de Grivas et al. \cite{grivas2015author}}
+	\caption{Relación de características utilizadas en cada subtarea en el algoritmo de Grivas et al. \cite{grivas2015author}}
 	\label{tab:features_per_task_grivas}
 \end{table}
 
@@ -749,7 +737,7 @@ con un kernel lineal. Destacar que, para la ejecución de ambos algoritmos de ap
 \subsection{Algoritmo de Martinc et al. \cite{martinc2019hot}}
 
 En lo que respecta a este segundo algoritmo seleccionado, lo primero que se realiza es un concatenado de los primeros 100 \textit{tweets} de cada usuario para la creación de cada documento
-que formará la colección. La razón de este límite se justifica en la reducción considerable de la complejidad temporal y espacial, manteniendo a su vez una muestra representativa que garantiza
+que formará la colección. La razón de este límite se justifica en la reducción considerable de la complejidad temporal y espacial, manteniendo a su vez una muestra representativa que garantizaba
 una buena clasificación.
 
 \bigskip
@@ -777,7 +765,7 @@ Finalmente, se hicieron pruebas con varios clasificadores, entre ellos SVMs con 
 obtuvo fue el de regresión logística, siendo empleado en todas las subtareas de clasificación de la competición. Para hallar dicha solución y obtener los hiparámetros óptimos para cada
 clasificador, se aplicó una búsqueda en rejilla (\textit{grid search} en inglés), en la que se evaluaron todas las posibles combinaciones de parámetros.
 Destacar también el uso de la clase \textit{FeatureUnion} de scikit-learn \cite{scikitlearn}, la cual permite la concatenación de diferentes características en un mismo vector asignándoles
-un diferente peso a cada una de ellas, obteniendo para este caso un peso de 0.8 sobre 1.0 para los unigramas de palabras y los tetragramas de caracteres, mientras que tan solo un 0.4 para los tetragramas de caracteres sufijos,
+un diferente peso a cada una de ellas, obteniendo para este caso un peso de 0,8 sobre 1 para los unigramas de palabras y los tetragramas de caracteres, mientras que tan solo un 0,4 para los tetragramas de caracteres sufijos,
 lo que implica una menor relevancia.
 
 \subsection{Pruebas}
@@ -789,8 +777,8 @@ en \url{https://zenodo.org/record/3745945} y \url{https://zenodo.org/record/3885
 
 \bigskip
 En cuanto al algoritmo de Grivas et al. \cite{grivas2015author}, como se observa en la Tabla \ref{tab:pruebas_grivas}, existen pequeñas variaciones en
-cuanto a la precisión, cerca de un 4.7\%, lo que se puede deber a cambios en el propio \textit{dataset} de entrenamiento o test ofrecidos. A mayores,
-se muestra una columna con el macro F1 obtenido. Esta métrica, basada en el F1 tradicional, se calcula como la media de los F1 de cada clase,
+cuanto a la precisión, cerca de un 3,5\% 	\textit{($\Delta$accuracy=0,0352)}, lo que se puede deber a cambios en el propio \textit{dataset} de entrenamiento o test ofrecidos. A mayores,
+se muestra una columna con el Macro F1 obtenido. Esta métrica, basada en el F1 tradicional, se calcula como la media de los F1 de cada clase,
 reflejando los problemas subyacentes en casos de conjuntos de entrenamiento desbalanceados.
 Así, vemos como los resultados obtenidos para el género son buenos, mientras que para la edad son bastante peores. Esto puede deberse al gran
 desbalanceo de clases de la edad, junto a las pequeñas diferencias que pueden existir entre rangos contiguos y que provocan errores en la clasificación.
@@ -804,8 +792,8 @@ desbalanceo de clases de la edad, junto a las pequeñas diferencias que pueden e
 			\hhline{~|---|}
 			\multicolumn{1}{c|}{\cellcolor{white}} & \multicolumn{2}{c|}{\cellcolor{udcpink!25}\textbf{Precisión}} & \multicolumn{1}{c|}{\cellcolor{udcpink!25}\textbf{Macro F1}}                     \\ \hline
 			\textbf{Característica}                & \textbf{Reportada}                                            & \textbf{Obtenida}                                            & \textbf{Obtenida} \\ \hline
-			Género                                 & 0.8592                                                        & 0.8310                                                       & 0.8304            \\ \hline
-			Edad                                   & 0.7465                                                        & 0.7887                                                       & 0.5631            \\ \hline
+			Género                                 & 0,8592                                                        & 0,8310                                                       & 0,8304            \\ \hline
+			Edad                                   & 0,7465                                                        & 0,7887                                                       & 0,5631            \\ \hline
 		\end{tabular}
 	}
 	\caption{Resultados de las pruebas realizadas con el algoritmo de Grivas et al. \cite{grivas2015author}}
@@ -813,14 +801,14 @@ desbalanceo de clases de la edad, junto a las pequeñas diferencias que pueden e
 \end{table}
 
 \bigskip
-A mayores, ya que los \textit{datasets} de la edición de 2014 y de 2015 tienen una estructura similar, permitió utilizar la colección
+A mayores, ya que los \textit{datasets} de la edición de 2014 y de 2015 tienen una estructura similar, esto permitió utilizar la colección
 del \textit{PAN Author Profiling 2014}, disponible en \url{https://zenodo.org/record/3716008}, para llevar a cabo experimentos y comparar los resultados que ofrece el algoritmo
-de Grivas et al. \cite{grivas2015author} con cada uno. Con todo, fue necesario realizar las siguientes modificaciones para que, tanto el algoritmo
+de Grivas et al. \cite{grivas2015author} con cada uno. Con todo, fue necesario realizar las siguientes modificaciones para que tanto el algoritmo
 como la colección, fuesen completamente compatibles:
 
 \begin{itemize}
 	\item \textbf{Transformación de etiquetas}: Para que el conjunto de clases presentes en cada subtarea fuese el mismo que el presentado en la edición de 2015, se modificaron
-	      las etiquetas del fichero de \textit{truth}. De este modo, en el caso de la edad, se agruparon los rangos 50-64 y 65-XX en uno solo (50-XX), mientras que en el género se sustituyeron
+	      las etiquetas del fichero de \textit{truth}. De este modo, en el caso de la edad, se agruparon los rangos \textit{50-64} y \textit{65-XX} en uno solo (\textit{50-XX}), mientras que en el género se sustituyeron
 	      las etiquetas \textit{MALE} y \textit{FEMALE} por sus iniciales.
 	\item \textbf{Modificación de código}: En cuanto al código fuente, fue necesario ignorar todo lo referente a la subtarea de la predicción de los rasgos de la personalidad
 	      expuesta en la competición de 2015, ya que el \textit{dataset} de 2014 no contaba con dichas características.
@@ -830,7 +818,7 @@ como la colección, fuesen completamente compatibles:
 De esta forma, haciendo uso del \textit{dataset} de 2014 para entrenar el algoritmo de Grivas et al. \cite{grivas2015author}, se obtuvieron los resultados
 mostrados en la Tabla \ref{tab:pruebas_grivas_PAN14}. Destacar que, debido a que la colección proporcionada en 2014 no contaba con un conjunto específico de test, se realizó la validación
 con el conjunto de test de la competición de 2015, obteniendo así resultados directamente comparables con los reportados en la Tabla \ref{tab:pruebas_grivas}.
-En este sentido, vemos como la precisión y el F1 de ambas características se reduce drásticamente a causa, hipotéticamente, de dos factores. El primero de ellos
+En este sentido, vemos como la precisión y el Macro F1 de ambas características se reduce drásticamente a causa, hipotéticamente, de dos factores. El primero de ellos
 tiene que ver con heterogeneidad de los textos en el conjunto de entrenamiento, ya que se unificaron las publicaciones de los blogs, las \textit{reviews} de hoteles y
 los \textit{posts} de otras redes sociales, provocando, por un lado, una dificultad añadida en el proceso de extracción de características y, por otro lado,
 un gran contraste con los \textit{tweets} utilizados para la validación. El segundo factor tiene que ver con la gran diferencia en el tamaño de los \textit{datasets},
@@ -845,8 +833,8 @@ dado que la edición de 2014 contaba con 12,053 autores frente a 142 de la de 20
 			\hhline{~|--|}
 			\multicolumn{1}{c|}{\cellcolor{white}} & \multicolumn{2}{c|}{\cellcolor{udcpink!25}\textbf{Colección del PAN 2014}}                     \\ \hline
 			\textbf{Característica}                & \textbf{Precisión}                                                         & \textbf{Macro F1} \\ \hline
-			Género                                 & 0.6408                                                                     & 0.6328            \\ \hline
-			Edad                                   & 0.5282                                                                     & 0.3587            \\ \hline
+			Género                                 & 0,6408                                                                     & 0,6328            \\ \hline
+			Edad                                   & 0,5282                                                                     & 0,3587            \\ \hline
 		\end{tabular}
 	}
 	\caption{Resultados de las pruebas realizadas con el \textit{dataset} de 2014 para el algoritmo de Grivas et al. \cite{grivas2015author}}
@@ -854,8 +842,8 @@ dado que la edición de 2014 contaba con 12,053 autores frente a 142 de la de 20
 \end{table}
 
 \bigskip
-En la misma línea, el algoritmo de Martinc et al. \cite{martinc2019hot} también obtiene resultados muy similares como se muestra en la Tabla \ref{tab:pruebas_martinc},
-con una variación del 1.4\% en la precisión y del 7.4\%, algo más elevadas, en el macro F1. Destacar que, para esta última métrica, al algoritmo obtiene
+En la misma línea, el algoritmo de Martinc et al. \cite{martinc2019hot} obtiene también resultados muy similares a los reportados en su trabajo, como se muestra en la Tabla \ref{tab:pruebas_martinc},
+con una variación media que no llega al 1\% en la precisión \textit{($\Delta$accuracy=0,0085)} y de cerca del 3\%, algo más elevadas, en el Macro F1 \textit{($\Delta$Macro F1=0,0305)}. Destacar que, para esta última métrica, al algoritmo obtiene
 resultados bastante pobres en comparación con la precisión, lo que demuestra un posible sesgo hacia las clases mayoritarias en el conjunto de entrenamiento.
 
 \bigskip
@@ -868,21 +856,21 @@ resultados bastante pobres en comparación con la precisión, lo que demuestra u
 			\hhline{~|----|}
 			\multicolumn{1}{c|}{\cellcolor{white}} & \multicolumn{2}{c|}{\cellcolor{udcpink!25}\textbf{Precisión}} & \multicolumn{2}{c|}{\cellcolor{udcpink!25}\textbf{Macro F1}}                                          \\ \hline
 			\textbf{Característica}                & \textbf{Reportada}                                            & \textbf{Obtenida}                                            & \textbf{Reportada} & \textbf{Obtenida} \\ \hline
-			Género                                 & 0.906                                                         & 0.904                                                        & 0.587              & 0.584             \\ \hline
-			Edad                                   & 0.453                                                         & 0.433                                                        & 0.354              & 0.308             \\ \hline
-			Fama                                   & 0.755                                                         & 0.755                                                        & 0.512              & 0.480             \\ \hline
-			Ocupación                              & 0.743                                                         & 0.731                                                        & 0.468              & 0.427             \\ \hline
+			Género                                 & 0,906                                                         & 0,904                                                        & 0,587              & 0,584             \\ \hline
+			Edad                                   & 0,453                                                         & 0,433                                                        & 0,354              & 0,308             \\ \hline
+			Fama                                   & 0,755                                                         & 0,755                                                        & 0,512              & 0,480             \\ \hline
+			Ocupación                              & 0,743                                                         & 0,731                                                        & 0,468              & 0,427             \\ \hline
 		\end{tabular}
 	}
 	\caption{Resultados de las pruebas realizadas con el algoritmo de Martinc et al. \cite{martinc2019hot}}
 	\label{tab:pruebas_martinc}
 \end{table}
 
-Sin embargo, ya que la utilidad real de la predicción exacta del año de nacimiento para el perfilado de autores es limitada,
-se buscó mejorar la precisión del algoritmo mediante el \textit{binning}. Esta técnica consiste en agrupar los valores de una característica en rangos, de forma que
+Sin embargo, la predicción exacta del año de nacimiento, tal y como se exponía en la competición de 2019, supone una utilidad real limitada para el perfilado de autores,
+por lo que se buscó mejorar la precisión del algoritmo mediante el \textit{binning}. Esta técnica consiste en agrupar los valores de una característica en rangos, de forma que
 se reduzca la complejidad del problema y se obtengan así mejores resultados. En este caso, como criterio para realizar la agrupación se siguió el mismo que el utilizado
 en la competición del año 2015, añadiendo el rango de los menores de edad, es decir, se consideraron los siguientes grupos: \textit{XX-17}, \textit{18-24}, \textit{25-34}, \textit{35-49}, \textit{50-XX};
 donde, de igual forma que anteriormente, \textit{XX-17} representa cualquier edad igual o inferior a 17 años y \textit{50-XX} cualquier edad igual o superior a 50 años.
-Con todo, aplicando el \textit{binning} se consiguió aumentar la precisión para el perfilado de la edad un 16.48\%, hasta llegar al 59.68\%, lo que, aún siendo inferior
+Con todo, aplicando el \textit{binning} se consiguió aumentar la precisión para el perfilado de la edad un 16,48\%, hasta llegar al 59,68\%, lo que, aún siendo inferior
 al obtenido por Grivas et al. \cite{grivas2015author}, se considera un gran resultado teniendo en cuenta la gran diferencia en tamaño de los \textit{datasets} empleados en
 cada competición.

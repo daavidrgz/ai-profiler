@@ -18,7 +18,7 @@ Dicho servicio será el que se comunique con la base da datos para garantizar la
 una posterior consulta.
 
 \bigskip
-Por otro lado, para que el código estuviese bien organizado, se decidió utilizar el patrón de diseño DDD (del inglés \textit{Domain-Driven Design}) \cite{ddd}, el cual
+Por otro lado, para que el código estuviese bien organizado, se decidió utilizar el patrón de diseño DDD (del inglés, \textit{Domain-Driven Design}) \cite{ddd}, el cual
 permite separar el código en tres capas: la capa de aplicación, la capa de dominio y la capa de infraestructura. La capa de aplicación es la encargada de gestionar
 la entrada y salida de la aplicación que, en nuestro caso, es el controlador que maneja los \textit{endpoints} REST; la capa de dominio es la que contiene la lógica
 de negocio y las entidades; y la capa de infraestructura es la responsable de administrar las interacciones internas de la aplicación que, en nuestro
@@ -42,7 +42,7 @@ desarrollar aplicaciones nativas para cada sistema operativo.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{diagramas/arquitectura_contenedor.pdf}
-	\caption{Diagrama C4 de Contenedor de la arquitectura del sistema.}
+	\caption{Diagrama C4 de Contenedor de la arquitectura del sistema}
 	\label{fig:arquitectura_contenedor}
 \end{figure}
 
@@ -147,7 +147,7 @@ Este \textit{dashboard} contendrá los siguientes gráficos y elementos, los cua
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{diagramas/dashboard-martinc.pdf}
-	\caption{Prototipo del dashboard utilizando el algoritmo Martinc}
+	\caption{Prototipo del dashboard utilizando el algoritmo de Martinc et al. \cite{martinc2019hot}}
 	\label{fig:prototipo_dashboard_martinc}
 \end{figure}
 
@@ -155,13 +155,13 @@ Este \textit{dashboard} contendrá los siguientes gráficos y elementos, los cua
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{diagramas/dashboard-grivas.pdf}
-	\caption{Prototipo del dashboard utilizando el algoritmo Grivas}
+	\caption{Prototipo del dashboard utilizando el algoritmo de Grivas et al. \cite{grivas2015author}}
 	\label{fig:prototipo_dashboard_grivas}
 \end{figure}
 
 \section{\textit{Backend}}
 
-Para analizar la implementación del \textit{backend}, se tomará como referencia el diagrama de clases de la Figura \ref{fig:clases_backend} y se profundizará
+Para analizar la estructura del \textit{backend}, se tomará como referencia el diagrama de clases de la Figura \ref{fig:clases_backend} y se profundizará
 en las clases más importantes que lo componen. Asimismo, se estudirá y se justificará cuales han sido los \textit{endpoints} expuestos por el servidor,
 representados en la Figura \ref{fig:endpoints}.
 
@@ -286,20 +286,20 @@ los repositorios de tecnologías de bases de datos concretas, ya sean relacional
 \bigskip
 Ya en la capa de infraestructura, es decir, donde se almacenan todos los componentes externos con los que interactúa el dominio, se encuentran las clases que implementan
 la interfaz definida por el \textit{ProfilingRepository}. En nuestro caso, ya que se decidió optar por MongoDB como base de datos, solo existe
-la clase \textit{MongoProfilingRepository}, la cual se encarga de realizar las operaciones CRUD (del inglés \textit{Create, Read, Update, Delete}) sobre la base de datos, así
+la clase \textit{MongoProfilingRepository}, la cual se encarga de realizar las operaciones CRUD (del inglés, \textit{Create, Read, Update, Delete}) sobre la base de datos, así
 como de establecer y mantener las conexiones con la misma.
 
 \bigskip
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{diagramas/clases_back.pdf}
-	\caption{Diagrama de clases de la implementación del \textit{backend}}
+	\caption{Diagrama de clases del \textit{backend}}
 	\label{fig:clases_backend}
 \end{figure}
 
 \section{\textit{Frontend}}
 
-En lo que respecta a la implementación del \textit{frontend}, como se explicó en la Sección \ref{sec:herramientas_frontend}, se optó
+En lo que respecta al \textit{frontend}, como se explicó en la Sección \ref{sec:herramientas_frontend}, se optó
 por utilizar NextJS como \textit{framework} de desarrollo, el cual está basado en React. Así, teniendo esto en cuenta y apoyándonos
 en el diagrama de clases de la Figura \ref{fig:clases_frontend}, analizaremos
 las clases más relevantes del proyecto y su relación con el resto de módulos y componentes.
@@ -343,6 +343,6 @@ la cual, en última instancia, permite realizar la conversión a la clase \texti
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{diagramas/clases_front.pdf}
-	\caption{Diagrama de clases de la implementación del \textit{frontend}}
+	\caption{Diagrama de clases del \textit{frontend}}
 	\label{fig:clases_frontend}
 \end{figure}
