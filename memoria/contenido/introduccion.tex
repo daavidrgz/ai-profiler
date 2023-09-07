@@ -27,9 +27,9 @@ y el 23,4\% para compartir opiniones y debatir con otros usuarios.
 				ybar=6pt,
 				bar width=12pt,
 				enlarge x limits=0.08,
-				enlarge y limits=0.12,
+				enlarge y limits=0.14,
 			]
-			\addplot
+			\addplot[fill=blue!20]
 			coordinates {(2013,1.720) (2014,1.857) (2015,2.078)
 					(2016,2.307) (2017,2.789) (2018,3.196) (2019,3.461)
 					(2020,3.709) (2021,4.199) (2022,4.623) (2023,4.760)};
@@ -104,3 +104,42 @@ con el objetivo de obtener conclusiones acerca del movimiento y de los usuarios 
 Se trata, en definitiva, de un trabajo que pretende profundizar en el perfilado de autor, tanto desde un punto de vista teórico como práctico,
 haciendo accesible mediante la creación de una aplicación, una herramienta basada en técnicas de aprendizaje automático, y
 demostrando su utilidad con el análisis de un fenómeno social de gran relevancia.
+
+\section{Estructura de la memoria}
+\label{sec:intro_estructura}
+
+La memoria se estructura en diez capítulos, que se describen a continuación:
+
+\begin{itemize}
+	\item \textbf{Introducción}: Se trata del capítulo actual; en él se contextualiza el perfilado automático de autores junto a su utilidad
+		para el análisis de la información generada en las redes sociales. Asimismo, se exponen los objetivos que tiene este trabajo y la estructura
+		de esta memoria.
+	
+	\item \textbf{Estado del arte del perfilado de autor}: En este capítulo se realiza una revisión bibliográfica desde los inicios del perfilado de autor y se explican
+		los conceptos básicos que se utilizan habitualmente en el campo. Posteriormente, se analizan las tareas sobre el perfilado de autor que se han llevado a cabo,
+		seleccionando y evaluando diferentes algoritmos presentados en las mismas.
+
+	\item \textbf{Herramientas, técnicas y lenguajes}: Tercer capítulo de la memoria, donde se exponen las herramientas utilizadas en todo el proceso de desarollo
+		y se argumenta la elección de cada una de ellas.
+
+	\item \textbf{Metodología}: En este capítulo se explica la metodología que se ha seguido para el desarrollo de la aplicación, así como
+		los roles que desempeña cada uno de los miembros del equipo junto a las adaptaciones que se han realizado a la metodología propuesta.
+
+	\item \textbf{Análisis}: A lo largo de este capítulo se detallan los requisitos funcionales y no funcionales identificados para la aplicación.
+	
+	\item \textbf{Diseño}: En este capítulo se muestran los diagramas de arquitectura y de clases diseñados, así como los prototipos de la interfaz web de usuario.
+
+	\item \textbf{Implementación}: Séptimo capítulo de la memoria; en él se explica a bajo nivel las adaptaciones que fueron necesarias para integrar los algoritmos
+		seleccionados en la aplicación. Además, se detalla la estructura de directorios del proyecto y se justifica la decisión de liberar el código fuente.
+
+	\item \textbf{Caso de uso \#BLM}: En este capítulo se utiliza como ejemplo de caso de uso de la aplicación el análisis de la colección de referencia ofrecida para este TFG
+		sobre el movimiento \textit{Black Lives Matter}.
+
+	\item \textbf{Planificación y costes}: A lo largo de este capítulo se explican las tareas realizadas en cada \textit{sprint} y se desglosan los costes
+		económicos del proyecto.
+
+	\item \textbf{Conclusiones}: Capítulo final de la memoria, en el que se exponen las líneas de trabajo futuras y se realiza una valoración de los conocimientos
+		adquiridos durante todo el proceso.
+
+\end{itemize}
+

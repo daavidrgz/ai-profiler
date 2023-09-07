@@ -290,25 +290,25 @@ haciendo que pueda no ser directamente aplicable a cualquier conjunto de usuario
 				ymax=1700,
 				legend style={at={(0.5,1.28)},font=\scriptsize, anchor=north,legend columns=-1, /tikz/every even column/.append style={column sep=0.3cm}},
 			]
-			\addplot table[x=Posts/usuario,y={Masculino (Martinc)}] {
+			\addplot[fill=blue!20, pattern color=blue, postaction={pattern=north east lines}] table[x=Posts/usuario,y={Masculino (Martinc)}] {
 			Posts/usuario   {Masculino (Martinc)}
 			50              1288
 			500             1320
 			1000            1318
 			};
-			\addplot table[x=Posts/usuario,y={Femenino (Martinc)}] {
+			\addplot[fill=red!20, pattern color=red, postaction={pattern=dots}] table[x=Posts/usuario,y={Femenino (Martinc)}] {
 			Posts/usuario   {Femenino (Martinc)}
 			50              114
 			500             82
 			1000            84
 			};
-			\addplot[color=orange, fill=orange!30] table[x=Posts/usuario,y={Masculino (Grivas)}] {
+			\addplot[fill=orange!20, pattern color=orange, postaction={pattern=grid}] table[x=Posts/usuario,y={Masculino (Grivas)}] {
 			Posts/usuario   {Masculino (Grivas)}
 			50              1385
 			500             1400
 			1000            1400
 			};
-			\addplot[color=teal, fill=teal!30] table[x=Posts/usuario,y={Femenino (Grivas)}] {
+			\addplot[fill=teal!20, pattern color=teal, postaction={pattern=horizontal lines}] table[x=Posts/usuario,y={Femenino (Grivas)}] {
 			Posts/usuario   {Femenino (Grivas)}
 			50              17
 			500             2
@@ -401,25 +401,25 @@ red social.
 				ymax=1100,
 				legend style={at={(0.5,1.28)},font=\scriptsize, anchor=north,legend columns=-1, /tikz/every even column/.append style={column sep=0.3cm}},
 			]
-			\addplot[color=blue, fill=blue!30] table[x=Posts/usuario,y={18-24}] {
+			\addplot[fill=blue!20, pattern color=blue, postaction={pattern=north east lines}] table[x=Posts/usuario,y={18-24}] {
 			Posts/usuario   {18-24}
 			50              24
 			500             11
 			1000            4
 			};
-			\addplot[color=red, fill=red!30] table[x=Posts/usuario,y={25-34}] {
+			\addplot[fill=red!20, pattern color=red, postaction={pattern=dots}] table[x=Posts/usuario,y={25-34}] {
 			Posts/usuario   {25-34}
 			50              470
 			500             238
 			1000            63
 			};
-			\addplot[color=orange, fill=orange!30] table[x=Posts/usuario,y={35-49}] {
+			\addplot[fill=orange!20, pattern color=orange, postaction={pattern=grid}] table[x=Posts/usuario,y={35-49}] {
 			Posts/usuario   {35-49}
 			50              600
 			500             887
 			1000            665
 			};
-			\addplot[color=violet, fill=violet!30] table[x=Posts/usuario,y={50-XX}] {
+			\addplot[fill=violet!20, pattern color=violet, postaction={pattern=horizontal lines}] table[x=Posts/usuario,y={50-XX}] {
 			Posts/usuario   {50-XX}
 			50              308
 			500             266
@@ -477,13 +477,13 @@ ya que abren nuevas hipótesis de trabajo acerca del fenómeno \#BLM.
 				ymax=1450,
 				legend style={at={(0.5,1.28)},font=\scriptsize, anchor=north,legend columns=-1, /tikz/every even column/.append style={column sep=0.3cm}},
 			]
-			\addplot[color=blue, fill=blue!30] table[x=Posts/usuario,y={18-24}] {
+			\addplot[fill=blue!20, pattern color=blue, postaction={pattern=north east lines}] table[x=Posts/usuario,y={18-24}] {
 			Posts/usuario   {18-24}
 			50              278
 			500             170
 			1000            168
 			};
-			\addplot[color=red, fill=red!30] table[x=Posts/usuario,y={25-34}] {
+			\addplot[fill=red!20, pattern color=red, postaction={pattern=dots}] table[x=Posts/usuario,y={25-34}] {
 			Posts/usuario   {25-34}
 			50              1124
 			500             1232

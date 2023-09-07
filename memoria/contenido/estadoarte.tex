@@ -180,7 +180,7 @@ ayuda a evitar un posible sesgo.
 				ymax=4000,
 				legend style={at={(0.5,1.25)},font=\scriptsize, anchor=north,legend columns=-1, /tikz/every even column/.append style={column sep=0.3cm}},
 			]
-			\addplot table[x=Edad,y=Inglés] {
+			\addplot[fill=blue!20, pattern color=blue, postaction={pattern=north east lines}] table[x=Edad,y=Inglés] {
 					Edad    Inglés
 					18-24   1936
 					25-34   3246
@@ -188,7 +188,7 @@ ayuda a evitar un posible sesgo.
 					50-64   2921
 					65-XX   826
 				};
-			\addplot table[x=Edad,y=Español] {
+			\addplot[fill=red!20, pattern color=red, postaction={pattern=dots}] table[x=Edad,y=Español] {
 					Edad    Español
 					18-24   346
 					25-34   494
@@ -315,14 +315,14 @@ contando con un 50\% de autores de cada género para todos los idiomas.
 				ymax=140,
 				legend style={at={(0.5,1.28)},font=\scriptsize, anchor=north,legend columns=-1, /tikz/every even column/.append style={column sep=0.3cm}},
 			]
-			\addplot table[x=Edad,y=Inglés] {
+			\addplot[fill=blue!20, pattern color=blue, postaction={pattern=north east lines}] table[x=Edad,y=Inglés] {
 					Edad    Inglés
 					18-24   114
 					25-34   118
 					35-49   42
 					50-XX   20
 				};
-			\addplot table[x=Edad,y=Español] {
+			\addplot[fill=red!20, pattern color=red, postaction={pattern=dots}] table[x=Edad,y=Español] {
 					Edad    Español
 					18-24   40
 					25-34   100
@@ -474,7 +474,7 @@ para el año 2000, la cual se debe a un error de los datos proporcionados por Wi
 					xlabel={Género},
 					scaled y ticks=false
 				]
-				\addplot coordinates {(1,34630) (2,13655) (3,50)};
+				\addplot[fill=blue!20] coordinates {(1,34630) (2,13655) (3,50)};
 			\end{axis}
 		\end{tikzpicture}
 		\label{fig:distribucion_genero_2019}
@@ -496,7 +496,7 @@ para el año 2000, la cual se debe a un error de los datos proporcionados por Wi
 					xlabel={Fama},
 					scaled y ticks=false
 				]
-				\addplot[color=red, fill=red!30] coordinates {(1,36120) (2,10177) (3,2098)};
+				\addplot[fill=red!20] coordinates {(1,36120) (2,10177) (3,2098)};
 			\end{axis}
 		\end{tikzpicture}
 		\label{fig:distribucion_fama_2019}
@@ -522,7 +522,7 @@ para el año 2000, la cual se debe a un error de los datos proporcionados por Wi
 				xlabel={Ocupación},
 				scaled y ticks=false
 			]
-			\addplot[color=violet, fill=violet!30] coordinates {(1,19285) (2,14178) (3,7811) (4,4009) (5,1141) (6,1094) (7,763) (8,54)};
+			\addplot[fill=violet!20] coordinates {(1,19285) (2,14178) (3,7811) (4,4009) (5,1141) (6,1094) (7,763) (8,54)};
 		\end{axis}
 	\end{tikzpicture}
 	\caption{Distribución de ocupaciones en el \textit{corpus} de la competición \textit{PAN Celebrity Profiling 2019}}
@@ -545,7 +545,7 @@ para el año 2000, la cual se debe a un error de los datos proporcionados por Wi
 				xlabel={Año de nacimiento},
 				scaled y ticks=false
 			]
-			\addplot[color=orange, fill=orange!30] coordinates {(1940,105) (1941,128) (1942,135) (1943,182)
+			\addplot[color=orange, fill=orange!20] coordinates {(1940,105) (1941,128) (1942,135) (1943,182)
 					(1944,154) (1945,180) (1946,225) (1947,274) (1948,260) (1949,304) (1950,403) (1951,333)
 					(1952,368) (1953,470) (1954,405) (1955,407) (1956,436) (1957,472) (1958,532) (1959,568)
 					(1960,579) (1961,642) (1962,685) (1963,649) (1964,756) (1965,716) (1966,689) (1967,760)
