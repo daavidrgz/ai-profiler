@@ -27,8 +27,8 @@ class Controller:
         self.router.add_api_route(
             "/profilings/{profiling_id}", self.get_profiling, methods=["GET"]
         )
-        self.router.add_api_route("/train", self.train, methods=["GET"])
-        self.router.add_api_route("/performance", self.get_performance, methods=["GET"])
+        self.router.add_api_route("/train", self.train, methods=["POST"])
+        self.router.add_api_route("/performance", self.get_performance, methods=["POST"])
 
     def predict(
         self, file: UploadFile, algorithm: str = None, dataset: str = "default"
