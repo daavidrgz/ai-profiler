@@ -7,17 +7,20 @@
 \label{sec:casouso_puesta_en_marcha}
 
 Como se mencionó en la Sección \ref{sec:herramientas_soporte}, para poder ejecutar la aplicación es necesario tener
-instalado Docker y Docker-Compose. Una vez instalados, simplemente se debe ejecutar el siguiente comando en la raíz del
-proyecto:
+instalado Docker y Docker-Compose. A mayores, para clonar el repositorio de GitHub, es necesario tener instalada la
+herramienta Git en el sistema. Una vez cumplidos estos requisitos, simplemente se debe ejecutar en la terminal:
 
 \bigskip
 \begin{Verbatim}
-	docker-compose up
+git clone --depth 1 https://github.com/daavidrgz/ai-profiler
+cd ai-profiler
+docker-compose up -d --build
 \end{Verbatim}
 
 \bigskip
 A partir de este momento, Docker se encargará de descargar las imágenes necesarias para poner en marcha el sistema y de levantar los
-contenedores. Una vez finalizado el proceso, se podrá acceder a la aplicación de forma local en la URL: \url{http://localhost:3000}.
+contenedores. De esta forma, ya que los modelos entrenados están subidos al repositorio, no es necesario realizar
+nigún entrenamiento inicial. Una vez finalizado el proceso, se podrá acceder a la aplicación de forma local en la URL: \url{http://localhost:3000}.
 
 \section{\textit{Dataset} del movimiento \#BLM}
 \label{sec:casouso_dataset}
@@ -454,10 +457,7 @@ red social.
 Pasando al algoritmo de Grivas et al. \cite{grivas2015author}, y de la misma forma que sucedía con la distribución de género, los resultados obtenidos
 parecen estar la mayor parte concentrados en dos clases, las cuales coinciden con las más representadas en la colección de entrenamiento para el algoritmo (ver Figura \ref{fig:dataset_2015}).
 Esto denota, lógicamente, un claro sobreajuste del modelo a dicha colección. 
-{\color{red}
-A pesar de ello, todas estas inferencias desde los datos a nivel sociológico representan en sí mismo contribuciones de este TFG,
-ya que abren nuevas hipótesis de trabajo acerca del fenómeno \#BLM.
-}
+
 \bigskip
 \begin{figure}[H]
 	\centering
@@ -520,6 +520,8 @@ lo primero que observamos es que existe muy poca variación con respecto al núm
 A grandes rasgos, recordemos que los valores de cada rasgo personal oscilan entre -0,5 y 0,5, vemos como la característica que más destaca es claramente la de \textit{Open} (abierto a nuevas experiencias), seguida de \textit{Stable} (estable) y \textit{Agreeable} (amable).
 Las implicaciones que tiene estos resultados con la realidad no son claras, pero podemos deducir que, en general, los usuarios que se lanzan a ser partícipes de los debates
 en Reddit sobre el \#BLM son personas categorizadas en unos rasgos de personalidad abiertos y estables.
+A pesar de ello, todas estas inferencias desde los datos a nivel sociológico representan en sí mismo contribuciones de este TFG,
+ya que abren nuevas hipótesis de trabajo acerca del fenómeno \#BLM.
 
 \bigskip
 \begin{table}[H]

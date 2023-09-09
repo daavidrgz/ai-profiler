@@ -13,7 +13,8 @@ así como también las limitaciones temporales del proyecto, se ha optado por un
 por la facilidad en su implementación y por su capacidad de intercomunicación con otros sistemas, especialmente con clientes web. Como
 se aprecia en la Figura \ref{fig:arquitectura_contenedor}, el servidor cuenta con un controlador REST capaz de redirigir las peticiones al servicio
 corresepondiente. En este sentido, a pesar de solo contar con un único servicio en la versión actual (\textit{Servicio de perfilado}),
-la arquitectura cliente-servidor permite añadir nuevos servicios, junto a nuevas funcionalidades, de forma sencilla y sin poner en riesgo al resto del sistema.
+la arquitectura cliente-servidor permite añadir nuevos servicios, junto a nuevas funcionalidades, de forma sencilla y sin poner en riesgo al resto del sistema,
+cumpliendo con lo establecido en el \hyperref[req:rnf4]{RNF4}.
 Dicho servicio será el que se comunique con la base da datos para garantizar la persistencia de los datos del perfilado y permitir así
 una posterior consulta.
 
@@ -168,7 +169,13 @@ representados en la Figura \ref{fig:endpoints}.
 \subsection{\textit{Endpoints}}
 
 Dado que el \textit{backend} seguirá una arquitectura REST, se explicarán a continuación los \textit{endpoints} que se han implementado para el servidor, así como los parámetros
-que recibe cada uno. Como se puede observar en la Figura \ref{fig:endpoints}, el servidor expone un total de cuatro \textit{endpoints}:
+que recibe cada uno. Para su definición, se seguió la metodología API First \cite{apifirst}, la cual consiste en dotar de mayor importancia al diseño de las APIs en vez de
+considerarlas como un simple puente entre sistemas. Junto a ello, se buscó cumplir con las buenas prácticas en cuanto al nombrado de los \textit{endpoints} en arquitecturas REST como el
+uso de plurales para las colecciones, la representación de las entidades por su identificador o el uso de parámetros en la propia URL para el filtrado y se siguieron las conveciones establecidas
+en la sección 4.3 del RFC 7231 \cite{rfc7231} para elegir el método HTTP correcto según la acción que se desee realizar.
+
+\bigskip
+Teniendo esto en cuenta, como se puede observar en la Figura \ref{fig:endpoints}, el servidor expone un total de cuatro \textit{endpoints}:
 
 \begin{itemize}
 	\item \textbf{/predict}: Como indica la historia de usuario con identificador \textit{1} de la Sección \ref{sec:analisis_requisitos_funcionales}, el usuario
@@ -183,12 +190,12 @@ que recibe cada uno. Como se puede observar en la Figura \ref{fig:endpoints}, el
 	      para devolver una respuesta al usuario evita tener problemas con el tiempo de espera de la petición o \textit{timeout} del \textit{socket} TCP,
 	      permitiendo así procesar grandes volúmenes de datos y cumplir con el requisito de escalabilidad \hyperref[req:rnf2]{RNF2}.
 
-	\item \textbf{/train}: Además, ya que el usuario debe poder reentrenar los modelos con los algoritmos disponibles, se ha implementado este \textit{endpoint} de tipo GET.
+	\item \textbf{/train}: Además, ya que el usuario debe poder reentrenar los modelos con los algoritmos disponibles, se ha implementado este \textit{endpoint} de tipo POST.
 	      En este caso, se recibe como parámetros de la URL el nombre del algoritmo de perfilado a utilizar junto al \textit{dataset} de entrenamiento. De la misma forma,
 	      se validarán los parámetros y, en caso de que sean correctos, se iniciará una tarea asíncrona en el \textit{backend}.
 
 	\item \textbf{/performance}: Puesto que otra de las historias de usuario nos indica que es necesario conocer el rendimiento que tiene los algoritmos,
-	      el \textit{backend} expondrá otro \textit{endpoint} de tipo GET que recibe los mismos parámetros que el anterior. La diferencia es que, en este caso,
+	      el \textit{backend} expondrá otro \textit{endpoint} de tipo POST que recibe los mismos parámetros que el anterior. La diferencia es que, en este caso,
 	      se devolverá un JSON con los valores de rendimiento del algoritmo en lugar de iniciar una tarea asíncrona.
 
 	\item \textbf{/profilings/\{id\}}: Para poder obtener los resultados del perfilado creado de forma asíncrona, este \textit{endpoint} de tipo GET

@@ -40,15 +40,19 @@ así como también alcanzando mejores resultados en la clasificación.
 \section{Conceptos básicos}
 \label{sec:conceptos_basicos}
 
+En este sección se tratarán los conceptos más utilizadas y relevantes para la comprensión de los análisis posteriores y, en general, de este trabajo.
+
+\subsection{Procesado del lenguaje natural}
+\label{sec:procesado_lenguaje_natural}
+
 Cuando hablamos del perfilado automático de autores, nos referimos a la tarea del análisis detallado de un texto para la obtención de ciertas características
 que nos permitan identificar a su autor.
 Dicha tarea de análisis está enmarcada dentro del campo del procesado del lenguaje natural y, más concretamente,
 dentro de la rama de la estilometría. De esta forma, para las tareas de NLP se hace uso
 de una serie de algoritmos y técnicas que permiten la extracción de características formales de un texto que puedan
-ser procesadas por un ordenador. Las más utilizadas y relevantes
-para la comprensión de los análisis posteriores y, en general, de este trabajo son las siguientes:
+ser procesadas por un ordenador. :
 
-\subsection{TF-IDF}
+\subsubsection{TF-IDF}
 El TF-IDF (del inglés, \textit{Term Frequency-Inverse Document Frequency}) es una medida estadística muy utilizada en el campo de la recuperación de información
 (en inglés \textit{Information Retrieval} o IR) que expresa cuán relevante es una palabra para un documento en una colección.
 
@@ -94,13 +98,13 @@ Donde:
 Por lo tanto, la importancia aumenta proporcionalmente al número de veces que una palabra aparece en el documento, pero se compensa con la frecuencia
 de la palabra en la colección, lo que permite manejar el hecho de que algunas palabras son generalmente más comunes que otras.
 
-\subsection{Etiquetas POS}
+\subsubsection{Etiquetas POS}
 
 Las etiquetas POS (del inglés, \textit{Part-Of-Speech}) son etiquetas gramaticales que se asignan a las palabras de un texto según su función sintáctica, es
 decir, si se trata de un sustantivo, un verbo, un adjetivo, etc.
 Existen varios tipos de etiquetas POS, pero las más empleadas son las descritas en el \textit{Penn Treebank Project} \cite{marcus1993building}.
 
-\subsection{N-gramas}
+\subsubsection{N-gramas}
 
 Los n-gramas son una técnica de modelado de lenguaje que consiste en la extracción de secuencias de $n$ elementos de un texto. Estos elementos pueden ser de varios
 tipos, entre ellos, caracteres, palabras o etiquetas POS. Las longitudes de dichas secuencias de elementos más habituales suelen oscilar entre uno y cuatro, dando como resultado los unigramas, bigramas,
@@ -108,14 +112,14 @@ trigramas y tetragramas.
 Asimismo, los n-gramas suelen combinarse con el TF-IDF para proporcionar vectores de características que puedan ser utilizados por los algoritmos de clasificación.
 Cabe destacar también que el TF-IDF, en su versión más común, es un caso particular de uso de los n-gramas, en concreto, de unigramas de palabras.
 
-\subsection{\textit{Bag-of-words}}
+\subsubsection{\textit{Bag-of-words}}
 \label{sec:bag_of_words}
 
 La \textit{bag-of-words} o BoW es una técnica simple de representación de documentos que consiste en la extracción de las palabras que aparecen en un texto,
 sin tener en cuenta el orden en el que aparecen ni la estructura gramatical de la que forman parte. De este modo, se obtiene un vector de características en el
 que cada posición representa una palabra y que tiene como valores el número de veces que aparece dicha palabra en el documento.
 
-\subsection{Análisis Semántico Latente}
+\subsubsection{Análisis Semántico Latente}
 \label{sec:analisis_semantico_latente}
 
 El Análisis Semántico Latente (\textit{Latent Semantic Analysis} o LSA en inglés) es una técnica de IR (del inglés, \textit{Information Retrieval}) desarrollada por Deerwester et al., 1990 \cite{deerwester1990indexing}
@@ -129,6 +133,96 @@ y encontrar relaciones palabras-documentos.
 \bigskip
 Esta técnica tiene limitaciones, sobre todo a la hora de manejar sinónimos y polisemias, ya que al basarse únicamente en patrones estadísticos,
 no tiene en cuenta el significado real de las palabras.
+
+\subsection{Aprendizaje automático}
+\label{sec:aprendizaje_automatico}
+
+Una vez contamos con las caracterísitcas extraídas de los textos, el siguiente paso es utilizarlas para la clasificación de los mismos.
+Para ello, existen una serie de algoritmos capaces de aprender los patrones que existen en conjuntos de datos y utilizarlos para realizar
+etiquetar o clasificar nuevos datos. Las técincas más utilizadas basadas en aprendizaje supervisado y que se mencionarán a lo largo de este trabajo son las siguientes:
+
+\subsubsection{SVMs}
+\label{sec:svm}
+
+Las SVMs son un tipo de algoritmo de aprendizaje supervisado, centrado en la clasificación binaria, que se basa en la búsqueda de un hiperplano
+que permita separar los datos de las diferentes clases en un espacio multidimensional. Así, haciendo uso de técnicas como el truco del \textit{kernel}
+(\textit{kernel trick} en inglés), las SVMs son capaces de maximizar el margen de dicho hiperplano entre los datos de diferentes clases a pesar de no ser linealmente
+separables en el espacio original.
+
+\subsubsection{Árboles de Decisión}
+\label{sec:arboles_decision}
+
+Los Árboles de Decisión son un tipo de algoritmo de aprendizaje supervisado que se basa en la creación de un modelo de predicción en forma de árbol.
+En este sentido, cada nodo interno del árbol representa una característica del conjunto de datos y cada rama representa el valor de dicha característica.
+Así, para clasificar un nuevo dato, se recorre el árbol desde la raíz hasta una de sus hojas, que representa la clase a la que pertenece el dato.
+
+\subsubsection{Regresión Logística}
+\label{sec:regresion_logistica}
+
+Este algoritmo, también ampliamente utilizado en tareas de clasificación, se basa en la
+función logística para estimar la probabilidad de que un dato pertenezca a una clase u otra. Así, para clasificar un nuevo dato, se calcula la probabilidad
+de que pertenezca a cada una de las clases y se asigna a este la clase con mayor probabilidad.
+
+\subsubsection{Evaluación de los algoritmos}
+\label{sec:evaluacion_algoritmos}
+
+Independientemente del algoritmo utilizado, es necesario establecer un cojunto de métricas que permitar evaluar el rendimiento
+de los modelos creados. A grandes rasgos, el rendimiento que demuestra un algoritmo de clasificación puede derivarse de la Tabla \ref{tab:matriz_confusion},
+denominada matriz de confusión.
+
+\bigskip
+\begin{table}[H]
+	\centering
+	\rowcolors{2}{white}{udcgray!25}
+	\resizebox{0.85\textwidth}{!}{
+		\begin{tabular}{|c|c|c|}
+			\hhline{~--}
+			\multicolumn{1}{c|}{\cellcolor{white}} & \textbf{Predicción Positiva} & \textbf{Predicción Negativa} \\ \hline
+			\textbf{Real Positivo}                 & Verdadero Positivo (VP)      & Falso Negativo (FN)          \\ \hline
+			\textbf{Real Negativo}                 & Falso Positivo (FP)          & Verdadero Negativo (VN)      \\ \hline
+		\end{tabular}
+	}
+	\caption{Matriz de confusión}
+	\label{tab:matriz_confusion}
+\end{table}
+
+A partir de esta matriz, se pueden definir las siguientes métricas más comunes:
+
+\begin{itemize}
+	\item Precisión (\textit{accuracy} en inglés): Se define como la proporción de predicciones correctas sobre el total de predicciones realizadas
+	      y representa, de forma general, la capacidad de un modelo para clasificar correctamente los datos.
+	      \begin{equation}
+		      \label{eq:accuracy}
+		      \text{Precisión} = \frac{VP + VN}{VP + VN + FP + FN}
+	      \end{equation}
+
+	\item Sensibilidad (\textit{recall} en inglés): Esta métrica representa la capacidad del modelo para predecir correctamente los datos positivos.
+	      \begin{equation}
+		      \label{eq:recall}
+		      \text{Sensibilidad} = \frac{VP}{VP + FN}
+	      \end{equation}
+
+	\item Especificidad (\textit{specificity} en inglés): De forma análoga a la sensibilidad, esta métrica representa la capacidad del
+	      modelo para predecir correctamente los datos negativos.
+	      \begin{equation}
+		      \label{eq:specificity}
+		      \text{Especificidad} = \frac{VN}{VN + FP}
+	      \end{equation}
+
+	\item Valor F1 (\textit{F1-score} en inglés): Esta métrica es la media armónica entre el valor predictivo positivo y la sensibilidad
+	      y resulta útil a la hora de comparar modelos con clases desbalanceadas, para los cuales la precisión puede ser engañosa.
+	      \begin{equation}
+		      \label{eq:f1}
+		      \text{Valor F1} = 2 \times \frac{\text{VPP} \times \text{Sensibilidad}}{\text{VPP} + \text{Sensibilidad}}
+	      \end{equation}
+
+				Donde:
+
+				\begin{equation}
+					\label{eq:vpp}
+					\text{VPP} = \frac{VP}{VP + FP}
+				\end{equation}
+\end{itemize}
 
 \section{Tareas analizadas}
 \label{sec:competiciones_analizadas}
