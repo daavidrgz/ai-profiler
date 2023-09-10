@@ -22,7 +22,7 @@ en el \textit{backend} sin hacer uso de llamadas interlenguaje.
 \bigskip
 Sin embargo, esta decisión implicó comprender a muy bajo nivel como estaban implementados dichos algoritmos para realizar las modificaciones necesarias
 e implementar nuevas funciones. Esta adaptación del código fue, en el caso del algoritmo de Grivas et al. \cite{grivas2015author},
-bastante compleja, ya que conllevó sustituír librerías obsoletas, reimplementar funciones y resolver los cambios disruptivos (\textit{breaking changes} en inglés) que suponía
+bastante compleja, ya que conllevó sustituir librerías obsoletas, reimplementar funciones y resolver los cambios disruptivos (\textit{breaking changes} en inglés) que suponía
 dar el salto desde la versión 2.7 de Python a la 3.10.
 
 \section{Estructura del proyecto}
@@ -65,7 +65,7 @@ Continuando con el directorio \textit{backend}, distinguimos varias carpetas y a
 \end{itemize}
 
 \bigskip
-Por otro lado, la estructura que sigue el \textit{frontend}, muy ligada al \textit{framework} de dearrollo NextJS, es la siguiente:
+Por otro lado, la estructura que sigue el \textit{frontend}, muy ligada al \textit{framework} de desarrollo NextJS, es la siguiente:
 
 \begin{itemize}
 	\item \textbf{\textit{package.json}}: En este archivo se almacenan todas las dependencias de NodeJS que requiere el \textit{frontend}.
@@ -73,7 +73,7 @@ Por otro lado, la estructura que sigue el \textit{frontend}, muy ligada al \text
 	      de definir un \textit{reverse proxy} capaz de redirigir las peticiones al \textit{backend} a la máquina local durante el desarrollo o a la máquina remota,
 	      en este caso otro contenedor de Docker, en producción.
 	\item \textbf{\textit{Dockerfile}}: Archivo análogo al presente en el directorio \textit{backend}, necesario para la construcción de la imagen del \textit{frontend}.
-	\item \textbf{\textit{/src}}: Dentro de esta carpeta, nos encotramos la estructura típica de un proyecto en NextJS:
+	\item \textbf{\textit{/src}}: Dentro de esta carpeta, nos encontramos la estructura típica de un proyecto en NextJS:
 	      \begin{itemize}
 		      \item \textbf{\textit{/components}}: Contiene los componentes que conforman las páginas de la aplicación.
 		      \item \textbf{\textit{/model}}: Contiene las clases que representan las entidades del sistema en el \textit{frontend}.
@@ -196,14 +196,14 @@ de perfilado de autor que organiza, además de otras como la del movimiento \#BL
 \label{sec:codigo_abierto}
 
 Una vez explicado el funcionamiento a bajo nivel de la aplicación, es necesario valorar la forma de publicar y
-distribuír el código fuente de la misma.
+distribuir el código fuente de la misma.
 
 \bigskip
 En este sentido, existen dos enfoques principales: el código abierto y el código privado.
 El código privado (\textit{closed source} o \textit{propietary source} en inglés) es aquel que no está disponible para el público en general, es decir, que no se puede acceder a él ni
 modificarlo, por lo que normalmente se asocia al mundo empresarial y a la venta de licencias para su uso.
 Por otro lado, el código abierto (\textit{open source} en inglés) es aquel que
-está disponible públicamente y puede ser modificado, utilizado y distribuído por cualquier persona en función
+está disponible públicamente y puede ser modificado, utilizado y distribuido por cualquier persona en función
 de la licencia bajo la que esté publicado. Normalmente, el código abierto se asocia con la filosofía del \textit{software} libre
 y con la gratuidad de la aplicación, aunque esto no siempre es así.
 
@@ -227,7 +227,7 @@ Además, GitHub ofrece una gran cantidad de herramientas que facilitan el desarr
 reportar errores o sugerir mejoras o la opción realizar \textit{pull requests} para proponer cambios en el código.
 
 \bigskip
-Por úlitmo, para que la comunidad pueda contribuir al proyecto de la mejor forma posible, se ha creado una guía de contribución
+Por último, para que la comunidad pueda contribuir al proyecto de la mejor forma posible, se ha creado una guía de contribución
 en la que se detallan los pasos a seguir para proponer cambios en el código, así como las normas de estilo que se deben cumplir.
 
 \bigskip

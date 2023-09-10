@@ -1,0 +1,94 @@
+\addvspace {10\p@ }
+\setforeignlanguage {spanish}
+\contentsline {figure}{\numberline {1.1}{\ignorespaces Evolución del número de usuarios en redes sociales\relax }}{1}{figure.caption.4}%
+\addvspace {10\p@ }
+\setforeignlanguage {spanish}
+\setforeignlanguage {spanish}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Comparativa del número de autores por idioma en el \textit {corpus} de la competición \textit {PAN Author Profiling 2014}\relax }}{12}{figure.caption.16}%
+\setforeignlanguage {spanish}
+\setforeignlanguage {spanish}
+\setforeignlanguage {spanish}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Comparativa del número de autores por idioma en el \textit {corpus} de la competición \textit {PAN Author Profiling 2015}\relax }}{14}{figure.caption.21}%
+\setforeignlanguage {spanish}
+\setforeignlanguage {spanish}
+\setforeignlanguage {spanish}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Distribuciones de género y fama en el \textit {corpus} de la competición \textit {PAN Celebrity Profiling 2019}\relax }}{18}{figure.caption.26}%
+\setforeignlanguage {spanish}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Distribución de ocupaciones en el \textit {corpus} de la competición \textit {PAN Celebrity Profiling 2019}\relax }}{18}{figure.caption.27}%
+\setforeignlanguage {spanish}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Distribución del año de nacimiento en el \textit {corpus} de la competición \textit {PAN Celebrity Profiling 2019}\relax }}{18}{figure.caption.28}%
+\setforeignlanguage {spanish}
+\setforeignlanguage {spanish}
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Características extraídas en el algoritmo de Grivas et al. \cite {grivas2015author}, \relax }}{22}{figure.caption.31}%
+\setforeignlanguage {spanish}
+\setforeignlanguage {spanish}
+\contentsline {figure}{\numberline {2.7}{\ignorespaces Niveles del preprocesado en el algoritmo de Martinc et al. \cite {martinc2019hot}\relax }}{24}{figure.caption.33}%
+\setforeignlanguage {spanish}
+\setforeignlanguage {spanish}
+\setforeignlanguage {spanish}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\setforeignlanguage {spanish}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Diagrama de casos de uso para la interfaz de usuario\relax }}{34}{figure.caption.37}%
+\setforeignlanguage {spanish}
+\setforeignlanguage {spanish}
+\addvspace {10\p@ }
+\setforeignlanguage {spanish}
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Diagrama de capas del patrón de diseño DDD. Adaptado de Ł, Ryś \cite {dddblog}\relax }}{38}{figure.caption.40}%
+\setforeignlanguage {spanish}
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Diagrama C4 de Contenedor de la arquitectura del sistema\relax }}{38}{figure.caption.41}%
+\setforeignlanguage {spanish}
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Prototipo de la pantalla de inicio\relax }}{39}{figure.caption.42}%
+\setforeignlanguage {spanish}
+\contentsline {figure}{\numberline {6.4}{\ignorespaces Prototipo de la selección del algoritmo de perfilado\relax }}{40}{figure.caption.43}%
+\setforeignlanguage {spanish}
+\contentsline {figure}{\numberline {6.5}{\ignorespaces Prototipo del resumen del perfilado\relax }}{41}{figure.caption.44}%
+\setforeignlanguage {spanish}
+\contentsline {figure}{\numberline {6.6}{\ignorespaces Prototipo de la pantalla de ejemplos de dataset\relax }}{42}{figure.caption.45}%
+\setforeignlanguage {spanish}
+\contentsline {figure}{\numberline {6.7}{\ignorespaces Prototipo del dashboard utilizando el algoritmo de Martinc et al. \cite {martinc2019hot}\relax }}{43}{figure.caption.46}%
+\setforeignlanguage {spanish}
+\contentsline {figure}{\numberline {6.8}{\ignorespaces Prototipo del dashboard utilizando el algoritmo de Grivas et al. \cite {grivas2015author}\relax }}{44}{figure.caption.47}%
+\setforeignlanguage {spanish}
+\contentsline {figure}{\numberline {6.9}{\ignorespaces Estructura del JSON devuelto por el \textit {endpoint} /profilings/\{id\}\relax }}{46}{figure.caption.48}%
+\setforeignlanguage {spanish}
+\contentsline {figure}{\numberline {6.10}{\ignorespaces Diagrama de \textit {endpoints} del \textit {backend}\relax }}{47}{figure.caption.49}%
+\setforeignlanguage {spanish}
+\contentsline {figure}{\numberline {6.11}{\ignorespaces Diagrama de clases del \textit {backend}\relax }}{49}{figure.caption.50}%
+\setforeignlanguage {spanish}
+\contentsline {figure}{\numberline {6.12}{\ignorespaces Diagrama de clases del \textit {frontend}\relax }}{51}{figure.caption.51}%
+\addvspace {10\p@ }
+\setforeignlanguage {spanish}
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Estructura de directorios del proyecto\relax }}{55}{figure.caption.52}%
+\addvspace {10\p@ }
+\setforeignlanguage {spanish}
+\contentsline {figure}{\numberline {8.1}{\ignorespaces Página de inicio de la aplicación\relax }}{59}{figure.caption.53}%
+\setforeignlanguage {spanish}
+\contentsline {figure}{\numberline {8.2}{\ignorespaces Página de ejemplos de \textit {datasets}\relax }}{59}{figure.caption.54}%
+\setforeignlanguage {spanish}
+\contentsline {figure}{\numberline {8.3}{\ignorespaces Página de selección algoritmos\relax }}{60}{figure.caption.55}%
+\setforeignlanguage {spanish}
+\contentsline {figure}{\numberline {8.4}{\ignorespaces Tooltip de información sobre los algoritmos\relax }}{60}{figure.caption.56}%
+\setforeignlanguage {spanish}
+\contentsline {figure}{\numberline {8.5}{\ignorespaces Página de resumen del perfilado\relax }}{61}{figure.caption.57}%
+\setforeignlanguage {spanish}
+\contentsline {figure}{\numberline {8.6}{\ignorespaces \textit {Dashboard} con los resultados obtenidos por el algoritmo de Martinc \cite {martinc2019hot}\relax }}{61}{figure.caption.58}%
+\setforeignlanguage {spanish}
+\contentsline {figure}{\numberline {8.7}{\ignorespaces \textit {Dashboard} con los resultados obtenidos por el algoritmo de Grivas \cite {grivas2015author}\relax }}{62}{figure.caption.59}%
+\setforeignlanguage {spanish}
+\contentsline {figure}{\numberline {8.8}{\ignorespaces Distribución de género obtenida por ambos algoritmos\relax }}{63}{figure.caption.60}%
+\setforeignlanguage {spanish}
+\setforeignlanguage {spanish}
+\contentsline {figure}{\numberline {8.9}{\ignorespaces Distribución de edad obtenida por el algoritmo de Martinc at al. \cite {martinc2019hot}\relax }}{65}{figure.caption.62}%
+\setforeignlanguage {spanish}
+\setforeignlanguage {spanish}
+\contentsline {figure}{\numberline {8.10}{\ignorespaces Distribución de edad obtenia por el algoritmo de Grivas at al. \cite {grivas2015author}\relax }}{66}{figure.caption.64}%
+\setforeignlanguage {spanish}
+\setforeignlanguage {spanish}
+\setforeignlanguage {spanish}
+\setforeignlanguage {spanish}
+\addvspace {10\p@ }
+\setforeignlanguage {spanish}
+\setforeignlanguage {spanish}
+\addvspace {10\p@ }

@@ -1,6 +1,6 @@
 # Contribuír
 
-Para contribuír a este repositorio, podes contactar por email ou abrir unha _issue_. Se fixeches unha modificación que soluciona algunha _issue_ aberta ou presenta unha mellora que cres de interese, podes enviar unha _pull request_.
+Para contribuir a este repositorio, podes contactar por email ou abrir unha _issue_. Se fixeches unha modificación que soluciona algunha _issue_ aberta ou presenta unha mellora que cres de interese, podes enviar unha _pull request_.
 
 Ten en conta que este proxecto ten código de conducta, por favor, respéctao.
 

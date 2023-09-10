@@ -9,10 +9,10 @@ tanto del \textit{frontend} como del \textit{backend}.
 \label{sec:diseño_arquitectura}
 
 Teniendo en cuenta los requisitos definidos en las Secciones \ref{sec:analisis_requisitos_funcionales} y \ref{sec:analisis_requisitos_no_funcionales},
-así como también las limitaciones temporales del proyecto, se ha optado por una arquitectura cliente-servidor. Esta aquitectura se ha elegido
+así como también las limitaciones temporales del proyecto, se ha optado por una arquitectura cliente-servidor. Esta arquitectura se ha elegido
 por la facilidad en su implementación y por su capacidad de intercomunicación con otros sistemas, especialmente con clientes web. Como
 se aprecia en la Figura \ref{fig:arquitectura_contenedor}, el servidor cuenta con un controlador REST capaz de redirigir las peticiones al servicio
-corresepondiente. En este sentido, a pesar de solo contar con un único servicio en la versión actual (\textit{Servicio de perfilado}),
+correspondiente. En este sentido, a pesar de solo contar con un único servicio en la versión actual (\textit{Servicio de perfilado}),
 la arquitectura cliente-servidor permite añadir nuevos servicios, junto a nuevas funcionalidades, de forma sencilla y sin poner en riesgo al resto del sistema,
 cumpliendo con lo establecido en el \hyperref[req:rnf4]{RNF4}.
 Dicho servicio será el que se comunique con la base da datos para garantizar la persistencia de los datos del perfilado y permitir así
@@ -163,7 +163,7 @@ Este \textit{dashboard} contendrá los siguientes gráficos y elementos, los cua
 \section{\textit{Backend}}
 
 Para analizar la estructura del \textit{backend}, se tomará como referencia el diagrama de clases de la Figura \ref{fig:clases_backend} y se profundizará
-en las clases más importantes que lo componen. Asimismo, se estudirá y se justificará cuales han sido los \textit{endpoints} expuestos por el servidor,
+en las clases más importantes que lo componen. Asimismo, se estudiará y se justificará cuales han sido los \textit{endpoints} expuestos por el servidor,
 representados en la Figura \ref{fig:endpoints}.
 
 \subsection{\textit{Endpoints}}
@@ -171,7 +171,8 @@ representados en la Figura \ref{fig:endpoints}.
 Dado que el \textit{backend} seguirá una arquitectura REST, se explicarán a continuación los \textit{endpoints} que se han implementado para el servidor, así como los parámetros
 que recibe cada uno. Para su definición, se seguió la metodología API First \cite{apifirst}, la cual consiste en dotar de mayor importancia al diseño de las APIs en vez de
 considerarlas como un simple puente entre sistemas. Junto a ello, se buscó cumplir con las buenas prácticas en cuanto al nombrado de los \textit{endpoints} en arquitecturas REST como el
-uso de plurales para las colecciones, la representación de las entidades por su identificador o el uso de parámetros en la propia URL para el filtrado y se siguieron las conveciones establecidas
+uso de plurales para las colecciones, la representación de las entidades por su identificador o el uso de parámetros en la propia URL (del inglés, \textit{Uniform Resource Locator})
+para el filtrado y se siguieron las convenciones establecidas
 en la sección 4.3 del RFC 7231 \cite{rfc7231} para elegir el método HTTP correcto según la acción que se desee realizar.
 
 \bigskip
@@ -272,7 +273,7 @@ La más importante de ellas es la clase \textit{ProfilingAlgorithm},
 una clase abstracta que define la interfaz que deben implementar todos los algoritmos de perfilado incluyendo las tres funciones principales:
 \textit{predict()}, \textit{train()} y \textit{get\_performance()}. En este sentido, es importante mencionar que los algoritmos elegidos no estaban implementados
 pensando en formar parte de una aplicación más grande, por lo que fue necesario realizar una adaptación manual para cumplir con la interfaz de
-la clase heredada, explicada en profundiad en la Sección \ref{sec:adaptacion_algoritmos}.
+la clase heredada, explicada en profundidad en la Sección \ref{sec:adaptacion_algoritmos}.
 
 \bigskip
 Otra entidad importante de la capa de dominio es la clase \textit{PredictDataset}, que representa el \textit{dataset} que proporciona el usuario
@@ -282,7 +283,7 @@ fue necesario crear las clases \textit{CsvToNdjsonConverter} y \textit{NdjsonToC
 
 \bigskip
 También existe una clase llamada \textit{TrainDataset}, que representa
-el \textit{dataset} que se utiliza para entrenar y validar el modelo. Esta clase abstracta contiene la locacalización de los elementos
+el \textit{dataset} que se utiliza para entrenar y validar el modelo. Esta clase abstracta contiene la localización de los elementos
 del conjunto de entrenamiento y test, así como también un nombre que la identifica. Esto nos permite la incorporación de nuevos \textit{datasets} creando simplemente
 una nueva clase que herede de \textit{TrainDataset}, posibilitando la generación de modelos haciendo uso de diferentes conjuntos de entrenamiento de forma sencilla y automática.
 
@@ -320,7 +321,7 @@ Como se ve reflejado en el diagrama, cada página está formada por varios compo
 En este sentido, el componente \textit{Chart} es uno de los más complejos e interesantes, dado que en él reside toda la lógica y la configuración común
 de los gráficos que se muestran en el \textit{dashboard} de la página de resultados. Otros componentes importantes son el \textit{UploadDataset},
 el cual se encarga de gestionar los eventos de \textit{drag and drop} y de la subida de archivos; el componente \textit{AlgorithmCard}, que
-presenta la información de las caraterísiticas que perfila cada algoritmo y se ocupa de mostrar el \textit{tooltip} con la información detallada;
+presenta la información de las características que perfila cada algoritmo y se ocupa de mostrar el \textit{tooltip} con la información detallada;
 o el componente \textit{PeopleList}, el cual se hace cargo de manejar la paginación, la ordenación y la selección de la lista de personas.
 
 \bigskip

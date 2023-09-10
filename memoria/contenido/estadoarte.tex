@@ -27,7 +27,7 @@ en la actualidad.
 \bigskip
 Por otro lado, en el año 2011, se celebraría el primer evento organizado por el \textit{PAN} (\textit{Plagiarism Analysis, Authorship Identification, and Near-Duplicate Detection}) \cite{pan},
 uno de los foros de investigación más importantes que organiza eventos científicos y tareas anuales relacionadas con el análisis forense de textos digitales
-y rasgos estilométricos, así como uno de los grandes implusores del perfilado de autor. La primera de las tareas centradas en este campo se celebraría en el año 2013 (Rangel et al., 2013) \cite{rangel2013overview},
+y rasgos estilométricos, así como uno de los grandes impulsores del perfilado de autor. La primera de las tareas centradas en este campo se celebraría en el año 2013 (Rangel et al., 2013) \cite{rangel2013overview},
 en la que se pedía a los participantes que obtuvieran, a partir de una serie de \textit{tweets}, la edad y el género de su autor. El ganador de este concurso obtuvo una
 precisión del 60\% \textit{(accuracy=0,5921)}en la clasificación de género y del 65\% \textit{(accuracy=0,6491)} en la clasificación de edad, haciendo uso, la mayor parte de los participantes, de técnicas de aprendizaje
 supervisado como los Árboles de Decisión (\textit{Decission Trees} en inglés) o las Máquinas de Soporte Vectorial (\textit{Support Vector Machines} o SVMs en inglés).
@@ -50,7 +50,7 @@ que nos permitan identificar a su autor.
 Dicha tarea de análisis está enmarcada dentro del campo del procesado del lenguaje natural y, más concretamente,
 dentro de la rama de la estilometría. De esta forma, para las tareas de NLP se hace uso
 de una serie de algoritmos y técnicas que permiten la extracción de características formales de un texto que puedan
-ser procesadas por un ordenador. :
+ser procesadas por un ordenador. Entre todas ellas, las más relevantes son las siguientes:
 
 \subsubsection{TF-IDF}
 El TF-IDF (del inglés, \textit{Term Frequency-Inverse Document Frequency}) es una medida estadística muy utilizada en el campo de la recuperación de información
@@ -137,9 +137,9 @@ no tiene en cuenta el significado real de las palabras.
 \subsection{Aprendizaje automático}
 \label{sec:aprendizaje_automatico}
 
-Una vez contamos con las caracterísitcas extraídas de los textos, el siguiente paso es utilizarlas para la clasificación de los mismos.
-Para ello, existen una serie de algoritmos capaces de aprender los patrones que existen en conjuntos de datos y utilizarlos para realizar
-etiquetar o clasificar nuevos datos. Las técincas más utilizadas basadas en aprendizaje supervisado y que se mencionarán a lo largo de este trabajo son las siguientes:
+Una vez contamos con las características formales extraídas —comúnmente vectores— de los textos, el siguiente paso es utilizarlas para la clasificación de los mismos.
+Para ello, existen una serie de algoritmos capaces de aprender los patrones que existen en conjuntos de datos y utilizarlos para
+etiquetar o clasificar nuevos datos. Las técnicas más utilizadas basadas en aprendizaje supervisado que se mencionarán a lo largo de este trabajo son las siguientes:
 
 \subsubsection{SVMs}
 \label{sec:svm}
@@ -153,21 +153,21 @@ separables en el espacio original.
 \label{sec:arboles_decision}
 
 Los Árboles de Decisión son un tipo de algoritmo de aprendizaje supervisado que se basa en la creación de un modelo de predicción en forma de árbol.
-En este sentido, cada nodo interno del árbol representa una característica del conjunto de datos y cada rama representa el valor de dicha característica.
-Así, para clasificar un nuevo dato, se recorre el árbol desde la raíz hasta una de sus hojas, que representa la clase a la que pertenece el dato.
+En este sentido, cada nodo interno del árbol representa una característica del conjunto de datos y cada rama representa una condición sobre los valores de dicha característica.
+Así, para clasificar un nuevo dato, se recorre el árbol desde la raíz hasta una de sus hojas, la cual representa la clase a la que pertenece.
 
 \subsubsection{Regresión Logística}
 \label{sec:regresion_logistica}
 
 Este algoritmo, también ampliamente utilizado en tareas de clasificación, se basa en la
-función logística para estimar la probabilidad de que un dato pertenezca a una clase u otra. Así, para clasificar un nuevo dato, se calcula la probabilidad
-de que pertenezca a cada una de las clases y se asigna a este la clase con mayor probabilidad.
+función logística para estimar la probabilidad de que un dato pertenezca a una clase u otra. De esta forma, ante un nuevo dato, se calcula la probabilidad
+de que pertenezca a cada una de las clases y se le asigna la clase con mayor probabilidad.
 
 \subsubsection{Evaluación de los algoritmos}
 \label{sec:evaluacion_algoritmos}
 
-Independientemente del algoritmo utilizado, es necesario establecer un cojunto de métricas que permitar evaluar el rendimiento
-de los modelos creados. A grandes rasgos, el rendimiento que demuestra un algoritmo de clasificación puede derivarse de la Tabla \ref{tab:matriz_confusion},
+Independientemente del algoritmo utilizado, es necesario establecer un conjunto de métricas que permitan evaluar el rendimiento
+de los modelos entrenados. A grandes rasgos, el rendimiento que demuestra un algoritmo de clasificación puede derivarse de la Tabla \ref{tab:matriz_confusion},
 denominada matriz de confusión.
 
 \bigskip
@@ -239,19 +239,19 @@ por PAN.
 \subsection{\textit{PAN Author Profiling 2014}}
 
 Esta segunda edición de la competición internacional de perfilado de autores celebrada en 2014 por PAN, estaba enfocada en la clasificación de género y edad de los autores, en la que se consideraban, para esta última, las siguientes
-clases: \textit{18-24}, \textit{25-34}, \textit{35-49}, \textit{50-64} y \textit{65-XX}; donde esta úlitma representa cualquier edad igual o superior a 65 años.
+clases: \textit{18-24}, \textit{25-34}, \textit{35-49}, \textit{50-64} y \textit{65-XX}; donde la clase \textit{65-XX} representa cualquier edad igual o superior a 65 años.
 
 \subsubsection{\textit{Corpus}}
 
 En lo referente al \textit{dataset} de entrenamiento y evaluación utilizado, la organización de la
-competición elaboró un \textit{corpus} con documentos de diferentes tipos que incluían: \textit{tweets}, \textit{posts} de blogs, \textit{posts} de otras redes sociales y \textit{reviews} de hoteles.
-Todos ellos contenían documentos en inglés y en español a excepción de las \textit{reviews} de hoteles, las cuales solo estaban disponibles en inglés.
+competición elaboró un \textit{corpus} con documentos de diferentes tipos que incluían: \textit{tweets}, posts de blogs, posts de otras redes sociales y reseñas de hoteles.
+Todos ellos contenían documentos en inglés y en español a excepción de las reseñas de hoteles, las cuales solo estaban disponibles en inglés.
 
 \bigskip
 Como se puede observar en la distribución de los autores, disponible tanto en la Tabla \ref{tab:dataset_2014} como en la Figura \ref{fig:dataset_2014}, el número de autores de habla inglesa
 es muy superior a los de habla española, lo que provoca potencialmente que los algoritmos entrenados con este \textit{dataset} tengan una mejor generalización y obtengan, por lo tanto,
 mejores predicciones para la lengua inglesa. Asimismo, existe un amplio desbalanceo de clases con respecto a la edad en el \textit{corpus},
-donde las clases \textit{18-24} y \textit{65-XX} cuentan con un número de autores significativamente inferior al resto de clases. Destacar finalemente que,
+donde las clases \textit{18-24} y \textit{65-XX} cuentan con un número de autores significativamente inferior al resto de clases. Destacar finalmente que,
 en cuanto al género, el \textit{dataset} está perfectamente balanceado, existiendo el mismo número de autores masculinos y femeninos, lo que
 ayuda a evitar un posible sesgo.
 
@@ -380,8 +380,8 @@ de 632 usuarios en cuatro idiomas diferentes: inglés, español, italiano y hola
 (solamente para inglés y español) de los autores, que ellos mismos reportaban en sus perfiles de Twitter. Para determinar los rasgos de la personalidad,
 los autores completaron el test BFI-10 (Rammstedt et al., 2007) \cite{rammstedt2007measuring}, el cual proporcionaba valores para cada rasgo normalizados entre -0,5 y 0,5.
 En este sentido, es importante destacar la gran reducción en cuanto al número de autores con los que cuenta el \textit{dataset} en comparación, por ejemplo,
-con competicón celebrada en año anterior, la cual cuenta con cerca de 12.000. Esto puede generar problemas de sobreajuste (\textit{overfitting} en inglés) en los modelos
-entrenados con esta colección, fenómeno que limita en gran medida la generalización y empeora notablemente los resultados en casso de uso reales.
+con competición celebrada en año anterior, la cual cuenta con cerca de 12.000. Esto puede generar problemas de sobreajuste (\textit{overfitting} en inglés) en los modelos
+entrenados con esta colección, fenómeno que limita en gran medida la generalización y empeora notablemente los resultados en casos de uso reales.
 
 \bigskip
 Así, como se puede ver en la Figura \ref{fig:dataset_2015}, el \textit{dataset} vuelve a estar desbalanceado en cuanto a la edad, ya que existen
@@ -479,7 +479,7 @@ de los modelos.
 Con respecto a la implementación de los algoritmos, podemos destacar lo siguiente:
 
 \begin{itemize}
-	\item \textbf{Preprocesado}: De forma similar a los algoritmos de años anteriores, la mayoría realizaron una limpieza del HTML incluído
+	\item \textbf{Preprocesado}: De forma similar a los algoritmos de años anteriores, la mayoría realizaron una limpieza del HTML incluido
 	      en los \textit{tweets} y, tanto González-Gallardo et al. \cite{gonzalez2015tweets} como Grivas et al. \cite{grivas2015author}, utilizaron
 	      las menciones, los \textit{hashtags} y los enlaces como características adicionales.
 	\item \textbf{Características}: En la mayor parte de los algoritmos presentados, se combinaba el uso de características
@@ -671,13 +671,13 @@ Centrándonos en las implementaciones realizadas en esta competición, podemos d
 
 \begin{itemize}
 	\item \textbf{Preprocesado}: Para el preprocesado, Martinc et al. \cite{martinc2019hot}, Radivchev et al. \cite{radivchev2019celebrity}
-	      y Moreno-Sandoval et al. \cite{moreno2019celebrity}, optaron por sustituír los enlaces,
+	      y Moreno-Sandoval et al. \cite{moreno2019celebrity}, optaron por sustituir los enlaces,
 	      las menciones y los \textit{hashtags} por etiquetas especiales. Por otro lado, Martinc et al. \cite{martinc2019hot} se decantó por eliminar los signos de puntuación
 	      y las \textit{stopwords}, es decir, las palabras poco significativas, para mejorar el modelado de los documentos con TF-IDF puro basado en unigramas de palabras.
 	\item \textbf{Características}: La mayor parte de los algoritmos presentados emplearon técnicas basadas en TF-IDF y n-gramas.
 	      Más concretamente, Radivchev et al. \cite{radivchev2019celebrity} utilizó como características los vectores obtenidos mediante TF-IDF sobre los 10.000 bigramas más frecuentes;
 	      Martinc et al. \cite{martinc2019hot} obtuvo los vectores mediante el TF-IDF de unigramas de palabras y tetragramas de caracteres; Moreno-Sandoval et al. \cite{moreno2019celebrity}, en cambio, además de
-	      de emplear n-gramas como características, calculó el número medio de emojis, \textit{hashtags}, meciones, enlaces, \textit{retweets}, palabras y longitud de las
+	      de emplear n-gramas como características, calculó el número medio de emoticonos, \textit{hashtags}, menciones, enlaces, \textit{retweets}, palabras y longitud de las
 	      palabras por \textit{tweet}.
 	\item \textbf{Clasificación}: Al igual que en las pasadas ediciones, los métodos de clasificación más frecuentes fueron las
 	      SVMs y la regresión logística. Radivchev et al. \cite{radivchev2019celebrity} utilizó SVMs para la predicción de la fama y la ocupación, mientras que para la edad y género
@@ -724,7 +724,7 @@ En este sentido, autores de las competiciones más recientes como Martinc et al.
 la gran efectividad que tienen estos métodos clásicos
 con respecto a técnicas más modernas como las basadas en Aprendizaje Profundo (\textit{Deep Learning} en inglés). Martinc et al., 2019 \cite{martinc2019hot}, por ejemplo,
 apunta que, haciendo uso de BERT, una red neuronal basada en Transformers propuesta por Devlin et al., 2018 \cite{devlin2018bert},
-los resultados obtenidos fueron significativamente peores en comparación con la regresión logistica, de alrededor de un 10\% en F1. En el caso
+los resultados obtenidos fueron significativamente peores en comparación con la regresión logística, de alrededor de un 10\% en F1. En el caso
 de Radivchev et al., 2019 \cite{radivchev2019celebrity}, se reportaron resultados similares, en este caso haciendo uso de DPCNN (\textit{Deep Pyramid Convolutional Neural Network} en inglés),
 propuesta por Johnson et al., 2017 \cite{johnson2017deep} para el procesado de textos.
 
@@ -733,7 +733,7 @@ propuesta por Johnson et al., 2017 \cite{johnson2017deep} para el procesado de t
 
 Con todo, para seleccionar los algoritmos que formarán parte de la aplicación que se expondrá en los siguientes capítulos, se ha optado
 por buscar aquellos que contasen con una implementación pública y que, además, ofreciesen un buen rendimiento en las tareas.
-Por ello, dado que los algoritmos de la edición de 2014 no obtenían restulados comparables a las otras dos competiciones,
+Por ello, dado que los algoritmos de la edición de 2014 no obtenían resultados comparables a las otras dos competiciones,
 no se ha tenido en cuenta ninguno de ellos. Así, de los cuatro algoritmos mejor clasificados del \textit{PAN Author Profiling 2015} y
 del \textit{PAN Celebrity Profiling 2019} se ha seleccionado uno de cada competición, concretamente las implementaciones propuestas por
 Grivas et al. \cite{grivas2015author} (disponible en \url{https://github.com/pan-webis-de/grivas15})
@@ -745,7 +745,7 @@ implementaciones públicas de sus algoritmos, sino que se limitaban a explicar a
 de los tres únicos casos encontrados que contaban con el código fuente publicado, solo los dos algoritmos mencionados anteriormente disponían de
 una implementación funcional y bien documentada. Concretamente, se intentó ejecutar la implementación ofrecida por Pizarro, 2019 \cite{pizarro2019using}
 presentada en la competición \textit{PAN Bots and Gender Profiling 2019}, lo que resultó en errores continuados e intentos fallidos por lograr su correcto funcionamiento.
-Este problema ha sido ampliamente reconocido por la comunidad, especialmente en el campo del aprendizaje automático y la inteligencia artifical.
+Este problema ha sido ampliamente reconocido por la comunidad, especialmente en el campo del aprendizaje automático y la inteligencia artificial.
 Tal es así, que en trabajos como el presentado por Hutson, 2018 \cite{hutson2018artificial}, se critica la falta de reproducibilidad de los algoritmos
 y se apuntan varios problemas, entre ellos: la inexistencia de código fuente, la ausencia de los \textit{datasets} utilizados para el entrenamiento
 del modelo y las diferencias conforme al rendimiento esperado de los mismos.
@@ -798,7 +798,7 @@ por Giannakopoulos et al., 2008 \cite{giannakopoulos2008summarization}.
 
 \bigskip
 A mayores, para cada uno de los grupos de \textit{features}, se aplicaron preprocesados diferentes debido a la naturaleza de las propias características. De esta forma, para la extracción del grupo de \textit{features}
-estructurales, no se realizó nigún tipo de preprocesado. Sin embargo, para reducir el ruido en el grupo de \textit{features} estilométricas, se eliminó cualquier tipo de HTML presente en los \textit{tweets}, ignorando así
+estructurales, no se realizó ningún tipo de preprocesado. Sin embargo, para reducir el ruido en el grupo de \textit{features} estilométricas, se eliminó cualquier tipo de HTML presente en los \textit{tweets}, ignorando así
 elementos como las menciones o los enlaces.
 
 \bigskip
@@ -852,11 +852,11 @@ Posteriormente, en la fase de extracción de características, se obtuvieron dif
 	\item \textbf{Unigramas de palabras}: Calculado sobre el documento del Nivel 3 (sin palabras vacías) transformado a minúsculas.
 	\item \textbf{Tetragramas de caracteres}: Calculado sobre el documento del Nivel 1 (texto limpio) transformado a minúsculas.
 	\item \textbf{Tetragramas de caracteres sufijos}: Calculado sobre el documento del Nivel 1 (texto limpio) transformado a minúsculas. Aclarar que para esta representación
-	      se cosideran las cuatro últimas letras de cada palabra con una longitud suficiente, es decir, sufijos de cuatro caracteres.
+	      se consideran las cuatro últimas letras de cada palabra con una longitud suficiente, es decir, sufijos de cuatro caracteres.
 \end{itemize}
 
 Finalmente, se hicieron pruebas con varios clasificadores, entre ellos SVMs con diferentes \textit{kernels}, \textit{random forest} o \textit{gradient boosting}, pero el que mejores resultados
-obtuvo fue el de regresión logística, siendo empleado en todas las subtareas de clasificación de la competición. Para hallar dicha solución y obtener los hiparámetros óptimos para cada
+obtuvo fue el de regresión logística, siendo empleado en todas las subtareas de clasificación de la competición. Para hallar dicha solución y obtener los hiperparámetros óptimos para cada
 clasificador, se aplicó una búsqueda en rejilla (\textit{grid search} en inglés), en la que se evaluaron todas las posibles combinaciones de parámetros.
 Destacar también el uso de la clase \textit{FeatureUnion} de scikit-learn \cite{scikitlearn}, la cual permite la concatenación de diferentes características en un mismo vector asignándoles
 un diferente peso a cada una de ellas, obteniendo para este caso un peso de 0,8 sobre 1 para los unigramas de palabras y los tetragramas de caracteres, mientras que tan solo un 0,4 para los tetragramas de caracteres sufijos,
@@ -913,8 +913,8 @@ De esta forma, haciendo uso del \textit{dataset} de 2014 para entrenar el algori
 mostrados en la Tabla \ref{tab:pruebas_grivas_PAN14}. Destacar que, debido a que la colección proporcionada en 2014 no contaba con un conjunto específico de test, se realizó la validación
 con el conjunto de test de la competición de 2015, obteniendo así resultados directamente comparables con los reportados en la Tabla \ref{tab:pruebas_grivas}.
 En este sentido, vemos como la precisión y el Macro F1 de ambas características se reduce drásticamente a causa, hipotéticamente, de dos factores. El primero de ellos
-tiene que ver con heterogeneidad de los textos en el conjunto de entrenamiento, ya que se unificaron las publicaciones de los blogs, las \textit{reviews} de hoteles y
-los \textit{posts} de otras redes sociales, provocando, por un lado, una dificultad añadida en el proceso de extracción de características y, por otro lado,
+tiene que ver con heterogeneidad de los textos en el conjunto de entrenamiento, ya que se unificaron las publicaciones de los blogs, las reseñas de hoteles y
+los posts de otras redes sociales, provocando, por un lado, una dificultad añadida en el proceso de extracción de características y, por otro lado,
 un gran contraste con los \textit{tweets} utilizados para la validación. El segundo factor tiene que ver con la gran diferencia en el tamaño de los \textit{datasets},
 dado que la edición de 2014 contaba con 12,053 autores frente a 142 de la de 2015.
 
