@@ -22,42 +22,46 @@
 \BIBdecl
 
 \bibitem[Grivas et~al.(2015)Grivas, Krithara, and Giannakopoulos]{grivas2015author}
-A.~Grivas, A.~Krithara, and G.~Giannakopoulos, ``Author profiling using stylometric and structural feature groupings.'' in \emph{CLEF (Working Notes)}, 2015.
+A.~Grivas, A.~Krithara, and G.~Giannakopoulos, ``{Author Profiling using Stylometric and Structural Feature Groupings.}'' in \emph{{CLEF (Working Notes)}}, 2015.
 
 \bibitem[Martinc et~al.(2019)Martinc, Skrlj, and Pollak]{martinc2019hot}
-M.~Martinc, B.~Skrlj, and S.~Pollak, ``Who is hot and who is not? profiling celebs on twitter.'' in \emph{CLEF (Working Notes)}, 2019.
+M.~Martinc, B.~Skrlj, and S.~Pollak, ``{Who is Hot and Who is Not? Profiling Celebs on Twitter.}'' in \emph{{CLEF (Working Notes)}}, 2019.
 
 \bibitem[Łukasz Ryś(2023)]{dddblog}
-Łukasz Ryś, ``Organizing layers using hexagonal architecture, ddd, and spring,'' \url{https://www.baeldung.com/hexagonal-architecture-ddd-spring}, 2023.
-
-\bibitem[We~Are~Social(2023)]{wearesocial}
 \BIBentryALTinterwordspacing
-M.~We~Are~Social, ``Digital 2023 global overview report,'' 2023. [En línea]. Disponible en: \url{https://datareportal.com/reports/digital-2022-global-overview-report}
+Łukasz Ryś, ``{Organizing Layers Using Hexagonal Architecture, DDD, and Spring},'' 2023. [En línea]. Disponible en: \url{https://www.baeldung.com/hexagonal-architecture-ddd-spring}
+\BIBentrySTDinterwordspacing
+
+\bibitem[{We Are Social, Meltwater}(2023)]{wearesocial}
+\BIBentryALTinterwordspacing
+{We Are Social, Meltwater}, ``{Digital 2023 Global Overview Report},'' 2023. [En línea]. Disponible en: \url{https://datareportal.com/reports/digital-2022-global-overview-report}
 \BIBentrySTDinterwordspacing
 
 \bibitem[Sydney(1980)]{sydney1980permanent}
-B.~Sydney, ``The permanent campaign: Inside the world of elite political operatives,'' 1980.
+B.~Sydney, ``{The Permanent Campaign: Inside the World of Elite Political Operatives},'' 1980.
 
 \bibitem[Str{\"o}mb{\"a}ck(2008)]{stromback2008four}
-J.~Str{\"o}mb{\"a}ck, ``Four phases of mediatization: An analysis of the mediatization of politics,'' \emph{The international journal of press/politics}, vol.~13, no.~3, pp. 228--246, 2008.
+J.~Str{\"o}mb{\"a}ck, ``{Four phases of mediatization: An analysis of the mediatization of politics},'' \emph{The international journal of press/politics}, vol.~13, no.~3, pp. 228--246, 2008.
 
 \bibitem[Gallardo-Pa{\'u}ls and Enguix~Oliver(2016)]{gallardo2016pseudopolitica}
 B.~Gallardo-Pa{\'u}ls and S.~Enguix~Oliver, \emph{Pseudopol{\'\i}tica: el discurso pol{\'\i}tico en las redes sociales}.\hskip 1em plus 0.5em minus 0.4em\relax Universitat de Val{\`e}ncia, 2016.
 
 \bibitem[Mislove et~al.(2011)Mislove, Lehmann, Ahn, Onnela, and Rosenquist]{mislove2011understanding}
-A.~Mislove, S.~Lehmann, Y.-Y. Ahn, J.-P. Onnela, and J.~Rosenquist, ``Understanding the demographics of twitter users,'' in \emph{Proceedings of the international AAAI conference on web and social media}, vol.~5, no.~1, 2011, pp. 554--557.
+A.~Mislove, S.~Lehmann, Y.-Y. Ahn, J.-P. Onnela, and J.~Rosenquist, ``{Understanding the demographics of Twitter users},'' in \emph{Proceedings of the international AAAI conference on web and social media}, vol.~5, no.~1, 2011, pp. 554--557.
 
 \bibitem[Saxena and Khanna(2013)]{saxena2013advertising}
-A.~Saxena and U.~Khanna, ``Advertising on social network sites: A structural equation modelling approach,'' \emph{Vision}, vol.~17, no.~1, pp. 17--25, 2013.
+A.~Saxena and U.~Khanna, ``{Advertising on social network sites: A structural equation modelling approach},'' \emph{Vision}, vol.~17, no.~1, pp. 17--25, 2013.
 
 \bibitem[Machimbarrena et~al.(2018)Machimbarrena, Calvete, Fern{\'a}ndez-Gonz{\'a}lez, {\'A}lvarez-Bard{\'o}n, {\'A}lvarez-Fern{\'a}ndez, and Gonz{\'a}lez-Cabrera]{machimbarrena2018internet}
-J.~M. Machimbarrena, E.~Calvete, L.~Fern{\'a}ndez-Gonz{\'a}lez, A.~{\'A}lvarez-Bard{\'o}n, L.~{\'A}lvarez-Fern{\'a}ndez, and J.~Gonz{\'a}lez-Cabrera, ``Internet risks: An overview of victimization in cyberbullying, cyber dating abuse, sexting, online grooming and problematic internet use,'' \emph{International journal of environmental research and public health}, vol.~15, no.~11, p. 2471, 2018.
+J.~M. Machimbarrena, E.~Calvete, L.~Fern{\'a}ndez-Gonz{\'a}lez, A.~{\'A}lvarez-Bard{\'o}n, L.~{\'A}lvarez-Fern{\'a}ndez, and J.~Gonz{\'a}lez-Cabrera, ``{Internet risks: An overview of victimization in cyberbullying, cyber dating abuse, sexting, online grooming and problematic internet use},'' \emph{International journal of environmental research and public health}, vol.~15, no.~11, p. 2471, 2018.
 
 \bibitem[Rangel et~al.(2013)Rangel, Rosso, Koppel, Stamatatos, and Inches]{rangel2013overview}
-F.~Rangel, P.~Rosso, M.~Koppel, E.~Stamatatos, and G.~Inches, ``Overview of the author profiling task at pan 2013,'' in \emph{CLEF conference on multilingual and multimodal information access evaluation}.\hskip 1em plus 0.5em minus 0.4em\relax CELCT, 2013, pp. 352--365.
+F.~Rangel, P.~Rosso, M.~Koppel, E.~Stamatatos, and G.~Inches, ``{Overview of the author profiling task at PAN 2013},'' in \emph{CLEF conference on multilingual and multimodal information access evaluation}.\hskip 1em plus 0.5em minus 0.4em\relax CELCT, 2013, pp. 352--365.
 
 \bibitem[GitHub(2008)]{github}
-GitHub, ``Github,'' \url{https://github.com/}, 2008.
+\BIBentryALTinterwordspacing
+GitHub, ``Github,'' 2008. [En línea]. Disponible en: \url{https://github.com/}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Koppel et~al.(2002)Koppel, Argamon, and Shimoni]{koppel2002automatically}
 M.~Koppel, S.~Argamon, and A.~R. Shimoni, ``Automatically categorizing written texts by author gender,'' \emph{Literary and linguistic computing}, vol.~17, no.~4, pp. 401--412, 2002.
@@ -66,288 +70,394 @@ M.~Koppel, S.~Argamon, and A.~R. Shimoni, ``Automatically categorizing written t
 S.~Argamon, M.~Koppel, J.~Fine, and A.~R. Shimoni, ``Gender, genre, and writing style in formal written texts,'' \emph{Text \& talk}, vol.~23, no.~3, pp. 321--346, 2003.
 
 \bibitem[Corney et~al.(2002)Corney, De~Vel, Anderson, and Mohay]{corney2002gender}
-M.~Corney, O.~De~Vel, A.~Anderson, and G.~Mohay, ``Gender-preferential text mining of e-mail discourse,'' in \emph{18th Annual Computer Security Applications Conference, 2002. Proceedings.}\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2002, pp. 282--289.
+M.~Corney, O.~De~Vel, A.~Anderson, and G.~Mohay, ``{Gender-preferential text mining of e-mail discourse},'' in \emph{18th Annual Computer Security Applications Conference, 2002. Proceedings.}\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2002, pp. 282--289.
 
 \bibitem[Otterbacher(2010)]{otterbacher2010inferring}
 J.~Otterbacher, ``Inferring gender of movie reviewers: exploiting writing style, content and metadata,'' in \emph{Proceedings of the 19th ACM international conference on Information and knowledge management}, 2010, pp. 369--378.
 
 \bibitem[Wiegmann et~al.(2019{\natexlab{a}})Wiegmann, Stein, and Potthast]{wiegmann2019overview}
-M.~Wiegmann, B.~Stein, and M.~Potthast, ``Overview of the celebrity profiling task at pan 2019.'' in \emph{CLEF (Working Notes)}, 2019.
+M.~Wiegmann, B.~Stein, and M.~Potthast, ``{Overview of the Celebrity Profiling Task at PAN 2019.}'' in \emph{{CLEF (Working Notes)}}, 2019.
 
 \bibitem[{\'A}lvarez-Carmona et~al.(2018){\'A}lvarez-Carmona, Guzm{\'a}n-Falc{\'o}n, Montes-y G{\'o}mez, Escalante, Villasenor-Pineda, Reyes-Meza, and Rico-Sulayes]{alvarez2018overview}
-M.~{\'A}. {\'A}lvarez-Carmona, E.~Guzm{\'a}n-Falc{\'o}n, M.~Montes-y G{\'o}mez, H.~J. Escalante, L.~Villasenor-Pineda, V.~Reyes-Meza, and A.~Rico-Sulayes, ``Overview of mex-a3t at ibereval 2018: Authorship and aggressiveness analysis in mexican spanish tweets,'' in \emph{Notebook papers of 3rd sepln workshop on evaluation of human language technologies for iberian languages (ibereval), seville, spain}, vol.~6, 2018.
+M.~{\'A}. {\'A}lvarez-Carmona, E.~Guzm{\'a}n-Falc{\'o}n, M.~Montes-y G{\'o}mez, H.~J. Escalante, L.~Villasenor-Pineda, V.~Reyes-Meza, and A.~Rico-Sulayes, ``{Overview of MEX-A3T at IberEval 2018: Authorship and aggressiveness analysis in Mexican Spanish tweets},'' in \emph{{Notebook papers of 3rd sepln workshop on evaluation of human language technologies for iberian languages (ibereval), seville, spain}}, vol.~6, 2018.
 
 \bibitem[Volkova and Bachrach(2015)]{volkova2015predicting}
-S.~Volkova and Y.~Bachrach, ``On predicting sociodemographic traits and emotions from communications in social networks and their implications to online self-disclosure,'' \emph{Cyberpsychology, Behavior, and Social Networking}, vol.~18, no.~12, pp. 726--736, 2015.
+S.~Volkova and Y.~Bachrach, ``{On predicting sociodemographic traits and emotions from communications in social networks and their implications to online self-disclosure},'' \emph{{Cyberpsychology, Behavior, and Social Networking}}, vol.~18, no.~12, pp. 726--736, 2015.
 
 \bibitem[Preo{\c{t}}iuc-Pietro and Ungar(2018)]{preoctiuc2018user}
-D.~Preo{\c{t}}iuc-Pietro and L.~Ungar, ``User-level race and ethnicity predictors from twitter text,'' in \emph{Proceedings of the 27th international conference on computational linguistics}, 2018, pp. 1534--1545.
+D.~Preo{\c{t}}iuc-Pietro and L.~Ungar, ``{User-level race and ethnicity predictors from twitter text},'' in \emph{{Proceedings of the 27th international conference on computational linguistics}}, 2018, pp. 1534--1545.
 
 \bibitem[Fatima et~al.(2017)Fatima, Hasan, Anwar, and Nawab]{fatima2017multilingual}
-M.~Fatima, K.~Hasan, S.~Anwar, and R.~M.~A. Nawab, ``Multilingual author profiling on facebook,'' \emph{Information Processing \& Management}, vol.~53, no.~4, pp. 886--904, 2017.
+M.~Fatima, K.~Hasan, S.~Anwar, and R.~M.~A. Nawab, ``Multilingual author profiling on facebook,'' \emph{{Information Processing \& Management}}, vol.~53, no.~4, pp. 886--904, 2017.
 
 \bibitem[Burger et~al.(2011)Burger, Henderson, Kim, and Zarrella]{burger2011discriminating}
-J.~D. Burger, J.~Henderson, G.~Kim, and G.~Zarrella, ``Discriminating gender on twitter,'' in \emph{Proceedings of the 2011 conference on empirical methods in natural language processing}, 2011, pp. 1301--1309.
+J.~D. Burger, J.~Henderson, G.~Kim, and G.~Zarrella, ``{Discriminating gender on Twitter},'' in \emph{Proceedings of the 2011 conference on empirical methods in natural language processing}, 2011, pp. 1301--1309.
 
 \bibitem[Gjurkovi{\'c} and {\v{S}}najder(2018)]{gjurkovic2018reddit}
-M.~Gjurkovi{\'c} and J.~{\v{S}}najder, ``Reddit: A gold mine for personality prediction,'' in \emph{Proceedings of the second workshop on computational modeling of people’s opinions, personality, and emotions in social media}, 2018, pp. 87--97.
+M.~Gjurkovi{\'c} and J.~{\v{S}}najder, ``{Reddit: A gold mine for personality prediction},'' in \emph{Proceedings of the second workshop on computational modeling of people’s opinions, personality, and emotions in social media}, 2018, pp. 87--97.
 
-\bibitem[Organizers(2023)]{pan}
-P.~Organizers, ``Pan (plagiarism analysis, authorship identification, and near-duplicate detection),'' \url{https://pan.webis.de/}, 2023.
+\bibitem[{PAN Organizers}(2023)]{pan}
+\BIBentryALTinterwordspacing
+{PAN Organizers}, ``{PAN (Plagiarism Analysis, Authorship Identification, and Near-Duplicate Detection)},'' 2023. [En línea]. Disponible en: \url{https://pan.webis.de/}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Rangel et~al.(2014)Rangel, Rosso, Chugur, Potthast, Trenkmann, Stein, Verhoeven, and Daelemans]{rangel2014overview}
-F.~Rangel, P.~Rosso, I.~Chugur, M.~Potthast, M.~Trenkmann, B.~Stein, B.~Verhoeven, and W.~Daelemans, ``Overview of the 2nd author profiling task at pan 2014,'' in \emph{CLEF 2014 Evaluation Labs and Workshop Working Notes Papers, Sheffield, UK, 2014}, 2014, pp. 1--30.
+F.~Rangel, P.~Rosso, I.~Chugur, M.~Potthast, M.~Trenkmann, B.~Stein, B.~Verhoeven, and W.~Daelemans, ``{Overview of the 2nd author profiling task at PAN 2014},'' in \emph{{CLEF 2014 Evaluation Labs and Workshop Working Notes Papers, Sheffield, UK, 2014}}, 2014, pp. 1--30.
 
 \bibitem[Rangel et~al.(2015)Rangel, Celli, Rosso, Potthast, Stein, Daelemans, et~al.]{rangel2015overview}
-F.~Rangel, F.~Celli, P.~Rosso, M.~Potthast, B.~Stein, W.~Daelemans \emph{et~al.}, ``Overview of the 3rd author profiling task at pan 2015,'' in \emph{CLEF2015 Working Notes. Working Notes of CLEF 2015-Conference and Labs of the Evaluation forum.}\hskip 1em plus 0.5em minus 0.4em\relax Notebook Papers, 2015.
+F.~Rangel, F.~Celli, P.~Rosso, M.~Potthast, B.~Stein, W.~Daelemans \emph{et~al.}, ``{Overview of the 3rd Author Profiling Task at PAN 2015},'' in \emph{{CLEF2015 Working Notes. Working Notes of CLEF 2015-Conference and Labs of the Evaluation forum.}}\hskip 1em plus 0.5em minus 0.4em\relax Notebook Papers, 2015.
 
 \bibitem[Rangel et~al.(2016)Rangel, Rosso, Verhoeven, Daelemans, Potthast, and Stein]{rangel2016overview}
-F.~Rangel, P.~Rosso, B.~Verhoeven, W.~Daelemans, M.~Potthast, and B.~Stein, ``Overview of the 4th author profiling task at pan 2016: cross-genre evaluations,'' in \emph{Working Notes Papers of the CLEF 2016 Evaluation Labs. CEUR Workshop Proceedings/Balog, Krisztian [edit.]; et al.}, 2016, pp. 750--784.
+F.~Rangel, P.~Rosso, B.~Verhoeven, W.~Daelemans, M.~Potthast, and B.~Stein, ``{Overview of the 4th author profiling task at PAN 2016: cross-genre evaluations},'' in \emph{{Working Notes Papers of the CLEF 2016 Evaluation Labs. CEUR Workshop Proceedings/Balog, Krisztian [edit.]; et al.}}, 2016, pp. 750--784.
 
 \bibitem[Marcus et~al.(1993)Marcus, Santorini, and Marcinkiewicz]{marcus1993building}
-M.~Marcus, B.~Santorini, and M.~A. Marcinkiewicz, ``Building a large annotated corpus of english: The penn treebank,'' \emph{Technical Reports (CIS)}, 1993.
+M.~Marcus, B.~Santorini, and M.~A. Marcinkiewicz, ``{Building a large annotated corpus of English: The Penn Treebank},'' \emph{{Technical Reports (CIS)}}, 1993.
 
 \bibitem[Deerwester et~al.(1990)Deerwester, Dumais, Furnas, Landauer, and Harshman]{deerwester1990indexing}
-S.~Deerwester, S.~T. Dumais, G.~W. Furnas, T.~K. Landauer, and R.~Harshman, ``Indexing by latent semantic analysis,'' \emph{Journal of the American society for information science}, vol.~41, no.~6, pp. 391--407, 1990.
+S.~Deerwester, S.~T. Dumais, G.~W. Furnas, T.~K. Landauer, and R.~Harshman, ``Indexing by latent semantic analysis,'' \emph{{Journal of the American society for information science}}, vol.~41, no.~6, pp. 391--407, 1990.
 
-\bibitem[Organizers(2022)]{iberlef}
-I.~Organizers, ``Iberlef (iberian languages evaluation forum),'' \url{https://sites.google.com/view/iberlef2022/home}, 2022.
+\bibitem[{IberLEF Organizers}(2022)]{iberlef}
+\BIBentryALTinterwordspacing
+{IberLEF Organizers}, ``{IberLEF (Iberian Languages Evaluation Forum)},'' 2022. [En línea]. Disponible en: \url{https://sites.google.com/view/iberlef2022/home}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Maharjan et~al.(2014)Maharjan, Shrestha, and Solorio]{maharjan2014simple}
-S.~Maharjan, P.~Shrestha, and T.~Solorio, ``A simple approach to author profiling in mapreduce—notebook for pan at clef 2014,'' \emph{Cappellato et al.[6]}, 2014.
+S.~Maharjan, P.~Shrestha, and T.~Solorio, ``{A simple approach to author profiling in mapreduce—Notebook for PAN at CLEF 2014},'' \emph{Cappellato et al.[6]}, 2014.
 
 \bibitem[Weren et~al.(2014)Weren, Moreira, and de~Oliveira]{weren2014exploring}
-E.~R. Weren, V.~P. Moreira, and J.~P. de~Oliveira, ``Exploring information retrieval features for author profiling—notebook for pan at clef 2014,'' \emph{Cappellato et al.[6]}, 2014.
+E.~R. Weren, V.~P. Moreira, and J.~P. de~Oliveira, ``{Exploring information retrieval features for author profiling—notebook for pan at CLEF 2014},'' \emph{Cappellato et al.[6]}, 2014.
 
 \bibitem[L{\'o}pez-Monroy et~al.(2014)L{\'o}pez-Monroy, Montes-y G{\'o}mez, Escalante, and Pineda]{lopez2014using}
-A.~P. L{\'o}pez-Monroy, M.~Montes-y G{\'o}mez, H.~J. Escalante, and L.~V. Pineda, ``Using intra-profile information for author profiling.'' in \emph{CLEF (Working Notes)}, 2014, pp. 1116--1120.
+A.~P. L{\'o}pez-Monroy, M.~Montes-y G{\'o}mez, H.~J. Escalante, and L.~V. Pineda, ``{Using Intra-Profile Information for Author Profiling.}'' in \emph{{CLEF (Working Notes)}}, 2014, pp. 1116--1120.
 
 \bibitem[Fan et~al.(2008)Fan, Chang, Hsieh, Wang, and Lin]{fan2008liblinear}
-R.-E. Fan, K.-W. Chang, C.-J. Hsieh, X.-R. Wang, and C.-J. Lin, ``Liblinear: A library for large linear classification,'' \emph{the Journal of machine Learning research}, vol.~9, pp. 1871--1874, 2008.
+R.-E. Fan, K.-W. Chang, C.-J. Hsieh, X.-R. Wang, and C.-J. Lin, ``{LIBLINEAR: A library for large linear classification},'' \emph{the Journal of machine Learning research}, vol.~9, pp. 1871--1874, 2008.
 
 \bibitem[Goldberg(1990)]{goldberg1990alternative}
 L.~R. Goldberg, ``An alternative" description of personality": the big-five factor structure.'' \emph{Journal of personality and social psychology}, vol.~59, no.~6, p. 1216, 1990.
 
 \bibitem[Rammstedt and John(2007)]{rammstedt2007measuring}
-B.~Rammstedt and O.~P. John, ``Measuring personality in one minute or less: A 10-item short version of the big five inventory in english and german,'' \emph{Journal of research in Personality}, vol.~41, no.~1, pp. 203--212, 2007.
+B.~Rammstedt and O.~P. John, ``{Measuring personality in one minute or less: A 10-item short version of the Big Five Inventory in English and German},'' \emph{Journal of research in Personality}, vol.~41, no.~1, pp. 203--212, 2007.
 
 \bibitem[Alvarez-Carmona et~al.(2015)Alvarez-Carmona, L{\'o}pez-Monroy, Montes-y G{\'o}mez, Villasenor-Pineda, and Jair-Escalante]{alvarez2015inaoe}
-M.~A. Alvarez-Carmona, A.~P. L{\'o}pez-Monroy, M.~Montes-y G{\'o}mez, L.~Villasenor-Pineda, and H.~Jair-Escalante, ``Inaoe’s participation at pan’15: Author profiling task,'' \emph{Working Notes Papers of the CLEF}, vol. 103, 2015.
+M.~A. Alvarez-Carmona, A.~P. L{\'o}pez-Monroy, M.~Montes-y G{\'o}mez, L.~Villasenor-Pineda, and H.~Jair-Escalante, ``{INAOE’s participation at PAN’15: Author profiling task},'' \emph{{Working Notes Papers of the CLEF}}, vol. 103, 2015.
 
 \bibitem[Gonz{\'a}lez-Gallardo et~al.(2015)Gonz{\'a}lez-Gallardo, Montes, Sierra, N{\'u}{\~n}ez-Ju{\'a}rez, Salinas-L{\'o}pez, and Ek]{gonzalez2015tweets}
-C.~E. Gonz{\'a}lez-Gallardo, A.~Montes, G.~Sierra, J.~A. N{\'u}{\~n}ez-Ju{\'a}rez, A.~J. Salinas-L{\'o}pez, and J.~Ek, ``Tweets classification using corpus dependent tags, character and pos n-grams.'' in \emph{CLEF (working notes)}, 2015.
+C.~E. Gonz{\'a}lez-Gallardo, A.~Montes, G.~Sierra, J.~A. N{\'u}{\~n}ez-Ju{\'a}rez, A.~J. Salinas-L{\'o}pez, and J.~Ek, ``{Tweets Classification using Corpus Dependent Tags, Character and POS N-grams.}'' in \emph{{CLEF (working notes)}}, 2015.
 
 \bibitem[Drucker et~al.(1996)Drucker, Burges, Kaufman, Smola, and Vapnik]{drucker1996support}
-H.~Drucker, C.~J. Burges, L.~Kaufman, A.~Smola, and V.~Vapnik, ``Support vector regression machines,'' \emph{Advances in neural information processing systems}, vol.~9, 1996.
+H.~Drucker, C.~J. Burges, L.~Kaufman, A.~Smola, and V.~Vapnik, ``{Support vector regression machines},'' \emph{{Advances in neural information processing systems}}, vol.~9, 1996.
 
 \bibitem[Kocher and Savoy(2015)]{kocher2015unine}
-M.~Kocher and J.~Savoy, ``Unine at clef 2015: author identification,'' \emph{Working notes papers of the CLEF}, 2015.
+M.~Kocher and J.~Savoy, ``{UniNE at CLEF 2015: author identification},'' \emph{{Working notes papers of the CLEF}}, 2015.
 
 \bibitem[Wikidata(2012)]{wikidata}
-Wikidata, ``Wikidata,'' \url{https://www.wikidata.org/}, 2012.
+\BIBentryALTinterwordspacing
+Wikidata, ``Wikidata,'' 2012. [En línea]. Disponible en: \url{https://www.wikidata.org/}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Wiegmann et~al.(2019{\natexlab{b}})Wiegmann, Stein, and Potthast]{wiegmann2019celebrity}
 M.~Wiegmann, B.~Stein, and M.~Potthast, ``Celebrity profiling,'' in \emph{Proceedings of the 57th annual meeting of the Association for Computational Linguistics}, 2019, pp. 2611--2618.
 
 \bibitem[Radivchev et~al.(2019)Radivchev, Nikolov, Lambova, Cappellato, Ferro, Losada, and M{\"u}ller]{radivchev2019celebrity}
-V.~Radivchev, A.~Nikolov, A.~Lambova, L.~Cappellato, N.~Ferro, D.~Losada, and H.~M{\"u}ller, ``Celebrity profiling using tf-idf, logistic regression, and svm.'' in \emph{CLEF (Working Notes)}, 2019.
+V.~Radivchev, A.~Nikolov, A.~Lambova, L.~Cappellato, N.~Ferro, D.~Losada, and H.~M{\"u}ller, ``{Celebrity Profiling using TF-IDF, Logistic Regression, and SVM.}'' in \emph{{CLEF (Working Notes)}}, 2019.
 
 \bibitem[Moreno-Sandoval et~al.(2019)Moreno-Sandoval, Puertas, Plaza-Del-Arco, Pomares-Quimbaya, Alvarado-Valencia, and Ure{\~n}a-L{\'o}pez]{moreno2019celebrity}
-L.~G. Moreno-Sandoval, E.~Puertas, F.~Plaza-Del-Arco, A.~Pomares-Quimbaya, J.~A. Alvarado-Valencia, and A.~Ure{\~n}a-L{\'o}pez, ``Celebrity profiling on twitter using sociolinguistic features notebook for pan at clef 2019,'' \emph{Working Notes Papers of the CLEF}, 2019.
+L.~G. Moreno-Sandoval, E.~Puertas, F.~Plaza-Del-Arco, A.~Pomares-Quimbaya, J.~A. Alvarado-Valencia, and A.~Ure{\~n}a-L{\'o}pez, ``{Celebrity profiling on twitter using sociolinguistic features notebook for PAN at CLEF 2019},'' \emph{{Working Notes Papers of the CLEF}}, 2019.
 
 \bibitem[Devlin et~al.(2018)Devlin, Chang, Lee, and Toutanova]{devlin2018bert}
-J.~Devlin, M.-W. Chang, K.~Lee, and K.~Toutanova, ``Bert: Pre-training of deep bidirectional transformers for language understanding,'' \emph{arXiv preprint arXiv:1810.04805}, 2018.
+J.~Devlin, M.-W. Chang, K.~Lee, and K.~Toutanova, ``{Bert: Pre-training of deep bidirectional transformers for language understanding},'' \emph{arXiv preprint arXiv:1810.04805}, 2018.
 
 \bibitem[Johnson and Zhang(2017)]{johnson2017deep}
-R.~Johnson and T.~Zhang, ``Deep pyramid convolutional neural networks for text categorization,'' in \emph{Proceedings of the 55th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)}, 2017, pp. 562--570.
+R.~Johnson and T.~Zhang, ``D{eep pyramid convolutional neural networks for text categorization},'' in \emph{Proceedings of the 55th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)}, 2017, pp. 562--570.
 
 \bibitem[Pizarro(2019)]{pizarro2019using}
-J.~Pizarro, ``Using n-grams to detect bots on twitter.'' 2019.
+J.~Pizarro, ``{Using N-grams to detect Bots on Twitter.}'' 2019.
 
 \bibitem[Hutson(2018)]{hutson2018artificial}
-M.~Hutson, ``Artificial intelligence faces reproducibility crisis,'' 2018.
+M.~Hutson, ``{Artificial intelligence faces reproducibility crisis},'' 2018.
 
 \bibitem[Giannakopoulos et~al.(2008)Giannakopoulos, Karkaletsis, Vouros, and Stamatopoulos]{giannakopoulos2008summarization}
-G.~Giannakopoulos, V.~Karkaletsis, G.~Vouros, and P.~Stamatopoulos, ``Summarization system evaluation revisited: N-gram graphs,'' \emph{ACM Transactions on Speech and Language Processing (TSLP)}, vol.~5, no.~3, pp. 1--39, 2008.
+G.~Giannakopoulos, V.~Karkaletsis, G.~Vouros, and P.~Stamatopoulos, ``{Summarization system evaluation revisited: N-gram graphs},'' \emph{ACM Transactions on Speech and Language Processing (TSLP)}, vol.~5, no.~3, pp. 1--39, 2008.
 
-\bibitem[learn Team(2007)]{scikitlearn}
-S.~learn Team, ``Scikit-learn,'' \url{https://scikit-learn.org/}, 2007.
+\bibitem[{Scikit-learn Team}(2007)]{scikitlearn}
+\BIBentryALTinterwordspacing
+{Scikit-learn Team}, ``Scikit-learn,'' 2007. [En línea]. Disponible en: \url{https://scikit-learn.org/}
+\BIBentrySTDinterwordspacing
 
-\bibitem[Foundation(1991{\natexlab{a}})]{python}
-P.~S. Foundation, ``Python,'' \url{https://www.python.org/}, 1991.
+\bibitem[{Python Software Foundation}(1991{\natexlab{a}})]{python}
+\BIBentryALTinterwordspacing
+{Python Software Foundation}, ``Python,'' 1991. [En línea]. Disponible en: \url{https://www.python.org/}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Ramírez(2018)]{fastapi}
-S.~Ramírez, ``Fastapi,'' \url{https://fastapi.tiangolo.com/}, 2018.
+\BIBentryALTinterwordspacing
+S.~Ramírez, ``{FastAPI},'' 2018. [En línea]. Disponible en: \url{https://fastapi.tiangolo.com/}
+\BIBentrySTDinterwordspacing
 
-\bibitem[Inc.(2007{\natexlab{a}})]{mongodb}
-M.~Inc., ``Mongodb,'' \url{https://www.mongodb.com/}, 2007.
+\bibitem[{MongoDB Inc.}(2007{\natexlab{a}})]{mongodb}
+\BIBentryALTinterwordspacing
+{MongoDB Inc.}, ``{MongoDB},'' 2007. [En línea]. Disponible en: \url{https://www.mongodb.com/}
+\BIBentrySTDinterwordspacing
 
-\bibitem[Group(1996)]{postgresql}
-P.~G.~D. Group, ``Postgresql,'' \url{https://www.postgresql.org/}, 1996.
+\bibitem[{PostgreSQL Global Development Group}(1996)]{postgresql}
+\BIBentryALTinterwordspacing
+{PostgreSQL Global Development Group}, ``{PostgreSQL},'' 1996. [En línea]. Disponible en: \url{https://www.postgresql.org/}
+\BIBentrySTDinterwordspacing
 
-\bibitem[Corporation(1995)]{mysql}
-O.~Corporation, ``Mysql,'' \url{https://www.mysql.com/}, 1995.
+\bibitem[{Oracle Corporation}(1995)]{mysql}
+\BIBentryALTinterwordspacing
+{Oracle Corporation}, ``{MySQL},'' 1995. [En línea]. Disponible en: \url{https://www.mysql.com/}
+\BIBentrySTDinterwordspacing
 
-\bibitem[Inc.(2007{\natexlab{b}})]{pymongo}
-M.~Inc., ``Pymongo,'' \url{https://pymongo.readthedocs.io/en/stable/}, 2007.
+\bibitem[{MongoDB Inc.}(2007{\natexlab{b}})]{pymongo}
+\BIBentryALTinterwordspacing
+{MongoDB Inc.}, ``{PyMongo},'' 2007. [En línea]. Disponible en: \url{https://pymongo.readthedocs.io/en/stable/}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Vercel(2016)]{nextjs}
-Vercel, ``Next.js,'' \url{https://nextjs.org/}, 2016.
+\BIBentryALTinterwordspacing
+Vercel, ``Next.js,'' 2016. [En línea]. Disponible en: \url{https://nextjs.org/}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Facebook(2013)]{react}
-Facebook, ``React,'' \url{https://reactjs.org/}, 2013.
+\BIBentryALTinterwordspacing
+Facebook, ``React,'' 2013. [En línea]. Disponible en: \url{https://reactjs.org/}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Microsoft(2012)]{typescript}
-Microsoft, ``Typescript,'' \url{https://www.typescriptlang.org/}, 2012.
-
-\bibitem[Team(2023)]{stackoverflow2023}
 \BIBentryALTinterwordspacing
-S.~O. Team, ``Stack overflow developer survey 2023,'' feb 2023. [En línea]. Disponible en: \url{https://survey.stackoverflow.co/2023/}
+Microsoft, ``{TypeScript},'' 2012. [En línea]. Disponible en: \url{https://www.typescriptlang.org/}
+\BIBentrySTDinterwordspacing
+
+\bibitem[{Stack Overflow Team}(2023)]{stackoverflow2023}
+\BIBentryALTinterwordspacing
+{Stack Overflow Team}, ``{Stack Overflow Developer Survey 2023},'' feb 2023. [En línea]. Disponible en: \url{https://survey.stackoverflow.co/2023/}
 \BIBentrySTDinterwordspacing
 
 \bibitem[McDonnell(2020)]{zod}
-C.~McDonnell, ``Zod,'' \url{https://zod.dev/}, 2020.
+\BIBentryALTinterwordspacing
+C.~McDonnell, ``Zod,'' 2020. [En línea]. Disponible en: \url{https://zod.dev/}
+\BIBentrySTDinterwordspacing
 
-\bibitem[Team(2006{\natexlab{a}})]{sass}
-S.~Team, ``Sass,'' \url{https://sass-lang.com/}, 2006.
+\bibitem[{Sass Team}(2006)]{sass}
+\BIBentryALTinterwordspacing
+{Sass Team}, ``Sass,'' 2006. [En línea]. Disponible en: \url{https://sass-lang.com/}
+\BIBentrySTDinterwordspacing
 
-\bibitem[Team(2011)]{bootstrap}
-B.~Team, ``Bootstrap,'' \url{https://getbootstrap.com/}, 2011.
+\bibitem[{Bootstrap Team}(2011)]{bootstrap}
+\BIBentryALTinterwordspacing
+{Bootstrap Team}, ``Bootstrap,'' 2011. [En línea]. Disponible en: \url{https://getbootstrap.com/}
+\BIBentrySTDinterwordspacing
 
-\bibitem[Team(2014)]{materialui}
-M.-U. Team, ``Material-ui,'' \url{https://material-ui.com/}, 2014.
+\bibitem[{Material-UI Team}(2014)]{materialui}
+\BIBentryALTinterwordspacing
+{Material-UI Team}, ``{Material-UI},'' 2014. [En línea]. Disponible en: \url{https://material-ui.com/}
+\BIBentrySTDinterwordspacing
 
-\bibitem[Team(2019{\natexlab{a}})]{chakraui}
-C.~U. Team, ``Chakra ui,'' \url{https://chakra-ui.com/}, 2019.
+\bibitem[{Chakra UI Team}(2019)]{chakraui}
+\BIBentryALTinterwordspacing
+{Chakra UI Team}, ``{Chakra UI},'' 2019. [En línea]. Disponible en: \url{https://chakra-ui.com/}
+\BIBentrySTDinterwordspacing
 
-\bibitem[Team(2013{\natexlab{a}})]{chartjs}
-C.~Team, ``Chart.js,'' \url{https://www.chartjs.org/}, 2013.
+\bibitem[{Chart.js Team}(2013)]{chartjs}
+\BIBentryALTinterwordspacing
+{Chart.js Team}, ``Chart.js,'' 2013. [En línea]. Disponible en: \url{https://www.chartjs.org/}
+\BIBentrySTDinterwordspacing
 
-\bibitem[Team(2019{\natexlab{b}})]{framermotion}
-F.~Team, ``Framer motion,'' \url{https://www.framer.com/motion/}, 2019.
+\bibitem[{Framer Team}(2019)]{framermotion}
+\BIBentryALTinterwordspacing
+{Framer Team}, ``{Framer Motion},'' 2019. [En línea]. Disponible en: \url{https://www.framer.com/motion/}
+\BIBentrySTDinterwordspacing
 
-\bibitem[Team(2015{\natexlab{a}})]{tqdm}
-T.~Team, ``Tqdm,'' \url{https://tqdm.github.io/}, 2015.
+\bibitem[{Tqdm Team}(2015)]{tqdm}
+\BIBentryALTinterwordspacing
+{Tqdm Team}, ``Tqdm,'' 2015. [En línea]. Disponible en: \url{https://tqdm.github.io/}
+\BIBentrySTDinterwordspacing
 
-\bibitem[Foundation(1991{\natexlab{b}})]{pickle}
-P.~S. Foundation, ``Pickle,'' \url{https://docs.python.org/3/library/pickle.html}, 1991.
+\bibitem[{Python Software Foundation}(1991{\natexlab{b}})]{pickle}
+\BIBentryALTinterwordspacing
+{Python Software Foundation}, ``Pickle,'' 1991. [En línea]. Disponible en: \url{https://docs.python.org/3/library/pickle.html}
+\BIBentrySTDinterwordspacing
 
-\bibitem[Team(2006{\natexlab{b}})]{numpy}
-N.~Team, ``Numpy,'' \url{https://numpy.org/}, 2006.
+\bibitem[{NumPy Team}(2006)]{numpy}
+\BIBentryALTinterwordspacing
+{NumPy Team}, ``{NumPy},'' 2006. [En línea]. Disponible en: \url{https://numpy.org/}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Atlassian(2011)]{trello}
-Atlassian, ``Trello,'' \url{https://trello.com/}, 2011.
+\BIBentryALTinterwordspacing
+Atlassian, ``Trello,'' 2011. [En línea]. Disponible en: \url{https://trello.com/}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Microsoft(2023)]{teams}
-Microsoft, ``Microsoft teams,'' \url{https://www.microsoft.com/es-es/microsoft-teams/group-chat-software}, 2023.
+\BIBentryALTinterwordspacing
+Microsoft, ``{Microsoft Teams},'' 2023. [En línea]. Disponible en: \url{https://www.microsoft.com/es-es/microsoft-teams/group-chat-software}
+\BIBentrySTDinterwordspacing
 
-\bibitem[Team(2005)]{git}
-G.~Team, ``Git,'' \url{https://git-scm.com/}, 2005.
+\bibitem[{Git Team}(2005)]{git}
+\BIBentryALTinterwordspacing
+{Git Team}, ``Git,'' 2005. [En línea]. Disponible en: \url{https://git-scm.com/}
+\BIBentrySTDinterwordspacing
 
 \bibitem[GitLab(2011)]{gitlab}
-GitLab, ``Gitlab,'' \url{https://gitlab.com/}, 2011.
+\BIBentryALTinterwordspacing
+GitLab, ``Gitlab,'' 2011. [En línea]. Disponible en: \url{https://gitlab.com/}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Bitbucket(2008)]{bitbucket}
-Bitbucket, ``Bitbucket,'' \url{https://bitbucket.org/}, 2008.
+\BIBentryALTinterwordspacing
+Bitbucket, ``Bitbucket,'' 2008. [En línea]. Disponible en: \url{https://bitbucket.org/}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Microsoft(2015)]{vscode}
-Microsoft, ``Visual studio code,'' \url{https://code.visualstudio.com/}, 2015.
+\BIBentryALTinterwordspacing
+Microsoft, ``{Visual Studio Code},'' 2015. [En línea]. Disponible en: \url{https://code.visualstudio.com/}
+\BIBentrySTDinterwordspacing
 
-\bibitem[Team(2017)]{prettier}
-P.~Team, ``Prettier,'' \url{https://prettier.io/}, 2017.
+\bibitem[{Prettier Team}(2017)]{prettier}
+\BIBentryALTinterwordspacing
+{Prettier Team}, ``Prettier,'' 2017. [En línea]. Disponible en: \url{https://prettier.io/}
+\BIBentrySTDinterwordspacing
 
-\bibitem[Team(2018)]{blackformatter}
-B.~Team, ``Black,'' \url{https://black.readthedocs.io/}, 2018.
+\bibitem[{Black Team}(2018)]{blackformatter}
+\BIBentryALTinterwordspacing
+{Black Team}, ``Black,'' 2018. [En línea]. Disponible en: \url{https://black.readthedocs.io/}
+\BIBentrySTDinterwordspacing
 
-\bibitem[Team(2013{\natexlab{b}})]{eslint}
-E.~Team, ``Eslint,'' \url{https://eslint.org/}, 2013.
+\bibitem[{ESLint Team}(2013)]{eslint}
+\BIBentryALTinterwordspacing
+{ESLint Team}, ``Eslint,'' 2013. [En línea]. Disponible en: \url{https://eslint.org/}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Amodio(2017)]{gitlens}
-E.~Amodio, ``Gitlens,'' \url{https://gitlens.amod.io/}, 2017.
+\BIBentryALTinterwordspacing
+E.~Amodio, ``Gitlens,'' 2017. [En línea]. Disponible en: \url{https://gitlens.amod.io/}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Jgraph(2012)]{drawio}
-Jgraph, ``Draw.io,'' \url{https://www.diagrams.net/}, 2012.
+\BIBentryALTinterwordspacing
+Jgraph, ``Draw.io,'' 2012. [En línea]. Disponible en: \url{https://www.diagrams.net/}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Feuersänger(2007)]{pgfplots}
-C.~Feuersänger, ``Pgfplots,'' \url{https://ctan.org/pkg/pgfplots}, 2007.
+\BIBentryALTinterwordspacing
+C.~Feuersänger, ``Pgfplots,'' 2007. [En línea]. Disponible en: \url{https://ctan.org/pkg/pgfplots}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Docker(2013)]{docker}
-Docker, ``Docker,'' \url{https://www.docker.com/}, 2013.
+\BIBentryALTinterwordspacing
+Docker, ``Docker,'' 2013. [En línea]. Disponible en: \url{https://www.docker.com/}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Sutherland and Schwaber(1995)]{scrum}
-J.~Sutherland and K.~Schwaber, ``Scrum,'' \url{https://www.scrum.org/}, 1995.
+\BIBentryALTinterwordspacing
+J.~Sutherland and K.~Schwaber, ``Scrum,'' 1995. [En línea]. Disponible en: \url{https://www.scrum.org/}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Evans(2003)]{ddd}
-E.~Evans, ``Domain-driven design,'' \url{https://www.domainlanguage.com/ddd/}, 2003.
+\BIBentryALTinterwordspacing
+E.~Evans, ``{Domain-Driven Design},'' 2003. [En línea]. Disponible en: \url{https://www.domainlanguage.com/ddd/}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Adobe(2016)]{adobexd}
-Adobe, ``Adobe xd,'' \url{https://www.adobe.com/products/xd.html}, 2016.
+\BIBentryALTinterwordspacing
+Adobe, ``{Adobe XD},'' 2016. [En línea]. Disponible en: \url{https://www.adobe.com/products/xd.html}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Figma(2012)]{figma}
-Figma, ``Figma,'' \url{https://www.figma.com/}, 2012.
+\BIBentryALTinterwordspacing
+Figma, ``Figma,'' 2012. [En línea]. Disponible en: \url{https://www.figma.com/}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Garvey(2023)]{apifirst}
-D.~Garvey, ``Api first,'' \url{https://tyk.io/blog/res-what-is-api-first/}, 2023.
+\BIBentryALTinterwordspacing
+D.~Garvey, ``{API First},'' 2023. [En línea]. Disponible en: \url{https://tyk.io/blog/res-what-is-api-first/}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Fielding and Reschke(2014)]{rfc7231}
-R.~T. Fielding and J.~F. Reschke, ``Rfc 7231 - hypertext transfer protocol (http/1.1): Semantics and content,'' \url{https://tools.ietf.org/html/rfc7231}, 2014.
+\BIBentryALTinterwordspacing
+R.~T. Fielding and J.~F. Reschke, ``{RFC 7231 - Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content},'' 2014. [En línea]. Disponible en: \url{https://tools.ietf.org/html/rfc7231}
+\BIBentrySTDinterwordspacing
 
-\bibitem[Foundation(1991{\natexlab{c}})]{uuidpython}
-P.~S. Foundation, ``uuid,'' \url{https://docs.python.org/3/library/uuid.html}, 1991.
+\bibitem[{Python Software Foundation}(1991{\natexlab{c}})]{uuidpython}
+\BIBentryALTinterwordspacing
+{Python Software Foundation}, ``uuid,'' 1991. [En línea]. Disponible en: \url{https://docs.python.org/3/library/uuid.html}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Leach et~al.(2005)Leach, Mealling, and Salz]{rfc4122}
-P.~J. Leach, M.~Mealling, and R.~Salz, ``Rfc 4122 - a universally unique identifier (uuid) urn namespace,'' \url{https://tools.ietf.org/html/rfc4122}, 2005.
+\BIBentryALTinterwordspacing
+P.~J. Leach, M.~Mealling, and R.~Salz, ``{RFC 4122 - A Universally Unique IDentifier (UUID) URN Namespace},'' 2005. [En línea]. Disponible en: \url{https://tools.ietf.org/html/rfc4122}
+\BIBentrySTDinterwordspacing
 
-\bibitem[Team(2015{\natexlab{b}})]{cssmodules}
-C.~M. Team, ``Css modules,'' \url{https://github.com/css-modules/css-modules}, 2015.
+\bibitem[{CSS Modules Team}(2015)]{cssmodules}
+\BIBentryALTinterwordspacing
+{CSS Modules Team}, ``{CSS Modules},'' 2015. [En línea]. Disponible en: \url{https://github.com/css-modules/css-modules}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Gruber(2004)]{markdown}
-J.~Gruber, ``Markdown,'' \url{https://daringfireball.net/projects/markdown/}, 2004.
+\BIBentryALTinterwordspacing
+J.~Gruber, ``Markdown,'' 2004. [En línea]. Disponible en: \url{https://daringfireball.net/projects/markdown/}
+\BIBentrySTDinterwordspacing
 
-\bibitem[Foundation(2007)]{gpl}
-F.~S. Foundation, ``Gnu general public license,'' \url{https://www.gnu.org/licenses/gpl-3.0.en.html}, 2007.
+\bibitem[{Free Software Foundation}(2007)]{gpl}
+\BIBentryALTinterwordspacing
+{Free Software Foundation}, ``{GNU General Public License},'' 2007. [En línea]. Disponible en: \url{https://www.gnu.org/licenses/gpl-3.0.en.html}
+\BIBentrySTDinterwordspacing
 
-\bibitem[of~Technology(1988)]{mitlicense}
-M.~I. of~Technology, ``Mit license,'' \url{https://opensource.org/licenses/MIT}, 1988.
+\bibitem[{Massachusetts Institute of Technology}(1988)]{mitlicense}
+\BIBentryALTinterwordspacing
+{Massachusetts Institute of Technology}, ``{MIT License},'' 1988. [En línea]. Disponible en: \url{https://opensource.org/licenses/MIT}
+\BIBentrySTDinterwordspacing
 
-\bibitem[Foundation(2004)]{apachelicense}
-A.~S. Foundation, ``Apache license,'' \url{https://www.apache.org/licenses/LICENSE-2.0}, 2004.
+\bibitem[{Apache Software Foundation}(2004)]{apachelicense}
+\BIBentryALTinterwordspacing
+{Apache Software Foundation}, ``{Apache License},'' 2004. [En línea]. Disponible en: \url{https://www.apache.org/licenses/LICENSE-2.0}
+\BIBentrySTDinterwordspacing
 
 \bibitem[GitHub(2023)]{100milliongithub}
-GitHub, ``Github reaches 100 million developers,'' \url{https://github.blog/2023-01-25-100-million-developers-and-counting/}, 2023.
+\BIBentryALTinterwordspacing
+GitHub, ``Github reaches 100 million developers,'' 2023. [En línea]. Disponible en: \url{https://github.blog/2023-01-25-100-million-developers-and-counting/}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Pybus et~al.(2015)Pybus, Cot{\'e}, and Blanke]{pybus2015hacking}
-J.~Pybus, M.~Cot{\'e}, and T.~Blanke, ``Hacking the social life of big data,'' \emph{Big Data \& Society}, vol.~2, no.~2, p. 2053951715616649, 2015.
+J.~Pybus, M.~Cot{\'e}, and T.~Blanke, ``{Hacking the social life of Big Data},'' \emph{Big Data \& Society}, vol.~2, no.~2, p. 2053951715616649, 2015.
 
 \bibitem[Acker and Brubaker(2014)]{acker2014death}
-A.~Acker and J.~R. Brubaker, ``Death, memorialization, and social media: A platform perspective for personal archives,'' \emph{Archivaria}, pp. 1--23, 2014.
+A.~Acker and J.~R. Brubaker, ``{Death, memorialization, and social media: A platform perspective for personal archives},'' \emph{Archivaria}, pp. 1--23, 2014.
 
 \bibitem[Ruiz~G{\'o}mez and Maria~Vall{\`e}s(2020)]{ruiz2020cuentalo}
-V.~Ruiz~G{\'o}mez and A.~Maria~Vall{\`e}s, ``\# cu{\'e}ntalo: the path between archival activism and the social archive (s),'' \emph{Archives and Manuscripts}, vol.~48, no.~3, pp. 271--290, 2020.
+V.~Ruiz~G{\'o}mez and A.~Maria~Vall{\`e}s, ``{\# Cu{\'e}ntalo: the path between archival activism and the social archive (s)},'' \emph{Archives and Manuscripts}, vol.~48, no.~3, pp. 271--290, 2020.
 
 \bibitem[Otero et~al.(2021)Otero, Martin-Rodilla, and Parapar]{oterorodilla2021}
 \BIBentryALTinterwordspacing
-D.~Otero, P.~Martin-Rodilla, and J.~Parapar, ``Building cultural heritage reference collections from social media through pooling strategies: The case of 2020’s tensions over race and heritage,'' \emph{J. Comput. Cult. Herit.}, vol.~15, no.~1, dec 2021. [En línea]. Disponible en: \url{https://doi.org/10.1145/3477604}
+D.~Otero, P.~Martin-Rodilla, and J.~Parapar, ``{Building Cultural Heritage Reference Collections from Social Media through Pooling Strategies: The Case of 2020’s Tensions Over Race and Heritage},'' \emph{J. Comput. Cult. Herit.}, vol.~15, no.~1, dec 2021. [En línea]. Disponible en: \url{https://doi.org/10.1145/3477604}
 \BIBentrySTDinterwordspacing
 
 \bibitem[Statista(2022)]{statistagenero}
-Statista, ``Distribution of reddit users worldwide as of january 2022, by gender,'' \url{https://www.statista.com/statistics/1255182/distribution-of-users-on-reddit-worldwide-gender/}, 2022.
+\BIBentryALTinterwordspacing
+Statista, ``{Distribution of Reddit users worldwide as of January 2022, by gender},'' 2022. [En línea]. Disponible en: \url{https://www.statista.com/statistics/1255182/distribution-of-users-on-reddit-worldwide-gender/}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Thelwall and Stuart(2019)]{thelwall2019she}
-M.~Thelwall and E.~Stuart, ``She's reddit: A source of statistically significant gendered interest information?'' \emph{Information processing \& management}, vol.~56, no.~4, pp. 1543--1558, 2019.
+M.~Thelwall and E.~Stuart, ``{She's Reddit: A source of statistically significant gendered interest information?}'' \emph{Information processing \& management}, vol.~56, no.~4, pp. 1543--1558, 2019.
 
 \bibitem[Statista(2021)]{statistaedad}
-Statista, ``Percentage of u.s. adults who use reddit as of february 2021, by age group,'' \url{https://www.statista.com/statistics/261766/share-of-us-internet-users-who-use-reddit-by-age-group/}, 2021.
+\BIBentryALTinterwordspacing
+Statista, ``{Percentage of U.S. adults who use Reddit as of February 2021, by age group},'' 2021. [En línea]. Disponible en: \url{https://www.statista.com/statistics/261766/share-of-us-internet-users-who-use-reddit-by-age-group/}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Thernstrom and Thernstrom(1998)]{thernstrom1998black}
-A.~Thernstrom and S.~Thernstrom, ``Black progress: How far we've come--and how far we have to go,'' \emph{The Brookings Review}, vol.~16, no.~2, p.~12, 1998.
+A.~Thernstrom and S.~Thernstrom, ``{Black progress: How far we've come and how far we have to go},'' \emph{The Brookings Review}, vol.~16, no.~2, p.~12, 1998.
 
-\bibitem[BOE(2014)]{leysociedades}
-BOE, ``Ley 27/2014, de 27 de noviembre, del impuesto sobre sociedades,'' \url{https://www.boe.es/boe/dias/2014/11/28/pdfs/BOE-A-2014-12328.pdf}, 2014.
+\bibitem[{BOE}(2014)]{leysociedades}
+\BIBentryALTinterwordspacing
+{BOE}, ``{Ley 27/2014, de 27 de noviembre, del Impuesto sobre Sociedades},'' 2014. [En línea]. Disponible en: \url{https://www.boe.es/boe/dias/2014/11/28/pdfs/BOE-A-2014-12328.pdf}
+\BIBentrySTDinterwordspacing
 
 \bibitem[Indeed(2023)]{indeedsalario}
 \BIBentryALTinterwordspacing
-Indeed, ``Lenguajes de programación mejor pagados en españa,'' jul 2023. [En línea]. Disponible en: \url{https://es.indeed.com/orientacion-laboral/remuneracion-salarios/lenguajes-programacion-mejor-pagados}
+Indeed, ``{Lenguajes de programación mejor pagados en España},'' jul 2023. [En línea]. Disponible en: \url{https://es.indeed.com/orientacion-laboral/remuneracion-salarios/lenguajes-programacion-mejor-pagados}
 \BIBentrySTDinterwordspacing
 
 \bibitem[Brown et~al.(2020)Brown, Mann, Ryder, Subbiah, Kaplan, Dhariwal, Neelakantan, Shyam, Sastry, Askell, et~al.]{brown2020language}
