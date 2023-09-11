@@ -22,8 +22,8 @@ una posterior consulta.
 Por otro lado, para que el código estuviese bien organizado, se decidió utilizar el patrón de diseño DDD (del inglés, \textit{Domain-Driven Design}) \cite{ddd}, el cual
 permite separar el código en tres capas: la capa de aplicación, la capa de dominio y la capa de infraestructura. La capa de aplicación es la encargada de gestionar
 la entrada y salida de la aplicación que, en nuestro caso, es el controlador que maneja los \textit{endpoints} REST; la capa de dominio es la que contiene la lógica
-de negocio y las entidades; y la capa de infraestructura es la responsable de administrar las interacciones internas de la aplicación que, en nuestro
-caso, se encarga de la comunicación con la base de datos.
+de negocio y las entidades; y la capa de infraestructura es la responsable de administrar las comunicaciones externas de la aplicación que, en nuestro
+caso, se encarga de la interacción con la base de datos.
 
 \begin{figure}[H]
 	\centering
@@ -61,7 +61,7 @@ recogido en la Sección \ref{sec:analisis_requisitos_no_funcionales}, por lo que
 \bigskip
 La pantalla de inicio, como se ve en la Figura \ref{fig:prototipo_inicio}, está compuesta simplemente por un título,
 un subtítulo y un campo que dará la opción al usuario de subir un \textit{dataset}, tanto mediante un elemento \textit{drag and drop} como
-mediante un botón que permitirá la selección de un archivo almacenado en el dispositivo.
+mediante un botón que permitirá la selección de un archivo almacenado localmente en el dispositivo.
 
 \bigskip
 \begin{figure}[H]
@@ -77,8 +77,8 @@ algoritmos de perfilado disponibles, como se puede ver en la Figura \ref{fig:pro
 en una tarjeta, su nombre junto a las características demográficas que es capaz de extraer. Además, ya que según indican las historias de usuario \hyperref[req:hu7]{H7} y \hyperref[req:hu8]{H8},
 era necesario mostrar información del funcionamiento
 y del rendimiento de los algoritmos, se decidió crear un mensaje emergente (\textit{tooltip} en inglés) para ello. Un \textit{tooltip} es una ventana
-que aparece al pasar el ratón por encima de un elemento y que muestra información adicional sobre el mismo sin ocupar espacio
-en la interfaz. Finalmente, si el usuario desease cambiar el \textit{dataset} seleccionado, se permitirá retroceder mediante
+que aparece al pasar el ratón sobre un determinado elemento y que muestra información adicional sobre el mismo sin ocupar un espacio fijo
+en la interfaz. Finalmente, si el usuario desea cambiar el \textit{dataset} seleccionado, se permitirá retroceder mediante
 la flecha situada junto al título del paso actual.
 
 \bigskip
@@ -124,7 +124,7 @@ Este \textit{dashboard} contendrá los siguientes gráficos y elementos, los cua
 
 \begin{itemize}
 	\item \textbf{Datos generales}: El \textit{dashboard} contiene una primera sección en la que aparece información de carácter general
-	      como son: el número total de personas perfiladas, el tiempo total del perfilado y el algoritmo utilizado.
+	      como son: el número total de personas perfiladas, el tiempo total del perfilado y el algoritmo empleado.
 	\item \textbf{Lista detallada de personas}: En esta sección se muestra la lista de personas perfiladas de forma paginada, como se establece en la historia de usuario \hyperref[req:hu5]{H5}. Además, la lista
 	      permitirá ser ordenada por cada uno de los diferentes campos, según se indica en la historia de usuario \hyperref[req:hu6]{H6}. Para ello, el usuario deberá hacer clic en el nombre de dicho campo, teniendo
 	      la opción de, volviendo a clicar, cambiar el sentido de ordenación (ascendente o descendente).
@@ -173,20 +173,20 @@ que recibe cada uno. Para su definición, se seguió la metodología API First \
 considerarlas como un simple puente entre sistemas. Junto a ello, se buscó cumplir con las buenas prácticas en cuanto al nombrado de los \textit{endpoints} en arquitecturas REST como el
 uso de plurales para las colecciones, la representación de las entidades por su identificador o el uso de parámetros en la propia URL (del inglés, \textit{Uniform Resource Locator})
 para el filtrado y se siguieron las convenciones establecidas
-en la sección 4.3 del RFC 7231 \cite{rfc7231} para elegir el método HTTP correcto según la acción que se desee realizar.
+en la sección 4.3 del RFC 7231 \cite{rfc7231} para elegir el método HTTP más adecuado según la acción que se desee realizar.
 
 \bigskip
 Teniendo esto en cuenta, como se puede observar en la Figura \ref{fig:endpoints}, el servidor expone un total de cuatro \textit{endpoints}:
 
 \begin{itemize}
-	\item \textbf{/predict}: Como indica la historia de usuario con identificador \textit{1} de la Sección \ref{sec:analisis_requisitos_funcionales}, el usuario
+	\item \textbf{/predict}: Como indica la historia de usuario \hyperref[req:hu1]{H1}, el usuario
 	      debe poder subir su propio dataset de textos para su perfilado. Para ello, se ha implementado este \textit{endpoint} que recibe como parámetros de la URL el
-	      nombre del algoritmo de perfilado a utilizar junto al \textit{dataset} utilizado para entrenar el modelo. Además, ya que el método de la petición es POST,
+	      nombre del algoritmo de perfilado a utilizar junto al \textit{dataset} que se utilizó para su entrenamiento. Además, ya que el método de la petición es POST,
 	      será en el cuerpo donde se envíe
 	      el archivo con los textos a perfilar. En caso de que el archivo no sea correcto, que el algoritmo no exista o que el \textit{dataset} de entrenamiento
 	      no sea válido, se devolverá un error HTTP 400 (\textit{Bad Request}). En caso contrario, se devolverá un identificador correspondiente a la tarea de perfilado
-	      que se ha creado de forma asíncrona, generado dinámicamente con la librería uuid \cite{uuidpython} de Python (según el estándar RFC 4122 \cite{rfc4122}) y que coincide
-	      con el identificador del documento almacenado en la base de datos.
+	      que se creará de forma asíncrona, generado dinámicamente con la librería uuid \cite{uuidpython} de Python (según el estándar RFC 4122 \cite{rfc4122}) y que será igual
+	      al identificador del documento almacenado en la base de datos.
 	      El hecho de no esperar a que el perfilado se complete
 	      para devolver una respuesta al usuario evita tener problemas con el tiempo de espera de la petición o \textit{timeout} del \textit{socket} TCP,
 	      permitiendo así procesar grandes volúmenes de datos y cumplir con el requisito de escalabilidad \hyperref[req:rnf2]{RNF2}.
@@ -195,9 +195,9 @@ Teniendo esto en cuenta, como se puede observar en la Figura \ref{fig:endpoints}
 	      En este caso, se recibe como parámetros de la URL el nombre del algoritmo de perfilado a utilizar junto al \textit{dataset} de entrenamiento. De la misma forma,
 	      se validarán los parámetros y, en caso de que sean correctos, se iniciará una tarea asíncrona en el \textit{backend}.
 
-	\item \textbf{/performance}: Puesto que otra de las historias de usuario nos indica que es necesario conocer el rendimiento que tiene los algoritmos,
-	      el \textit{backend} expondrá otro \textit{endpoint} de tipo POST que recibe los mismos parámetros que el anterior. La diferencia es que, en este caso,
-	      se devolverá un JSON con los valores de rendimiento del algoritmo en lugar de iniciar una tarea asíncrona.
+	\item \textbf{/performance}: Puesto que otra de las historias de usuario nos indica que es necesario conocer el rendimiento que tienen los algoritmos,
+	      el \textit{backend} expondrá otro \textit{endpoint} de tipo POST que recibe los mismos parámetros que el mencionado anteriormente. La diferencia radica en que, en este caso,
+	      se devolverá un JSON con los valores de rendimiento del algoritmo de forma síncrona en lugar de iniciar una tarea en segundo plano.
 
 	\item \textbf{/profilings/\{id\}}: Para poder obtener los resultados del perfilado creado de forma asíncrona, este \textit{endpoint} de tipo GET
 	      permite recuperarlos de la base da datos haciendo uso del identificador devuelto por la tarea de predicción. En caso de que la tarea
@@ -313,11 +313,11 @@ en el diagrama de clases de la Figura \ref{fig:clases_frontend}, analizaremos
 las clases más relevantes del proyecto y su relación con el resto de módulos y componentes.
 
 \bigskip
-Primero, como elemento principal que conforma la interfaz de usuario, estarían todas las páginas que se encuentran en el módulo \textit{pages}, es decir,
+Primero, como elemento principal que conforma la interfaz de usuario, contaríamos con todas las páginas que se encuentran en el módulo \textit{pages}, es decir,
 la página principal (\textit{Home}) y la página de resultados (\textit{Results}).
 
 \bigskip
-Como se ve reflejado en el diagrama, cada página está formada por varios componentes, los cuales se almacenan dentro del módulo \textit{components}.
+Como se ve reflejado en el diagrama, cada página está formada por varios componentes, los cuales se almacenan todos ellos dentro del módulo \textit{components}.
 En este sentido, el componente \textit{Chart} es uno de los más complejos e interesantes, dado que en él reside toda la lógica y la configuración común
 de los gráficos que se muestran en el \textit{dashboard} de la página de resultados. Otros componentes importantes son el \textit{UploadDataset},
 el cual se encarga de gestionar los eventos de \textit{drag and drop} y de la subida de archivos; el componente \textit{AlgorithmCard}, que

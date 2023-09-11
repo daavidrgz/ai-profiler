@@ -12,7 +12,7 @@ aproximadamente el 77\% \textit{(accuracy=0,773)}.
 Así, la demostración de la existencia de rasgos diferenciadores en la escritura que permitían perfilar ciertos aspectos del individuo, especialmente del género,
 supuso un gran avance en el campo del perfilado de autor
 y dio pie a la realización de trabajos como Argamon et al., 2003 \cite{argamon2003gender}, Corney et al., 2002 \cite{corney2002gender} u Otterbacher et al., 2010 \cite{otterbacher2010inferring}.
-Además, este hecho también permitió el inicio de una clasificación más compleja en base a otras características demográficas.
+Además, este hecho también favoreció el inicio de una clasificación más compleja en base a otras características demográficas.
 
 \bigskip
 Posteriormente, tal como recoge Wiegmann et al., 2019 \cite{wiegmann2019overview}, se continuarían llevando a cabo estudios en esta línea, diversificando
@@ -29,18 +29,18 @@ Por otro lado, en el año 2011, se celebraría el primer evento organizado por e
 uno de los foros de investigación más importantes que organiza eventos científicos y tareas anuales relacionadas con el análisis forense de textos digitales
 y rasgos estilométricos, así como uno de los grandes impulsores del perfilado de autor. La primera de las tareas centradas en este campo se celebraría en el año 2013 (Rangel et al., 2013) \cite{rangel2013overview},
 en la que se pedía a los participantes que obtuvieran, a partir de una serie de \textit{tweets}, la edad y el género de su autor. El ganador de este concurso obtuvo una
-precisión del 60\% \textit{(accuracy=0,5921)}en la clasificación de género y del 65\% \textit{(accuracy=0,6491)} en la clasificación de edad, haciendo uso, la mayor parte de los participantes, de técnicas de aprendizaje
+precisión del 60\% \textit{(accuracy=0,5921)} en la clasificación de género y del 65\% \textit{(accuracy=0,6491)} en la clasificación de edad, haciendo uso, la mayor parte de los participantes, de técnicas de aprendizaje
 supervisado como los Árboles de Decisión (\textit{Decission Trees} en inglés) o las Máquinas de Soporte Vectorial (\textit{Support Vector Machines} o SVMs en inglés).
 Además, la mayoría de ellos incluyeron en sus modelos características basadas en el TF-IDF, n-gramas o etiquetas POS, explicadas en detalle en la Sección \ref{sec:conceptos_basicos},
 junto a otras como el número de emoticonos o la frecuencia de signos de puntuación.
-En los siguientes años, se celebrarían nuevas ediciones centradas en perfilado (Rangel et al., 2014 \cite{rangel2014overview}, Rangel et al., 2015 \cite{rangel2015overview} o
-Rangel et al., 2016 \cite{rangel2016overview}), en las que se añadirían nuevas subtareas como el reconocimiento de rasgos personales, la ocupación o los dialectos del lenguaje,
-así como también alcanzando mejores resultados en la clasificación.
+En los siguientes años, se celebrarían nuevas ediciones centradas en el perfilado de autor (Rangel et al., 2014 \cite{rangel2014overview}, Rangel et al., 2015 \cite{rangel2015overview} o
+Rangel et al., 2016 \cite{rangel2016overview}), en las que se añadirían nuevas subtareas como el reconocimiento de rasgos personales, la ocupación o los dialectos del lenguaje y
+se alcanzarían mejores resultados en la clasificación.
 
 \section{Conceptos básicos}
 \label{sec:conceptos_basicos}
 
-En este sección se tratarán los conceptos más utilizadas y relevantes para la comprensión de los análisis posteriores y, en general, de este trabajo.
+En este sección se tratarán los conceptos más utilizados y relevantes para la comprensión de los análisis posteriores y, en general, de este trabajo.
 
 \subsection{Procesado del lenguaje natural}
 \label{sec:procesado_lenguaje_natural}
@@ -48,9 +48,9 @@ En este sección se tratarán los conceptos más utilizadas y relevantes para la
 Cuando hablamos del perfilado automático de autores, nos referimos a la tarea del análisis detallado de un texto para la obtención de ciertas características
 que nos permitan identificar a su autor.
 Dicha tarea de análisis está enmarcada dentro del campo del procesado del lenguaje natural y, más concretamente,
-dentro de la rama de la estilometría. De esta forma, para las tareas de NLP se hace uso
+dentro de la rama de la estilometría. De esta forma, para las tareas de NLP, se hace uso
 de una serie de algoritmos y técnicas que permiten la extracción de características formales de un texto que puedan
-ser procesadas por un ordenador. Entre todas ellas, las más relevantes son las siguientes:
+ser procesadas por un ordenador. Entre ellas, las más relevantes son las siguientes:
 
 \subsubsection{TF-IDF}
 El TF-IDF (del inglés, \textit{Term Frequency-Inverse Document Frequency}) es una medida estadística muy utilizada en el campo de la recuperación de información
@@ -96,7 +96,7 @@ Donde:
 
 \bigskip
 Por lo tanto, la importancia aumenta proporcionalmente al número de veces que una palabra aparece en el documento, pero se compensa con la frecuencia
-de la palabra en la colección, lo que permite manejar el hecho de que algunas palabras son generalmente más comunes que otras.
+de la palabra en la colección, lo que permite manejar el hecho de que algunas palabras sean más comunes que otras.
 
 \subsubsection{Etiquetas POS}
 
@@ -122,10 +122,10 @@ que cada posición representa una palabra y que tiene como valores el número de
 \subsubsection{Análisis Semántico Latente}
 \label{sec:analisis_semantico_latente}
 
-El Análisis Semántico Latente (\textit{Latent Semantic Analysis} o LSA en inglés) es una técnica de IR (del inglés, \textit{Information Retrieval}) desarrollada por Deerwester et al., 1990 \cite{deerwester1990indexing}
+El Análisis Semántico Latente (\textit{Latent Semantic Analysis} o LSA en inglés) es una técnica de IR desarrollada por Deerwester et al., 1990 \cite{deerwester1990indexing}
 que busca descubrir relaciones latentes
-entre las palabras y los documentos que forman una colección. Esta técnica se basa
-en el idea de que las palabras que aparecen en contextos similares
+entre las palabras y los documentos que forman una colección la cual se basa
+en la idea de que las palabras que aparecen en contextos similares
 tienden a tener significados similares. Para aplicarla, se construye una matriz en la que se almacena la frecuencia de cada palabra del vocabulario en cada documento y
 a continuación, se aplica una descomposición en valores singulares (\textit{Singular Value Decomposition} o SVD en inglés) a dicha matriz para reducir su dimensionalidad
 y encontrar relaciones palabras-documentos.
@@ -144,10 +144,9 @@ etiquetar o clasificar nuevos datos. Las técnicas más utilizadas basadas en ap
 \subsubsection{SVMs}
 \label{sec:svm}
 
-Las SVMs son un tipo de algoritmo de aprendizaje supervisado, centrado en la clasificación binaria, que se basa en la búsqueda de un hiperplano
+Las SVMs son un tipo de algoritmo de aprendizaje supervisado centrado en la clasificación binaria que se basa en la búsqueda de un hiperplano
 que permita separar los datos de las diferentes clases en un espacio multidimensional. Así, haciendo uso de técnicas como el truco del \textit{kernel}
-(\textit{kernel trick} en inglés), las SVMs son capaces de maximizar el margen de dicho hiperplano entre los datos de diferentes clases a pesar de no ser linealmente
-separables en el espacio original.
+(\textit{kernel trick} en inglés), las SVMs son capaces de maximizar el margen de dicho hiperplano entre los datos de diferentes clases sean linealmente separables o no.
 
 \subsubsection{Árboles de Decisión}
 \label{sec:arboles_decision}
@@ -209,8 +208,8 @@ A partir de esta matriz, se pueden definir las siguientes métricas más comunes
 		      \text{Especificidad} = \frac{VN}{VN + FP}
 	      \end{equation}
 
-	\item Valor F1 (\textit{F1-score} en inglés): Esta métrica es la media armónica entre el valor predictivo positivo y la sensibilidad
-	      y resulta útil a la hora de comparar modelos con clases desbalanceadas, para los cuales la precisión puede ser engañosa.
+	\item Valor F1 (\textit{F1-score} en inglés): Esta métrica se corresponde con la media armónica entre el valor predictivo positivo y la sensibilidad
+	      y resulta muy útil a la hora de comparar modelos con clases desbalanceadas, para los cuales la precisión puede ser ofrecer resultados engañosos.
 	      \begin{equation}
 		      \label{eq:f1}
 		      \text{Valor F1} = 2 \times \frac{\text{VPP} \times \text{Sensibilidad}}{\text{VPP} + \text{Sensibilidad}}
@@ -238,8 +237,8 @@ por PAN.
 
 \subsection{\textit{PAN Author Profiling 2014}}
 
-Esta segunda edición de la competición internacional de perfilado de autores celebrada en 2014 por PAN, estaba enfocada en la clasificación de género y edad de los autores, en la que se consideraban, para esta última, las siguientes
-clases: \textit{18-24}, \textit{25-34}, \textit{35-49}, \textit{50-64} y \textit{65-XX}; donde la clase \textit{65-XX} representa cualquier edad igual o superior a 65 años.
+Esta segunda edición de la competición internacional de perfilado de autores celebrada en 2014 por PAN, estaba enfocada en la clasificación de género y edad de los autores. Para el género, se distinguían dos clases:
+masculino y femenino; para la edad, se definían cinco rangos: \textit{18-24}, \textit{25-34}, \textit{35-49}, \textit{50-64} y \textit{65-XX}, donde este último representa cualquier edad igual o superior a 65 años.
 
 \subsubsection{\textit{Corpus}}
 
@@ -249,7 +248,7 @@ Todos ellos contenían documentos en inglés y en español a excepción de las r
 
 \bigskip
 Como se puede observar en la distribución de los autores, disponible tanto en la Tabla \ref{tab:dataset_2014} como en la Figura \ref{fig:dataset_2014}, el número de autores de habla inglesa
-es muy superior a los de habla española, lo que provoca potencialmente que los algoritmos entrenados con este \textit{dataset} tengan una mejor generalización y obtengan, por lo tanto,
+es muy superior a los de habla española, lo que provoca, potencialmente, que los algoritmos entrenados con este \textit{dataset} tengan una mejor generalización y obtengan, por lo tanto,
 mejores predicciones para la lengua inglesa. Asimismo, existe un amplio desbalanceo de clases con respecto a la edad en el \textit{corpus},
 donde las clases \textit{18-24} y \textit{65-XX} cuentan con un número de autores significativamente inferior al resto de clases. Destacar finalmente que,
 en cuanto al género, el \textit{dataset} está perfectamente balanceado, existiendo el mismo número de autores masculinos y femeninos, lo que
@@ -380,11 +379,11 @@ de 632 usuarios en cuatro idiomas diferentes: inglés, español, italiano y hola
 (solamente para inglés y español) de los autores, que ellos mismos reportaban en sus perfiles de Twitter. Para determinar los rasgos de la personalidad,
 los autores completaron el test BFI-10 (Rammstedt et al., 2007) \cite{rammstedt2007measuring}, el cual proporcionaba valores para cada rasgo normalizados entre -0,5 y 0,5.
 En este sentido, es importante destacar la gran reducción en cuanto al número de autores con los que cuenta el \textit{dataset} en comparación, por ejemplo,
-con competición celebrada en año anterior, la cual cuenta con cerca de 12.000. Esto puede generar problemas de sobreajuste (\textit{overfitting} en inglés) en los modelos
-entrenados con esta colección, fenómeno que limita en gran medida la generalización y empeora notablemente los resultados en casos de uso reales.
+con la competición celebrada el año anterior, la cual cuenta con cerca de 12.000. Esto puede generar problemas de sobreajuste (\textit{overfitting} en inglés) en los modelos
+entrenados con esta colección, fenómeno que limita en gran medida la generalización y puede empeorar notablemente los resultados en casos de uso reales.
 
 \bigskip
-Así, como se puede ver en la Figura \ref{fig:dataset_2015}, el \textit{dataset} vuelve a estar desbalanceado en cuanto a la edad, ya que existen
+Centrándonos en la distribución de clases, como se puede ver en la Figura \ref{fig:dataset_2015}, el \textit{dataset} vuelve a estar desbalanceado en cuanto a la edad, ya que existen
 clases como la \textit{50-XX} la cual apenas cuenta con un un 7\% de representación. Sin embargo,
 a excepción de la clase \textit{18-24}, existe un número similar de autores de habla española e inglesa, por lo que cabe esperar una generalización
 semejante para ambos idiomas. En lo referente a la distribución de género, como se puede ver en la Tabla \ref{tab:dataset_2015}, está perfectamente balanceada,
@@ -469,10 +468,10 @@ la clasificación conjunta de edad y género en aproximadamente un 40\% \textit{
 Más en concreto, cabe destacar los grandes resultados que
 ofrecen los algoritmos presentados con respecto al género en los dos idiomas principales del \textit{corpus}, llegando a alcanzar
 precisiones del 96\% \textit{(accuracy=0,9659)} para el español en el caso de Alvarez-Carmona et al. \cite{alvarez2015inaoe}. Con respecto a la edad,
-se puede ver como se obtienen unos mejores resultados, de alrededor de un 4,5\% \textit{($\Delta$accuracy=0,0444)}, en la clasificación en inglés que en español, algo que
-hipotéticamente puede ser un reflejo de las pequeñas diferencias existentes entre el número de autores en cada uno de los idiomas en
+se puede ver como se obtienen unos mejores resultados, de alrededor de un 4,5\% \textit{($\Delta$accuracy=0,0444)}, en la clasificación en inglés que en español, algo que,
+hipotéticamente, puede ser un reflejo de las pequeñas diferencias existentes entre el número de autores en cada uno de los idiomas en
 el \textit{dataset} de entrenamiento. Sin embargo, estos tan buenos resultados, pueden ser también un reflejo del reducido número de
-autores con los que cuenta el \textit{dataset}, de apenas 600 autores, lo que puede provocar un sobreajuste (\textit{overfitting} en inglés)
+autores con los que cuenta el \textit{dataset}, de apenas 600 autores, lo que puede provocar, como se mencionó anteriormente, un sobreajuste
 de los modelos.
 
 \bigskip
@@ -531,7 +530,7 @@ cuatro características demográficas a partir de sus publicaciones en Twitter:
 \subsubsection{\textit{Corpus}}
 
 Como se mencionó anteriormente, el \textit{corpus} empleado está compuesto por publicaciones en inglés de celebridades en la red social Twitter.
-En este caso, un usuario era considerado una celebridad si tenía un perfil verificado en Twitter y superaba cierto umbral
+En este caso, un usuario era considerado una celebridad si tenía un perfil verificado en dicha red social y superaba cierto umbral
 de notoriedad en Wikidata \cite{wikidata}. El \textit{corpus},
 que contenía un total de 48.335 celebridades con aproximadamente 2.180 \textit{tweets} cada una, fue obtenido
 a partir del \textit{Webis Celebrity Profiling Corpus} (Wiegmann et al., 2019) \cite{wiegmann2019celebrity}, en el cual se relacionaban los perfiles
@@ -541,11 +540,11 @@ el inglés como lengua de uso principal. Finalmente, para generar un conjunto de
 70-30, obteniendo 33.836 y 14.499 celebridades para cada uno, respectivamente.
 
 \bigskip
-Con todo, las distribuciones de las celebridades en las distintas características demográficas se muestran en las Figuras \ref{fig:distribuciones_genero_fama_2019},
+Con todo, la distribución de las celebridades en las distintas características demográficas se muestra en las Figuras \ref{fig:distribuciones_genero_fama_2019},
 \ref{fig:distribucion_ocupacion_2019} y \ref{fig:distribucion_edad_2019}. Como se puede observar, existe un gran desbalanceo
 en el género, fama y ocupación, propiciando un posible sesgo hacia las clases mayoritarias (masculino, estrella y deportista) en las predicciones de los algoritmos.
 En lo que respecta al año de nacimiento,
-la mayor parte se concentran alrededor de los años 80 y 90, acumulando un 50\% de las celebridades.
+la mayor parte se concentran alrededor de los años 80 y 90, acumulando prácticamente un 50\% de las celebridades.
 Además, como se puede ver en dicho gráfico, existe una anomalía
 para el año 2000, la cual se debe a un error de los datos proporcionados por Wikidata, según apunta la organización de la competición.
 
@@ -660,7 +659,7 @@ para el año 2000, la cual se debe a un error de los datos proporcionados por Wi
 Como se aprecia en la Tabla \ref{tab:algoritmos_2019}, la precisión conjunta en edad y género obtenida por el algoritmo mejor
 clasificado es de aproximadamente un 20\% \textit{($\Delta$accuracy=0,2346)} inferior a la alcanzada en la competición del año 2015. Esto es debido a que,
 como se comentó anteriormente, la clasificación de edad no se realizó en base a rangos en esta edición, sino que se
-buscó una predicción exacta de la edad del autor, junto a una grado de tolerancia adaptativo, provocando así precisiones mucho
+buscó una predicción exacta de la edad del autor (junto a una grado de tolerancia adaptativo), provocando así precisiones mucho
 más bajas para este atributo. En lo que respecta a la clasificación del género, vemos como los dos
 mejores participantes obtienen resultados de aproximadamente un 90\% \textit{(accuracy=0,928; accuracy=0,906)}, superior a los obtenidos en la edición de 2015.
 Por último, en cuanto a la clasificación de ocupación, destacar el gran resultado que ofrece el algoritmo de Radivchev et al. \cite{radivchev2019celebrity},
@@ -676,7 +675,7 @@ Centrándonos en las implementaciones realizadas en esta competición, podemos d
 	      y las \textit{stopwords}, es decir, las palabras poco significativas, para mejorar el modelado de los documentos con TF-IDF puro basado en unigramas de palabras.
 	\item \textbf{Características}: La mayor parte de los algoritmos presentados emplearon técnicas basadas en TF-IDF y n-gramas.
 	      Más concretamente, Radivchev et al. \cite{radivchev2019celebrity} utilizó como características los vectores obtenidos mediante TF-IDF sobre los 10.000 bigramas más frecuentes;
-	      Martinc et al. \cite{martinc2019hot} obtuvo los vectores mediante el TF-IDF de unigramas de palabras y tetragramas de caracteres; Moreno-Sandoval et al. \cite{moreno2019celebrity}, en cambio, además de
+	      Martinc et al. \cite{martinc2019hot} obtuvo los vectores mediante el TF-IDF de unigramas de palabras y tetragramas de caracteres; Moreno-Sandoval et al. \cite{moreno2019celebrity}, además de
 	      de emplear n-gramas como características, calculó el número medio de emoticonos, \textit{hashtags}, menciones, enlaces, \textit{retweets}, palabras y longitud de las
 	      palabras por \textit{tweet}.
 	\item \textbf{Clasificación}: Al igual que en las pasadas ediciones, los métodos de clasificación más frecuentes fueron las
@@ -717,7 +716,7 @@ En lo que respecta a los algoritmos, no apreciamos grandes diferencias entre edi
 el limpiado del texto, la eliminación de palabras poco significativas o la sustitución de ciertos elementos por \textit{tokens} especiales;
 las características continúan estando basadas en medidas estadísticas como el TF-IDF y los n-gramas, junto
 a otras que se apoyan en rasgos estilísticos como la media de palabras o el número de signos de puntuación; y los métodos de clasificación más utilizados
-siguen estando fundamentados en técnicas de aprendizaje supervisado clásicas como los SVMs y la regresión logística.
+siguen estando fundamentados en técnicas de aprendizaje supervisado clásicas como las SVMs y la regresión logística.
 
 \bigskip
 En este sentido, autores de las competiciones más recientes como Martinc et al., 2019 \cite{martinc2019hot} o Radivchev et al., 2019 \cite{radivchev2019celebrity}, destacan
@@ -732,7 +731,7 @@ propuesta por Johnson et al., 2017 \cite{johnson2017deep} para el procesado de t
 \label{sec:algoritmos_seleccionados}
 
 Con todo, para seleccionar los algoritmos que formarán parte de la aplicación que se expondrá en los siguientes capítulos, se ha optado
-por buscar aquellos que contasen con una implementación pública y que, además, ofreciesen un buen rendimiento en las tareas.
+por buscar aquellos que contasen con una implementación pública y que, además, ofreciesen un buen rendimiento en las tareas analizadas.
 Por ello, dado que los algoritmos de la edición de 2014 no obtenían resultados comparables a las otras dos competiciones,
 no se ha tenido en cuenta ninguno de ellos. Así, de los cuatro algoritmos mejor clasificados del \textit{PAN Author Profiling 2015} y
 del \textit{PAN Celebrity Profiling 2019} se ha seleccionado uno de cada competición, concretamente las implementaciones propuestas por
@@ -740,19 +739,19 @@ Grivas et al. \cite{grivas2015author} (disponible en \url{https://github.com/pan
 y Martinc et al. \cite{martinc2019hot} (disponible en \url{https://github.com/EMBEDDIA/PAN2019}).
 
 \bigskip
-{En este punto, cabe destacar que la mayor parte de los trabajos analizados en la Sección \ref{sec:competiciones_analizadas} no ofrecían
+En este punto, cabe destacar que la mayor parte de los trabajos analizados en la Sección \ref{sec:competiciones_analizadas} no ofrecían
 implementaciones públicas de sus algoritmos, sino que se limitaban a explicar a alto nivel su funcionamiento. Así,
-de los tres únicos casos encontrados que contaban con el código fuente publicado, solo los dos algoritmos mencionados anteriormente disponían de
+de los tres únicos casos encontrados que contaban con el código fuente publicado (uno de ellos ni siquiera formaba parte de las competiciones expuestas en esta investigación), solo los dos algoritmos mencionados anteriormente disponían de
 una implementación funcional y bien documentada. Concretamente, se intentó ejecutar la implementación ofrecida por Pizarro, 2019 \cite{pizarro2019using}
 presentada en la competición \textit{PAN Bots and Gender Profiling 2019}, lo que resultó en errores continuados e intentos fallidos por lograr su correcto funcionamiento.
-Este problema ha sido ampliamente reconocido por la comunidad, especialmente en el campo del aprendizaje automático y la inteligencia artificial.
+Este gran problema ha sido ampliamente reconocido por la comunidad, especialmente en el campo del aprendizaje automático y la inteligencia artificial.
 Tal es así, que en trabajos como el presentado por Hutson, 2018 \cite{hutson2018artificial}, se critica la falta de reproducibilidad de los algoritmos
-y se apuntan varios problemas, entre ellos: la inexistencia de código fuente, la ausencia de los \textit{datasets} utilizados para el entrenamiento
+y se apuntan varios problemas, entre los que destacan: la inexistencia de código fuente publicado, la ausencia de los \textit{datasets} utilizados para el entrenamiento
 del modelo y las diferencias conforme al rendimiento esperado de los mismos.
 
 \subsection{Algoritmo de Grivas et al. \cite{grivas2015author}}
 
-Este algoritmo sigue una aproximación particular basada en la creación de dos grupos de características, unas basadas en el contenido (estructurales) y otras basadas en el estilo (estilométricas).
+Pasando ya al análisis detallado de cada algoritmo, el primero de ellos sigue una aproximación particular basada en la creación de dos grupos de características: unas basadas en el contenido (estructurales) y otras basadas en el estilo (estilométricas).
 Como se puede ver en la Figura \ref{fig:features_grivas}, las características estructurales se corresponden con el número de \textit{hashtags}, enlaces y menciones que aparecen en los \textit{tweets},
 mientras que las características estilométricas se corresponden con otras como el TF-IDF de n-gramas o el número de mayúsculas. A estas últimas se le suman algunas características menos
 utilizadas como la bolsa de emoticonos (\textit{bag-of-smileys} en inglés), una técnica similar a la \textit{bag-of-words} explicada en la Sección \ref{sec:bag_of_words} o los grafos de n-gramas, propuestos
@@ -826,7 +825,7 @@ para ello en una serie de heurísticas y de pruebas realizadas con el \textit{da
 \bigskip
 Finalmente, en lo que concierne a las técnicas de clasificación, se utilizaron SVMs con un kernel RBF (\textit{Radial Basis Function} en inglés) y con un kernel lineal
 para las subtareas de predicción de la edad y el género, respectivamente. En el caso de la predicción de los rasgos personales, se empleó un SVR (\textit{Support Vector Regression} en inglés)
-con un kernel lineal. Destacar que, para la ejecución de ambos algoritmos de aprendizaje automático, se hizo uso de las librerías ofrecidas por scikit-learn \cite{scikitlearn}.
+con un kernel lineal. Destacar que, para la ejecución de ambos algoritmos de aprendizaje automático, se hizo uso de las librerías ofrecidas por Scikit-Learn \cite{scikitlearn}.
 
 \subsection{Algoritmo de Martinc et al. \cite{martinc2019hot}}
 
@@ -856,11 +855,11 @@ Posteriormente, en la fase de extracción de características, se obtuvieron dif
 \end{itemize}
 
 Finalmente, se hicieron pruebas con varios clasificadores, entre ellos SVMs con diferentes \textit{kernels}, \textit{random forest} o \textit{gradient boosting}, pero el que mejores resultados
-obtuvo fue el de regresión logística, siendo empleado en todas las subtareas de clasificación de la competición. Para hallar dicha solución y obtener los hiperparámetros óptimos para cada
+obtuvo fue el de regresión logística, siendo empleado en todas las subtareas de clasificación. Para hallar dicha solución y obtener los hiperparámetros óptimos para cada
 clasificador, se aplicó una búsqueda en rejilla (\textit{grid search} en inglés), en la que se evaluaron todas las posibles combinaciones de parámetros.
-Destacar también el uso de la clase \textit{FeatureUnion} de scikit-learn \cite{scikitlearn}, la cual permite la concatenación de diferentes características en un mismo vector asignándoles
-un diferente peso a cada una de ellas, obteniendo para este caso un peso de 0,8 sobre 1 para los unigramas de palabras y los tetragramas de caracteres, mientras que tan solo un 0,4 para los tetragramas de caracteres sufijos,
-lo que implica una menor relevancia.
+Destacar también el uso de la clase \textit{FeatureUnion} de Scikit-Learn \cite{scikitlearn}, la cual permite la concatenación de diferentes características en un mismo vector asignándoles
+un diferente peso a cada una de ellas, obteniendo, para este caso, un peso de 0,8 sobre 1 para los unigramas de palabras y los tetragramas de caracteres, mientras que un 0,4 para los tetragramas de caracteres sufijos,
+lo que implica una menor relevancia durante el entrenamiento del clasificador.
 
 \subsection{Pruebas}
 
@@ -874,7 +873,7 @@ En cuanto al algoritmo de Grivas et al. \cite{grivas2015author}, como se observa
 cuanto a la precisión, cerca de un 3,5\% 	\textit{($\Delta$accuracy=0,0352)}, lo que se puede deber a cambios en el propio \textit{dataset} de entrenamiento o test ofrecidos. A mayores,
 se muestra una columna con el Macro F1 obtenido. Esta métrica, basada en el F1 tradicional, se calcula como la media de los F1 de cada clase,
 reflejando los problemas subyacentes en casos de conjuntos de entrenamiento desbalanceados.
-Así, vemos como los resultados obtenidos para el género son buenos, mientras que para la edad son bastante peores. Esto puede deberse al gran
+Así, vemos como, utilizando como referencia esta métrica, los resultados obtenidos para el género son buenos, mientras que para la edad son bastante peores. Esto puede deberse al gran
 desbalanceo de clases de la edad, junto a las pequeñas diferencias que pueden existir entre rangos contiguos y que provocan errores en la clasificación.
 
 \bigskip
@@ -895,9 +894,9 @@ desbalanceo de clases de la edad, junto a las pequeñas diferencias que pueden e
 \end{table}
 
 \bigskip
-A mayores, ya que los \textit{datasets} de la edición de 2014 y de 2015 tienen una estructura similar, esto permitió utilizar la colección
-del \textit{PAN Author Profiling 2014}, disponible en \url{https://zenodo.org/record/3716008}, para llevar a cabo experimentos y comparar los resultados que ofrece el algoritmo
-de Grivas et al. \cite{grivas2015author} con cada uno. Con todo, fue necesario realizar las siguientes modificaciones para que tanto el algoritmo
+A mayores, ya que los \textit{datasets} de la edición de 2014 y de 2015 tienen una estructura similar, fue posible utilizar la colección
+del \textit{PAN Author Profiling 2014}, disponible en \url{https://zenodo.org/record/3716008}, para llevar a cabo más experimentos y comparar los resultados que ofrece el algoritmo
+de Grivas et al. \cite{grivas2015author} con cada uno. Con todo, fue necesario realizar las siguientes modificaciones para que, tanto el algoritmo
 como la colección, fuesen completamente compatibles:
 
 \begin{itemize}
@@ -913,9 +912,9 @@ De esta forma, haciendo uso del \textit{dataset} de 2014 para entrenar el algori
 mostrados en la Tabla \ref{tab:pruebas_grivas_PAN14}. Destacar que, debido a que la colección proporcionada en 2014 no contaba con un conjunto específico de test, se realizó la validación
 con el conjunto de test de la competición de 2015, obteniendo así resultados directamente comparables con los reportados en la Tabla \ref{tab:pruebas_grivas}.
 En este sentido, vemos como la precisión y el Macro F1 de ambas características se reduce drásticamente a causa, hipotéticamente, de dos factores. El primero de ellos
-tiene que ver con heterogeneidad de los textos en el conjunto de entrenamiento, ya que se unificaron las publicaciones de los blogs, las reseñas de hoteles y
+tiene que ver con la heterogeneidad de los textos en el conjunto de entrenamiento, ya que se unificaron las publicaciones de los blogs, las reseñas de hoteles y
 los posts de otras redes sociales, provocando, por un lado, una dificultad añadida en el proceso de extracción de características y, por otro lado,
-un gran contraste con los \textit{tweets} utilizados para la validación. El segundo factor tiene que ver con la gran diferencia en el tamaño de los \textit{datasets},
+un gran contraste con los \textit{tweets} utilizados en la validación. El segundo factor tiene que ver con la gran diferencia en el tamaño de los \textit{datasets},
 dado que la edición de 2014 contaba con 12,053 autores frente a 142 de la de 2015.
 
 \bigskip
@@ -960,11 +959,11 @@ resultados bastante pobres en comparación con la precisión, lo que demuestra u
 	\label{tab:pruebas_martinc}
 \end{table}
 
-Sin embargo, la predicción exacta del año de nacimiento, tal y como se exponía en la competición de 2019, supone una utilidad real limitada para el perfilado de autores,
+Sin embargo, la predicción exacta del año de nacimiento, tal y como se exponía en la competición de 2019, tiene una utilidad real limitada en el contexto del perfilado de autores,
 por lo que se buscó mejorar la precisión del algoritmo mediante el \textit{binning}. Esta técnica consiste en agrupar los valores de una característica en rangos, de forma que
-se reduzca la complejidad del problema y se obtengan así mejores resultados. En este caso, como criterio para realizar la agrupación se siguió el mismo que el utilizado
+se reduzca la complejidad del problema y se obtengan así mejores resultados. En este caso, como criterio para realizar la agrupación, se siguió el mismo que el utilizado
 en la competición del año 2015, añadiendo el rango de los menores de edad, es decir, se consideraron los siguientes grupos: \textit{XX-17}, \textit{18-24}, \textit{25-34}, \textit{35-49}, \textit{50-XX};
 donde, de igual forma que anteriormente, \textit{XX-17} representa cualquier edad igual o inferior a 17 años y \textit{50-XX} cualquier edad igual o superior a 50 años.
-Con todo, aplicando el \textit{binning} se consiguió aumentar la precisión para el perfilado de la edad un 16,48\%, hasta llegar al 59,68\%, lo que, aún siendo inferior
-al obtenido por Grivas et al. \cite{grivas2015author}, se considera un gran resultado teniendo en cuenta la gran diferencia en tamaño de los \textit{datasets} empleados en
-cada competición.
+Con todo, aplicando el \textit{binning}, se consiguió aumentar la precisión para el perfilado de la edad un 16,48\%, hasta llegar al 59,68\%, lo que, aún siendo inferior
+al obtenido por Grivas et al. \cite{grivas2015author}, se considera un gran resultado teniendo en cuenta la gran diferencia en tamaño de los \textit{datasets} empleados para entrenar
+cada modelo.

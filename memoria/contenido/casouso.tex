@@ -104,10 +104,10 @@ en la misma página de inicio.
 \label{sec:casouso_algoritmo}
 
 En este punto, una vez subido el \textit{dataset} deseado, el usuario debe seleccionar el algoritmo de perfilado que más se ajuste
-a sus necesidades. En este decisión, es fundamental tener en cuenta el lenguaje en el que se encuentra el \textit{dataset},
+a sus necesidades. En esta decisión, es fundamental tener en cuenta el lenguaje en el que se encuentra el \textit{dataset},
 las características que se buscan perfilar, el rendimiento del algoritmo o incluso el \textit{dataset} con el que ha sido entrenado.
 Así, por un lado se muestran unas tarjetas con la información básica de cada algoritmo, como se puede ver
-en la Figura \ref{fig:casouso_algorithms} y, por otro lado, se muestran \textit{tooltips} con información más detallada
+en la Figura \ref{fig:casouso_algorithms} y, por otro, se muestran \textit{tooltips} con información más detallada
 sobre el funcionamiento del algoritmo, el \textit{dataset} de entrenamiento y el rendimiento del mismo,
 como se distingue en la Figura \ref{fig:casouso_tooltip}.
 
@@ -352,14 +352,74 @@ En el caso de la distribución de edad, ambos algoritmos reflejan amplias difere
 ver en las Tablas \ref{tab:comparativa_edad_martinc} y \ref{tab:comparativa_edad_grivas}.
 
 \bigskip
-Para el algoritmo de Martinc et al. \cite{martinc2019hot}, observamos
+Para el algoritmo de Grivas et al. \cite{grivas2015author}, y de la misma forma que sucedía con la distribución de género, los resultados obtenidos
+parecen estar la mayor parte concentrados en dos clases, las cuales coinciden con las más representadas en la colección de entrenamiento para el algoritmo (ver Figura \ref{fig:dataset_2015}).
+Esto denota, lógicamente, un claro sobreajuste del modelo a dicha colección. 
+
+\bigskip
+\begin{figure}[H]
+	\centering
+	\begin{tikzpicture}
+		\begin{axis}[
+				width=0.9\textwidth,
+				height=5cm,
+				xmajorgrids=false,
+				ylabel=Número de autores,
+				xlabel=Posts/usuario,
+				ybar=6pt,
+				bar width=12pt,
+				enlarge x limits=0.18,
+				symbolic x coords={50, 500, 1000},
+				xtick=data,
+				ymin=0,
+				ymax=1450,
+				legend style={at={(0.5,1.28)},font=\scriptsize, anchor=north,legend columns=-1, /tikz/every even column/.append style={column sep=0.3cm}},
+			]
+			\addplot[fill=blue!20, pattern color=blue, postaction={pattern=north east lines}] table[x=Posts/usuario,y={18-24}] {
+			Posts/usuario   {18-24}
+			50              278
+			500             170
+			1000            168
+			};
+			\addplot[fill=red!20, pattern color=red, postaction={pattern=dots}] table[x=Posts/usuario,y={25-34}] {
+			Posts/usuario   {25-34}
+			50              1124
+			500             1232
+			1000            1234
+			};
+			\legend{{18-24}, {25-34}}
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Distribución de edad obtenia por el algoritmo de Grivas at al. \cite{grivas2015author}}
+	\label{fig:comparativa_edad_grivas}
+\end{figure}
+
+\begin{table}[H]
+	\centering
+	\resizebox{0.8\textwidth}{!}{
+		\rowcolors{2}{white}{udcgray!25}
+		\begin{tabular}{|c|c|c|c|c|c|}
+			\hhline{~|-----|}
+			\multicolumn{1}{c|}{\cellcolor{white}} & \multicolumn{5}{c|}{\cellcolor{udcpink!25}\textbf{Grivas}}                                                                     \\ \hline
+			\textbf{Posts/usuario}                 & \textbf{XX-17}                                             & \textbf{18-24} & \textbf{25-34} & \textbf{35-49} & \textbf{50-XX} \\ \hline
+			50                                     & 0                                                          & 278            & 1.124          & 0              & 0              \\ \hline
+			500                                    & 0                                                          & 170            & 1.232          & 0              & 0              \\ \hline
+			1.000                                  & 0                                                          & 168            & 1.234          & 0              & 0              \\ \hline
+		\end{tabular}
+	}
+	\caption{Distribución de edad obtenida por el algoritmo de Grivas et al. \cite{grivas2015author}}
+	\label{tab:comparativa_edad_grivas}
+\end{table}
+
+\bigskip
+Pasando al algoritmo de Martinc et al. \cite{martinc2019hot}, observamos
 como, a medida que aumenta el número de posts por usuario, el número de usuarios pertenecientes a la franja de edad \textit{25-34} disminuye
 considerablemente, mientras que los pertenecientes a los rangos \textit{35-49} y \textit{50-XX} fluctúan.
-La principal conclusión que se extrae de esto es que el modelo, basado, recordemos, en TF-IDF, consigue encontrar patrones lingüísticos
+La principal conclusión que se extrae de esto es que el modelo —recordemos, basado en TF-IDF— consigue encontrar patrones lingüísticos
 relacionados con rangos de edad más altos cuantos más posts tenga para predecir.
 Otra hipótesis gira entorno a la posibilidad de que al contar con más posts y, por ende, con más información por usuario,
-el algoritmo sea capaz de realizar una clasificación más precisa, debido al gran rendimiento que mostraba en cuanto
-a precisión y al elevado número de usuarios utilizados para el entrenamiento, cerca de 20.000.
+el algoritmo sea capaz de realizar una clasificación más precisa, teniendo en cuenta el gran rendimiento que demostraba en cuanto
+a precisión y al elevado número de usuarios utilizados para el entrenamiento, cercano a los 20.000.
 Sin embargo, es importante destacar que los rangos con más número de usuarios coinciden con aquellos
 más representados en el conjunto de entrenamiento, como se representaba en la Figura \ref{fig:distribucion_edad_2019}, lo que denota quizá problemas
 a causa del desbalanceo.
@@ -453,71 +513,11 @@ red social.
 	\label{tab:comparativa_edad_martinc}
 \end{table}
 
-\bigskip
-Pasando al algoritmo de Grivas et al. \cite{grivas2015author}, y de la misma forma que sucedía con la distribución de género, los resultados obtenidos
-parecen estar la mayor parte concentrados en dos clases, las cuales coinciden con las más representadas en la colección de entrenamiento para el algoritmo (ver Figura \ref{fig:dataset_2015}).
-Esto denota, lógicamente, un claro sobreajuste del modelo a dicha colección. 
-
-\bigskip
-\begin{figure}[H]
-	\centering
-	\begin{tikzpicture}
-		\begin{axis}[
-				width=0.9\textwidth,
-				height=5cm,
-				xmajorgrids=false,
-				ylabel=Número de autores,
-				xlabel=Posts/usuario,
-				ybar=6pt,
-				bar width=12pt,
-				enlarge x limits=0.18,
-				symbolic x coords={50, 500, 1000},
-				xtick=data,
-				ymin=0,
-				ymax=1450,
-				legend style={at={(0.5,1.28)},font=\scriptsize, anchor=north,legend columns=-1, /tikz/every even column/.append style={column sep=0.3cm}},
-			]
-			\addplot[fill=blue!20, pattern color=blue, postaction={pattern=north east lines}] table[x=Posts/usuario,y={18-24}] {
-			Posts/usuario   {18-24}
-			50              278
-			500             170
-			1000            168
-			};
-			\addplot[fill=red!20, pattern color=red, postaction={pattern=dots}] table[x=Posts/usuario,y={25-34}] {
-			Posts/usuario   {25-34}
-			50              1124
-			500             1232
-			1000            1234
-			};
-			\legend{{18-24}, {25-34}}
-		\end{axis}
-	\end{tikzpicture}
-	\caption{Distribución de edad obtenia por el algoritmo de Grivas at al. \cite{grivas2015author}}
-	\label{fig:comparativa_edad_grivas}
-\end{figure}
-
-\begin{table}[H]
-	\centering
-	\resizebox{0.8\textwidth}{!}{
-		\rowcolors{2}{white}{udcgray!25}
-		\begin{tabular}{|c|c|c|c|c|c|}
-			\hhline{~|-----|}
-			\multicolumn{1}{c|}{\cellcolor{white}} & \multicolumn{5}{c|}{\cellcolor{udcpink!25}\textbf{Grivas}}                                                                     \\ \hline
-			\textbf{Posts/usuario}                 & \textbf{XX-17}                                             & \textbf{18-24} & \textbf{25-34} & \textbf{35-49} & \textbf{50-XX} \\ \hline
-			50                                     & 0                                                          & 278            & 1.124          & 0              & 0              \\ \hline
-			500                                    & 0                                                          & 170            & 1.232          & 0              & 0              \\ \hline
-			1.000                                  & 0                                                          & 168            & 1.234          & 0              & 0              \\ \hline
-		\end{tabular}
-	}
-	\caption{Distribución de edad obtenida por el algoritmo de Grivas et al. \cite{grivas2015author}}
-	\label{tab:comparativa_edad_grivas}
-\end{table}
-
 \subsection{Otras características}
 
 En lo que respecta al perfilado de los rasgos personales que ofrece el algoritmo de Grivas et al. \cite{grivas2015author},
 lo primero que observamos es que existe muy poca variación con respecto al número de posts por usuario, como se puede ver en la Tabla \ref{tab:comparativa_rasgos_personales}.
-A grandes rasgos, recordemos que los valores de cada rasgo personal oscilan entre -0,5 y 0,5, vemos como la característica que más destaca es claramente la de \textit{Open} (abierto a nuevas experiencias), seguida de \textit{Stable} (estable) y \textit{Agreeable} (amable).
+A grandes rasgos —recordemos que los valores de cada rasgo personal oscilan entre -0,5 y 0,5— vemos como la característica que más destaca es claramente la de \textit{Open} (abierto a nuevas experiencias), seguida de \textit{Stable} (estable) y \textit{Agreeable} (amable).
 Las implicaciones que tiene estos resultados con la realidad no son claras, pero podemos deducir que, en general, los usuarios que se lanzan a ser partícipes de los debates
 en Reddit sobre el \#BLM son personas categorizadas en unos rasgos de personalidad abiertos y estables.
 A pesar de ello, todas estas inferencias desde los datos a nivel sociológico representan en sí mismo contribuciones de este TFG,
