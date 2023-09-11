@@ -4,7 +4,7 @@
 The ultimate tool that will help sociologists, entrepreneurs, politicians and many other people to **infer personal
 characteristics of people from the text they write using AI** ✍🏻 🧠
 
-https://github.com/daavidrgz/tfg/assets/72865058/c9f57c27-36ec-4482-bf21-d1304639eceb
+https://github.com/daavidrgz/ai-profiler/assets/72865058/2a74bb90-3f9b-46b3-856f-82c932f767dd
 
 </div>
 
